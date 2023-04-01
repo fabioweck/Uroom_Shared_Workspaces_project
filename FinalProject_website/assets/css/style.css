@@ -1,0 +1,203 @@
+/*
+************************
+    ### PARAMETERS ###
+************************
+*/
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 1280px;
+  margin: auto;
+}
+
+header {
+  background-color: black;
+}
+header .container {
+  display: flex;
+  height: 100px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+header .container .logo {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 30px;
+}
+header .container .logo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+header .container .title-nav {
+  display: flex;
+  justify-content: flex-start;
+  width: 30%;
+}
+header .container .title-nav p {
+  color: aliceblue;
+  font-size: 30px;
+}
+header .container .navbar {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  color: aliceblue;
+  font-size: 30px;
+  padding-right: 30px;
+}
+header .container .navbar a {
+  color: aliceblue;
+  text-decoration: none;
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+header .container .navbar a:hover {
+  background-color: aliceblue;
+  color: #398378;
+  transition: 0.5s;
+}
+
+.title {
+  background-image: url("../img/room01.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 600px;
+  resize: both;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title h2 {
+  font-size: 50px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: aliceblue;
+  text-shadow: 1px 2px 5px black;
+}
+
+#login .login-title {
+  margin: 50px 0px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+}
+#login .login-title img {
+  width: 50%;
+  border-radius: 20px;
+}
+#login .login-title #login-box {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+#login .login-title #login-box label {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: grey;
+}
+#login .login-title #login-box input {
+  width: 50%;
+  height: 40px;
+  margin: 5px auto 20px;
+  font-size: 25px;
+  color: grey;
+}
+#login .login-title #login-box button {
+  border: none;
+  border-radius: 5px;
+  margin: 50px auto 10px;
+  color: white;
+  background-color: #398378;
+  padding: 10px 40px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+#login .login-title #login-box button:hover {
+  background-color: rgba(57, 131, 120, 0.6352941176);
+  transition: 0.5s;
+}
+#login .login-title #login-box a {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: grey;
+  padding: 10px;
+  text-align: center;
+}
+
+.location {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}
+
+.intro-description .intro-icons {
+  display: flex;
+  justify-content: space-around;
+}
+.intro-description .intro-icons img {
+  margin: 100px 0px;
+  width: 180px;
+}
+.intro-description .intro-icons img:hover {
+  transition: 0.3s;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.intro-description .intro-paragraph {
+  margin-bottom: 100px;
+}
+.intro-description .intro-paragraph p {
+  font-size: 25px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+}
+
+.testimonials {
+  background-color: lightgray;
+}
+.testimonials .icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.testimonials .icons img {
+  margin: 50px 0px;
+  width: 250px;
+}
+.testimonials .icons p {
+  width: 640px;
+  font-size: 20px;
+}
+
+footer {
+  background-color: black;
+  height: 100px;
+}
+footer .container .copyright-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100px;
+}
+footer .container .copyright-footer p {
+  color: aliceblue;
+  text-align: center;
+  font-style: italic;
+}/*# sourceMappingURL=style.css.map */
