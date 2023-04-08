@@ -12,12 +12,12 @@ var modalCalendar = document.getElementById("modal-calendar");
 var closeBtn = modalCalendar.querySelector("#button-close");
 
 // Show the modal when a button is clicked
-var showModal = function () {
+var showModal = () => {
     modalCalendar.style.display = "flex";
 };
 
 // Hide the modal when the close button is clicked or outside the modal
-var hideModal = function (event) {
+var hideModal = (event) => {
   if (event.target == closeBtn) {
     modalCalendar.style.display = "none";
     // Reset form fields to their initial values

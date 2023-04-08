@@ -52,12 +52,163 @@
     </header>
     <!--header-->
 
-    <main class="container">
+    <main class="container ownerspace">
       <div class="adjust-content-top"></div>
 
-      <section>
-        <h1>OWNER PAGE</h1>
+      <section class="owner-workspace-page-container">
+        <button class="btn" onclick="refreshPage()">Reload</button>
+        <button class="btn" id="btn-add-space"">Add space</button>
       </section>
+      <!--my-workspace-container-->
+
+      <section class="workspaces-container">
+        <form class="search-bar-container">
+          <select id="dropdown-search-bar" >
+            <option value="address">address</option>
+            <option value="neighborhood">neighborhood</option>
+            <option value="sqft">square feet</option>
+            <option value="parking" selected>parking</option>
+            <option value="public-transportation" selected>
+              public transportation
+            </option>
+            <option value="n-seats" selected>number of seats</option>
+            <option value="smoking" selected>smoking</option>
+            <option value="availability-date" selected>
+              availability date
+            </option>
+            <option value="lease-term" selected>lease term</option>
+            <option value="price" selected>price</option></select
+          ><!--dropdown-search-bar-->
+
+          <input type="search" name="" id="" placeholder="Search" class="input" id="search-bar">
+
+          <button class="btn" id="btn-search-bar">Search</button>
+          
+        </form>
+        <!--search-bar-container-->
+
+        <div class="rooms-container">
+          <div class="room-division">
+            <div class="room-description">
+              <img src="../img/room01.jpg" alt="Image Room" />
+              <ul>
+                <li>Workspace description</li>
+                <li>Address</li>
+                <li>Neighbourhood</li>
+                <li>Parking lot</li>
+                <li>Public transportation</li>
+                <li>Seats</li>
+                <li>Smoking</li>
+                <li>Price</li>
+                <li>Sqft</li>
+                <li>Leasing term</li>
+              </ul>
+            </div>
+            <!--room-description-->
+            <div class="status-container">
+              <p>status</p>
+            </div>
+            <div class="button-container">
+              <button class="btn" id="btn-book">Update</button>
+              <button class="btn" id="btn-book">Inactive</button>
+            </div><!--button-container-->
+          </div>
+          <!--room-division-->
+        </div>
+        <!--rooms-container-->
+
+        
+      </section>
+      <!--workspaces-container-->
+
+      <section class="modal-add-space-container">
+        <div id="modal-add-space" class="modal-add-space">
+          <div class="modal-content">
+            <h2>Add Space</h2>
+
+            <form id="add-space-form" class="add-space-form">
+              <input
+                placeholder="Workspace description"
+                class="input"
+                type="text"
+                id="add-workspace-description"
+              />
+
+              <input
+                placeholder="Address"
+                class="input"
+                type="text"
+                id="add-address"
+              />
+
+              <input
+                placeholder="Neighbourhood"
+                class="input"
+                type="text"
+                id="add-neighbourhood"
+              />
+
+              <input
+                placeholder="Seats"
+                class="input"
+                type="number"
+                id="add-seats"
+              />
+
+              <input
+                placeholder="Price"
+                class="input"
+                type="number"
+                id="add-price"
+              />
+
+              <input
+                placeholder="Sqft"
+                class="input"
+                type="number"
+                id="add-sqft"
+              />
+
+              <input
+                placeholder="Leasing term"
+                class="input"
+                type="text"
+                id="add-leasing-term"
+              />
+
+              <div class="add-space-radio-container">
+                <p>Parking lot</p>
+                <input type="radio" name="parking-lot-option" id="yes" value="yes">
+                <label for="yes">Yes</label><br>
+                <input type="radio" name="parking-lot-option" id="no" value="no">
+                <label for="no">No</label><br>
+              </div>
+
+              <div class="add-space-radio-container">
+                <p>Public transportation</p>
+                <input type="radio" name="public-transportation-option" id="yes" value="yes">
+                <label for="yes">Yes</label><br>
+                <input type="radio" name="public-transportation-option" id="no" value="no">
+                <label for="no">No</label><br>
+              </div>
+
+              <div class="add-space-radio-container">
+                <p>Smoking</p>
+                <input type="radio" name="smoking-option" id="yes" value="yes">
+                <label for="yes">Yes</label><br>
+                <input type="radio" name="smoking-option" id="no" value="no">
+                <label for="no">No</label><br>
+              </div>
+
+
+
+              <button class="btn" id="button-close">Close</button>
+            </form>
+          </div>
+          <!-- Modal content -->
+        </div>
+      </section>
+      <!--modal-container-->
     </main>
     <!--container-->
 
@@ -72,6 +223,7 @@
     </footer>
 
     <!--scripts-->
+    <script src="../js/ownerspace.js"></script>
     <script src="../js/general_conf.js"></script>
     <!--scripts-->
   </body>
