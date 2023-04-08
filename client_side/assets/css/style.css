@@ -486,12 +486,13 @@ header .mobile-menu-icon {
 }
 .ownerspace .modal-add-space-container #modal-add-space .modal-content .add-space-form .add-space-radio-container {
   display: flex;
+  justify-content: space-between;
   border: solid;
   width: 295px;
   padding: 5px;
 }
 .ownerspace .modal-add-space-container #modal-add-space .modal-content .add-space-form .add-space-radio-container p {
-  padding: 0 10px;
+  padding: 0 5px;
 }
 .ownerspace .modal-add-space-container #modal-add-space .modal-content .add-space-form .add-space-radio-container label {
   padding: 0 5px;

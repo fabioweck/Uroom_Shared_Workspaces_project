@@ -559,12 +559,13 @@ header {
 
           .add-space-radio-container {
             display: flex;
+            justify-content: space-between;
             border: solid;
             width: 295px;
             padding: 5px;
 
             p {
-              padding: 0 10px;
+              padding: 0 5px;
             }
 
             label {
