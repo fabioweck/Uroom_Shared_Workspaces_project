@@ -26,6 +26,17 @@ main {
   margin: auto;
 }
 
+.btn {
+  padding: 5px 5px;
+  width: 100px;
+}
+
+.input {
+  width: 300px;
+  margin: 0 20px;
+  padding: 5px 5px;
+}
+
 /*
 ************************************************
 ### HEADER ###
@@ -302,6 +313,89 @@ header .mobile-menu-icon {
   color: grey;
   padding: 20px;
   text-align: center;
+}
+
+/*
+************************************************
+### MAIN - BOOKING ###
+************************************************
+*/
+.owner-workspace-container {
+  border: solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  margin-top: 10px;
+}
+.owner-workspace-container p {
+  margin: 0 20px;
+}
+
+.workspaces-container .search-bar-container {
+  border: solid;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin: 10px 0;
+}
+.workspaces-container .search-bar-container .dropdown-search-bar {
+  padding: 5px 5px;
+}
+.workspaces-container .rooms-container .room-division {
+  border: solid;
+  margin-bottom: 20px;
+}
+.workspaces-container .rooms-container .room-division .room-description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.workspaces-container .rooms-container .room-division .room-description img {
+  width: 50%;
+  padding: 50px;
+}
+.workspaces-container .rooms-container .room-division .room-description ul {
+  width: 50%;
+  padding: 50px;
+}
+.workspaces-container .rooms-container .room-division .button-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.modal-calendar-container #modal-calendar {
+  border: solid;
+  display: none;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  justify-content: center;
+}
+.modal-calendar-container #modal-calendar .modal-content {
+  border: solid;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgray;
+}
+.modal-calendar-container #modal-calendar .modal-content h2 {
+  padding-bottom: 20px;
+}
+.modal-calendar-container #modal-calendar .modal-content .calendar-form {
+  display: flex;
 }
 
 /*

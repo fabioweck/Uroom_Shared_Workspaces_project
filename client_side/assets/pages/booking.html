@@ -23,38 +23,120 @@
 
   <body>
     <header>
-        <div id="pages"></div>
-        <div class="container">
-          <div class="logo">
-            <img id="img-logo" alt="logo" />
-            <p class="menu-logo-mobile">U-Room</p>
-          </div>
-          <!--logo-->
-  
-          <div class="navbar" id="menu-links-flex">
-            <a id="link-home"></a>
-            <a id="link-login"></a>
-            <a id="link-booking"></a>
-            <a id="link-about"></a>
-            <a id="link-contact"></a>
-          </div>
-  
-          <a
-            href="javascript:void(0);"
-            class="mobile-menu-icon"
-            onclick="viewMobileMenu()"
-          >
-            <i class="fa fa-bars"></i>
-          </a>
-          <!--navbar-->
+      <div id="pages"></div>
+      <div class="container">
+        <div class="logo">
+          <img id="img-logo" alt="logo" />
+          <p class="menu-logo-mobile">U-Room</p>
         </div>
-        <!--container-->
-      </header>
-      <!--header-->
+        <!--logo-->
+
+        <div class="navbar" id="menu-links-flex">
+          <a id="link-home"></a>
+          <a id="link-login"></a>
+          <a id="link-booking"></a>
+          <a id="link-about"></a>
+          <a id="link-contact"></a>
+        </div>
+
+        <a
+          href="javascript:void(0);"
+          class="mobile-menu-icon"
+          onclick="viewMobileMenu()"
+        >
+          <i class="fa fa-bars"></i>
+        </a>
+        <!--navbar-->
+      </div>
+      <!--container-->
+    </header>
+    <!--header-->
 
     <main class="container">
-        <div class="adjust-content-top"></div>
-      <h1>booking page</h1>
+      <div class="adjust-content-top"></div>
+
+      <section class="owner-workspace-container">
+        <p>RESERVADO PARA OWNER</p>
+        <button id="btn-owner-workspace" class="btn" onclick="openOwnerSpace()">Owner space</button>
+      </section>
+      <!--my-workspace-container-->
+
+      <section class="workspaces-container">
+        <form class="search-bar-container">
+          <select id="dropdown-search-bar" >
+            <option value="address">address</option>
+            <option value="neighborhood">neighborhood</option>
+            <option value="sqft">square feet</option>
+            <option value="parking" selected>parking</option>
+            <option value="public-transportation" selected>
+              public transportation
+            </option>
+            <option value="n-seats" selected>number of seats</option>
+            <option value="smoking" selected>smoking</option>
+            <option value="availability-date" selected>
+              availability date
+            </option>
+            <option value="lease-term" selected>lease term</option>
+            <option value="price" selected>price</option></select
+          ><!--dropdown-search-bar-->
+
+          <input type="search" name="" id="" placeholder="Search" class="input" id="search-bar">
+
+          <button class="btn" id="btn-search-bar">Search</button>
+          
+        </form>
+        <!--search-bar-container-->
+
+        <div class="rooms-container">
+          <div class="room-division">
+            <div class="room-description">
+              <img src="../img/room01.jpg" alt="Image Room" />
+              <ul>
+                <li>Workspace description</li>
+                <li>Address</li>
+                <li>Neighbourhood</li>
+                <li>Parking lot</li>
+                <li>Public transportation</li>
+                <li>Seats</li>
+                <li>Smoking</li>
+                <li>Price</li>
+                <li>Sqft</li>
+                <li>Leasing term</li>
+              </ul>
+            </div>
+            <!--room-description-->
+            <div class="button-container">
+              <button class="btn" id="btn-book">Book</button>
+            </div>
+          </div>
+          <!--room-division-->
+        </div>
+        <!--rooms-container-->
+
+        
+      </section>
+      <!--workspaces-container-->
+
+      <section class="modal-calendar-container">
+        <div id="modal-calendar" class="modal-calendar">
+          <div class="modal-content">
+            <h2>Calendar</h2>
+
+            <form id="calendar-form" class="calendar-form">
+              <input
+                placeholder="Calendar Simulation"
+                class="input"
+                type="text"
+                id="calendar-obj"
+              />
+
+              <button class="btn" id="button-close">Close</button>
+            </form>
+          </div>
+          <!-- Modal content -->
+        </div>
+      </section>
+      <!--modal-container-->
     </main>
     <!--container-->
 
@@ -69,7 +151,7 @@
     </footer>
 
     <!--scripts-->
-    <script src="../js/script.js"></script>
+    <script src="../js/booking.js"></script>
     <script src="../js/general_conf.js"></script>
     <!--scripts-->
   </body>
