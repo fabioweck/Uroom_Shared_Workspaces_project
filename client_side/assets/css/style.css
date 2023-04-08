@@ -1,0 +1,326 @@
+/*
+************************************************
+### PARAMETERS ###
+************************************************
+*/
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.container {
+  max-width: 1280px;
+  margin: auto;
+}
+
+/*
+************************************************
+### HEADER ###
+************************************************
+*/
+header {
+  background-color: black;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+header .container {
+  display: flex;
+  height: 100px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+@media screen and (max-width: 768px) {
+  header .container {
+    height: 51px;
+    font-size: 1.375rem;
+    font-weight: 700;
+  }
+}
+header .container .logo {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding-left: 30px;
+}
+header .container .logo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+@media screen and (max-width: 768px) {
+  header .container .logo img {
+    display: none;
+  }
+}
+header .container .logo .menu-logo-mobile {
+  display: none;
+  color: aliceblue;
+}
+@media screen and (max-width: 768px) {
+  header .container .logo .menu-logo-mobile {
+    display: contents;
+  }
+}
+header .container .navbar {
+  background-color: black;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  color: aliceblue;
+  font-size: 30px;
+}
+header .container .navbar a {
+  color: aliceblue;
+  text-decoration: none;
+  padding: 5px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+header .container .navbar a:hover {
+  background-color: aliceblue;
+  color: #398378;
+  transition: 0.5s;
+}
+@media screen and (max-width: 768px) {
+  header .container .navbar {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 50px;
+  }
+}
+header .mobile-menu-icon {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  header .mobile-menu-icon {
+    background: #252424;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    color: grey;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    text-transform: uppercase;
+    text-align: center;
+  }
+}
+
+.adjust-content-top {
+  height: 100px;
+}
+@media screen and (max-width: 768px) {
+  .adjust-content-top {
+    height: 50px;
+  }
+}
+
+/*
+************************************************
+### MAIN - INDEX ###
+************************************************
+*/
+.intro-container {
+  position: relative;
+  text-align: center;
+}
+.intro-container img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.intro-container .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.intro-container .title h2 {
+  font-size: 50px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: aliceblue;
+  text-shadow: 1px 2px 5px black;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .intro-container .title h2 {
+    font-size: 25px;
+  }
+}
+
+.intro-description .intro-icons {
+  display: flex;
+  justify-content: space-around;
+}
+.intro-description .intro-icons img {
+  margin: 20px 0px;
+  width: 150px;
+}
+.intro-description .intro-icons img:hover {
+  transition: 0.3s;
+  opacity: 0.6;
+  cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .intro-description .intro-icons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.intro-description .intro-paragraph {
+  padding: 20px;
+}
+.intro-description .intro-paragraph p {
+  font-size: 25px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+}
+
+.testimonials {
+  background-color: lightgray;
+}
+.testimonials .testimonial-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 30px;
+}
+.testimonials .testimonial-container:last-child {
+  padding-bottom: 30px;
+}
+.testimonials .testimonial-container img {
+  margin: 50px 0px;
+  padding: 30px 30px;
+  width: 200px;
+}
+@media screen and (max-width: 768px) {
+  .testimonials .testimonial-container img {
+    width: 100px;
+    margin: 0;
+  }
+}
+.testimonials .testimonial-container p {
+  width: 75%;
+  font-size: 20px;
+  text-align: justify;
+}
+@media screen and (max-width: 768px) {
+  .testimonials .testimonial-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/*
+************************************************
+### MAIN - LOGIN ###
+************************************************
+*/
+#login {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+#login .login-title {
+  width: 90%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+}
+@media screen and (max-width: 768px) {
+  #login .login-title {
+    flex-direction: column;
+  }
+}
+#login .login-title img {
+  width: 50%;
+  border-radius: 20px;
+}
+@media screen and (max-width: 768px) {
+  #login .login-title img {
+    display: none;
+  }
+}
+#login .login-title #login-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#login .login-title #login-box input {
+  width: 50%;
+  height: 40px;
+  padding: 20px;
+  margin-top: 20px;
+  font-size: 25px;
+  color: #252424;
+}
+#login .login-title #login-box button {
+  border: none;
+  border-radius: 5px;
+  margin: 50px auto 10px;
+  color: white;
+  background-color: #398378;
+  padding: 10px 40px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+#login .login-title #login-box button:hover {
+  background-color: rgba(57, 131, 120, 0.6352941176);
+  transition: 0.5s;
+}
+#login .login-title #login-box a {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: grey;
+  padding: 20px;
+  text-align: center;
+}
+
+/*
+************************************************
+### FOOTER ###
+************************************************
+*/
+footer {
+  background-color: black;
+}
+footer .container .copyright-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100px;
+}
+footer .container .copyright-footer p {
+  color: aliceblue;
+  text-align: center;
+  font-style: italic;
+}/*# sourceMappingURL=style.css.map */

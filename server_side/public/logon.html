@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logon Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+    logon page
+    <button class="btn1" onclick="logout()" name="logout">Logout</button>
+
+
+    <div id="dv-display"></div>
+
+    <div class="parent">
+        <div class="left searchBox">
+            <h2>Search</h2>
+            <!--This is the forms to filter by-->
+            <label for="first_name">First Name: </label>
+            <input type="text" id="first_name">
+            <button id="btnByName" type="submit" onclick="filterStaffByName()">Submit</button><br><br>
+
+            <label for="staff_id">Staff Id:</label>
+            <input type="text" id="staff_id">
+            <button id="btnById" type="submit" onclick="filterStaffById()">Submit</button><br><br>
+
+            <label for="staff_id">Salary:</label>
+            <input type="text" id="find_salary">
+            <button id="btnBySalary" type="submit" onclick="filterStaffBySalary()">Submit</button><br><br>
+
+            <a href="javascript:void(0);" onclick="handle()">Reset</a>
+
+        </div>
+</body>
+
+</html>
