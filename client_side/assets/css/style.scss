@@ -446,7 +446,15 @@ header {
 
       .calendar-form {
         display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        #button-close{
+          margin: 10px 0;
+        }
       }
+
+      
     }
   }
 }

@@ -396,6 +396,11 @@ header .mobile-menu-icon {
 }
 .modal-calendar-container #modal-calendar .modal-content .calendar-form {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-calendar-container #modal-calendar .modal-content .calendar-form #button-close {
+  margin: 10px 0;
 }
 
 /*
