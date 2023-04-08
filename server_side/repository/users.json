@@ -1,80 +1,33 @@
 [
-    {
-        "fullName": "Leandro Rafael Evaristo",
-        "phoneNumber": "4038992210",
-        "emailAddress": "evaristocordas@gmail.com",
-        "password": "bvc2023",
-        "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-    },
-    {
-        "fullName": "Leandro Rafael Evaristo",
-        "phoneNumber": "4038992210",
-        "emailAddress": "evaristocordas@gmail.com",
-        "password": "bvc2023",
-        "id": "6da3381c-1d11-4dee-9b58-b8cb5c7e4d33"
-    },
-    {
-        "fullName": "Leandro Rafael Evaristo",
-        "phoneNumber": "4038992210",
-        "emailAddress": "evaristocordas@gmail.com",
-        "password": "rrr",
-        "owner": "false",
-        "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-    },
-    {
-        "fullName": "Arthur de Sousa Evaristo",
-        "phoneNumber": "4034663280",
-        "emailAddress": "arthurpopular@gmail.com",
-        "password": "chloe",
-        "owner": "true",
-        "user_id": "f44c3578-3c5c-40ac-93e6-f868780bd0fb"
-    },
-    {
-        "fullName": "Talita Evaristo",
-        "phoneNumber": "4034663270",
-        "emailAddress": "evaristotalita@gmail.com",
-        "password": "lll",
-        "owner": "true",
-        "user_id": "c8297111-0c5a-4d51-9a4b-421a712b28db"
-    },
-    {
-        "fullName": "Leandro Rafael Evaristo",
-        "phoneNumber": "4038992210",
-        "emailAddress": "evaristocordas@gmail.com",
-        "password": "lll",
-        "owner": "true",
-        "user_id": "2bfafd0f-3c54-4a31-b093-392b4fe5271c"
-    },
-    {
-        "fullName": "Talita Figueiras de Sousa Evaristo",
-        "phoneNumber": "4034663270",
-        "emailAddress": "evaristotalita@gmail.com",
-        "password": "lll",
-        "owner": "true",
-        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-    },
-    {
-        "fullName": "Leandro Rafael Evaristo",
-        "phoneNumber": "4038992210",
-        "emailAddress": "evaristocordas@gmail.com",
-        "password": "llll",
-        "owner": "true",
-        "user_id": "e75eb5c9-f7f7-4432-8dd2-4e4ed1a60b29"
-    },
-    {
-        "fullName": "Leandro Rafael Evaristo",
-        "phoneNumber": "4038992210",
-        "emailAddress": "evaristocordas@gmail.com",
-        "password": "llll",
-        "owner": "true",
-        "user_id": "0c0e636c-20c8-4d59-a2f8-0d120e85aa11"
-    },
-    {
-        "fullName": "Leandro Rafael Evaristo",
-        "phoneNumber": "4038992210",
-        "emailAddress": "evaristocordas@gmail.com",
-        "password": "bvc2023",
-        "owner": "true",
-        "user_id": "258cd21c-1648-41ea-8379-c5eec9225da7"
-    }
+  {
+    "fullName": "Leandro Rafael Evaristo",
+    "phoneNumber": "4038992210",
+    "emailAddress": "evaristocordas@gmail.com",
+    "password": "bvc2023",
+    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
+  },
+  {
+    "fullName": "Arthur de Sousa Evaristo",
+    "phoneNumber": "4034663280",
+    "emailAddress": "arthurpopular@gmail.com",
+    "password": "chloe",
+    "owner": "true",
+    "user_id": "f44c3578-3c5c-40ac-93e6-f868780bd0fb"
+  },
+  {
+    "fullName": "Talita Figueiras de Sousa Evaristo",
+    "phoneNumber": "4034663270",
+    "emailAddress": "evaristotalita@gmail.com",
+    "password": "lll",
+    "owner": "true",
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
+  },
+  {
+    "fullName": "HUGO VINICIUS ZEMINIAN BUENO CAMARGO",
+    "phoneNumber": "8254493937",
+    "emailAddress": "hugo@email.com",
+    "password": "123456",
+    "owner": "true",
+    "user_id": "8db34f64-9eb5-4731-88e1-f744944fc0cb"
+  }
 ]

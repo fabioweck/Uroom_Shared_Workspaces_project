@@ -21,18 +21,28 @@ const viewMobileMenu = () => {
       mobileLinks.style.display = "flex";
     }
   }
-}
+};
 
 /*==============================================
 → ### NAV LINKS ### */
 (() => {
-  let linkIndex = "./index.html";
-  let linkLogin = "./assets/pages/login.html";
-  let linkBooking = "./assets/pages/booking.html";
-  let linkAbout = "./assets/pages/about.html";
-  let linkContact = "./assets/pages/contact.html";
-  let imgLogo = "./assets/img/color-logo.png";
-  //const websiteName = "website name";
+  let linkIndex;
+  let linkLogin;
+  let linkBooking;
+  let linkAbout;
+  let linkContact;
+  let imgLogo;
+
+  try {
+    if (document.getElementById("index").id == "index") {
+      linkIndex = "./index.html";
+      linkLogin = "./assets/pages/login.html";
+      linkBooking = "./assets/pages/booking.html";
+      linkAbout = "./assets/pages/about.html";
+      linkContact = "./assets/pages/contact.html";
+      imgLogo = "./assets/img/color-logo.png";
+    }
+  } catch (err) {}
 
   try {
     if (document.getElementById("pages").id == "pages") {
@@ -40,9 +50,9 @@ const viewMobileMenu = () => {
       linkLogin = "../pages/login.html";
       linkBooking = "../pages/booking.html";
       linkAbout = "../pages/about.html";
-      linkHome = "../../index.html";
       linkContact = "../pages/contact.html";
       imgLogo = "../img/color-logo.png";
+      linkHome = "../../index.html";
     }
   } catch (err) {}
 
@@ -64,8 +74,6 @@ const viewMobileMenu = () => {
   document.getElementById("link-contact").href = linkContact;
 
   document.getElementById("img-logo").src = imgLogo;
-
-  //document.getElementById("website-name").innerHTML = websiteName;
 })();
 
 /*==============================================
@@ -75,3 +83,8 @@ const viewMobileMenu = () => {
     "&copy; Weck Martins Evaristo Camargo. 2023.";
   document.getElementById("footer-copyright").innerHTML = "All Rights Reserved";
 })();
+
+/*==============================================
+  → ### BASE SERVER ROUTE ### */
+const port = 3010;
+export const baseUrl = `http://localhost:${port}/`;
