@@ -30,7 +30,7 @@ var hideModal = (event) => {
 };
 
 // Attach event listeners to show and hide the modal
-document.addEventListener("click", function (event) {
+document.addEventListener("click", (event) => {
   if (event.target.matches("#btn-book")) {
     showModal();
   }
@@ -44,6 +44,10 @@ closeBtn.addEventListener("click", hideModal);
 const openOwnerSpace = () => {
   window.location.href = "ownerspace.html";
 };
+
+document
+  .getElementById("btn-owner-workspace")
+  .addEventListener("click", openOwnerSpace);
 
 /*=============================================
 → ### FETCH PROPERTIES DATA FROM SERVER ### */
@@ -87,17 +91,17 @@ const displayPropertiesData = (propertiesData) => {
         <li>Workspace Type: ${workspace_type}</li>
       `;
 
-      // <li>Workspace description: </li>
-      // <li>Workspace Type: ${workspace_type}</li>
-      // <li>Address: </li>
-      // <li>Neighbourhood: </li>
-      // <li>Parking lot: </li>
-      // <li>Public transportation: </li>
-      // <li>Seats: ${seats}</li>
-      // <li>Smoking: ${smoking}</li>
-      // <li>Price: ${price}</li>
-      // <li>Sqft: ${sqft}</li>
-      // <li>Leasing term: ${lease_term}</li>
+    // <li>Workspace description: </li>
+    // <li>Workspace Type: ${workspace_type}</li>
+    // <li>Address: </li>
+    // <li>Neighbourhood: </li>
+    // <li>Parking lot: </li>
+    // <li>Public transportation: </li>
+    // <li>Seats: ${seats}</li>
+    // <li>Smoking: ${smoking}</li>
+    // <li>Price: ${price}</li>
+    // <li>Sqft: ${sqft}</li>
+    // <li>Leasing term: ${lease_term}</li>
 
     roomDescription.appendChild(image);
     roomDescription.appendChild(ul);
@@ -121,6 +125,6 @@ const displayPropertiesData = (propertiesData) => {
 
 /*=============================================
 → ### ON LOAD THE PAGE ### */
-window.onload = async function () {
+window.onload = async () => {
   findWorkspace();
 };
