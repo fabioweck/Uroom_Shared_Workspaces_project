@@ -5,10 +5,14 @@
 */
 /*=============================================
 → ### REFRESH PAGE ### */
-const refreshPage = () => {
-  location.reload();
-};
+document.addEventListener("DOMContentLoaded", () => {
+  const refreshPage = () => {
+    location.reload();
+  };
 
+  const btnReloadPage = document.getElementById("btn-reload-page")
+    btnReloadPage.addEventListener("click", refreshPage);
+});
 
 /*=============================================
 → ### REGISTER MODAL ### */

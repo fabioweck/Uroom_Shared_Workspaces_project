@@ -320,6 +320,9 @@ header .mobile-menu-icon {
 ### MAIN - BOOKING ###
 ************************************************
 */
+.booking {
+  width: 100%;
+}
 .booking .owner-workspace-container {
   border: solid;
   display: flex;

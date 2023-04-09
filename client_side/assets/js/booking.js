@@ -50,13 +50,131 @@ document
   .addEventListener("click", openOwnerSpace);
 
 /*=============================================
+→ ### SEARCH BAR ### */
+const form = document.querySelector(".search-bar-container");
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
+
+// const btnSearchBar = document
+//   .getElementById("btn-search-bar")
+//   .addEventListener("click", () => {
+//     const dropdownSearchBar = document.getElementById("dropdown-search-bar");
+//     const dropdownSearchBarValue =
+//       dropdownSearchBar.options[dropdownSearchBar.selectedIndex].value;
+//     const searchBarInput = document.getElementById("search-bar-input").value;
+
+//     console.log("propertiesData", propertiesData);
+//     console.log("dropdownSearchBarValue", dropdownSearchBarValue);
+//     console.log("searchBarInput", searchBarInput);
+
+//     let filteredData;
+//     switch (dropdownSearchBarValue) {
+//       case "lease_term":
+//         filteredData = propertiesData.filter(({ lease_term }) =>
+//         lease_term.toLowerCase().includes(searchBarInput.toLowerCase())
+//         );
+//         console.log('filteredData',filteredData);
+//         displayPropertiesData(filteredData)
+//         break;
+//     }
+//   });
+
+
+const filterProperty = (searchBarInputValue) => {
+  const dropdownSearchBar = document.getElementById("dropdown-search-bar");
+  const dropdownSearchBarValue =
+    dropdownSearchBar.options[dropdownSearchBar.selectedIndex].value;
+
+  let filteredData;
+  switch (dropdownSearchBarValue) {
+    case "":
+      displayPropertiesData(propertiesData);
+      break;
+
+    case "lease_term":
+      filteredData = propertiesData.filter(({ lease_term }) =>
+        lease_term.toLowerCase().includes(searchBarInputValue.toLowerCase())
+      );
+      displayPropertiesData(filteredData);
+      break;
+
+    case "price":
+      const priceValue = parseInt(searchBarInputValue);
+      if (priceValue !== "" && !isNaN(priceValue)) {
+        filteredData = propertiesData.filter(
+          ({ price }) => price.includes(priceValue)
+        );
+      } else {
+        filteredData = propertiesData;
+      }
+      displayPropertiesData(filteredData);
+      break;
+
+    case "seats":
+      const seatsValue = parseInt(searchBarInputValue);
+      if (seatsValue !== "" && !isNaN(seatsValue)) {
+        filteredData = propertiesData.filter(
+          ({ seats }) => seats.includes(seatsValue)
+        );
+      } else {
+        filteredData = propertiesData;
+      }
+      displayPropertiesData(filteredData);
+      break;
+
+    case "smoking":
+      filteredData = propertiesData.filter(({ smoking }) =>
+        smoking.toLowerCase().includes(searchBarInputValue.toLowerCase())
+      );
+      displayPropertiesData(filteredData);
+      break;
+
+    case "sqft":
+      const sqftValue = parseInt(searchBarInputValue);
+      if (sqftValue !== "" && !isNaN(sqftValue)) {
+        filteredData = propertiesData.filter(({ sqft }) => sqft.includes(sqftValue));
+      } else {
+        filteredData = propertiesData;
+      }
+      displayPropertiesData(filteredData);
+      break;
+
+    case "workspace_type":
+      filteredData = propertiesData.filter(({ workspace_type }) =>
+        workspace_type.toLowerCase().includes(searchBarInputValue.toLowerCase())
+      );
+      displayPropertiesData(filteredData);
+      break;
+  }
+}
+
+
+const dropdownSearchBar = document.getElementById("dropdown-search-bar");
+dropdownSearchBar.addEventListener("change", (event) => {
+  const searchBarInputValue = document.getElementById("search-bar-input").value = "";
+  
+  filterProperty(searchBarInputValue)
+});
+
+const searchBarInput = document.getElementById("search-bar-input");
+searchBarInput.addEventListener("input", (event) => {
+  const searchBarInputValue = event.target.value;
+
+  filterProperty(searchBarInputValue)
+
+});
+
+/*=============================================
 → ### FETCH PROPERTIES DATA FROM SERVER ### */
+let propertiesData;
 const findWorkspace = async () => {
   const filtered = fetch(baseUrl + "findWorkspace")
     .then((response) => response.json())
     .then((data) => {
       data.forEach((obj) => delete obj.user_id);
       displayPropertiesData(data);
+      propertiesData = data;
     })
     .catch((error) => console.error(error));
 };
@@ -65,6 +183,7 @@ const findWorkspace = async () => {
 → ### DISPLAY PROPERTIES DATA ### */
 const displayPropertiesData = (propertiesData) => {
   const roomsContainer = document.getElementById("rooms-container");
+  roomsContainer.innerHTML = "";
 
   propertiesData.forEach((propertyData) => {
     const { lease_term, price, seats, smoking, sqft, status, workspace_type } =
@@ -87,7 +206,6 @@ const displayPropertiesData = (propertiesData) => {
         <li>Seats: ${seats}</li>
         <li>Smoking: ${smoking}</li>
         <li>Sqft: ${sqft}</li>
-        <li>Status: ${status}</li>
         <li>Workspace Type: ${workspace_type}</li>
       `;
 
