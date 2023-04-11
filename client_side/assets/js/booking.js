@@ -22,26 +22,25 @@ var modalCalendar = document.getElementById("modal-calendar");
 var cancelBtn = modalCalendar.querySelector("#button-cancel");
 
 // Show the modal when a button is clicked
-var showModal = (buttonBookIdValue) => {
+var showModal = () => {
   modalCalendar.style.display = "flex";
   //call calendar
-  calendarModal(buttonBookIdValue);
+  calendarModal();
 };
 
 // Hide the modal when the close button is clicked or outside the modal
 var hideModal = (event) => {
   if (event.target == cancelBtn) {
     modalCalendar.style.display = "none";
-    
+
     //reset the selected days on calendar
     const selectedTds = document.querySelectorAll(".selected");
     selectedTds.forEach((td) => {
       td.classList.remove("selected");
       td.classList.add("available");
     });
-    
-    selectedDays.length = 0;
 
+    selectedDays.length = 0;
   }
 };
 
@@ -250,13 +249,25 @@ const displayPropertiesData = (propertiesData) => {
 
 /*=============================================
 → ### CREATE THE CALENDAR ### */
-const calendarModal = (buttonBookIdValue) => {
-  availableDates = getAvailableDates(buttonBookIdValue);
+const calendarModal = () => {
+  availableDates = getAvailableDates();
   updateCalendar();
 };
 
-const getAvailableDates = (buttonBookIdValue) => {
-  availableDates = [4, 5, 6, 11, 12, 13]; // Example of available dates
+const getAvailableDates = () => {
+  const dates = [
+    { year: 2023, month: 4, days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
+    { year: 2023, month: 4, days: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24] },
+    { year: 2023, month: 5, days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
+    { year: 2023, month: 6, days: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24] },
+    { year: 2023, month: 7, days: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24] },
+    { year: 2023, month: 8, days: [29, 30, 31] },
+    { year: 2023, month: 9, days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
+  ];
+
+  availableDates = dates;
+
+  //availableDates = [4, 5, 6, 11, 12, 13]; // Example of available dates
   console.log(`fetch simulation from available dates id ${buttonBookIdValue}`);
   console.log(`availableDates`, availableDates);
   return availableDates;
@@ -367,7 +378,13 @@ const updateCalendar = () => {
         j >= new Date(currentYear, currentMonth, i).getDay()
       ) {
         td.textContent = i;
-        if (availableDates.includes(i)) {
+        const foundDate = availableDates.find(
+          date =>
+            date.year === currentYear &&
+            date.month === currentMonth + 1 &&
+            date.days.includes(i)
+        );
+        if (foundDate) {
           td.className = "available";
         } else {
           td.className = "unavailable";
@@ -445,11 +462,9 @@ nextButton.addEventListener("click", () => {
   nextMonth();
 });
 
-
 /*=============================================
 → ### SEND THE CALENDAR SELECTED DATES ### */
 //to do
-
 
 /*=============================================
 → ### ON LOAD THE PAGE ### */
