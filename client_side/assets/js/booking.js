@@ -11,12 +11,38 @@ import { baseUrl } from "./general_conf.js";
 → ### GLOBAL VARIABLES ### */
 var buttonBookIdValue; // Store the id from the book button
 var availableDates; // Store the availableDates from the server
-const selectedDays = []; // Array to store selected days on calendar
+var selectedDays = []; // Array to store selected days on calendar
+var selectedDates = []; // Array to store selected dates on calendar
+
+// Function to create a new object with updated month value
+const createNewSelectedDateObject = () => {
+  // Check if an object with current year and current month + 1 already exists
+  const existDateObj = selectedDates.find(
+    (date) => date.year === currentYear && date.month === currentMonth + 1
+  );
+
+  // If an existing object is found, return without creating a new object
+  if (existDateObj) {
+    return;
+  }
+
+  // Create a new object with updated month value
+  let newSelectedDate = {
+    year: currentYear,
+    month: currentMonth + 1,
+    days: selectedDays,
+  };
+
+  selectedDates.push(newSelectedDate); // Add the new object to selectedDates array
+};
 
 /*=============================================
 → ### CALENDAR MODAL ### */
 // Get the modal element
 var modalCalendar = document.getElementById("modal-calendar");
+
+// Get the submit button element
+var submitBtn = modalCalendar.querySelector("#submit-selected-dates");
 
 // Get the close button element
 var cancelBtn = modalCalendar.querySelector("#button-cancel");
@@ -24,13 +50,21 @@ var cancelBtn = modalCalendar.querySelector("#button-cancel");
 // Show the modal when a button is clicked
 var showModal = () => {
   modalCalendar.style.display = "flex";
-  //call calendar
+
+  selectedDates = [
+    {
+      year: presentYear,
+      month: presentMonth + 1,
+      days: [],
+    },
+  ];
+
   calendarModal();
 };
 
 // Hide the modal when the close button is clicked or outside the modal
 var hideModal = (event) => {
-  if (event.target == cancelBtn) {
+  if (event.target == cancelBtn || event.target == submitBtn) {
     modalCalendar.style.display = "none";
 
     //reset the selected days on calendar
@@ -40,22 +74,21 @@ var hideModal = (event) => {
       td.classList.add("available");
     });
 
-    selectedDays.length = 0;
+    currentMonth = presentMonth;
+    currentYear = presentYear;
+
+    selectedDates.length = 0;
   }
 };
 
 // Attach event listeners to show and hide the modal
 document.addEventListener("click", (event) => {
   if (event.target.matches(`#btn-book`)) {
-    // const buttonBookIdValue = event.target.value;
     buttonBookIdValue = event.target.value;
-    //const calendarTitle = document.getElementById("calendar-subtitle");
-    //calendarTitle.innerText = `Workplace id: ${buttonBookIdValue}`;
     showModal();
   }
 });
 
-modalCalendar.addEventListener("click", hideModal);
 cancelBtn.addEventListener("click", hideModal);
 
 /*=============================================
@@ -256,8 +289,11 @@ const calendarModal = () => {
 
 const getAvailableDates = () => {
   const dates = [
-    { year: 2023, month: 4, days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
-    { year: 2023, month: 4, days: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24] },
+    {
+      year: 2023,
+      month: 4,
+      days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 18, 19, 20, 21, 22, 23, 24],
+    },
     { year: 2023, month: 5, days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
     { year: 2023, month: 6, days: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24] },
     { year: 2023, month: 7, days: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24] },
@@ -268,7 +304,7 @@ const getAvailableDates = () => {
   availableDates = dates;
 
   //availableDates = [4, 5, 6, 11, 12, 13]; // Example of available dates
-  console.log(`fetch simulation from available dates id ${buttonBookIdValue}`);
+  console.log(`Get Simulation - Available dates, property id ${buttonBookIdValue}`);
   console.log(`availableDates`, availableDates);
   return availableDates;
 };
@@ -280,6 +316,15 @@ let presentMonth = currentDate.getMonth();
 let currentYear = currentDate.getFullYear(); //Navigation
 let currentMonth = currentDate.getMonth(); //Navigation
 let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+// Initialize the selectedDates with the present month and year
+selectedDates = [
+  {
+    year: presentYear,
+    month: presentMonth + 1,
+    days: selectedDays,
+  },
+];
 
 const monthNames = [
   "January",
@@ -379,16 +424,33 @@ const updateCalendar = () => {
       ) {
         td.textContent = i;
         const foundDate = availableDates.find(
-          date =>
+          (date) =>
             date.year === currentYear &&
             date.month === currentMonth + 1 &&
             date.days.includes(i)
         );
         if (foundDate) {
           td.className = "available";
+          // console.log('availableDates',availableDates);
+          // console.log('foundDate',foundDate);
         } else {
           td.className = "unavailable";
         }
+        // console.log('foundDate',foundDate);
+        // console.log('availableDates',availableDates);
+        //
+        // console.log('selectedDates',selectedDates);
+        const foundDateSelected = selectedDates.find(
+          (date) =>
+            date.year === currentYear &&
+            date.month === currentMonth + 1 &&
+            date.days.includes(i)
+        );
+        // console.log('foundDateSelected',foundDateSelected);
+        if (foundDateSelected) {
+          td.className = "selected";
+        }
+        //
         td.addEventListener("click", () => {
           if (!td.classList.contains("unavailable")) {
             if (td.classList.contains("selected")) {
@@ -397,14 +459,26 @@ const updateCalendar = () => {
               const index = selectedDays.indexOf(td.textContent);
               if (index !== -1) {
                 selectedDays.splice(index, 1); // Remove from array if unselected
-                console.log("selectedDays", selectedDays);
               }
             } else {
               td.classList.remove("available");
               td.classList.add("selected");
               if (!selectedDays.includes(td.textContent)) {
-                selectedDays.push(td.textContent); // Add to array if selected
-                console.log("selectedDays", selectedDays);
+                selectedDays.push(parseInt(td.textContent));
+
+                const updateSelectedDates = selectedDates.find(
+                  (date) => date.month === currentMonth + 1
+                );
+                updateSelectedDates.days = [
+                  ...updateSelectedDates.days,
+                  ...selectedDays,
+                ]; //open both array in one
+                updateSelectedDates.days = [
+                  ...new Set(updateSelectedDates.days),
+                ]; //remove duplicate values
+                updateSelectedDates.days = updateSelectedDates.days.sort(
+                  (a, b) => a - b
+                ); // Sort the array in ascending numeric order
               }
             }
           }
@@ -416,6 +490,9 @@ const updateCalendar = () => {
     i--;
     calendarTable.appendChild(tr);
   }
+
+  //Reset the selected days
+  selectedDays = [];
 
   calendarMonth.innerHTML = monthNames[currentMonth];
   calendarYear.innerHTML = currentYear;
@@ -452,6 +529,7 @@ prevButton.addEventListener("click", () => {
     prevButton.disabled = true;
   }
   prevMonth();
+  createNewSelectedDateObject();
 });
 
 const nextButton = document.getElementById("calendar-next-month");
@@ -460,11 +538,22 @@ nextButton.addEventListener("click", () => {
     prevButton.disabled = false;
   }
   nextMonth();
+  createNewSelectedDateObject();
 });
 
 /*=============================================
 → ### SEND THE CALENDAR SELECTED DATES ### */
-//to do
+const sendSelectedDates = () => {
+  // Filter out objects with empty 'days' array
+  const filteredDatesResult = selectedDates.filter(
+    (date) => date.days.length > 0
+  );
+  console.log(`Post Simulation - Dates sent to server, property id ${buttonBookIdValue}`);
+  console.log(filteredDatesResult);
+};
+
+submitBtn.addEventListener("click", sendSelectedDates);
+submitBtn.addEventListener("click", hideModal);
 
 /*=============================================
 → ### ON LOAD THE PAGE ### */
