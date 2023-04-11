@@ -431,26 +431,20 @@ const updateCalendar = () => {
         );
         if (foundDate) {
           td.className = "available";
-          // console.log('availableDates',availableDates);
-          // console.log('foundDate',foundDate);
         } else {
           td.className = "unavailable";
         }
-        // console.log('foundDate',foundDate);
-        // console.log('availableDates',availableDates);
-        //
-        // console.log('selectedDates',selectedDates);
+
         const foundDateSelected = selectedDates.find(
           (date) =>
             date.year === currentYear &&
             date.month === currentMonth + 1 &&
             date.days.includes(i)
         );
-        // console.log('foundDateSelected',foundDateSelected);
         if (foundDateSelected) {
           td.className = "selected";
         }
-        //
+        
         td.addEventListener("click", () => {
           if (!td.classList.contains("unavailable")) {
             if (td.classList.contains("selected")) {
