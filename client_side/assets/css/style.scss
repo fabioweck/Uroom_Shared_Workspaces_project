@@ -52,6 +52,10 @@ $txtColor3: white;
 
 $btnColor0: white;
 
+$selectedColor: #007bff;
+$availableColor: #28a745;
+$unavailableColor: #dc3545;
+
 $font-size-m1: 1rem;
 $font-size-m2: 1.375rem;
 $font-size-m3: 1.75rem;
@@ -434,6 +438,7 @@ header {
         border: solid;
         padding: 20px;
         width: 80%;
+        height: 480px;
         max-width: 600px;
         border-radius: 5px;
         display: flex;
@@ -442,18 +447,78 @@ header {
         justify-content: center;
         background-color: $bgColor3;
 
-        h2 {
-          padding-bottom: 20px;
-        }
 
-        .calendar-form {
+
+        #calendar-container {
           display: flex;
           flex-direction: column;
           align-items: center;
+          max-width: 300px;
 
-          #button-close {
-            margin: 10px 0;
+          #calendar-dates-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            width: 100%;
           }
+
+          #calendar-month-year-information {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            border: solid 2px;
+            width: 100%;
+          }
+
+          table {
+            width: 100%;
+            border-collapse: separate;
+            background-color: $bgColor5;
+            margin: 15px 0;
+            height: 280px;
+
+            th,
+            td {
+              width: 50px;
+              text-align: center;
+              border: none;
+              color: $txtColor2;
+            }
+
+            th {
+              background-color: $bgColor0;
+              height: 8px;
+            }
+
+            td.available {
+              background-color: $availableColor;
+              color: $txtColor0;
+              cursor: pointer;
+
+              &:hover {
+                background-color: darken($availableColor, 10%);
+              }
+            }
+
+            td.unavailable {
+              background-color: $unavailableColor;
+              color: $txtColor0;
+            }
+
+            td.selected {
+              background-color: $selectedColor;
+              color: $txtColor0;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .calendar-buttons-container-submit-close {
+          display: flex;
+          justify-content: space-between;
+          width: 50%;
+
         }
       }
     }

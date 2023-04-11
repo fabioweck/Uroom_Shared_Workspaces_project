@@ -57,51 +57,45 @@
 
       <section class="owner-workspace-container">
         <p>OWNER ONLY</p>
-        <button id="btn-owner-workspace" class="btn"">Owner space</button>
+        <button id="btn-owner-workspace" class="btn">Owner space</button>
       </section>
       <!--my-workspace-container-->
 
       <section class="workspaces-container">
         <form class="search-bar-container">
-          <select id="dropdown-search-bar" >
+          <select id="dropdown-search-bar">
             <option value="lease_term">Lease Term</option>
             <option value="price">Price</option>
             <option value="seats">Seats</option>
-            <option value="smoking">
-              Smoking
-            </option>
+            <option value="smoking">Smoking</option>
             <option value="sqft">Square Feet</option>
             <option value="workspace_type">Workspace Type</option>
           </select>
           <!--dropdown-search-bar-->
 
-          <input type="search" placeholder="Search" class="input" id="search-bar-input">
-
-          <!--<button class="btn" id="btn-search-bar">Search</button>-->
-          
+          <input
+            type="search"
+            placeholder="Search"
+            class="input"
+            id="search-bar-input"
+          />
         </form>
         <!--search-bar-container-->
 
         <div class="rooms-container" id="rooms-container"></div>
-        
       </section>
       <!--workspaces-container-->
 
       <section class="modal-calendar-container">
         <div id="modal-calendar" class="modal-calendar">
           <div class="modal-content">
-            <h2>Calendar</h2>
 
-            <form id="calendar-form" class="calendar-form">
-              <input
-                placeholder="Calendar Simulation"
-                class="input"
-                type="text"
-                id="calendar-obj"
-              />
+            <div id="calendar-container"></div>
 
-              <button class="btn" id="button-close">Close</button>
-            </form>
+            <div class="calendar-buttons-container-submit-close">
+              <button class="btn" id="submit-selected-dates">Submit</button>
+              <button class="btn" id="button-cancel">Cancel</button>
+            </div>
           </div>
           <!-- Modal content -->
         </div>

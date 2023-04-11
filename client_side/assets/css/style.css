@@ -384,6 +384,7 @@ header .mobile-menu-icon {
   border: solid;
   padding: 20px;
   width: 80%;
+  height: 480px;
   max-width: 600px;
   border-radius: 5px;
   display: flex;
@@ -392,16 +393,65 @@ header .mobile-menu-icon {
   justify-content: center;
   background-color: lightgray;
 }
-.booking .modal-calendar-container #modal-calendar .modal-content h2 {
-  padding-bottom: 20px;
-}
-.booking .modal-calendar-container #modal-calendar .modal-content .calendar-form {
+.booking .modal-calendar-container #modal-calendar .modal-content #calendar-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 300px;
 }
-.booking .modal-calendar-container #modal-calendar .modal-content .calendar-form #button-close {
-  margin: 10px 0;
+.booking .modal-calendar-container #modal-calendar .modal-content #calendar-container #calendar-dates-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+  width: 100%;
+}
+.booking .modal-calendar-container #modal-calendar .modal-content #calendar-container #calendar-month-year-information {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: solid 2px;
+  width: 100%;
+}
+.booking .modal-calendar-container #modal-calendar .modal-content #calendar-container table {
+  width: 100%;
+  border-collapse: separate;
+  background-color: #252424;
+  margin: 15px 0;
+  height: 280px;
+}
+.booking .modal-calendar-container #modal-calendar .modal-content #calendar-container table th,
+.booking .modal-calendar-container #modal-calendar .modal-content #calendar-container table td {
+  width: 50px;
+  text-align: center;
+  border: none;
+  color: grey;
+}
+.booking .modal-calendar-container #modal-calendar .modal-content #calendar-container table th {
+  background-color: #edf7f9;
+  height: 8px;
+}
+.booking .modal-calendar-container #modal-calendar .modal-content #calendar-container table td.available {
+  background-color: #28a745;
+  color: aliceblue;
+  cursor: pointer;
+}
+.booking .modal-calendar-container #modal-calendar .modal-content #calendar-container table td.available:hover {
+  background-color: #1e7e34;
+}
+.booking .modal-calendar-container #modal-calendar .modal-content #calendar-container table td.unavailable {
+  background-color: #dc3545;
+  color: aliceblue;
+}
+.booking .modal-calendar-container #modal-calendar .modal-content #calendar-container table td.selected {
+  background-color: #007bff;
+  color: aliceblue;
+  cursor: pointer;
+}
+.booking .modal-calendar-container #modal-calendar .modal-content .calendar-buttons-container-submit-close {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
 }
 
 /*

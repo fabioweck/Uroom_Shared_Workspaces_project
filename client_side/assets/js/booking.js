@@ -8,36 +8,56 @@
 import { baseUrl } from "./general_conf.js";
 
 /*=============================================
+→ ### GLOBAL VARIABLES ### */
+var buttonBookIdValue; // Store the id from the book button
+var availableDates; // Store the availableDates from the server
+const selectedDays = []; // Array to store selected days on calendar
+
+/*=============================================
 → ### CALENDAR MODAL ### */
 // Get the modal element
 var modalCalendar = document.getElementById("modal-calendar");
 
 // Get the close button element
-var closeBtn = modalCalendar.querySelector("#button-close");
+var cancelBtn = modalCalendar.querySelector("#button-cancel");
 
 // Show the modal when a button is clicked
-var showModal = () => {
+var showModal = (buttonBookIdValue) => {
   modalCalendar.style.display = "flex";
+  //call calendar
+  calendarModal(buttonBookIdValue);
 };
 
 // Hide the modal when the close button is clicked or outside the modal
 var hideModal = (event) => {
-  if (event.target == closeBtn) {
+  if (event.target == cancelBtn) {
     modalCalendar.style.display = "none";
-    // Reset form fields to their initial values
-    document.querySelector("#calendar-obj").value = "";
+    
+    //reset the selected days on calendar
+    const selectedTds = document.querySelectorAll(".selected");
+    selectedTds.forEach((td) => {
+      td.classList.remove("selected");
+      td.classList.add("available");
+    });
+    
+    selectedDays.length = 0;
+
   }
 };
 
 // Attach event listeners to show and hide the modal
 document.addEventListener("click", (event) => {
-  if (event.target.matches("#btn-book")) {
+  if (event.target.matches(`#btn-book`)) {
+    // const buttonBookIdValue = event.target.value;
+    buttonBookIdValue = event.target.value;
+    //const calendarTitle = document.getElementById("calendar-subtitle");
+    //calendarTitle.innerText = `Workplace id: ${buttonBookIdValue}`;
     showModal();
   }
 });
 
 modalCalendar.addEventListener("click", hideModal);
-closeBtn.addEventListener("click", hideModal);
+cancelBtn.addEventListener("click", hideModal);
 
 /*=============================================
 → ### SEND TO OWNER SPACE ### */
@@ -55,31 +75,6 @@ const form = document.querySelector(".search-bar-container");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 });
-
-// const btnSearchBar = document
-//   .getElementById("btn-search-bar")
-//   .addEventListener("click", () => {
-//     const dropdownSearchBar = document.getElementById("dropdown-search-bar");
-//     const dropdownSearchBarValue =
-//       dropdownSearchBar.options[dropdownSearchBar.selectedIndex].value;
-//     const searchBarInput = document.getElementById("search-bar-input").value;
-
-//     console.log("propertiesData", propertiesData);
-//     console.log("dropdownSearchBarValue", dropdownSearchBarValue);
-//     console.log("searchBarInput", searchBarInput);
-
-//     let filteredData;
-//     switch (dropdownSearchBarValue) {
-//       case "lease_term":
-//         filteredData = propertiesData.filter(({ lease_term }) =>
-//         lease_term.toLowerCase().includes(searchBarInput.toLowerCase())
-//         );
-//         console.log('filteredData',filteredData);
-//         displayPropertiesData(filteredData)
-//         break;
-//     }
-//   });
-
 
 const filterProperty = (searchBarInputValue) => {
   const dropdownSearchBar = document.getElementById("dropdown-search-bar");
@@ -102,8 +97,8 @@ const filterProperty = (searchBarInputValue) => {
     case "price":
       const priceValue = parseInt(searchBarInputValue);
       if (priceValue !== "" && !isNaN(priceValue)) {
-        filteredData = propertiesData.filter(
-          ({ price }) => price.includes(priceValue)
+        filteredData = propertiesData.filter(({ price }) =>
+          price.includes(priceValue)
         );
       } else {
         filteredData = propertiesData;
@@ -114,8 +109,8 @@ const filterProperty = (searchBarInputValue) => {
     case "seats":
       const seatsValue = parseInt(searchBarInputValue);
       if (seatsValue !== "" && !isNaN(seatsValue)) {
-        filteredData = propertiesData.filter(
-          ({ seats }) => seats.includes(seatsValue)
+        filteredData = propertiesData.filter(({ seats }) =>
+          seats.includes(seatsValue)
         );
       } else {
         filteredData = propertiesData;
@@ -133,7 +128,9 @@ const filterProperty = (searchBarInputValue) => {
     case "sqft":
       const sqftValue = parseInt(searchBarInputValue);
       if (sqftValue !== "" && !isNaN(sqftValue)) {
-        filteredData = propertiesData.filter(({ sqft }) => sqft.includes(sqftValue));
+        filteredData = propertiesData.filter(({ sqft }) =>
+          sqft.includes(sqftValue)
+        );
       } else {
         filteredData = propertiesData;
       }
@@ -147,22 +144,22 @@ const filterProperty = (searchBarInputValue) => {
       displayPropertiesData(filteredData);
       break;
   }
-}
-
+};
 
 const dropdownSearchBar = document.getElementById("dropdown-search-bar");
 dropdownSearchBar.addEventListener("change", (event) => {
-  const searchBarInputValue = document.getElementById("search-bar-input").value = "";
-  
-  filterProperty(searchBarInputValue)
+  const searchBarInputValue = (document.getElementById(
+    "search-bar-input"
+  ).value = "");
+
+  filterProperty(searchBarInputValue);
 });
 
 const searchBarInput = document.getElementById("search-bar-input");
 searchBarInput.addEventListener("input", (event) => {
   const searchBarInputValue = event.target.value;
 
-  filterProperty(searchBarInputValue)
-
+  filterProperty(searchBarInputValue);
 });
 
 /*=============================================
@@ -186,8 +183,16 @@ const displayPropertiesData = (propertiesData) => {
   roomsContainer.innerHTML = "";
 
   propertiesData.forEach((propertyData) => {
-    const { lease_term, price, seats, smoking, sqft, status, workspace_type } =
-      propertyData;
+    const {
+      lease_term,
+      price,
+      seats,
+      smoking,
+      sqft,
+      status,
+      workspace_type,
+      workspace_id,
+    } = propertyData;
 
     const roomDivision = document.createElement("div");
     roomDivision.className = "room-division";
@@ -207,6 +212,7 @@ const displayPropertiesData = (propertiesData) => {
         <li>Smoking: ${smoking}</li>
         <li>Sqft: ${sqft}</li>
         <li>Workspace Type: ${workspace_type}</li>
+        <li>id: ${workspace_id}</li>
       `;
 
     // <li>Workspace description: </li>
@@ -229,8 +235,9 @@ const displayPropertiesData = (propertiesData) => {
 
     const button = document.createElement("button");
     button.className = "btn";
-    button.id = "btn-book";
+    button.id = `btn-book`;
     button.textContent = "Book";
+    button.value = `${workspace_id}`;
 
     buttonContainer.appendChild(button);
 
@@ -240,6 +247,209 @@ const displayPropertiesData = (propertiesData) => {
     roomsContainer.appendChild(roomDivision);
   });
 };
+
+/*=============================================
+→ ### CREATE THE CALENDAR ### */
+const calendarModal = (buttonBookIdValue) => {
+  availableDates = getAvailableDates(buttonBookIdValue);
+  updateCalendar();
+};
+
+const getAvailableDates = (buttonBookIdValue) => {
+  availableDates = [4, 5, 6, 11, 12, 13]; // Example of available dates
+  console.log(`fetch simulation from available dates id ${buttonBookIdValue}`);
+  console.log(`availableDates`, availableDates);
+  return availableDates;
+};
+
+const calendarContainer = document.getElementById("calendar-container");
+const currentDate = new Date();
+let presentYear = currentDate.getFullYear();
+let presentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear(); //Navigation
+let currentMonth = currentDate.getMonth(); //Navigation
+let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+// Create calendar title
+const calendarTitle = document.createElement("h2");
+calendarTitle.id = "calendar-title";
+calendarTitle.innerHTML = "Available Dates";
+
+const calendarSubTitle = document.createElement("h3");
+calendarSubTitle.id = "calendar-subtitle";
+
+// Append calendar title the DOM
+calendarContainer.appendChild(calendarTitle);
+calendarContainer.appendChild(calendarSubTitle);
+
+// Create calendar dates buttons container
+const calendarDatesButtonsContainer = document.createElement("div");
+calendarDatesButtonsContainer.id = "calendar-dates-buttons";
+
+// Create previous month button
+const prevMonthButton = document.createElement("button");
+prevMonthButton.id = "calendar-prev-month";
+prevMonthButton.className = "btn";
+prevMonthButton.textContent = "Prev";
+prevMonthButton.disabled = true;
+calendarDatesButtonsContainer.appendChild(prevMonthButton);
+
+// Create next month button
+const nextMonthButton = document.createElement("button");
+nextMonthButton.id = "calendar-next-month";
+nextMonthButton.className = "btn";
+nextMonthButton.textContent = "Next";
+calendarDatesButtonsContainer.appendChild(nextMonthButton);
+
+// Append calendar dates buttons container to the DOM
+calendarContainer.appendChild(calendarDatesButtonsContainer);
+
+// Create calendar month and year information container
+const calendarMonthYearInformationContainer = document.createElement("div");
+calendarMonthYearInformationContainer.id = "calendar-month-year-information";
+
+// Create month display element
+const monthDisplay = document.createElement("p");
+monthDisplay.id = "calendar-month";
+calendarMonthYearInformationContainer.appendChild(monthDisplay);
+
+// Create year display element
+const yearDisplay = document.createElement("p");
+yearDisplay.id = "calendar-year";
+calendarMonthYearInformationContainer.appendChild(yearDisplay);
+
+calendarContainer.appendChild(calendarMonthYearInformationContainer);
+
+const calendarMonth = document.getElementById("calendar-month");
+const calendarYear = document.getElementById("calendar-year");
+
+// Create a table element to represent the calendar
+const calendarTable = document.createElement("table");
+
+// Function to update the calendar with the current month's dates
+const updateCalendar = () => {
+  daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  calendarSubTitle.innerHTML = `Workspace id: ${buttonBookIdValue}`;
+  calendarTable.innerHTML = ""; // Clear existing table
+
+  // Create the header row with the days of the week
+  const headerRow = document.createElement("tr");
+  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  for (let day of daysOfWeek) {
+    const th = document.createElement("th");
+    th.textContent = day;
+    headerRow.appendChild(th);
+  }
+  calendarTable.appendChild(headerRow);
+
+  // Create the calendar rows with the days of the month
+  for (let i = 1; i <= daysInMonth; i++) {
+    const tr = document.createElement("tr");
+    for (let j = 0; j < 7; j++) {
+      const td = document.createElement("td");
+      if (
+        i <= daysInMonth &&
+        j >= new Date(currentYear, currentMonth, i).getDay()
+      ) {
+        td.textContent = i;
+        if (availableDates.includes(i)) {
+          td.className = "available";
+        } else {
+          td.className = "unavailable";
+        }
+        td.addEventListener("click", () => {
+          if (!td.classList.contains("unavailable")) {
+            if (td.classList.contains("selected")) {
+              td.classList.remove("selected");
+              td.classList.add("available");
+              const index = selectedDays.indexOf(td.textContent);
+              if (index !== -1) {
+                selectedDays.splice(index, 1); // Remove from array if unselected
+                console.log("selectedDays", selectedDays);
+              }
+            } else {
+              td.classList.remove("available");
+              td.classList.add("selected");
+              if (!selectedDays.includes(td.textContent)) {
+                selectedDays.push(td.textContent); // Add to array if selected
+                console.log("selectedDays", selectedDays);
+              }
+            }
+          }
+        });
+        i++;
+      }
+      tr.appendChild(td);
+    }
+    i--;
+    calendarTable.appendChild(tr);
+  }
+
+  calendarMonth.innerHTML = monthNames[currentMonth];
+  calendarYear.innerHTML = currentYear;
+};
+
+calendarContainer.appendChild(calendarTable);
+
+/*=============================================
+→ ### CALENDAR NAVIGATION ### */
+// Function to go to the previous month
+const prevMonth = () => {
+  currentMonth--;
+  if (currentMonth < 0) {
+    currentMonth = 11;
+    currentYear--;
+  }
+  updateCalendar();
+};
+
+// Function to go to the next month
+const nextMonth = () => {
+  currentMonth++;
+  if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear++;
+  }
+  updateCalendar();
+};
+
+// Attach event listeners to previous and next buttons
+const prevButton = document.getElementById("calendar-prev-month");
+prevButton.addEventListener("click", () => {
+  if (currentYear <= presentYear && currentMonth - 1 == presentMonth) {
+    prevButton.disabled = true;
+  }
+  prevMonth();
+});
+
+const nextButton = document.getElementById("calendar-next-month");
+nextButton.addEventListener("click", () => {
+  if (currentYear >= presentYear && currentMonth >= presentMonth) {
+    prevButton.disabled = false;
+  }
+  nextMonth();
+});
+
+
+/*=============================================
+→ ### SEND THE CALENDAR SELECTED DATES ### */
+//to do
+
 
 /*=============================================
 → ### ON LOAD THE PAGE ### */
