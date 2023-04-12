@@ -108,6 +108,8 @@ header .container .navbar a:hover {
   background-color: aliceblue;
   color: #398378;
   transition: 0.5s;
+  width: 100%;
+  text-align: center;
 }
 @media screen and (max-width: 768px) {
   header .container .navbar {
@@ -184,7 +186,7 @@ header .mobile-menu-icon {
   justify-content: space-around;
 }
 .intro-description .intro-icons img {
-  margin: 20px 0px;
+  margin: 50px 0px;
   width: 150px;
 }
 .intro-description .intro-icons img:hover {

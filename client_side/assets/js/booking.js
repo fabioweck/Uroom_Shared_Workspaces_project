@@ -244,7 +244,8 @@ const displayPropertiesData = (propertiesData) => {
         <li>Smoking: ${smoking}</li>
         <li>Sqft: ${sqft}</li>
         <li>Workspace Type: ${workspace_type}</li>
-        <li>id: ${workspace_id}</li>
+        <li>Status: ${status}</li>
+        <li>ID: ${workspace_id}</li>
       `;
 
     // <li>Workspace description: </li>
@@ -304,7 +305,9 @@ const getAvailableDates = () => {
   availableDates = dates;
 
   //availableDates = [4, 5, 6, 11, 12, 13]; // Example of available dates
-  console.log(`Get Simulation - Available dates, property id ${buttonBookIdValue}`);
+  console.log(
+    `Get Simulation - Available dates, property id ${buttonBookIdValue}`
+  );
   console.log(`availableDates`, availableDates);
   return availableDates;
 };
@@ -400,7 +403,7 @@ const calendarTable = document.createElement("table");
 // Function to update the calendar with the current month's dates
 const updateCalendar = () => {
   daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  calendarSubTitle.innerHTML = `Workspace id: ${buttonBookIdValue}`;
+  calendarSubTitle.innerHTML = `Workspace ID: ${buttonBookIdValue}`;
   calendarTable.innerHTML = ""; // Clear existing table
 
   // Create the header row with the days of the week
@@ -444,7 +447,7 @@ const updateCalendar = () => {
         if (foundDateSelected) {
           td.className = "selected";
         }
-        
+
         td.addEventListener("click", () => {
           if (!td.classList.contains("unavailable")) {
             if (td.classList.contains("selected")) {
@@ -542,7 +545,9 @@ const sendSelectedDates = () => {
   const filteredDatesResult = selectedDates.filter(
     (date) => date.days.length > 0
   );
-  console.log(`Post Simulation - Dates sent to server, property id ${buttonBookIdValue}`);
+  console.log(
+    `Post Simulation - Dates sent to server, property id ${buttonBookIdValue}`
+  );
   console.log(filteredDatesResult);
 };
 
