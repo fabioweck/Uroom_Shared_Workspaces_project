@@ -108,8 +108,6 @@ header .container .navbar a:hover {
   background-color: aliceblue;
   color: #398378;
   transition: 0.5s;
-  width: 100%;
-  text-align: center;
 }
 @media screen and (max-width: 768px) {
   header .container .navbar {
