@@ -110,6 +110,12 @@ header .container .navbar a:hover {
   transition: 0.5s;
 }
 @media screen and (max-width: 768px) {
+  header .container .navbar a:hover {
+    width: 100%;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 768px) {
   header .container .navbar {
     display: none;
     flex-direction: column;

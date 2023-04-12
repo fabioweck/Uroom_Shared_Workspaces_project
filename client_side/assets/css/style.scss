@@ -134,6 +134,11 @@ header {
         background-color: $txtColor0;
         color: $txtColor1;
         transition: 0.5s;
+
+        @media screen and (max-width: $max-width1) {
+          width: 100%;
+          text-align: center;
+        }
       }
 
       @media screen and (max-width: $max-width1) {
