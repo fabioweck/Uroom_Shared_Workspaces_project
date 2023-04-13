@@ -23,6 +23,9 @@ const viewMobileMenu = () => {
   }
 };
 
+const btnMobileMenu = document.getElementById("mobile-menu-icon");
+btnMobileMenu.addEventListener("click", viewMobileMenu);
+
 /*==============================================
 → ### NAV LINKS ### */
 (() => {

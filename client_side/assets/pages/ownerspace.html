@@ -39,11 +39,7 @@
           <a id="link-contact"></a>
         </div>
 
-        <a
-          href="javascript:void(0);"
-          class="mobile-menu-icon"
-          onclick="viewMobileMenu()"
-        >
+        <a id="mobile-menu-icon" class="mobile-menu-icon">
           <i class="fa fa-bars"></i>
         </a>
         <!--navbar-->
@@ -56,103 +52,388 @@
       <div class="adjust-content-top"></div>
 
       <section class="owner-workspace-page-container">
-        <button class="btn" id="btn-reload-page">Reload</button>
-        <button class="btn" id="btn-add-space"">Add space</button>
+        <div>
+          <button class="btn" id="btn-add-property">Add Property</button>
+          <button class="btn" id="btn-add-workspace">Add Workspace</button>
+        </div>
+        <div>
+          <button class="btn" id="btn-my-properties">My Properties</button>
+          <button class="btn" id="btn-my-rooms">My Workspaces</button>
+        </div>
       </section>
-      <!--my-workspace-container-->
+      <!--owner-workspace-page-container-->
 
       <section class="workspaces-container">
         <form class="search-bar-container">
-          <select id="dropdown-search-bar" >
-            <option value="address">address</option>
-            <option value="neighborhood">neighborhood</option>
-            <option value="sqft">square feet</option>
-            <option value="parking" selected>parking</option>
-            <option value="public-transportation" selected>
-              public transportation
-            </option>
-            <option value="n-seats" selected>number of seats</option>
-            <option value="smoking" selected>smoking</option>
-            <option value="availability-date" selected>
-              availability date
-            </option>
-            <option value="lease-term" selected>lease term</option>
-            <option value="price" selected>price</option></select
-          ><!--dropdown-search-bar-->
+          <div class="search-bar-divison">
+            <select id="dropdown-search-bar-property">
+              <option value="address" selected>Address</option>
+              <option value="neighborhood">Neighborhood</option>
+              <option value="parking-lot">Parking Lot</option>
+              <option value="public-transportation">
+                Public Transportation
+              </option>
+              <option value="status">Status</option>
+            </select>
+            <!--dropdown-search-bar-->
 
-          <input type="search" name="" id="" placeholder="Search" class="input" id="search-bar">
+            <input
+              type="search"
+              placeholder="Search By Property"
+              class="input"
+              id="search-bar-property"
+            />
+          </div>
 
-          <button class="btn" id="btn-search-bar">Search</button>
-          
+          <div class="search-bar-divison">
+            <select id="dropdown-search-bar-workspace">
+              <option value="lease_term">Lease Term</option>
+              <option value="price">Price</option>
+              <option value="seats">Seats</option>
+              <option value="smoking">Smoking</option>
+              <option value="sqft">Square Feet</option>
+              <option value="workspace_type">Workspace Type</option>
+            </select>
+            <!--dropdown-search-bar-->
+
+            <input
+              type="search"
+              placeholder="Search By Workspace"
+              class="input"
+              id="search-bar-workspace"
+            />
+          </div>
         </form>
         <!--search-bar-container-->
+
+        <div class="properties-container">
+          <div class="property-division">
+            <div class="property-description-container">
+              <div class="property-description-wrap">
+                <p><strong>Address: </strong>1234 Main Street + Neighborhood</p>
+
+                <p><strong>Parking Lot:</strong> Yes</p>
+                <p><strong>Public Transportation:</strong> Yes</p>
+
+                <p><strong>Status Property:</strong> True</p>
+                <p><strong>ID Property:</strong> 1234</p>
+              </div>
+              <!--property-description-wrap-->
+            </div>
+            <!--property-description-container-->
+
+            <div class="button-property-container">
+              <button class="btn" id="btn-update-propery">Update</button>
+              <button class="btn" id="btn-active-inactive-propery">
+                Active / Inactive
+              </button>
+            </div>
+            <!--button-property-container-->
+          </div>
+          <!--property-division-->
+
+          <div class="property-division">
+            <div class="property-description-container">
+              <div class="property-description-wrap">
+                <p><strong>Address: </strong>1234 Main Street + Neighborhood</p>
+
+                <p><strong>Parking Lot:</strong> Yes</p>
+                <p><strong>Public Transportation:</strong> Yes</p>
+
+                <p><strong>Status Property:</strong> True</p>
+                <p><strong>ID Property:</strong> 1234</p>
+              </div>
+              <!--property-description-wrap-->
+            </div>
+            <!--property-description-container-->
+
+            <div class="button-property-container">
+              <button class="btn" id="btn-update-propery">Update</button>
+              <button class="btn" id="btn-active-inactive-propery">
+                Active / Inactive
+              </button>
+            </div>
+            <!--button-property-container-->
+          </div>
+          <!--property-division-->
+
+          <div class="property-division">
+            <div class="property-description-container">
+              <div class="property-description-wrap">
+                <p><strong>Address: </strong>1234 Main Street</p>
+
+                <p><strong>Parking Lot:</strong> Yes</p>
+                <p><strong>Public Transportation:</strong> Yes</p>
+
+                <p><strong>Status Property:</strong> True</p>
+                <p><strong>ID Property:</strong> 1234</p>
+              </div>
+              <!--property-description-wrap-->
+            </div>
+            <!--property-description-container-->
+
+            <div class="button-property-container">
+              <button class="btn" id="btn-update-propery">Update</button>
+              <button class="btn" id="btn-active-inactive-propery">
+                Active / Inactive
+              </button>
+            </div>
+            <!--button-property-container-->
+          </div>
+          <!--property-division-->
+
+          <div class="property-division">
+            <div class="property-description-container">
+              <div class="property-description-wrap">
+                <p><strong>Address: </strong>1234 Main Street + Neighborhood</p>
+
+                <p><strong>Parking Lot:</strong> Yes</p>
+                <p><strong>Public Transportation:</strong> Yes</p>
+
+                <p><strong>Status Property:</strong> True</p>
+                <p><strong>ID Property:</strong> 1234</p>
+              </div>
+              <!--property-description-wrap-->
+            </div>
+            <!--property-description-container-->
+
+            <div class="button-property-container">
+              <button class="btn" id="btn-update-propery">Update</button>
+              <button class="btn" id="btn-active-inactive-propery">
+                Active / Inactive
+              </button>
+            </div>
+            <!--button-property-container-->
+          </div>
+          <!--property-division-->
+        </div>
+        <!--properties-container-->
 
         <div class="rooms-container">
           <div class="room-division">
             <div class="room-description">
               <img src="../img/room01.jpg" alt="Image Room" />
-              <ul>
-                <li>Workspace description</li>
-                <li>Address</li>
-                <li>Neighbourhood</li>
-                <li>Parking lot</li>
-                <li>Public transportation</li>
-                <li>Seats</li>
-                <li>Smoking</li>
-                <li>Price</li>
-                <li>Sqft</li>
-                <li>Leasing term</li>
-              </ul>
+              <div class="workplace-description">
+                <div class="wrap-description">
+                  <ul>
+                    <li><strong>Leasing term: </strong>dayly</li>
+                    <li><strong>Price: </strong>20</li>
+                    <li><strong>Seats: </strong>4</li>
+                    <li><strong>Smoking: </strong>No</li>
+                    <li><strong>Square Feet: </strong>100</li>
+                    <li><strong>Workspace Type: </strong>Desk</li>
+                    <li><strong>Status Workplace: </strong>True</li>
+                    <li><strong>Id Workplace: </strong>4321</li>
+                  </ul>
+                </div>
+              </div>
+              <!--workplace-description-->
             </div>
             <!--room-description-->
-            <div class="status-container">
-              <p>status</p>
+
+            <div class="property-description-container">
+              <div>
+                <p><strong>Address: </strong>1234 Main Street + Neighborhood</p>
+
+                <p><strong>Parking Lot:</strong> Yes</p>
+                <p><strong>Public Transportation:</strong> Yes</p>
+
+                <p><strong>Status Property:</strong> True</p>
+                <p><strong>ID Property:</strong> 1234</p>
+              </div>
             </div>
+            <!--property-description-container-->
+            <!--property-description-->
+
             <div class="button-container">
-              <button class="btn" id="btn-update">Update</button>
-              <button class="btn" id="btn-inactive">Inactive</button>
-            </div><!--button-container-->
+              <button class="btn" id="btn-update-workspace">Update</button>
+              <button class="btn" id="btn-active-inactive-workspace">
+                Active / Inactive
+              </button>
+            </div>
+            <!--button-container-->
+          </div>
+          <!--room-division-->
+
+          <div class="room-division">
+            <div class="room-description">
+              <img src="../img/room01.jpg" alt="Image Room" />
+              <div class="workplace-description">
+                <div class="wrap-description">
+                  <ul>
+                    <li><strong>Leasing term: </strong>dayly</li>
+                    <li><strong>Price: </strong>20</li>
+                    <li><strong>Seats: </strong>4</li>
+                    <li><strong>Smoking: </strong>No</li>
+                    <li><strong>Square Feet: </strong>100</li>
+                    <li><strong>Workspace Type: </strong>Desk</li>
+                    <li><strong>Status Workplace: </strong>True</li>
+                    <li><strong>Id Workplace: </strong>4321</li>
+                  </ul>
+                </div>
+              </div>
+              <!--workplace-description-->
+            </div>
+            <!--room-description-->
+
+            <div class="property-description-container">
+              <div>
+                <p><strong>Address: </strong>1234 Main Street + Neighborhood</p>
+
+                <p><strong>Parking Lot:</strong> Yes</p>
+                <p><strong>Public Transportation:</strong> Yes</p>
+
+                <p><strong>Status Property:</strong> True</p>
+                <p><strong>ID Property:</strong> 1234</p>
+              </div>
+            </div>
+            <!--property-description-container-->
+            <!--property-description-->
+
+            <div class="button-container">
+              <button class="btn" id="btn-update-workspace">Update</button>
+              <button class="btn" id="btn-active-inactive-workspace">
+                Active / Inactive
+              </button>
+            </div>
+            <!--button-container-->
+          </div>
+          <!--room-division-->
+
+          <div class="room-division">
+            <div class="room-description">
+              <img src="../img/room01.jpg" alt="Image Room" />
+              <div class="workplace-description">
+                <div class="wrap-description">
+                  <ul>
+                    <li><strong>Leasing term: </strong>dayly</li>
+                    <li><strong>Price: </strong>20</li>
+                    <li><strong>Seats: </strong>4</li>
+                    <li><strong>Smoking: </strong>No</li>
+                    <li><strong>Square Feet: </strong>100</li>
+                    <li><strong>Workspace Type: </strong>Desk</li>
+                    <li><strong>Status Workplace: </strong>True</li>
+                    <li><strong>Id Workplace: </strong>4321</li>
+                  </ul>
+                </div>
+              </div>
+              <!--workplace-description-->
+            </div>
+            <!--room-description-->
+
+            <div class="property-description-container">
+              <div>
+                <p><strong>Address: </strong>1234 Main Street + Neighborhood</p>
+
+                <p><strong>Parking Lot:</strong> Yes</p>
+                <p><strong>Public Transportation:</strong> Yes</p>
+
+                <p><strong>Status Property:</strong> True</p>
+                <p><strong>ID Property:</strong> 1234</p>
+              </div>
+            </div>
+            <!--property-description-container-->
+            <!--property-description-->
+
+            <div class="button-container">
+              <button class="btn" id="btn-update-workspace">Update</button>
+              <button class="btn" id="btn-active-inactive-workspace">
+                Active / Inactive
+              </button>
+            </div>
+            <!--button-container-->
           </div>
           <!--room-division-->
         </div>
         <!--rooms-container-->
-
-        
       </section>
       <!--workspaces-container-->
 
-      <section class="modal-add-space-container">
-        <div id="modal-add-space" class="modal-add-space">
+      <section class="modal-add-property-container">
+        <div id="modal-add-property" class="modal-add-property">
           <div class="modal-content">
-            <h2>Add Space</h2>
+            <h2>Add Property</h2>
 
-            <form id="add-space-form" class="add-space-form">
-              <input
-                placeholder="Workspace description"
-                class="input"
-                type="text"
-                id="add-workspace-description"
-              />
-
+            <form id="add-property-form" class="add-property-form">
               <input
                 placeholder="Address"
                 class="input"
                 type="text"
-                id="add-address"
+                id="add-property-address"
               />
 
               <input
                 placeholder="Neighbourhood"
                 class="input"
                 type="text"
-                id="add-neighbourhood"
+                id="add-property-neighbourhood"
               />
 
+              <div class="add-property-radio-container">
+                <p>Parking lot</p>
+                <div class="radio-option-container">
+                  <input
+                    type="radio"
+                    name="parking-lot-option"
+                    id="yes"
+                    value="yes"
+                  />
+                  <label for="yes">Yes</label>
+                  <input
+                    type="radio"
+                    name="parking-lot-option"
+                    id="no"
+                    value="no"
+                  />
+                  <label for="no">No</label>
+                </div>
+              </div>
+              <!--add-property-radio-container-->
+
+              <div class="add-property-radio-container">
+                <p>Public transportation</p>
+                <div class="radio-option-container">
+                  <input
+                    type="radio"
+                    name="public-transportation-option"
+                    id="yes"
+                    value="yes"
+                  />
+                  <label for="yes">Yes</label>
+                  <input
+                    type="radio"
+                    name="public-transportation-option"
+                    id="no"
+                    value="no"
+                  />
+                  <label for="no">No</label>
+                </div>
+              </div>
+              <!--add-property-radio-container-->
+
+              <div button-container>
+                <button class="btn" id="button-property-submit">Submit</button>
+                <button class="btn" id="button-property-close">Close</button>
+              </div>
+            </form>
+          </div>
+          <!-- Modal content -->
+        </div>
+        <!--modal-add-property-->
+      </section>
+      <!--modal-add-property-container-->
+
+      <section class="modal-add-workspace-container">
+        <div id="modal-add-workspace" class="modal-add-workspace">
+          <div class="modal-content">
+            <h2>Add Workspace</h2>
+
+            <form id="add-workspace-form" class="add-workspace-form">
               <input
-                placeholder="Seats"
+                placeholder="Leasing term"
                 class="input"
-                type="number"
-                id="add-seats"
+                type="text"
+                id="add-leasing-term"
               />
 
               <input
@@ -163,62 +444,114 @@
               />
 
               <input
-                placeholder="Sqft"
+                placeholder="Seats"
+                class="input"
+                type="number"
+                id="add-seats"
+              />
+
+              <input
+                placeholder="Square Feet"
                 class="input"
                 type="number"
                 id="add-sqft"
               />
 
-              <input
-                placeholder="Leasing term"
-                class="input"
-                type="text"
-                id="add-leasing-term"
-              />
-
-              <div class="add-space-radio-container">
+              <div class="add-workspace-radio-container">
                 <p>Parking lot</p>
                 <div class="radio-option-container">
-                <input type="radio" name="parking-lot-option" id="yes" value="yes">
+                  <input
+                    type="radio"
+                    name="parking-lot-option"
+                    id="yes"
+                    value="yes"
+                  />
                   <label for="yes">Yes</label>
-                  <input type="radio" name="parking-lot-option" id="no" value="no">
+                  <input
+                    type="radio"
+                    name="parking-lot-option"
+                    id="no"
+                    value="no"
+                  />
                   <label for="no">No</label>
                 </div>
-              </div><!--add-space-radio-container-->
+              </div>
+              <!--add-workspace-radio-container-->
 
-              <div class="add-space-radio-container">
+              <div class="add-workspace-radio-container">
                 <p>Public transportation</p>
                 <div class="radio-option-container">
-                <input type="radio" name="public-transportation-option" id="yes" value="yes">
+                  <input
+                    type="radio"
+                    name="public-transportation-option"
+                    id="yes"
+                    value="yes"
+                  />
                   <label for="yes">Yes</label>
-                  <input type="radio" name="public-transportation-option" id="no" value="no">
+                  <input
+                    type="radio"
+                    name="public-transportation-option"
+                    id="no"
+                    value="no"
+                  />
                   <label for="no">No</label>
                 </div>
-              </div><!--add-space-radio-container-->
+              </div>
+              <!--add-workspace-radio-container-->
 
-              <div class="add-space-radio-container">
+              <div class="add-workspace-radio-container">
                 <p>Smoking</p>
                 <div class="radio-option-container">
-                  <input type="radio" name="smoking-option" id="yes" value="yes">
+                  <input
+                    type="radio"
+                    name="smoking-option"
+                    id="yes"
+                    value="yes"
+                  />
                   <label for="yes">Yes</label>
-                  <input type="radio" name="smoking-option" id="no" value="no">
+                  <input
+                    type="radio"
+                    name="smoking-option"
+                    id="no"
+                    value="no"
+                  />
                   <label for="no">No</label>
                 </div>
-              </div><!--add-space-radio-container-->
+              </div>
+              <!--add-workspace-radio-container-->
 
+              <div class="add-workspace-radio-container">
+                <p>Workspace Type</p>
+                <div class="radio-option-container">
+                  <input
+                    type="radio"
+                    name="workspace-type-option"
+                    id="desk"
+                    value="desk"
+                  />
+                  <label for="yes">Desk</label>
+                  <input
+                    type="radio"
+                    name="workspace-type-option"
+                    id="office"
+                    value="office"
+                  />
+                  <label for="no">Office</label>
+                </div>
+              </div>
+              <!--add-workspace-radio-container-->
 
               <div button-container>
-                <button class="btn" id="add-space-button">
-                  Submit
-                </button>
-                <button class="btn" id="button-close">Close</button>
+                <button class="btn" id="button-workspace-submit">Submit</button>
+                <button class="btn" id="button-workspace-close">Close</button>
               </div>
             </form>
           </div>
           <!-- Modal content -->
         </div>
+        <!--modal-add-workspace-->
       </section>
-      <!--modal-container-->
+      <!--modal-add-workspace-container-->
     </main>
     <!--container-->
 
