@@ -29,12 +29,13 @@ main {
 
 .btn {
   padding: 5px 5px;
-  width: 100px;
+  margin: 10px;
+  width: 120px;
 }
 
 .input {
   width: 300px;
-  margin: 0 20px;
+  margin: 10px;
   padding: 5px 5px;
 }
 
@@ -390,7 +391,9 @@ header {
       padding: 20px;
       margin: 10px 0;
 
-      .dropdown-search-bar {
+      #dropdown-search-bar {
+        width: 150px;
+        margin: 10px;
         padding: 5px 5px;
       }
     }
@@ -399,18 +402,27 @@ header {
       .room-division {
         border: solid;
         margin-bottom: 20px;
+
         .room-description {
           display: flex;
-          justify-content: center;
           align-items: center;
+
+          @media screen and (max-width: $max-width1) {
+            flex-direction: column;
+            justify-content: center;
+          }
 
           img {
             width: 50%;
-            padding: 50px;
+            margin: 50px;
+
+            @media screen and (max-width: $max-width1) {
+              width: 80%;
+            }
           }
 
           ul {
-            width: 50%;
+            width: 100%;
             padding: 50px;
           }
         }
@@ -451,8 +463,6 @@ header {
         align-items: center;
         justify-content: center;
         background-color: $bgColor3;
-
-
 
         #calendar-container {
           display: flex;
@@ -523,7 +533,6 @@ header {
           display: flex;
           justify-content: space-between;
           width: 50%;
-
         }
       }
     }
@@ -536,6 +545,9 @@ header {
 ************************************************
 */
 .ownerspace {
+  width: 100%;
+  overflow: hidden;
+
   .owner-workspace-page-container {
     border: solid;
     display: flex;
@@ -543,45 +555,131 @@ header {
     align-items: center;
     height: 100px;
     margin-top: 10px;
+
+    @media screen and (max-width: $max-width1) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   .workspaces-container {
     .search-bar-container {
       border: solid;
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
       padding: 20px;
       margin: 10px 0;
 
-      .dropdown-search-bar {
-        padding: 5px 5px;
+      .search-bar-divison {
+        margin: 0 10px;
+
+        @media screen and (max-width: $max-width1) {
+          display: flex;
+          flex-direction: column;
+        }
+
+        #dropdown-search-bar-property,
+        #dropdown-search-bar-workspace {
+          width: 130px;
+          margin: 10px;
+          padding: 5px 5px;
+
+          @media screen and (max-width: $max-width1) {
+            width: 200px;
+          }
+        }
+
+        input {
+          width: 160px;
+
+          @media screen and (max-width: $max-width1) {
+            width: 200px;
+          }
+        }
+      }
+    }
+
+    .properties-container {
+      display: none;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+
+    .property-division {
+      border: solid;
+      min-width: 350px;
+      width: 33%;
+      height: 180px;
+      padding: 20px;
+      margin-bottom: 10px;
+      position: relative;
+
+      .property-description-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .button-property-container {
+        display: flex;
+        justify-content: space-around;
+        margin: 10px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
       }
     }
 
     .rooms-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
       .room-division {
         border: solid;
         margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         .room-description {
           display: flex;
-          justify-content: center;
           align-items: center;
+          justify-content: center;
+          width: 100%;
+
+          @media screen and (max-width: $max-width1) {
+            flex-direction: column;
+          }
 
           img {
             width: 50%;
-            padding: 50px;
+            margin: 50px;
+
+            @media screen and (max-width: $max-width1) {
+              width: 80%;
+            }
           }
 
-          ul {
-            width: 50%;
-            padding: 50px;
+          .workplace-description {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 10px;
+
+            ul {
+              width: 100%;
+              padding: 50px;
+            }
           }
         }
 
-        .status-container {
+        .property-description-container {
           display: flex;
-          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+          margin: 20px 0;
         }
 
         .button-container {
@@ -593,8 +691,8 @@ header {
     }
   }
 
-  .modal-add-space-container {
-    #modal-add-space {
+  .modal-add-property-container, .modal-add-workspace-container {
+    #modal-add-property, .modal-add-workspace {
       border: solid;
       display: none;
       position: fixed;
@@ -612,6 +710,7 @@ header {
         border: solid;
         padding: 20px;
         width: 80%;
+        height: 480px;
         max-width: 600px;
         border-radius: 5px;
         display: flex;
@@ -620,39 +719,27 @@ header {
         justify-content: center;
         background-color: $bgColor3;
 
-        h2 {
-          padding-bottom: 20px;
-        }
-
-        .add-space-form {
+        .add-property-form, .add-workspace-form{
           display: flex;
           flex-direction: column;
           align-items: center;
+          border: solid 1px;
+        }
 
-          .add-space-radio-container {
-            display: flex;
-            justify-content: space-between;
-            border: solid;
-            width: 295px;
-            padding: 5px;
+        .add-workspace-radio-container{
+          padding: 5px 0;
+        }
 
-            p {
-              padding: 0 5px;
-            }
-
-            label {
-              padding: 0 5px;
-            }
-          }
-
-          #button-close {
-            margin: 10px 0;
-          }
+        .radio-option-container{
+          text-align: center;
         }
       }
     }
   }
+
 }
+
+
 
 /*
 ************************************************

@@ -39,16 +39,16 @@ const createNewSelectedDateObject = () => {
 /*=============================================
 → ### CALENDAR MODAL ### */
 // Get the modal element
-var modalCalendar = document.getElementById("modal-calendar");
+const modalCalendar = document.getElementById("modal-calendar");
 
 // Get the submit button element
-var submitBtn = modalCalendar.querySelector("#submit-selected-dates");
+const submitBtn = modalCalendar.querySelector("#submit-selected-dates");
 
 // Get the close button element
-var cancelBtn = modalCalendar.querySelector("#button-cancel");
+const cancelBtn = modalCalendar.querySelector("#button-cancel");
 
 // Show the modal when a button is clicked
-var showModal = () => {
+const showModal = () => {
   modalCalendar.style.display = "flex";
 
   selectedDates = [
@@ -63,7 +63,7 @@ var showModal = () => {
 };
 
 // Hide the modal when the close button is clicked or outside the modal
-var hideModal = (event) => {
+const hideModal = (event) => {
   if (event.target == cancelBtn || event.target == submitBtn) {
     modalCalendar.style.display = "none";
 
@@ -197,15 +197,37 @@ searchBarInput.addEventListener("input", (event) => {
 /*=============================================
 → ### FETCH PROPERTIES DATA FROM SERVER ### */
 let propertiesData;
-const findWorkspace = async () => {
-  const filtered = fetch(baseUrl + "findWorkspace")
-    .then((response) => response.json())
-    .then((data) => {
-      data.forEach((obj) => delete obj.user_id);
-      displayPropertiesData(data);
-      propertiesData = data;
-    })
-    .catch((error) => console.error(error));
+// const findWorkspace = async () => {
+//   const filtered = fetch(baseUrl + "findWorkspace")
+//     .then((response) => response.json())
+//     .then((data) => {
+//       data.forEach((obj) => delete obj.user_id);
+//       displayPropertiesData(data);
+//       propertiesData = data;
+//     })
+//     .catch((error) => console.error(error));
+// };
+/////////////////////////////////////////////////////////////funcionando no server antigo
+
+async function findWorkspaceByOwner() {
+
+  // const columns = ['Workspace ID', 'Model', 'Seats', 'Smoke Frendly', 'Price', 'Size(sqft)', 'Lease Term', 'Property ID', 'Status'];
+
+  // const placeToDisplay = 'workspace_list';
+
+  // const user_id = localStorage.getItem('user_id');
+
+  // const filtered = await fetch(baseUrl + 'findWorkspaceByOwner?user_id=' + user_id)
+  const filtered = await fetch("http://localhost:3010/findWorkspaceByOwner?user_id=18059eac-c6b1-4bda-b462-521d0323c5c5")
+      .then(response => response.json())
+      .then(data => {
+          data.forEach(obj => delete obj.user_id);
+          displayPropertiesData(data);
+          propertiesData = data;
+          console.log('data',data);
+
+      })
+      .catch(error => console.error(error));
 };
 
 /*=============================================
@@ -236,6 +258,8 @@ const displayPropertiesData = (propertiesData) => {
     image.src = "../img/room01.jpg";
     image.alt = "Image Room";
 
+    const div = document.createElement("div");
+
     const ul = document.createElement("ul");
     ul.innerHTML = `
         <li>Lease term: ${lease_term}</li>
@@ -261,7 +285,8 @@ const displayPropertiesData = (propertiesData) => {
     // <li>Leasing term: ${lease_term}</li>
 
     roomDescription.appendChild(image);
-    roomDescription.appendChild(ul);
+    roomDescription.appendChild(div);
+    div.appendChild(ul);
 
     const buttonContainer = document.createElement("div");
     buttonContainer.className = "button-container";
@@ -557,5 +582,6 @@ submitBtn.addEventListener("click", hideModal);
 /*=============================================
 → ### ON LOAD THE PAGE ### */
 window.onload = async () => {
-  findWorkspace();
+  // findWorkspace();
+  findWorkspaceByOwner();
 };
