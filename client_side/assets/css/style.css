@@ -28,12 +28,13 @@ main {
 
 .btn {
   padding: 5px 5px;
-  width: 100px;
+  margin: 10px;
+  width: 120px;
 }
 
 .input {
   width: 300px;
-  margin: 0 20px;
+  margin: 10px;
   padding: 5px 5px;
 }
 
@@ -347,7 +348,9 @@ header .mobile-menu-icon {
   padding: 20px;
   margin: 10px 0;
 }
-.booking .workspaces-container .search-bar-container .dropdown-search-bar {
+.booking .workspaces-container .search-bar-container #dropdown-search-bar {
+  width: 150px;
+  margin: 10px;
   padding: 5px 5px;
 }
 .booking .workspaces-container .rooms-container .room-division {
@@ -364,7 +367,7 @@ header .mobile-menu-icon {
   padding: 50px;
 }
 .booking .workspaces-container .rooms-container .room-division .room-description ul {
-  width: 50%;
+  width: 100%;
   padding: 50px;
 }
 .booking .workspaces-container .rooms-container .room-division .button-container {
@@ -465,6 +468,10 @@ header .mobile-menu-icon {
 ### MAIN - OWNER SPACE ###
 ************************************************
 */
+.ownerspace {
+  width: 100%;
+  overflow: hidden;
+}
 .ownerspace .owner-workspace-page-container {
   border: solid;
   display: flex;
@@ -473,15 +480,74 @@ header .mobile-menu-icon {
   height: 100px;
   margin-top: 10px;
 }
+@media screen and (max-width: 768px) {
+  .ownerspace .owner-workspace-page-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .ownerspace .workspaces-container .search-bar-container {
   border: solid;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 20px;
   margin: 10px 0;
 }
-.ownerspace .workspaces-container .search-bar-container .dropdown-search-bar {
+.ownerspace .workspaces-container .search-bar-container .search-bar-divison {
+  margin: 0 10px;
+}
+@media screen and (max-width: 768px) {
+  .ownerspace .workspaces-container .search-bar-container .search-bar-divison {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.ownerspace .workspaces-container .search-bar-container .search-bar-divison #dropdown-search-bar-property,
+.ownerspace .workspaces-container .search-bar-container .search-bar-divison #dropdown-search-bar-workspace {
+  width: 150px;
+  margin: 10px;
   padding: 5px 5px;
+}
+@media screen and (max-width: 768px) {
+  .ownerspace .workspaces-container .search-bar-container .search-bar-divison #dropdown-search-bar-property,
+  .ownerspace .workspaces-container .search-bar-container .search-bar-divison #dropdown-search-bar-workspace {
+    width: 200px;
+  }
+}
+.ownerspace .workspaces-container .search-bar-container .search-bar-divison input {
+  width: 200px;
+}
+.ownerspace .workspaces-container .properties-container {
+  display: none;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.ownerspace .workspaces-container .property-division {
+  border: solid;
+  min-width: 350px;
+  width: 33%;
+  height: 180px;
+  padding: 20px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.ownerspace .workspaces-container .property-division .property-description-container {
+  display: flex;
+  justify-content: center;
+}
+.ownerspace .workspaces-container .property-division .button-property-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.ownerspace .workspaces-container .rooms-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 .ownerspace .workspaces-container .rooms-container .room-division {
   border: solid;
@@ -489,20 +555,44 @@ header .mobile-menu-icon {
 }
 .ownerspace .workspaces-container .rooms-container .room-division .room-description {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+}
+@media screen and (max-width: 768px) {
+  .ownerspace .workspaces-container .rooms-container .room-division .room-description {
+    flex-direction: column;
+  }
 }
 .ownerspace .workspaces-container .rooms-container .room-division .room-description img {
   width: 50%;
-  padding: 50px;
+  padding: 20px;
 }
-.ownerspace .workspaces-container .rooms-container .room-division .room-description ul {
-  width: 50%;
-  padding: 50px;
+@media screen and (max-width: 768px) {
+  .ownerspace .workspaces-container .rooms-container .room-division .room-description img {
+    width: 80%;
+  }
 }
-.ownerspace .workspaces-container .rooms-container .room-division .status-container {
+.ownerspace .workspaces-container .rooms-container .room-division .room-description .workplace-description {
+  width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.ownerspace .workspaces-container .rooms-container .room-division .room-description .workplace-description ul {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  list-style-type: none;
+}
+@media screen and (max-width: 768px) {
+  .ownerspace .workspaces-container .rooms-container .room-division .room-description .workplace-description ul {
+    width: 80%;
+  }
+}
+.ownerspace .workspaces-container .rooms-container .room-division .property-description-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .ownerspace .workspaces-container .rooms-container .room-division .button-container {
   display: flex;
