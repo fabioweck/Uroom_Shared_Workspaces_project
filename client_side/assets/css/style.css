@@ -34,7 +34,7 @@ main {
 
 .input {
   width: 300px;
-  margin: 10px;
+  margin: 10px 0;
   padding: 5px 5px;
 }
 
@@ -383,6 +383,8 @@ header .mobile-menu-icon {
 @media screen and (max-width: 768px) {
   .booking .workspaces-container .rooms-container .room-division .room-description img {
     width: 80%;
+    margin: 20px;
+    min-width: 300px;
   }
 }
 .booking .workspaces-container .rooms-container .room-division .room-description .div-workspace {
@@ -394,7 +396,6 @@ header .mobile-menu-icon {
 }
 .booking .workspaces-container .rooms-container .room-division .room-description .div-workspace ul {
   width: 100%;
-  padding: 50px;
 }
 .booking .workspaces-container .rooms-container .room-division .div-property {
   display: flex;
@@ -531,11 +532,25 @@ header .mobile-menu-icon {
 .ownerspace .workspaces-container .search-bar-container .search-bar-divison {
   margin: 0 10px;
 }
+@media screen and (max-width: 768px) {
+  .ownerspace .workspaces-container .search-bar-container .search-bar-divison {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+  }
+}
 .ownerspace .workspaces-container .search-bar-container .search-bar-divison #dropdown-search-bar-property {
   width: 150px;
   margin: 10px;
   padding: 5px 5px;
   display: none;
+}
+@media screen and (max-width: 768px) {
+  .ownerspace .workspaces-container .search-bar-container .search-bar-divison #dropdown-search-bar-property {
+    width: 300px;
+    margin: 0;
+  }
 }
 .ownerspace .workspaces-container .search-bar-container .search-bar-divison #search-bar-property {
   display: none;
@@ -544,6 +559,12 @@ header .mobile-menu-icon {
   width: 150px;
   margin: 10px;
   padding: 5px 5px;
+}
+@media screen and (max-width: 768px) {
+  .ownerspace .workspaces-container .search-bar-container .search-bar-divison #dropdown-search-bar-workspace {
+    width: 300px;
+    margin: 0;
+  }
 }
 .ownerspace .workspaces-container .search-bar-container .search-bar-divison #search-bar-workspace {
   display: inline;
@@ -605,6 +626,8 @@ header .mobile-menu-icon {
 @media screen and (max-width: 768px) {
   .ownerspace .workspaces-container .rooms-container .room-division .room-description img {
     width: 80%;
+    margin: 20px;
+    min-width: 300px;
   }
 }
 .ownerspace .workspaces-container .rooms-container .room-division .room-description .workplace-description {
@@ -616,7 +639,6 @@ header .mobile-menu-icon {
 }
 .ownerspace .workspaces-container .rooms-container .room-division .room-description .workplace-description ul {
   width: 100%;
-  padding: 50px;
 }
 .ownerspace .workspaces-container .rooms-container .room-division .property-description-container {
   display: flex;

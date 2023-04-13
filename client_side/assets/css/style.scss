@@ -35,7 +35,7 @@ main {
 
 .input {
   width: 300px;
-  margin: 10px;
+  margin: 10px 0;
   padding: 5px 5px;
 }
 
@@ -426,6 +426,8 @@ header {
 
             @media screen and (max-width: $max-width1) {
               width: 80%;
+              margin: 20px;
+              min-width: 300px;
             }
           }
 
@@ -438,7 +440,6 @@ header {
 
             ul {
               width: 100%;
-              padding: 50px;
             }
           }
         }
@@ -600,14 +601,26 @@ header {
       .search-bar-divison {
         margin: 0 10px;
 
+        @media screen and (max-width: $max-width1) {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          margin: 0;
+        }
+
         #dropdown-search-bar-property {
           width: 150px;
           margin: 10px;
           padding: 5px 5px;
           display: none;
+
+          @media screen and (max-width: $max-width1) {
+            width: 300px;
+            margin: 0;
+          }
         }
 
-        #search-bar-property{
+        #search-bar-property {
           display: none;
         }
 
@@ -615,9 +628,14 @@ header {
           width: 150px;
           margin: 10px;
           padding: 5px 5px;
+
+          @media screen and (max-width: $max-width1) {
+            width: 300px;
+            margin: 0;
+          }
         }
 
-        #search-bar-workspace{
+        #search-bar-workspace {
           display: inline;
         }
       }
@@ -682,6 +700,8 @@ header {
 
             @media screen and (max-width: $max-width1) {
               width: 80%;
+              margin: 20px;
+              min-width: 300px;
             }
           }
 
@@ -694,7 +714,6 @@ header {
 
             ul {
               width: 100%;
-              padding: 50px;
             }
           }
         }
