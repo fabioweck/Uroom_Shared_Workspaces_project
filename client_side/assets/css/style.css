@@ -353,18 +353,27 @@ header .mobile-menu-icon {
   margin: 10px;
   padding: 5px 5px;
 }
+.booking .workspaces-container .rooms-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 .booking .workspaces-container .rooms-container .room-division {
   border: solid;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .booking .workspaces-container .rooms-container .room-division .room-description {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 @media screen and (max-width: 768px) {
   .booking .workspaces-container .rooms-container .room-division .room-description {
     flex-direction: column;
-    justify-content: center;
   }
 }
 .booking .workspaces-container .rooms-container .room-division .room-description img {
@@ -376,9 +385,25 @@ header .mobile-menu-icon {
     width: 80%;
   }
 }
-.booking .workspaces-container .rooms-container .room-division .room-description ul {
+.booking .workspaces-container .rooms-container .room-division .room-description .div-workspace {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+.booking .workspaces-container .rooms-container .room-division .room-description .div-workspace ul {
   width: 100%;
   padding: 50px;
+}
+.booking .workspaces-container .rooms-container .room-division .div-property {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+.booking .workspaces-container .rooms-container .room-division .div-property ul {
+  list-style-type: none;
 }
 .booking .workspaces-container .rooms-container .room-division .button-container {
   display: flex;
@@ -613,7 +638,10 @@ header .mobile-menu-icon {
   justify-content: space-around;
   margin: 20px;
 }
-.ownerspace .modal-add-property-container #modal-add-property, .ownerspace .modal-add-property-container .modal-add-workspace, .ownerspace .modal-add-workspace-container #modal-add-property, .ownerspace .modal-add-workspace-container .modal-add-workspace {
+.ownerspace .modal-add-property-container #modal-add-property,
+.ownerspace .modal-add-property-container .modal-add-workspace,
+.ownerspace .modal-add-workspace-container #modal-add-property,
+.ownerspace .modal-add-workspace-container .modal-add-workspace {
   border: solid;
   display: none;
   position: fixed;
@@ -627,7 +655,10 @@ header .mobile-menu-icon {
   align-items: center;
   justify-content: center;
 }
-.ownerspace .modal-add-property-container #modal-add-property .modal-content, .ownerspace .modal-add-property-container .modal-add-workspace .modal-content, .ownerspace .modal-add-workspace-container #modal-add-property .modal-content, .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content {
+.ownerspace .modal-add-property-container #modal-add-property .modal-content,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content {
   border: solid;
   padding: 20px;
   width: 80%;
@@ -640,16 +671,29 @@ header .mobile-menu-icon {
   justify-content: center;
   background-color: lightgray;
 }
-.ownerspace .modal-add-property-container #modal-add-property .modal-content .add-property-form, .ownerspace .modal-add-property-container #modal-add-property .modal-content .add-workspace-form, .ownerspace .modal-add-property-container .modal-add-workspace .modal-content .add-property-form, .ownerspace .modal-add-property-container .modal-add-workspace .modal-content .add-workspace-form, .ownerspace .modal-add-workspace-container #modal-add-property .modal-content .add-property-form, .ownerspace .modal-add-workspace-container #modal-add-property .modal-content .add-workspace-form, .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content .add-property-form, .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content .add-workspace-form {
+.ownerspace .modal-add-property-container #modal-add-property .modal-content .add-property-form,
+.ownerspace .modal-add-property-container #modal-add-property .modal-content .add-workspace-form,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content .add-property-form,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content .add-workspace-form,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content .add-property-form,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content .add-workspace-form,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content .add-property-form,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content .add-workspace-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   border: solid 1px;
 }
-.ownerspace .modal-add-property-container #modal-add-property .modal-content .add-workspace-radio-container, .ownerspace .modal-add-property-container .modal-add-workspace .modal-content .add-workspace-radio-container, .ownerspace .modal-add-workspace-container #modal-add-property .modal-content .add-workspace-radio-container, .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content .add-workspace-radio-container {
+.ownerspace .modal-add-property-container #modal-add-property .modal-content .add-workspace-radio-container,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content .add-workspace-radio-container,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content .add-workspace-radio-container,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content .add-workspace-radio-container {
   padding: 5px 0;
 }
-.ownerspace .modal-add-property-container #modal-add-property .modal-content .radio-option-container, .ownerspace .modal-add-property-container .modal-add-workspace .modal-content .radio-option-container, .ownerspace .modal-add-workspace-container #modal-add-property .modal-content .radio-option-container, .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content .radio-option-container {
+.ownerspace .modal-add-property-container #modal-add-property .modal-content .radio-option-container,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content .radio-option-container,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content .radio-option-container,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content .radio-option-container {
   text-align: center;
 }
 

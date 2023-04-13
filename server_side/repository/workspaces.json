@@ -7,7 +7,7 @@
         "price": "20",
         "sqft": "100",
         "lease_term": "dayly",
-        "property_id": "316899",
+        "property_id": 316899,
         "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
         "status": "true"
     },
@@ -19,47 +19,20 @@
         "price": "100",
         "sqft": "200",
         "lease_term": "monthly",
-        "property_id": "316899",
+        "property_id": 316899,
         "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
         "status": "true"
     },
     {
-        "workspace_id": 987654,
-        "workspace_type": "office",
-        "seats": "6",
-        "smoking": "yes",
-        "price": "50",
-        "sqft": "150",
-        "lease_term": "hourly",
-        "property_id": "987123",
-        "user_id": "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6",
-        "status": "true"
-    },
-    {
-        "workspace_id": 123456,
-        "workspace_type": "office",
-        "seats": "12",
-        "smoking": "no",
-        "price": "80",
-        "sqft": "300",
-        "lease_term": "hourly",
-        "property_id": "456789",
-        "user_id": "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6",
-        "status": "true"
-    },
-    {
-        "workspace_id": 789012,
+        "workspace_id": 552491,
         "workspace_type": "desk",
-        "seats": "2",
+        "seats": "4",
         "smoking": "no",
-        "price": "30",
-        "sqft": "75",
-        "lease_term": "daily",
-        "property_id": "654321",
-        "user_id": "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6",
+        "price": "20",
+        "sqft": "100",
+        "lease_term": "dayly",
+        "property_id": 726506,
+        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
         "status": "true"
     }
-    
-    
-    
 ]
