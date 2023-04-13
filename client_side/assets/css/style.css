@@ -248,6 +248,22 @@ header .mobile-menu-icon {
 ### MAIN - LOGIN ###
 ************************************************
 */
+.container #dv-display {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #dc3545;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: 8%;
+  border-radius: 0px 0px 10px 10px;
+}
+
 #login {
   display: flex;
   align-items: center;
@@ -277,14 +293,14 @@ header .mobile-menu-icon {
     display: none;
   }
 }
-#login .login-title #login-box {
+#login .login-title #login-box, #login .login-title #logout-box {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-#login .login-title #login-box input {
+#login .login-title #login-box input, #login .login-title #logout-box input {
   width: 50%;
   height: 40px;
   padding: 20px;
@@ -292,7 +308,7 @@ header .mobile-menu-icon {
   font-size: 25px;
   color: #252424;
 }
-#login .login-title #login-box button {
+#login .login-title #login-box button, #login .login-title #logout-box button {
   border: none;
   border-radius: 5px;
   margin: 50px auto 10px;
@@ -304,11 +320,11 @@ header .mobile-menu-icon {
   font-size: 25px;
   cursor: pointer;
 }
-#login .login-title #login-box button:hover {
+#login .login-title #login-box button:hover, #login .login-title #logout-box button:hover {
   background-color: rgba(57, 131, 120, 0.6352941176);
   transition: 0.5s;
 }
-#login .login-title #login-box a {
+#login .login-title #login-box a, #login .login-title #logout-box a {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: grey;
   padding: 20px;
