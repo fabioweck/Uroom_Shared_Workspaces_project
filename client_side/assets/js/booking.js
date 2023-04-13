@@ -39,16 +39,16 @@ const createNewSelectedDateObject = () => {
 /*=============================================
 → ### CALENDAR MODAL ### */
 // Get the modal element
-var modalCalendar = document.getElementById("modal-calendar");
+const modalCalendar = document.getElementById("modal-calendar");
 
 // Get the submit button element
-var submitBtn = modalCalendar.querySelector("#submit-selected-dates");
+const submitBtn = modalCalendar.querySelector("#submit-selected-dates");
 
 // Get the close button element
-var cancelBtn = modalCalendar.querySelector("#button-cancel");
+const cancelBtn = modalCalendar.querySelector("#button-cancel");
 
 // Show the modal when a button is clicked
-var showModal = () => {
+const showModal = () => {
   modalCalendar.style.display = "flex";
 
   selectedDates = [
@@ -63,7 +63,7 @@ var showModal = () => {
 };
 
 // Hide the modal when the close button is clicked or outside the modal
-var hideModal = (event) => {
+const hideModal = (event) => {
   if (event.target == cancelBtn || event.target == submitBtn) {
     modalCalendar.style.display = "none";
 

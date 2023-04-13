@@ -53,8 +53,8 @@
 
       <section class="owner-workspace-page-container">
         <div>
-          <button class="btn" id="btn-add-propery">Add Property</button>
-          <button class="btn" id="btn-add-space">Add Workspace</button>
+          <button class="btn" id="btn-add-property">Add Property</button>
+          <button class="btn" id="btn-add-workspace">Add Workspace</button>
         </div>
         <div>
           <button class="btn" id="btn-my-properties">My Properties</button>
@@ -210,8 +210,6 @@
         <!--properties-container-->
 
         <div class="rooms-container">
-
-
           <div class="room-division">
             <div class="room-description">
               <img src="../img/room01.jpg" alt="Image Room" />
@@ -346,69 +344,32 @@
             <!--button-container-->
           </div>
           <!--room-division-->
-
-
         </div>
         <!--rooms-container-->
       </section>
       <!--workspaces-container-->
 
-      <section class="modal-add-space-container">
-        <div id="modal-add-space" class="modal-add-space">
+      <section class="modal-add-property-container">
+        <div id="modal-add-property" class="modal-add-property">
           <div class="modal-content">
-            <h2>Add Space</h2>
+            <h2>Add Property</h2>
 
-            <form id="add-space-form" class="add-space-form">
-              <input
-                placeholder="Workspace description"
-                class="input"
-                type="text"
-                id="add-workspace-description"
-              />
-
+            <form id="add-property-form" class="add-property-form">
               <input
                 placeholder="Address"
                 class="input"
                 type="text"
-                id="add-address"
+                id="add-property-address"
               />
 
               <input
                 placeholder="Neighbourhood"
                 class="input"
                 type="text"
-                id="add-neighbourhood"
+                id="add-property-neighbourhood"
               />
 
-              <input
-                placeholder="Seats"
-                class="input"
-                type="number"
-                id="add-seats"
-              />
-
-              <input
-                placeholder="Price"
-                class="input"
-                type="number"
-                id="add-price"
-              />
-
-              <input
-                placeholder="Sqft"
-                class="input"
-                type="number"
-                id="add-sqft"
-              />
-
-              <input
-                placeholder="Leasing term"
-                class="input"
-                type="text"
-                id="add-leasing-term"
-              />
-
-              <div class="add-space-radio-container">
+              <div class="add-property-radio-container">
                 <p>Parking lot</p>
                 <div class="radio-option-container">
                   <input
@@ -427,9 +388,9 @@
                   <label for="no">No</label>
                 </div>
               </div>
-              <!--add-space-radio-container-->
+              <!--add-property-radio-container-->
 
-              <div class="add-space-radio-container">
+              <div class="add-property-radio-container">
                 <p>Public transportation</p>
                 <div class="radio-option-container">
                   <input
@@ -448,9 +409,97 @@
                   <label for="no">No</label>
                 </div>
               </div>
-              <!--add-space-radio-container-->
+              <!--add-property-radio-container-->
 
-              <div class="add-space-radio-container">
+              <div button-container>
+                <button class="btn" id="button-property-submit">Submit</button>
+                <button class="btn" id="button-property-close">Close</button>
+              </div>
+            </form>
+          </div>
+          <!-- Modal content -->
+        </div>
+        <!--modal-add-property-->
+      </section>
+      <!--modal-add-property-container-->
+
+      <section class="modal-add-workspace-container">
+        <div id="modal-add-workspace" class="modal-add-workspace">
+          <div class="modal-content">
+            <h2>Add Workspace</h2>
+
+            <form id="add-workspace-form" class="add-workspace-form">
+              <input
+                placeholder="Leasing term"
+                class="input"
+                type="text"
+                id="add-leasing-term"
+              />
+
+              <input
+                placeholder="Price"
+                class="input"
+                type="number"
+                id="add-price"
+              />
+
+              <input
+                placeholder="Seats"
+                class="input"
+                type="number"
+                id="add-seats"
+              />
+
+              <input
+                placeholder="Square Feet"
+                class="input"
+                type="number"
+                id="add-sqft"
+              />
+
+              <div class="add-workspace-radio-container">
+                <p>Parking lot</p>
+                <div class="radio-option-container">
+                  <input
+                    type="radio"
+                    name="parking-lot-option"
+                    id="yes"
+                    value="yes"
+                  />
+                  <label for="yes">Yes</label>
+                  <input
+                    type="radio"
+                    name="parking-lot-option"
+                    id="no"
+                    value="no"
+                  />
+                  <label for="no">No</label>
+                </div>
+              </div>
+              <!--add-workspace-radio-container-->
+
+              <div class="add-workspace-radio-container">
+                <p>Public transportation</p>
+                <div class="radio-option-container">
+                  <input
+                    type="radio"
+                    name="public-transportation-option"
+                    id="yes"
+                    value="yes"
+                  />
+                  <label for="yes">Yes</label>
+                  <input
+                    type="radio"
+                    name="public-transportation-option"
+                    id="no"
+                    value="no"
+                  />
+                  <label for="no">No</label>
+                </div>
+              </div>
+              <!--add-workspace-radio-container-->
+
+              <div class="add-workspace-radio-container">
                 <p>Smoking</p>
                 <div class="radio-option-container">
                   <input
@@ -469,18 +518,40 @@
                   <label for="no">No</label>
                 </div>
               </div>
-              <!--add-space-radio-container-->
+              <!--add-workspace-radio-container-->
+
+              <div class="add-workspace-radio-container">
+                <p>Workspace Type</p>
+                <div class="radio-option-container">
+                  <input
+                    type="radio"
+                    name="workspace-type-option"
+                    id="desk"
+                    value="desk"
+                  />
+                  <label for="yes">Desk</label>
+                  <input
+                    type="radio"
+                    name="workspace-type-option"
+                    id="office"
+                    value="office"
+                  />
+                  <label for="no">Office</label>
+                </div>
+              </div>
+              <!--add-workspace-radio-container-->
 
               <div button-container>
-                <button class="btn" id="add-space-button">Submit</button>
-                <button class="btn" id="button-close">Close</button>
+                <button class="btn" id="button-workspace-submit">Submit</button>
+                <button class="btn" id="button-workspace-close">Close</button>
               </div>
             </form>
           </div>
           <!-- Modal content -->
         </div>
+        <!--modal-add-workspace-->
       </section>
-      <!--modal-container-->
+      <!--modal-add-workspace-container-->
     </main>
     <!--container-->
 

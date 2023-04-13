@@ -4,37 +4,75 @@
 ************************************************
 */
 /*=============================================
+→ ### IMPORTS ### */
+import { baseUrl } from "./general_conf.js";
+
 /*=============================================
-→ ### REGISTER MODAL ### */
+→ ### ADD PROPERTY MODAL ### */
 // Get the modal element
-var modalAddSpace = document.getElementById("modal-add-space");
+const modalAddProperty = document.getElementById("modal-add-property");
+
+// Get the submit button element
+const submitBtnProperty = modalAddProperty.querySelector("#button-property-submit");
 
 // Get the close button element
-var closeBtn = modalAddSpace.querySelector("#button-close");
+const closeBtnProperty = modalAddProperty.querySelector("#button-property-close");
 
 // Show the modal when a button is clicked
-var showModal = () => {
-  modalAddSpace.style.display = "flex";
+const showModalProperty = () => {
+  modalAddProperty.style.display = "flex";
 };
 
 // Hide the modal when the close button is clicked or outside the modal
-var hideModal = (event) => {
-  if (event.target == closeBtn) {
-    modalAddSpace.style.display = "none";
-    // Reset form fields to their initial values
-    document.querySelector("#add-workspace-description").value = "";
+const hideModalProperty = (event) => {
+  if (event.target == closeBtnProperty) {
+    modalAddProperty.style.display = "none";
   }
 };
 
 // Attach event listeners to show and hide the modal
 document.addEventListener("click", (event) => {
-  if (event.target.matches("#btn-add-space")) {
-    showModal();
+  if (event.target.matches("#btn-add-property")) {
+    showModalProperty();
   }
 });
 
-modalAddSpace.addEventListener("click", hideModal);
-closeBtn.addEventListener("click", hideModal);
+modalAddProperty.addEventListener("click", hideModalProperty);
+closeBtnProperty.addEventListener("click", hideModalProperty);
+
+
+/*=============================================
+→ ### ADD Workspace MODAL ### */
+// Get the modal element
+const modalAddWorkspace = document.getElementById("modal-add-workspace");
+
+// Get the submit button element
+const submitBtnWorkspace = modalAddWorkspace.querySelector("#button-workspace-submit");
+
+// Get the close button element
+const closeBtnWorkspace = modalAddWorkspace.querySelector("#button-workspace-close");
+
+// Show the modal when a button is clicked
+const showModalWorkspace = () => {
+  modalAddWorkspace.style.display = "flex";
+};
+
+// Hide the modal when the close button is clicked or outside the modal
+const hideModalWorkspace = (event) => {
+  if (event.target == closeBtnWorkspace) {
+    modalAddWorkspace.style.display = "none";
+  }
+};
+
+// Attach event listeners to show and hide the modal
+document.addEventListener("click", (event) => {
+  if (event.target.matches("#btn-add-workspace")) {
+    showModalWorkspace();
+  }
+});
+
+modalAddWorkspace.addEventListener("click", hideModalWorkspace);
+closeBtnWorkspace.addEventListener("click", hideModalWorkspace);
 
 
 /*=============================================
@@ -46,13 +84,13 @@ const propertiesContainer = document.querySelector(".properties-container");
 const roomsContainer = document.querySelector(".rooms-container");
 
 // Show my properties
-var showMyProperties = () => {
+const showMyProperties = () => {
   propertiesContainer.style.display = "flex";
   roomsContainer.style.display = "none";
 };
 
 // Show my properties
-var showMyRooms = () => {
+const showMyRooms = () => {
   propertiesContainer.style.display = "none";
   roomsContainer.style.display = "flex";
 };
