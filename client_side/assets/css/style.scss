@@ -161,7 +161,7 @@ header {
       right: 0px;
       top: 0px;
       color: $txtColor2;
-      padding: 14px 16px;
+      padding: 12px 16px;
       text-decoration: none;
       font-size: 17px;
       display: block;
@@ -402,7 +402,7 @@ header {
       display: flex;
       flex-direction: column;
       width: 100%;
-      
+
       .room-division {
         border: solid;
         margin-bottom: 20px;
@@ -449,7 +449,7 @@ header {
           align-items: center;
           margin: 20px 0;
 
-          ul{
+          ul {
             list-style-type: none;
           }
         }
@@ -593,35 +593,32 @@ header {
     .search-bar-container {
       border: solid;
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
       padding: 20px;
       margin: 10px 0;
 
       .search-bar-divison {
         margin: 0 10px;
 
-        @media screen and (max-width: $max-width1) {
-          display: flex;
-          flex-direction: column;
-        }
-
-        #dropdown-search-bar-property,
-        #dropdown-search-bar-workspace {
-          width: 130px;
+        #dropdown-search-bar-property {
+          width: 150px;
           margin: 10px;
           padding: 5px 5px;
-
-          @media screen and (max-width: $max-width1) {
-            width: 200px;
-          }
+          display: none;
         }
 
-        input {
-          width: 160px;
+        #search-bar-property{
+          display: none;
+        }
 
-          @media screen and (max-width: $max-width1) {
-            width: 200px;
-          }
+        #dropdown-search-bar-workspace {
+          width: 150px;
+          margin: 10px;
+          padding: 5px 5px;
+        }
+
+        #search-bar-workspace{
+          display: inline;
         }
       }
     }
@@ -707,6 +704,10 @@ header {
           flex-direction: column;
           align-items: center;
           margin: 20px 0;
+
+          ul {
+            list-style-type: none;
+          }
         }
 
         .button-container {
