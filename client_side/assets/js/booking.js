@@ -197,15 +197,37 @@ searchBarInput.addEventListener("input", (event) => {
 /*=============================================
 → ### FETCH PROPERTIES DATA FROM SERVER ### */
 let propertiesData;
-const findWorkspace = async () => {
-  const filtered = fetch(baseUrl + "findWorkspace")
-    .then((response) => response.json())
-    .then((data) => {
-      data.forEach((obj) => delete obj.user_id);
-      displayPropertiesData(data);
-      propertiesData = data;
-    })
-    .catch((error) => console.error(error));
+// const findWorkspace = async () => {
+//   const filtered = fetch(baseUrl + "findWorkspace")
+//     .then((response) => response.json())
+//     .then((data) => {
+//       data.forEach((obj) => delete obj.user_id);
+//       displayPropertiesData(data);
+//       propertiesData = data;
+//     })
+//     .catch((error) => console.error(error));
+// };
+/////////////////////////////////////////////////////////////funcionando no server antigo
+
+async function findWorkspaceByOwner() {
+
+  // const columns = ['Workspace ID', 'Model', 'Seats', 'Smoke Frendly', 'Price', 'Size(sqft)', 'Lease Term', 'Property ID', 'Status'];
+
+  // const placeToDisplay = 'workspace_list';
+
+  // const user_id = localStorage.getItem('user_id');
+
+  // const filtered = await fetch(baseUrl + 'findWorkspaceByOwner?user_id=' + user_id)
+  const filtered = await fetch("http://localhost:3010/findWorkspaceByOwner?user_id=18059eac-c6b1-4bda-b462-521d0323c5c5")
+      .then(response => response.json())
+      .then(data => {
+          data.forEach(obj => delete obj.user_id);
+          displayPropertiesData(data);
+          propertiesData = data;
+          console.log('data',data);
+
+      })
+      .catch(error => console.error(error));
 };
 
 /*=============================================
@@ -560,5 +582,6 @@ submitBtn.addEventListener("click", hideModal);
 /*=============================================
 → ### ON LOAD THE PAGE ### */
 window.onload = async () => {
-  findWorkspace();
+  // findWorkspace();
+  findWorkspaceByOwner();
 };

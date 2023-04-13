@@ -260,7 +260,7 @@ async function findWorkspaceByOwner() {
 
     const user_id = localStorage.getItem('user_id');
 
-    const filtered = fetch(baseUrl + 'findWorkspaceByOwner?user_id=' + user_id)
+    const filtered = fetch(baseUrl + 'findWorkspaceByOwner?user_id=' + "18059eac-c6b1-4bda-b462-521d0323c5c5"/*user_id*/)
         .then(response => response.json())
         .then(data => {
             data.forEach(obj => delete obj.user_id);
