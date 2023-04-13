@@ -466,6 +466,8 @@ document.addEventListener("click", (event) => {
   if (event.target.matches("#btn-my-properties")) {
     showMyProperties();
     showSearchWorkspaceProperties();
+    document.getElementById("btn-my-properties").disabled = true;
+    document.getElementById("btn-my-rooms").disabled = false;
   }
 });
 
@@ -495,6 +497,8 @@ document.addEventListener("click", (event) => {
   if (event.target.matches("#btn-my-rooms")) {
     showMyRooms();
     showSearchWorkspace();
+    document.getElementById("btn-my-properties").disabled = false;
+    document.getElementById("btn-my-rooms").disabled = true;
   }
 });
 
@@ -503,5 +507,6 @@ document.addEventListener("click", (event) => {
 window.onload = async () => {
   await findWorkspaceByOwner();
   displayPropertiesWorkspaceData(propertiesWorkspaceData);
+  document.getElementById("btn-my-rooms").disabled = true;
   console.log("propertiesWorkspaceData", propertiesWorkspaceData);
 };
