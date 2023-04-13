@@ -405,12 +405,20 @@ header {
 
         .room-description {
           display: flex;
-          justify-content: center;
           align-items: center;
+
+          @media screen and (max-width: $max-width1) {
+            flex-direction: column;
+            justify-content: center;
+          }
 
           img {
             width: 50%;
-            padding: 50px;
+            margin: 50px;
+
+            @media screen and (max-width: $max-width1) {
+              width: 80%;
+            }
           }
 
           ul {
@@ -555,11 +563,10 @@ header {
   }
 
   .workspaces-container {
-
     .search-bar-container {
       border: solid;
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-around;
       padding: 20px;
       margin: 10px 0;
 
@@ -573,7 +580,7 @@ header {
 
         #dropdown-search-bar-property,
         #dropdown-search-bar-workspace {
-          width: 150px;
+          width: 130px;
           margin: 10px;
           padding: 5px 5px;
 
@@ -583,13 +590,17 @@ header {
         }
 
         input {
-          width: 200px;
+          width: 160px;
+
+          @media screen and (max-width: $max-width1) {
+            width: 200px;
+          }
         }
       }
     }
 
     .properties-container {
-      display: none; /////////********************* tornar invisivel
+      display: none;
       justify-content: space-evenly;
       flex-wrap: wrap;
     }
@@ -619,19 +630,23 @@ header {
       }
     }
 
-    .rooms-container { /////////************* tornar invisivel
+    .rooms-container {
       display: flex;
       flex-direction: column;
       width: 100%;
-      
+
       .room-division {
         border: solid;
         margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         .room-description {
           display: flex;
-          justify-content: space-evenly;
           align-items: center;
+          justify-content: center;
+          width: 100%;
 
           @media screen and (max-width: $max-width1) {
             flex-direction: column;
@@ -639,7 +654,7 @@ header {
 
           img {
             width: 50%;
-            padding: 20px;
+            margin: 50px;
 
             @media screen and (max-width: $max-width1) {
               width: 80%;
@@ -651,16 +666,11 @@ header {
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin: 0 10px;
 
             ul {
               width: 100%;
-              padding: 20px;
-              text-align: center;
-              list-style-type: none;
-
-              @media screen and (max-width: $max-width1) {
-                width: 80%;
-              }
+              padding: 50px;
             }
           }
         }
@@ -669,6 +679,7 @@ header {
           display: flex;
           flex-direction: column;
           align-items: center;
+          margin: 20px 0;
         }
 
         .button-container {

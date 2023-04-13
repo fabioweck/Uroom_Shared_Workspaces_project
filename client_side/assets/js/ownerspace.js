@@ -4,16 +4,6 @@
 ************************************************
 */
 /*=============================================
-→ ### REFRESH PAGE ### */
-document.addEventListener("DOMContentLoaded", () => {
-  const refreshPage = () => {
-    location.reload();
-  };
-
-  const btnReloadPage = document.getElementById("btn-reload-page")
-    btnReloadPage.addEventListener("click", refreshPage);
-});
-
 /*=============================================
 → ### REGISTER MODAL ### */
 // Get the modal element
@@ -47,3 +37,36 @@ modalAddSpace.addEventListener("click", hideModal);
 closeBtn.addEventListener("click", hideModal);
 
 
+/*=============================================
+→ ### MY PROPERTIES ### */
+// Get the properties element
+const propertiesContainer = document.querySelector(".properties-container");
+
+// Get the workspace (rooms) element
+const roomsContainer = document.querySelector(".rooms-container");
+
+// Show my properties
+var showMyProperties = () => {
+  propertiesContainer.style.display = "flex";
+  roomsContainer.style.display = "none";
+};
+
+// Show my properties
+var showMyRooms = () => {
+  propertiesContainer.style.display = "none";
+  roomsContainer.style.display = "flex";
+};
+
+// Attach event listeners to show my properties
+document.addEventListener("click", (event) => {
+  if (event.target.matches("#btn-my-properties")) {
+    showMyProperties();
+  }
+});
+
+// Attach event listeners to show my rooms
+document.addEventListener("click", (event) => {
+  if (event.target.matches("#btn-my-rooms")) {
+    showMyRooms();
+  }
+});

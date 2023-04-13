@@ -236,6 +236,8 @@ const displayPropertiesData = (propertiesData) => {
     image.src = "../img/room01.jpg";
     image.alt = "Image Room";
 
+    const div = document.createElement("div");
+
     const ul = document.createElement("ul");
     ul.innerHTML = `
         <li>Lease term: ${lease_term}</li>
@@ -261,7 +263,8 @@ const displayPropertiesData = (propertiesData) => {
     // <li>Leasing term: ${lease_term}</li>
 
     roomDescription.appendChild(image);
-    roomDescription.appendChild(ul);
+    roomDescription.appendChild(div);
+    div.appendChild(ul);
 
     const buttonContainer = document.createElement("div");
     buttonContainer.className = "button-container";
