@@ -222,30 +222,11 @@ searchBarInput.addEventListener("input", (event) => {
 
 /*=============================================
 → ### FETCH PROPERTIES DATA FROM SERVER ### */
+const findWorkspaceByOwner = async () => {
+  const user_id = localStorage.getItem("user_id");
 
-// const findWorkspace = async () => {
-//   const filtered = fetch(baseUrl + "findWorkspace")
-//     .then((response) => response.json())
-//     .then((data) => {
-//       data.forEach((obj) => delete obj.user_id);
-//       displayPropertiesData(data);
-//       propertiesData = data;
-//     })
-//     .catch((error) => console.error(error));
-// };
-/////////////////////////////////////////////////////////////funcionando no server antigo
-
-async function findWorkspaceByOwner() {
-  // const columns = ['Workspace ID', 'Model', 'Seats', 'Smoke Frendly', 'Price', 'Size(sqft)', 'Lease Term', 'Property ID', 'Status'];
-
-  // const placeToDisplay = 'workspace_list';
-
-  // const user_id = localStorage.getItem('user_id');
-
-  // const filtered = await fetch(baseUrl + 'findWorkspaceByOwner?user_id=' + user_id)
-  // const filtered = await fetch("http://localhost:3010/findWorkspaceByOwner?user_id=18059eac-c6b1-4bda-b462-521d0323c5c5")
   const filtered = await fetch(
-    "http://localhost:3010/getWorkspaceByOwner?user_id=18059eac-c6b1-4bda-b462-521d0323c5c5"
+    baseUrl + "getWorkspaceByOwner?user_id=" + user_id
   )
     .then((response) => response.json())
     .then((data) => {
@@ -253,7 +234,7 @@ async function findWorkspaceByOwner() {
       propertiesData = data;
     })
     .catch((error) => console.error(error));
-}
+};
 
 /*=============================================
 → ### DISPLAY PROPERTIES DATA ### */

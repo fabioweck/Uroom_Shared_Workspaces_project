@@ -91,3 +91,27 @@ btnMobileMenu.addEventListener("click", viewMobileMenu);
   → ### BASE SERVER ROUTE ### */
 const port = 3010;
 export const baseUrl = `http://localhost:${port}/`;
+
+/*==============================================
+  → ### GET USER ID FROM BROWSER MEMORY ### */
+export const getCurrentUser = () => {
+  return localStorage.getItem("user_id");
+};
+
+/*==============================================
+  → ### POST - NEW PROPERTY ### */
+
+export const serverPostNewProperty = async (postNewProperty) => {
+  await fetch(baseUrl + "newProperty", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(postNewProperty),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => console.error(error));
+};

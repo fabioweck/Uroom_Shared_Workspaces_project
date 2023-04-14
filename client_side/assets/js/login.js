@@ -1,11 +1,19 @@
+/*
+************************************************
+### LOGIN ###
+************************************************
+*/
+/*=============================================
+→ ### IMPORTS ### */
+import { baseUrl } from "./general_conf.js";
 
-const port = 3010;
-const baseUrl = `http://localhost:${port}/`;
- 
 let loggedUser; //
 let authUser; //receives
+let login
 
-const login = document.querySelector('#submit').addEventListener('click', userLogin);
+try{
+ login = document.querySelector('#submit').addEventListener('click', userLogin);
+}catch(err){}
 
 async function userLogin() {
 

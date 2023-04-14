@@ -6,6 +6,8 @@
 /*=============================================
 → ### IMPORTS ### */
 import { baseUrl } from "./general_conf.js";
+import { getCurrentUser } from "./general_conf.js";
+import { serverPostNewProperty } from "./general_conf.js";
 
 /*=============================================
 → ### GLOBAL VARIABLES ### */
@@ -14,12 +16,11 @@ var propertiesWorkspaceData = []; // Receive data from the server
 
 /*=============================================
 → ### FETCH PROPERTIES AND WORKSPACE DATA FROM SERVER ### */
-async function findWorkspaceByOwner() {
-  // const user_id = localStorage.getItem('user_id');
+const findWorkspaceByOwner = async () => {
+  const user_id = localStorage.getItem("user_id");
 
-  // const filtered = await fetch(baseUrl + 'findWorkspaceByOwner?user_id=' + user_id)
   const filtered = await fetch(
-    "http://localhost:3010/getWorkspaceByOwner?user_id=18059eac-c6b1-4bda-b462-521d0323c5c5"
+    baseUrl + "getWorkspaceByOwner?user_id=" + user_id
   )
     .then((response) => response.json())
     .then((data) => {
@@ -27,7 +28,7 @@ async function findWorkspaceByOwner() {
       propertiesWorkspaceData = data;
     })
     .catch((error) => console.error(error));
-}
+};
 
 /*=============================================
 → ### SEARCH BAR WORKSPACE ### */
@@ -225,7 +226,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       propertyDescriptionWrap.className = "property-description-wrap";
 
       var addressParagraph = document.createElement("p");
-      addressParagraph.innerHTML = `<strong>Address: </strong>${address} + ${neighborhood}`;
+      addressParagraph.innerHTML = `<strong>Address: </strong>${address} ${neighborhood}`;
 
       var parkingLotParagraph = document.createElement("p");
       parkingLotParagraph.innerHTML = `<strong>Parking Lot:</strong> ${ParkingLot}`;
@@ -332,7 +333,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
 
     const ulProperty = document.createElement("ul");
     ulProperty.innerHTML = `
-        <li><strong>Address: </strong>${address} ${neighborhood}</li>
+        <li><strong>Address: </strong>${address}, ${neighborhood}</li>
         <li><strong>Parking lot: </strong>${ParkingLot}</li>
         <li><strong>Public transportation: </strong>${PublicTransportation}</li>
         <li><strong>Property Status: </strong>?? Pendente ??</li>
@@ -641,7 +642,17 @@ daylyRadio.value = "dayly";
 
 const daylyRadioLabel = document.createElement("label");
 daylyRadioLabel.htmlFor = "dayly";
-daylyRadioLabel.textContent = "dayly";
+daylyRadioLabel.textContent = "Dayly";
+
+const weeklyRadio = document.createElement("input");
+weeklyRadio.type = "radio";
+weeklyRadio.name = "Leasing Term";
+weeklyRadio.id = "weekly";
+weeklyRadio.value = "weekly";
+
+const weeklyRadioLabel = document.createElement("label");
+weeklyRadioLabel.htmlFor = "weekly";
+weeklyRadioLabel.textContent = "Weekly";
 
 const monthlyRadio = document.createElement("input");
 monthlyRadio.type = "radio";
@@ -655,6 +666,8 @@ monthlyRadioLabel.textContent = "Monthly";
 
 leasingTermRadioContainer.appendChild(daylyRadio);
 leasingTermRadioContainer.appendChild(daylyRadioLabel);
+leasingTermRadioContainer.appendChild(weeklyRadio);
+leasingTermRadioContainer.appendChild(weeklyRadioLabel);
 leasingTermRadioContainer.appendChild(monthlyRadio);
 leasingTermRadioContainer.appendChild(monthlyRadioLabel);
 
@@ -1024,15 +1037,33 @@ const sendNewProperty = (event) => {
     return;
   }
 
+  // const postNewProperty = {
+  //   property_id: "",
+  //   address: `${address}`,
+  //   neighborhood: `${neighbourhood}`,
+  //   ParkingLot: `${parkingLot.value}`,
+  //   PublicTransportation: `${publicTransportation.value}`,
+  //   status: "true",
+  //   user_id: getCurrentUser(),
+  // };
+
+  const property_id = 1234;
+  const parkingLotValue = parkingLot.value;
+  const publicTransportationValue = publicTransportation.value;
+  const status = true;
+  const currentUser = getCurrentUser();
+
   const postNewProperty = {
-    address: `${address}`,
-    neighborhood: `${neighbourhood}`,
-    ParkingLot: `${parkingLot.value}`,
-    PublicTransportation: `${publicTransportation.value}`,
+    property_id,
+    address,
+    neighbourhood,
+    parkingLotValue,
+    publicTransportationValue,
+    status,
+    currentUser,
   };
 
-  console.log(`Post Simulation - New Property`);
-  console.log("postNewProperty", postNewProperty);
+  serverPostNewProperty(myObject);
 
   hideModalProperty(event);
 };
