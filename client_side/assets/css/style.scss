@@ -31,6 +31,7 @@ main {
   padding: 5px 5px;
   margin: 10px;
   width: 120px;
+  cursor: pointer;
 }
 
 .input {
@@ -610,7 +611,6 @@ header {
       margin: 10px 0;
 
       .search-bar-divison {
-
         @media screen and (max-width: $max-width1) {
           display: flex;
           flex-direction: column;
@@ -765,7 +765,7 @@ header {
       align-items: center;
       justify-content: center;
 
-      .modal-content {
+      .modal-content-property, .modal-content-workspace {
         border: solid;
         padding: 20px;
         width: 80%;
@@ -778,6 +778,10 @@ header {
         justify-content: center;
         background-color: $bgColor3;
 
+        h2{
+          padding: 10px;
+        }
+
         .add-property-form,
         .add-workspace-form {
           display: flex;
@@ -785,14 +789,33 @@ header {
           align-items: center;
           border: solid 1px;
           padding: 15px;
+          p {
+            cursor: default;
+            margin-top: 10px;
+          }
+
+          .add-property-radio-container{
+            text-align: center;
+          }
         }
 
         .add-workspace-radio-container {
           padding: 5px 0;
+          text-align: center;
+          cursor: default;
         }
 
         .radio-option-container {
           text-align: center;
+          cursor: default;
+
+          input {
+            cursor: pointer;
+          }
+
+          label{
+            margin-right: 15px;
+          }
         }
       }
     }

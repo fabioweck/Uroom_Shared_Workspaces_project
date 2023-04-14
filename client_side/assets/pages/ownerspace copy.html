@@ -122,7 +122,66 @@
 
       <section class="modal-add-property-container">
         <div id="modal-add-property" class="modal-add-property">
+          <div class="modal-content-property">
+            <h2 id="modal-property-title">Add Property</h2>
+            <h3 id="modal-property-subtitle">Property ID:</h3>
 
+            <div id="add-property-form" class="add-property-form">
+              <input
+                placeholder="Address"
+                class="input"
+                type="text"
+                id="add-property-address"
+                name="Property Address"
+              />
+
+              <input
+                placeholder="Neighbourhood"
+                class="input"
+                type="text"
+                id="add-property-neighbourhood"
+                name="Property Neighbourhood"
+              />
+
+              <div class="add-property-radio-container">
+                <p>Is there a parking lot?</p>
+                <div class="radio-option-container">
+                  <input type="radio" name="Parking lot" id="yes" value="yes" />
+                  <label for="yes">Yes</label>
+                  <input type="radio" name="Parking lot" id="no" value="no" />
+                  <label for="no">No</label>
+                </div>
+              </div>
+              <!--add-property-radio-container-->
+
+              <div class="add-property-radio-container">
+                <p>Is there a public transportation?</p>
+                <div class="radio-option-container">
+                  <input
+                    type="radio"
+                    name="Public Transportation"
+                    id="yes"
+                    value="yes"
+                  />
+                  <label for="yes">Yes</label>
+                  <input
+                    type="radio"
+                    name="Public Transportation"
+                    id="no"
+                    value="no"
+                  />
+                  <label for="no">No</label>
+                </div>
+              </div>
+              <!--add-property-radio-container-->
+
+              <div class="button-container">
+                <button class="btn" id="button-property-submit">Submit</button>
+                <button class="btn" id="button-property-close">Close</button>
+              </div>
+            </div>
+            <!--add-property-form-->
+          </div>
           <!--modal-content-property-->
         </div>
         <!--modal-add-property-->

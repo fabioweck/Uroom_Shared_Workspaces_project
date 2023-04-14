@@ -30,6 +30,7 @@ main {
   padding: 5px 5px;
   margin: 10px;
   width: 120px;
+  cursor: pointer;
 }
 
 .input {
@@ -681,10 +682,13 @@ header .mobile-menu-icon {
   align-items: center;
   justify-content: center;
 }
-.ownerspace .modal-add-property-container #modal-add-property .modal-content,
-.ownerspace .modal-add-property-container .modal-add-workspace .modal-content,
-.ownerspace .modal-add-workspace-container #modal-add-property .modal-content,
-.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content {
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property, .ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace {
   border: solid;
   padding: 20px;
   width: 80%;
@@ -697,31 +701,109 @@ header .mobile-menu-icon {
   justify-content: center;
   background-color: lightgray;
 }
-.ownerspace .modal-add-property-container #modal-add-property .modal-content .add-property-form,
-.ownerspace .modal-add-property-container #modal-add-property .modal-content .add-workspace-form,
-.ownerspace .modal-add-property-container .modal-add-workspace .modal-content .add-property-form,
-.ownerspace .modal-add-property-container .modal-add-workspace .modal-content .add-workspace-form,
-.ownerspace .modal-add-workspace-container #modal-add-property .modal-content .add-property-form,
-.ownerspace .modal-add-workspace-container #modal-add-property .modal-content .add-workspace-form,
-.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content .add-property-form,
-.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content .add-workspace-form {
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property h2, .ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace h2,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property h2,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace h2,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property h2,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace h2,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property h2,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace h2 {
+  padding: 10px;
+}
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-property-form,
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-workspace-form, .ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace .add-property-form,
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace .add-workspace-form,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property .add-property-form,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property .add-workspace-form,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace .add-property-form,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace .add-workspace-form,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property .add-property-form,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property .add-workspace-form,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace .add-property-form,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace .add-workspace-form,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property .add-property-form,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property .add-workspace-form,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .add-property-form,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .add-workspace-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   border: solid 1px;
   padding: 15px;
 }
-.ownerspace .modal-add-property-container #modal-add-property .modal-content .add-workspace-radio-container,
-.ownerspace .modal-add-property-container .modal-add-workspace .modal-content .add-workspace-radio-container,
-.ownerspace .modal-add-workspace-container #modal-add-property .modal-content .add-workspace-radio-container,
-.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content .add-workspace-radio-container {
-  padding: 5px 0;
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-property-form p,
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-workspace-form p, .ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace .add-property-form p,
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace .add-workspace-form p,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property .add-property-form p,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property .add-workspace-form p,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace .add-property-form p,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace .add-workspace-form p,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property .add-property-form p,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property .add-workspace-form p,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace .add-property-form p,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace .add-workspace-form p,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property .add-property-form p,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property .add-workspace-form p,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .add-property-form p,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .add-workspace-form p {
+  cursor: default;
+  margin-top: 10px;
 }
-.ownerspace .modal-add-property-container #modal-add-property .modal-content .radio-option-container,
-.ownerspace .modal-add-property-container .modal-add-workspace .modal-content .radio-option-container,
-.ownerspace .modal-add-workspace-container #modal-add-property .modal-content .radio-option-container,
-.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content .radio-option-container {
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-property-form .add-property-radio-container,
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-workspace-form .add-property-radio-container, .ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace .add-property-form .add-property-radio-container,
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace .add-workspace-form .add-property-radio-container,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property .add-property-form .add-property-radio-container,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property .add-workspace-form .add-property-radio-container,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace .add-property-form .add-property-radio-container,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace .add-workspace-form .add-property-radio-container,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property .add-property-form .add-property-radio-container,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property .add-workspace-form .add-property-radio-container,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace .add-property-form .add-property-radio-container,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace .add-workspace-form .add-property-radio-container,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property .add-property-form .add-property-radio-container,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property .add-workspace-form .add-property-radio-container,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .add-property-form .add-property-radio-container,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .add-workspace-form .add-property-radio-container {
   text-align: center;
+}
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-workspace-radio-container, .ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace .add-workspace-radio-container,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property .add-workspace-radio-container,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace .add-workspace-radio-container,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property .add-workspace-radio-container,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace .add-workspace-radio-container,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property .add-workspace-radio-container,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .add-workspace-radio-container {
+  padding: 5px 0;
+  text-align: center;
+  cursor: default;
+}
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property .radio-option-container, .ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace .radio-option-container,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property .radio-option-container,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace .radio-option-container,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property .radio-option-container,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace .radio-option-container,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property .radio-option-container,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .radio-option-container {
+  text-align: center;
+  cursor: default;
+}
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property .radio-option-container input, .ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace .radio-option-container input,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property .radio-option-container input,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace .radio-option-container input,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property .radio-option-container input,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace .radio-option-container input,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property .radio-option-container input,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .radio-option-container input {
+  cursor: pointer;
+}
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property .radio-option-container label, .ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace .radio-option-container label,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property .radio-option-container label,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace .radio-option-container label,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property .radio-option-container label,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace .radio-option-container label,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property .radio-option-container label,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .radio-option-container label {
+  margin-right: 15px;
 }
 
 /*
