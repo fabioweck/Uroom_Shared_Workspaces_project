@@ -1,3 +1,4 @@
+const { response } = require("express");
 
 // router server config port
 const port = 3010;
@@ -15,7 +16,7 @@ async function sendNewUserClient() {
     const phoneNumber = document.getElementById("phoneNumber").value;
     const emailAddress = document.getElementById("emailAddress").value;
     const password = document.getElementById("password").value;
-    const owner = document.querySelector('input[name="owner"]:checked').value;
+    const owner = parseInt(document.querySelector('input[name="owner"]:checked').value) ? true : false;
 
     // Convert input values to JSON format
     const newUserData = {
@@ -25,6 +26,10 @@ async function sendNewUserClient() {
         password,
         owner,
     };
+
+    console.log(newUserData);
+    console.log(typeof newUserData.owner); // Output: boolean
+
 
     // Send POST request to server with new staff data
     await fetch(baseUrl + 'newUser', {
@@ -37,7 +42,7 @@ async function sendNewUserClient() {
 
         .then(response => response.json())
         .then(data => {
-            return data;
+            console.log(data);
         }
         )
         .catch((error) => console.error(error));
@@ -128,14 +133,14 @@ async function sendNewWorkspace() {
 
     // Retrieve input values from HTML form
     const workspace_type = document.getElementById("workspace_type").value;
-    const seats = document.getElementById("seats").value;
+    const seats = parseInt(document.getElementById("seats").value);
     const smoking = document.getElementById("smoking").value;
-    const price = document.getElementById("price").value;
-    const sqft = document.getElementById("sqft").value;
+    const price = parseFloat(document.getElementById("price").value);
+    const sqft = parseFloat(document.getElementById("sqft").value);
     const lease_term = document.getElementById("lease_term").value;
-    const property_id = document.getElementById("property_id").value;
-    const status = document.querySelector('input[name="status"]:checked').value;
-    const workspace_id = generateID();
+    const property_id = parseInt(document.getElementById("property_id").value);
+    const status = parseInt(document.querySelector('input[name="status"]:checked').value) ? true : false;
+    const workspace_id = parseInt(generateID());
     const user_id = getCurrentUser();
 
     // Convert input values to JSON format
@@ -172,7 +177,7 @@ async function findPropertyByOwner() {
 
     const user_id = getCurrentUser();
 
-    const filtered = fetch(baseUrl + 'findPropertyByOwner?user_id=' + user_id)
+    await fetch(baseUrl + 'findPropertyByOwner?user_id=' + user_id)
         .then(response => response.json())
         .then(data => {
             return data;
@@ -184,7 +189,7 @@ async function findWorkspaceByOwner() {
 
     const user_id = getCurrentUser();
 
-    const filtered = fetch(baseUrl + 'findWorkspaceByOwner?user_id=' + user_id)
+    await fetch(baseUrl + 'findWorkspaceByOwner?user_id=' + user_id)
         .then(response => response.json())
         .then(data => {
             return data;
@@ -196,7 +201,7 @@ async function getWorkspaceByOwner() {
 
     const user_id = getCurrentUser();
 
-    const filtered = fetch(baseUrl + 'getWorkspaceByOwner?user_id=' + user_id)
+    await fetch(baseUrl + 'getWorkspaceByOwner?user_id=' + user_id)
         .then(response => response.json())
         .then(data => {
             return data;
@@ -204,8 +209,60 @@ async function getWorkspaceByOwner() {
         .catch(error => console.error(error));
 };
 
+async function delistWorkspace(workspace) {
+    const workspace_id = workspace;
+    const user_id = getCurrentUser();
+
+    await fetch(`${baseUrl}delistWorkspace?user_id=${user_id}&workspace_id=${workspace_id}`)
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        })
+        .catch(error => console.error(error));
+};
+
+async function delistProperty(property) {
+    const property_id = property;
+    const user_id = getCurrentUser();
+
+    await fetch(`${baseUrl}delistProperty?user_id=${user_id}&property_id=${property_id}`)
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        })
+        .catch(error => console.error(error));
+}
+
+async function getReservedDate(workspace) {
+
+    const workspace_id = workspace;
+    await fetch(`${baseUrl}getReservedDate?workspace_id=${workspace_id}`)
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        })
+        .catch(error => console.error(error));
+}
 
 
+async function updateReservedDate(workspace, bookingDate) {
+
+    const workspace_id = workspace;
+
+    await fetch(`${baseUrl}updateReservedDate?workspace_id=${workspace_id}`)
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        })
+        .catch(error => console.error(error));
+}
+
+
+
+
+
+
+//====================Standard Functions======================//
 
 // Keep current userId on browser's memory
 function storeUserId(req, res) {
@@ -245,5 +302,6 @@ function clearAllInputs() {
 
 
 //-----------------------------------
-window.onload = async function () { };
+//window.onload = async function () { };
 
+module.exports = { generateID }

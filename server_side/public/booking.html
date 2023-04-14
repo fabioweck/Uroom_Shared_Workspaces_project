@@ -37,12 +37,19 @@
         <input type="PublicTransportation" id="publicTransportation" name="publicTransportation"><br>
 
         <label for="status">Status:
-            <input type="radio" name="status" value="true">Active
-            <input type="radio" name="status" value="false">Inactive
+            <input type="radio" name="status" value=1>Active
+            <input type="radio" name="status" value=0>Inactive
         </label>
 
+        </form>
 
-        <button type="submit" onclick="sendNewProperty()">Add Property</button>
+        <!-- Testing upload images -->
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="workspaceImage">
+            <input type="submit" value="Upload">
+
+
+            <button type="submit" onclick="sendNewProperty()">Add Property</button>
     </div>
 
     <hr>
@@ -73,8 +80,8 @@
         <input type="text" id="property_id" name="property_id"><br>
 
         <label for="status">Status:
-            <input type="radio" name="status" value="true">Active
-            <input type="radio" name="status" value="false">Inactive
+            <input type="radio" name="status" value=1>Active
+            <input type="radio" name="status" value=0>Inactive
         </label>
 
 

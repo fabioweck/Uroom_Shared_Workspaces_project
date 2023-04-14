@@ -7,11 +7,12 @@ router.use(express.json());
 const path = require('path');
 const fs = require('fs');
 const userService = require('../services/userService');
+const multer = require('multer'); // Multer is a middleware for handling multipart/form-data
+const { generateID } = require('../public');
 
 router.use(express.static('./public')); //  to use script in html, need to use static inside router file instead server file. 
 router.use(express.static('./repository'))
 
-router.use((req, res, next) => { res.setHeader("Access-Control-Allow-Origin", "*"); res.header( "Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept" ); next(); });
 
 
 //Get the index.html page
@@ -59,7 +60,6 @@ router.post('/newProperty', (req, res) => {
 
 // Register new Workspace
 router.post('/newWorkspace', (req, res) => {
-
     userService.addWorkspace(req.body)
         .then(newWorkspaceType => {
             res.status(200).send(newWorkspaceType);
@@ -108,5 +108,74 @@ router.get('/getWorkspaceByOwner', async (req, res) => {
             res.status(err.code).send(err);
         });
 });
+
+router.get('/getReservedDate', async (req, res) => {
+
+    const workspace_id = req.query.workspace_id;
+
+    userService.getReservedDate(workspace_id)
+        .then(data => {
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(err.code).send(err);
+        });
+});
+
+
+
+router.post('/delistWorkspace', async (req, res) => {
+
+    const user_id = req.query.user_id;
+    const workspace_id = req.query.workspace_id;
+
+    userService.delistWorkspace(user_id, workspace_id)
+        .then(workpaceDelist => {
+            res.status(200).send(workpaceDelist);
+        })
+        .catch(err => {
+            res.status(err.code).send(err);
+        });
+});
+
+router.post('/delistProperty', async (req, res) => {
+
+    const user_id = req.query.user_id;
+    const property_id = req.query.property_id;
+
+    userService.delistProperty(user_id, property_id)
+        .then(propertydelist => {
+            res.status(200).send(propertydelist);
+        })
+        .catch(err => {
+            res.status(err.code).send(err);
+        });
+})
+
+
+//==================================Testing===========================//
+
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './repository/img'); // Set the destination folder for uploaded files
+    },
+    filename: function (req, file, cb) {
+        const workspaceId = 'a42';
+        const fileExtension = file.originalname.split('.').pop();
+        const fileName = `${workspaceId}${generateID()}.${fileExtension}`; // Set the file name for uploaded files
+        cb(null, fileName);
+    }
+});
+
+const upload = multer({ storage: storage });
+
+
+router.post('/upload', upload.single('workspaceImage'), function (req, res) {
+    res.send('File uploaded successfully'); // Return a response to the client indicating that the file was uploaded successfully
+});
+
+//========================================================================//
 
 module.exports = router;

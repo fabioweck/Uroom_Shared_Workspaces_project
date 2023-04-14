@@ -8,8 +8,6 @@ const port = 3010;
 const appRouter = require('./router/main_router.js');
 app.use(appRouter);
 
-
-
 //This block listen and return status fro server port
 console.log(`===========================================`);
 console.log(`Server started at ${new Date().toLocaleString()}`);
