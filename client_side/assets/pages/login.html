@@ -49,19 +49,24 @@
     <!--header-->
 
     <main class="container">
+      
       <div class="adjust-content-top"></div>
       
+      <div id="dv-display">TEST POPUP</div>
+
       <section id="login">
+        
         <form class="login-title">
+
           <img src="../img/color-logo.png" />
 
           <div id="login-box">
 
-            <input type="email" id="fname" name="fname" placeholder="e-mail" required/><br />
+            <input type="text" id="emailAddressLogin" name="emailAddressLogin"><br>
 
-            <input type="password" id="lname" name="lname" placeholder="password" required/>
+            <input type="password" id="passwordLogin" name="passwordLogin"><br>
 
-            <button type="button">login</button>
+            <button id="submit" type="button">login</button>
 
             <a href="./signup.html">sign-up</a>
           </div>
@@ -84,8 +89,10 @@
     </footer>
 
     <!--scripts-->
+  
+    <script type="module" src="../js/login.js"></script>
     <script type="module" src="../js/general_conf.js"></script>
-    <script type="module" src="../js/script.js"></script>
+      
     <!--scripts-->
   </body>
 </html>
