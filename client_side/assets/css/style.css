@@ -804,6 +804,7 @@ header .mobile-menu-icon {
 .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property .radio-option-container label,
 .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .radio-option-container label {
   margin-right: 15px;
+  padding: 0 2px;
 }
 
 /*

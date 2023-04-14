@@ -9,6 +9,7 @@ import { baseUrl } from "./general_conf.js";
 
 /*=============================================
 → ### GLOBAL VARIABLES ### */
+var buttonIdValue; // Store the id from the button
 var propertiesWorkspaceData = []; // Receive data from the server
 
 /*=============================================
@@ -254,11 +255,13 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       updateButton.className = "btn";
       updateButton.id = "btn-update-property";
       updateButton.textContent = "Update";
+      updateButton.value = `${property_id}`;
 
       var activeInactiveButton = document.createElement("button");
       activeInactiveButton.className = "btn";
       activeInactiveButton.id = "btn-active-inactive-property";
       activeInactiveButton.textContent = "Active / Inactive";
+      activeInactiveButton.value = `${property_id}`;
 
       buttonPropertyContainer.appendChild(updateButton);
       buttonPropertyContainer.appendChild(activeInactiveButton);
@@ -370,79 +373,75 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
 const modalAddProperty = document.getElementById("modal-add-property");
 
 // Create modal-content-property element
-const modalContentProperty = document.createElement('div');
-modalContentProperty.className = 'modal-content-property';
+const modalContentProperty = document.createElement("div");
+modalContentProperty.className = "modal-content-property";
 
 // Create modal-property-title element
-const modalPropertyTitle = document.createElement('h2');
-modalPropertyTitle.id = 'modal-property-title';
-modalPropertyTitle.textContent = 'Add Property';
+const modalPropertyTitle = document.createElement("h2");
+modalPropertyTitle.id = "modal-property-title";
+modalPropertyTitle.textContent = "Add Property";
 
 // Create modal-property-subtitle element
-const modalPropertySubtitle = document.createElement('h3');
-modalPropertySubtitle.id = 'modal-property-subtitle';
-modalPropertySubtitle.textContent = 'Property ID:';
+const modalPropertySubtitle = document.createElement("h3");
+modalPropertySubtitle.id = "modal-property-subtitle";
+modalPropertySubtitle.textContent = "Property ID: xxxxxxxxxx";
 
 // Create add-property-form element
-const addPropertyForm = document.createElement('div');
-addPropertyForm.id = 'add-property-form';
-addPropertyForm.className = 'add-property-form';
+const addPropertyForm = document.createElement("div");
+addPropertyForm.id = "add-property-form";
+addPropertyForm.className = "add-property-form";
 
 // Create input element for Property Address
-const inputPropertyAddress = document.createElement('input');
-inputPropertyAddress.placeholder = 'Address';
-inputPropertyAddress.className = 'input';
-inputPropertyAddress.type = 'text';
-inputPropertyAddress.id = 'add-property-address';
-inputPropertyAddress.name = 'Property Address';
+const inputPropertyAddress = document.createElement("input");
+inputPropertyAddress.placeholder = "Address";
+inputPropertyAddress.className = "input";
+inputPropertyAddress.type = "text";
+inputPropertyAddress.id = "add-property-address";
+inputPropertyAddress.name = "Property Address";
 
 // Create input element for Property Neighbourhood
-const inputPropertyNeighbourhood = document.createElement('input');
-inputPropertyNeighbourhood.placeholder = 'Neighbourhood';
-inputPropertyNeighbourhood.className = 'input';
-inputPropertyNeighbourhood.type = 'text';
-inputPropertyNeighbourhood.id = 'add-property-neighbourhood';
-inputPropertyNeighbourhood.name = 'Property Neighbourhood';
+const inputPropertyNeighbourhood = document.createElement("input");
+inputPropertyNeighbourhood.placeholder = "Neighbourhood";
+inputPropertyNeighbourhood.className = "input";
+inputPropertyNeighbourhood.type = "text";
+inputPropertyNeighbourhood.id = "add-property-neighbourhood";
+inputPropertyNeighbourhood.name = "Property Neighbourhood";
 
-// Create add-property-radio-container element for public transportation
-const addPropertyRadioContainerTransportation = document.createElement('div');
-addPropertyRadioContainerTransportation.className = 'add-property-radio-container';
-//*********************************organizar********* */
 // Create add-property-radio-container element for parking lot
-const addPropertyRadioContainerParking = document.createElement('div');
-addPropertyRadioContainerParking.className = 'add-property-radio-container';
+const addPropertyRadioContainerParking = document.createElement("div");
+addPropertyRadioContainerParking.className = "add-property-radio-container";
 
 // Create paragraph element for parking lot
-const paragraphParking = document.createElement('p');
-paragraphParking.textContent = 'Is there a parking lot?';
+const paragraphParking = document.createElement("p");
+paragraphParking.textContent = "Is there a parking lot?";
 
 // Create radio-option-container element for parking lot
-const radioOptionContainerParking = document.createElement('div');
-radioOptionContainerParking.className = 'radio-option-container';
+const radioOptionContainerParking = document.createElement("div");
+radioOptionContainerParking.className = "radio-option-container";
 
 // Create input element for Yes option of parking lot
-const inputParkingYes = document.createElement('input');
-inputParkingYes.type = 'radio';
-inputParkingYes.name = 'Parking lot';
-inputParkingYes.id = 'parking-yes';
-inputParkingYes.value = 'yes';
+const inputParkingYes = document.createElement("input");
+inputParkingYes.type = "radio";
+inputParkingYes.name = "Parking lot";
+inputParkingYes.id = "parking-yes";
+inputParkingYes.value = "yes";
 
 // Create label element for Yes option of parking lot
-const labelParkingYes = document.createElement('label');
-labelParkingYes.htmlFor = 'parking-yes';
-labelParkingYes.textContent = 'Yes';
+const labelParkingYes = document.createElement("label");
+labelParkingYes.htmlFor = "parking-yes";
+labelParkingYes.textContent = "Yes";
 
 // Create input element for No option of parking lot
-const inputParkingNo = document.createElement('input');
-inputParkingNo.type = 'radio';
-inputParkingNo.name = 'Parking lot';
-inputParkingNo.id = 'parking-no';
-inputParkingNo.value = 'no';
+const inputParkingNo = document.createElement("input");
+inputParkingNo.type = "radio";
+inputParkingNo.name = "Parking lot";
+inputParkingNo.id = "parking-no";
+inputParkingNo.value = "no";
 
 // Create label element for No option of parking lot
-const labelParkingNo = document.createElement('label');
-labelParkingNo.htmlFor = 'parking-no';
-labelParkingNo.textContent = 'No';
+const labelParkingNo = document.createElement("label");
+labelParkingNo.htmlFor = "parking-no";
+labelParkingNo.textContent = "No";
 
 // Append radio button elements to radio-option-container for parking lot
 radioOptionContainerParking.appendChild(inputParkingYes);
@@ -454,37 +453,42 @@ radioOptionContainerParking.appendChild(labelParkingNo);
 addPropertyRadioContainerParking.appendChild(paragraphParking);
 addPropertyRadioContainerParking.appendChild(radioOptionContainerParking);
 
-// Create input element for Yes option of public transportation
-const inputTransportationYes = document.createElement('input');
-inputTransportationYes.type = 'radio';
-inputTransportationYes.name = 'Public Transportation';
-inputTransportationYes.id = 'yes';
-inputTransportationYes.value = 'yes';
-
-// Create radio-option-container element for public transportation
-const radioOptionContainerTransportation = document.createElement('div');
-radioOptionContainerTransportation.className = 'radio-option-container';
+// Create add-property-radio-container element for public transportation
+const addPropertyRadioContainerTransportation = document.createElement("div");
+addPropertyRadioContainerTransportation.className =
+  "add-property-radio-container";
 
 // Create paragraph element for public transportation
-const paragraphTransportation = document.createElement('p');
-paragraphTransportation.textContent = 'Is public transportation available?';
+const paragraphTransportation = document.createElement("p");
+paragraphTransportation.textContent = "Is public transportation available?";
+
+// Create radio-option-container element for public transportation
+const radioOptionContainerTransportation = document.createElement("div");
+radioOptionContainerTransportation.className = "radio-option-container";
+
+// Create input element for Yes option of public transportation
+const inputTransportationYes = document.createElement("input");
+inputTransportationYes.type = "radio";
+inputTransportationYes.name = "Public Transportation";
+inputTransportationYes.id = "public-transportation-yes";
+inputTransportationYes.value = "yes";
 
 // Create label element for Yes option of public transportation
-const labelTransportationYes = document.createElement('label');
-labelTransportationYes.htmlFor = 'yes';
-labelTransportationYes.textContent = 'Yes';
+const labelTransportationYes = document.createElement("label");
+labelTransportationYes.htmlFor = "yes";
+labelTransportationYes.textContent = "Yes";
 
 // Create input element for No option of public transportation
-const inputTransportationNo = document.createElement('input');
-inputTransportationNo.type = 'radio';
-inputTransportationNo.name = 'Public Transportation';
-inputTransportationNo.id = 'no';
-inputTransportationNo.value = 'no';
+const inputTransportationNo = document.createElement("input");
+inputTransportationNo.type = "radio";
+inputTransportationNo.name = "Public Transportation";
+inputTransportationNo.id = "public-transportation-no";
+inputTransportationNo.value = "no";
 
 // Create label element for No option of public transportation
-const labelTransportationNo = document.createElement('label');
-labelTransportationNo.htmlFor = 'no';
-labelTransportationNo.textContent = 'No';
+const labelTransportationNo = document.createElement("label");
+labelTransportationNo.htmlFor = "no";
+labelTransportationNo.textContent = "No";
 
 // Append radio button elements to radio-option-container for public transportation
 radioOptionContainerTransportation.appendChild(inputTransportationYes);
@@ -494,23 +498,25 @@ radioOptionContainerTransportation.appendChild(labelTransportationNo);
 
 // Append paragraph element and radio-option-container to add-property-radio-container for public transportation
 addPropertyRadioContainerTransportation.appendChild(paragraphTransportation);
-addPropertyRadioContainerTransportation.appendChild(radioOptionContainerTransportation);
+addPropertyRadioContainerTransportation.appendChild(
+  radioOptionContainerTransportation
+);
 
 // Create button-container element
-const buttonContainer = document.createElement('div');
-buttonContainer.className = 'button-container';
+const buttonContainer = document.createElement("div");
+buttonContainer.className = "button-container";
 
 // Create Submit button
-const buttonSubmit = document.createElement('button');
-buttonSubmit.className = 'btn';
-buttonSubmit.id = 'button-property-submit';
-buttonSubmit.textContent = 'Submit';
+const buttonSubmit = document.createElement("button");
+buttonSubmit.className = "btn";
+buttonSubmit.id = "button-property-submit";
+buttonSubmit.textContent = "Submit";
 
 // Create Close button
-const buttonClose = document.createElement('button');
-buttonClose.className = 'btn';
-buttonClose.id = 'button-property-close';
-buttonClose.textContent = 'Close';
+const buttonClose = document.createElement("button");
+buttonClose.className = "btn";
+buttonClose.id = "button-property-close";
+buttonClose.textContent = "Close";
 
 // Append buttons to button-container
 buttonContainer.appendChild(buttonSubmit);
@@ -531,167 +537,6 @@ modalContentProperty.appendChild(addPropertyForm);
 // Append modal-content-property to modal-add-property
 modalAddProperty.appendChild(modalContentProperty);
 
-
-
-
-
-// // Create modal-content-property element
-// const modalContentProperty = document.createElement('div');
-// modalContentProperty.className = 'modal-content-property';
-
-// // Create modal-property-title element
-// const modalPropertyTitle = document.createElement('h2');
-// modalPropertyTitle.id = 'modal-property-title';
-// modalPropertyTitle.textContent = 'Add Property';
-
-// // Create modal-property-subtitle element
-// const modalPropertySubtitle = document.createElement('h3');
-// modalPropertySubtitle.id = 'modal-property-subtitle';
-// modalPropertySubtitle.textContent = 'Property ID:';
-
-// // Create add-property-form element
-// const addPropertyForm = document.createElement('div');
-// addPropertyForm.id = 'add-property-form';
-// addPropertyForm.className = 'add-property-form';
-
-// // Create input element for Property Address
-// const inputPropertyAddress = document.createElement('input');
-// inputPropertyAddress.placeholder = 'Address';
-// inputPropertyAddress.className = 'input';
-// inputPropertyAddress.type = 'text';
-// inputPropertyAddress.id = 'add-property-address';
-// inputPropertyAddress.name = 'Property Address';
-
-// // Create input element for Property Neighbourhood
-// const inputPropertyNeighbourhood = document.createElement('input');
-// inputPropertyNeighbourhood.placeholder = 'Neighbourhood';
-// inputPropertyNeighbourhood.className = 'input';
-// inputPropertyNeighbourhood.type = 'text';
-// inputPropertyNeighbourhood.id = 'add-property-neighbourhood';
-// inputPropertyNeighbourhood.name = 'Property Neighbourhood';
-
-// // Create add-property-radio-container element for parking lot
-// const addPropertyRadioContainerParking = document.createElement('div');
-// addPropertyRadioContainerParking.className = 'add-property-radio-container';
-
-// // Create paragraph element for parking lot
-// const paragraphParking = document.createElement('p');
-// paragraphParking.textContent = 'Is there a parking lot?';
-
-// // Create radio-option-container element for parking lot
-// const radioOptionContainerParking = document.createElement('div');
-// radioOptionContainerParking.className = 'radio-option-container';
-
-// // Create input element for Yes option of parking lot
-// const inputParkingYes = document.createElement('input');
-// inputParkingYes.type = 'radio';
-// inputParkingYes.name = 'Parking lot';
-// inputParkingYes.id = 'yes';
-// inputParkingYes.value = 'yes';
-
-// // Create label element for Yes option of parking lot
-// const labelParkingYes = document.createElement('label');
-// labelParkingYes.htmlFor = 'yes';
-// labelParkingYes.textContent = 'Yes';
-
-// // Create input element for No option of parking lot
-// const inputParkingNo = document.createElement('input');
-// inputParkingNo.type = 'radio';
-// inputParkingNo.name = 'Parking lot';
-// inputParkingNo.id = 'no';
-// inputParkingNo.value = 'no';
-
-// // Create label element for No option of parking lot
-// const labelParkingNo = document.createElement('label');
-// labelParkingNo.htmlFor = 'no';
-// labelParkingNo.textContent = 'No';
-
-// // Append radio button elements to radio-option-container for parking lot
-// radioOptionContainerParking.appendChild(inputParkingYes);
-// radioOptionContainerParking.appendChild(labelParkingYes);
-// radioOptionContainerParking.appendChild(inputParkingNo);
-// radioOptionContainerParking.appendChild(labelParkingNo);
-
-// // Append paragraph element and radio-option-container to add-property-radio-container for parking lot
-// addPropertyRadioContainerParking.appendChild(paragraphParking);
-// addPropertyRadioContainerParking.appendChild(radioOptionContainerParking);
-
-// // Create add-property-radio-container element for public transportation
-// const addPropertyRadioContainerTransportation = document.createElement('div');
-// addPropertyRadioContainerTransportation.className = 'add-property-radio-container';
-
-// // Create paragraph element for public transportation
-// const paragraphTransportation = document.createElement('p');
-// paragraphTransportation.textContent = 'Is there a public transportation?';
-
-// // Create radio-option-container element for public transportation
-// const radioOptionContainerTransportation = document.createElement('div');
-// radioOptionContainerTransportation.className = 'radio-option-container';
-
-// // Create input element for "yes" option of public transportation
-// const inputYesTransportation = document.createElement('input');
-// inputYesTransportation.type = 'radio';
-// inputYesTransportation.name = 'Public Transportation';
-// inputYesTransportation.id = 'yes';
-// inputYesTransportation.value = 'yes';
-
-// // Create label element for "yes" option of public transportation
-// const labelYesTransportation = document.createElement('label');
-// labelYesTransportation.htmlFor = 'yes';
-// labelYesTransportation.textContent = 'Yes';
-
-// // Create input element for "no" option of public transportation
-// const inputNoTransportation = document.createElement('input');
-// inputNoTransportation.type = 'radio';
-// inputNoTransportation.name = 'Public Transportation';
-// inputNoTransportation.id = 'no';
-// inputNoTransportation.value = 'no';
-
-// // Create label element for "no" option of public transportation
-// const labelNoTransportation = document.createElement('label');
-// labelNoTransportation.htmlFor = 'no';
-// labelNoTransportation.textContent = 'No';
-
-// // Append input and label elements to radio option container for public transportation
-// radioOptionContainerTransportation.appendChild(inputYesTransportation);
-// radioOptionContainerTransportation.appendChild(labelYesTransportation);
-// radioOptionContainerTransportation.appendChild(inputNoTransportation);
-// radioOptionContainerTransportation.appendChild(labelNoTransportation);
-
-// // Append paragraph and radio option container for public transportation to add property form
-// addPropertyForm.appendChild(paragraphTransportation);
-// addPropertyForm.appendChild(radioOptionContainerTransportation);
-
-// // Create button container for submit and close buttons
-// const buttonContainer = document.createElement('div');
-// buttonContainer.className = 'button-container';
-
-// // Create submit button
-// const buttonSubmit = document.createElement('button');
-// buttonSubmit.className = 'btn';
-// buttonSubmit.id = 'button-property-submit';
-// buttonSubmit.textContent = 'Submit';
-
-// // Create close button
-// const buttonClose = document.createElement('button');
-// buttonClose.className = 'btn';
-// buttonClose.id = 'button-property-close';
-// buttonClose.textContent = 'Close';
-
-// // Append submit and close buttons to button container
-// buttonContainer.appendChild(buttonSubmit);
-// buttonContainer.appendChild(buttonClose);
-
-// // Append button container to add property form
-// addPropertyForm.appendChild(buttonContainer);
-
-// // Append add property form to modal content property
-// modalContentProperty.appendChild(addPropertyForm);
-
-// // Append modal content to modal
-// modalAddProperty.appendChild(modalContentProperty);
-
-
 /*=============================================
 → ### ADD PROPERTY MODAL ### */
 // Get the submit button element
@@ -707,6 +552,7 @@ const closeBtnProperty = modalAddProperty.querySelector(
 // Show the modal when a button is clicked
 const showModalProperty = () => {
   modalAddProperty.style.display = "flex";
+  modalPropertySubtitle.innerHTML = "";
 };
 
 // Hide the modal when the close button is clicked or outside the modal
@@ -748,7 +594,7 @@ modalWorkspaceTitle.textContent = "Add Workspace";
 
 const modalWorkspaceSubtitle = document.createElement("h3");
 modalWorkspaceSubtitle.id = "modal-workspace-subtitle";
-modalWorkspaceSubtitle.textContent = "Workspace ID: XXXXXXXXXXX";
+modalWorkspaceSubtitle.textContent = "Workspace ID: xxxxxx";
 
 const addWorkspaceForm = document.createElement("div");
 addWorkspaceForm.id = "add-workspace-form";
@@ -758,7 +604,7 @@ const addPriceInput = document.createElement("input");
 addPriceInput.placeholder = "Price";
 addPriceInput.className = "input";
 addPriceInput.type = "number";
-addPriceInput.min = "0";
+addPriceInput.min = "1";
 addPriceInput.max = "99999";
 addPriceInput.id = "add-price";
 
@@ -766,7 +612,7 @@ const addSeatsInput = document.createElement("input");
 addSeatsInput.placeholder = "Seats";
 addSeatsInput.className = "input";
 addSeatsInput.type = "number";
-addSeatsInput.min = "0";
+addSeatsInput.min = "1";
 addSeatsInput.max = "99";
 addSeatsInput.id = "add-seats";
 
@@ -774,7 +620,7 @@ const addSqftInput = document.createElement("input");
 addSqftInput.placeholder = "Square Feet";
 addSqftInput.className = "input";
 addSqftInput.type = "number";
-addSqftInput.min = "0";
+addSqftInput.min = "1";
 addSqftInput.max = "9999";
 addSqftInput.id = "add-sqft";
 
@@ -790,12 +636,12 @@ leasingTermRadioContainer.className = "radio-option-container";
 const daylyRadio = document.createElement("input");
 daylyRadio.type = "radio";
 daylyRadio.name = "Leasing Term";
-daylyRadio.id = "Dayly";
-daylyRadio.value = "Dayly";
+daylyRadio.id = "dayly";
+daylyRadio.value = "dayly";
 
 const daylyRadioLabel = document.createElement("label");
-daylyRadioLabel.htmlFor = "Dayly";
-daylyRadioLabel.textContent = "Dayly";
+daylyRadioLabel.htmlFor = "dayly";
+daylyRadioLabel.textContent = "dayly";
 
 const monthlyRadio = document.createElement("input");
 monthlyRadio.type = "radio";
@@ -827,21 +673,21 @@ smokingRadioContainer.className = "radio-option-container";
 const yesRadioSmoking = document.createElement("input");
 yesRadioSmoking.type = "radio";
 yesRadioSmoking.name = "Smoking";
-yesRadioSmoking.id = "yes";
+yesRadioSmoking.id = "smoking-yes";
 yesRadioSmoking.value = "yes";
 
 const yesRadioLabelSmoking = document.createElement("label");
-yesRadioLabelSmoking.htmlFor = "yes";
+yesRadioLabelSmoking.htmlFor = "smoking-yes";
 yesRadioLabelSmoking.textContent = "Yes";
 
 const noRadioSmoking = document.createElement("input");
 noRadioSmoking.type = "radio";
 noRadioSmoking.name = "Smoking";
-noRadioSmoking.id = "no";
+noRadioSmoking.id = "smoking-no";
 noRadioSmoking.value = "no";
 
 const noRadioLabelSmoking = document.createElement("label");
-noRadioLabelSmoking.htmlFor = "no";
+noRadioLabelSmoking.htmlFor = "smoking-no";
 noRadioLabelSmoking.textContent = "No";
 
 smokingRadioContainer.appendChild(yesRadioSmoking);
@@ -889,8 +735,8 @@ workspaceTypeRadioContainer.appendChild(noRadioLabelworkspaceType);
 addWorkspaceRadioContainer3.appendChild(workspaceTypeLabel);
 addWorkspaceRadioContainer3.appendChild(workspaceTypeRadioContainer);
 
-const buttonContainerWorkspace = document.createElement('div');
-buttonContainerWorkspace.className = 'button-container';
+const buttonContainerWorkspace = document.createElement("div");
+buttonContainerWorkspace.className = "button-container";
 
 const addWorkspaceButtonSubmit = document.createElement("button");
 addWorkspaceButtonSubmit.textContent = "Submit";
@@ -933,6 +779,7 @@ const closeBtnWorkspace = modalAddWorkspace.querySelector(
 // Show the modal when a button is clicked
 const showModalWorkspace = () => {
   modalAddWorkspace.style.display = "flex";
+  modalWorkspaceSubtitle.innerHTML = "";
 };
 
 // Hide the modal when the close button is clicked or outside the modal
@@ -964,6 +811,125 @@ document.addEventListener("click", (event) => {
 });
 
 closeBtnWorkspace.addEventListener("click", hideModalWorkspace);
+
+/*=============================================
+→ ### UPDATE PROPERTY MODAL ### */
+const updatePropertyModal = () => {
+  const indexProperty = findId("property_id");
+
+  const { address, neighborhood, ParkingLot, PublicTransportation } =
+    propertiesWorkspaceData[indexProperty];
+
+  modalPropertySubtitle.innerHTML = `Property ID: ${buttonIdValue}`;
+  inputPropertyAddress.value = address;
+  inputPropertyNeighbourhood.value = neighborhood;
+
+  const parkingLotRadios = document.getElementsByName("Parking lot");
+  parkingLotRadios.forEach((radio) => {
+    if (radio.value === ParkingLot) {
+      radio.checked = true;
+    }
+  });
+
+  const publicTransportationRadios = document.getElementsByName(
+    "Public Transportation"
+  );
+  publicTransportationRadios.forEach((radio) => {
+    if (radio.value === PublicTransportation) {
+      radio.checked = true;
+    }
+  });
+};
+
+document.addEventListener("click", (event) => {
+  if (event.target.matches(`#btn-update-property`)) {
+    buttonIdValue = event.target.value;
+    showModalProperty();
+    updatePropertyModal();
+  }
+});
+
+/*=============================================
+→ ### DELETE PROPERTY MODAL ### */
+
+/*=============================================
+→ ### UPDATE WORKSPACE MODAL ### */
+const updateWorkspaceModal = () => {
+  const indexWorkspace = findId("workspace_id");
+
+  const { lease_term, price, seats, smoking, sqft, workspace_type } =
+    propertiesWorkspaceData[indexWorkspace];
+
+  modalWorkspaceSubtitle.innerHTML = `Workspace ID: ${buttonIdValue}`;
+  addPriceInput.value = price;
+  addSeatsInput.value = seats;
+  addSqftInput.value = sqft;
+
+  const leaseTermRadios = document.getElementsByName("Leasing Term");
+  leaseTermRadios.forEach((radio) => {
+    if (radio.value === lease_term) {
+      radio.checked = true;
+    }
+  });
+
+  const smokingRadios = document.getElementsByName("Smoking");
+  smokingRadios.forEach((radio) => {
+    if (radio.value === smoking) {
+      radio.checked = true;
+    }
+  });
+
+  const workspaceTypeRadios = document.getElementsByName("Workspace Type");
+  workspaceTypeRadios.forEach((radio) => {
+    if (radio.value === workspace_type) {
+      radio.checked = true;
+    }
+  });
+};
+
+document.addEventListener("click", (event) => {
+  if (event.target.matches(`#btn-update-workspace`)) {
+    buttonIdValue = event.target.value;
+    showModalWorkspace();
+    updateWorkspaceModal();
+  }
+});
+
+/*=============================================
+→ ### DELETE WORKSPACE MODAL ### */
+
+/*=============================================
+→ ### FIND ID ### */
+// function to find the index of the id in the array
+const findId = (caseId) => {
+  let index = -1;
+
+  switch (caseId) {
+    case "property_id":
+      propertiesWorkspaceData.forEach((obj, i) => {
+        if (obj.property_id === parseInt(buttonIdValue)) {
+          index = i;
+        }
+      });
+      return index;
+      break;
+
+    case "workspace_id":
+      propertiesWorkspaceData.forEach((obj, i) => {
+        if (obj.workspace_id === parseInt(buttonIdValue)) {
+          index = i;
+        }
+      });
+      return index;
+      break;
+  }
+
+  // if (index !== -1) {
+  //   console.log(`Id ${buttonIdValue} found at index ${index}`);
+  // } else {
+  //   console.log(`Id ${buttonIdValue} not found in the array`);
+  // }
+};
 
 /*=============================================
 → ### MY PROPERTIES ### */
@@ -1036,10 +1002,10 @@ const sendNewProperty = (event) => {
   event.preventDefault();
 
   // Get form input values
-  const address = document.getElementById("add-property-address").value;
-  const neighbourhood = document.getElementById(
-    "add-property-neighbourhood"
-  ).value;
+  const address = document.getElementById("add-property-address").value.trim();
+  const neighbourhood = document
+    .getElementById("add-property-neighbourhood")
+    .value.trim();
   const parkingLot = document.querySelector(
     'input[name="Parking lot"]:checked'
   );
