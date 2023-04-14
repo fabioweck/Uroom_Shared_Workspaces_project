@@ -10,6 +10,11 @@ const userService = require("../services/userService");
 const multer = require("multer"); // Multer is a middleware for handling multipart/form-data
 const { generateID } = require("../public");
 
+const cors = require("cors");
+router.use(cors());
+
+
+
 router.use(express.static("./public")); //  to use script in html, need to use static inside router file instead server file.
 router.use(express.static("./repository"));
 
