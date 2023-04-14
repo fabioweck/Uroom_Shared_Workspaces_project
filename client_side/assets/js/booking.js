@@ -13,6 +13,7 @@ var buttonBookIdValue; // Store the id from the book button
 var availableDates; // Store the availableDates from the server
 var selectedDays = []; // Array to store selected days on calendar
 var selectedDates = []; // Array to store selected dates on calendar
+var propertiesData = []; // Receive data from the server
 
 // Function to create a new object with updated month value
 const createNewSelectedDateObject = () => {
@@ -103,12 +104,7 @@ document
 
 /*=============================================
 → ### SEARCH BAR ### */
-const form = document.querySelector(".search-bar-container");
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-});
-
-const filterProperty = (searchBarInputValue) => {
+const filterWorkspaceProperty = (searchBarInputValue) => {
   const dropdownSearchBar = document.getElementById("dropdown-search-bar");
   const dropdownSearchBarValue =
     dropdownSearchBar.options[dropdownSearchBar.selectedIndex].value;
@@ -175,6 +171,36 @@ const filterProperty = (searchBarInputValue) => {
       );
       displayPropertiesData(filteredData);
       break;
+
+    case "address":
+      filteredData = propertiesData.filter(({ address }) =>
+        address.toLowerCase().includes(searchBarInputValue.toLowerCase())
+      );
+      displayPropertiesData(filteredData);
+      break;
+
+    case "neighborhood":
+      filteredData = propertiesData.filter(({ neighborhood }) =>
+        neighborhood.toLowerCase().includes(searchBarInputValue.toLowerCase())
+      );
+      displayPropertiesData(filteredData);
+      break;
+
+    case "ParkingLot":
+      filteredData = propertiesData.filter(({ ParkingLot }) =>
+        ParkingLot.toLowerCase().includes(searchBarInputValue.toLowerCase())
+      );
+      displayPropertiesData(filteredData);
+      break;
+
+    case "PublicTransportation":
+      filteredData = propertiesData.filter(({ PublicTransportation }) =>
+        PublicTransportation.toLowerCase().includes(
+          searchBarInputValue.toLowerCase()
+        )
+      );
+      displayPropertiesData(filteredData);
+      break;
   }
 };
 
@@ -184,19 +210,19 @@ dropdownSearchBar.addEventListener("change", (event) => {
     "search-bar-input"
   ).value = "");
 
-  filterProperty(searchBarInputValue);
+  filterWorkspaceProperty(searchBarInputValue);
 });
 
 const searchBarInput = document.getElementById("search-bar-input");
 searchBarInput.addEventListener("input", (event) => {
   const searchBarInputValue = event.target.value;
 
-  filterProperty(searchBarInputValue);
+  filterWorkspaceProperty(searchBarInputValue);
 });
 
 /*=============================================
 → ### FETCH PROPERTIES DATA FROM SERVER ### */
-let propertiesData;
+
 // const findWorkspace = async () => {
 //   const filtered = fetch(baseUrl + "findWorkspace")
 //     .then((response) => response.json())
@@ -210,7 +236,6 @@ let propertiesData;
 /////////////////////////////////////////////////////////////funcionando no server antigo
 
 async function findWorkspaceByOwner() {
-
   // const columns = ['Workspace ID', 'Model', 'Seats', 'Smoke Frendly', 'Price', 'Size(sqft)', 'Lease Term', 'Property ID', 'Status'];
 
   // const placeToDisplay = 'workspace_list';
@@ -219,17 +244,16 @@ async function findWorkspaceByOwner() {
 
   // const filtered = await fetch(baseUrl + 'findWorkspaceByOwner?user_id=' + user_id)
   // const filtered = await fetch("http://localhost:3010/findWorkspaceByOwner?user_id=18059eac-c6b1-4bda-b462-521d0323c5c5")
-  const filtered = await fetch("http://localhost:3010/getWorkspaceByOwner?user_id=18059eac-c6b1-4bda-b462-521d0323c5c5")
-      .then(response => response.json())
-      .then(data => {
-          data.forEach(obj => delete obj.user_id);
-          displayPropertiesData(data);
-          propertiesData = data;
-          console.log('data',data);
-
-      })
-      .catch(error => console.error(error));
-};
+  const filtered = await fetch(
+    "http://localhost:3010/getWorkspaceByOwner?user_id=18059eac-c6b1-4bda-b462-521d0323c5c5"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((obj) => delete obj.user_id);
+      propertiesData = data;
+    })
+    .catch((error) => console.error(error));
+}
 
 /*=============================================
 → ### DISPLAY PROPERTIES DATA ### */
@@ -265,10 +289,10 @@ const displayPropertiesData = (propertiesData) => {
     image.alt = "Image Room";
 
     const divWorkspace = document.createElement("div");
-    divWorkspace.className = "div-workspace"
+    divWorkspace.className = "div-workspace";
 
     const divWorkspaceWrap = document.createElement("div");
-    divWorkspaceWrap.className = "div-workspace-wrap"
+    divWorkspaceWrap.className = "div-workspace-wrap";
 
     const ulWorkspace = document.createElement("ul");
     ulWorkspace.innerHTML = `
@@ -288,11 +312,11 @@ const displayPropertiesData = (propertiesData) => {
     divWorkspace.appendChild(divWorkspaceWrap);
 
     const divProperty = document.createElement("div");
-    divProperty.className = "div-property"
+    divProperty.className = "div-property";
 
     const ulProperty = document.createElement("ul");
     ulProperty.innerHTML = `
-        <li><strong>Address: </strong>${address} ${neighborhood}</li>
+        <li><strong>Address: </strong>${address}, ${neighborhood}</li>
         <li><strong>Parking lot: </strong>${ParkingLot}</li>
         <li><strong>Public transportation: </strong>${PublicTransportation}</li>
         <li><strong>Property Status: </strong>?? Pendente ??</li>
@@ -343,7 +367,6 @@ const getAvailableDates = () => {
 
   availableDates = dates;
 
-  //availableDates = [4, 5, 6, 11, 12, 13]; // Example of available dates
   console.log(
     `Get Simulation - Available dates, property id ${buttonBookIdValue}`
   );
@@ -597,5 +620,6 @@ submitBtn.addEventListener("click", hideModal);
 → ### ON LOAD THE PAGE ### */
 window.onload = async () => {
   // findWorkspace();
-  findWorkspaceByOwner();
+  await findWorkspaceByOwner();
+  displayPropertiesData(propertiesData);
 };
