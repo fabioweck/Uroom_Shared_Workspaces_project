@@ -342,7 +342,50 @@ header {
       }
     }
 
-    #login-box, #logout-box{
+    #logout-box{
+      width: 100%;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    
+      input {
+        width: 50%;
+        height: 40px;
+        padding: 20px;
+        margin-top: 20px;
+        font-size: 25px;
+        color: $bgColor5;
+      }
+
+      button {
+        border: none;
+        border-radius: 5px;
+        margin: 50px auto 10px;
+        color: white;
+        background-color: $bgColor1;
+        padding: 10px 40px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 25px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: $bgColor2;
+        transition: 0.5s;
+      }
+
+      p {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: grey;
+        padding: 20px;
+        text-align: center;
+      }
+    
+    }
+
+    #login-box{
       width: 100%;
       display: flex;
       justify-content: center;

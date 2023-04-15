@@ -52,13 +52,21 @@
       
       <div class="adjust-content-top"></div>
       
-      <div id="dv-display">TEST POPUP</div>
+      <div id="dv-display"></div><!-- hidden div -displays a message when login email or password fails-->
 
       <section id="login">
         
         <form class="login-title">
 
           <img src="../img/color-logo.png" />
+
+          <div id="logout-box"><!--hidden div - displays logout option when user is logged-->
+            
+            <p>Would you like to logout?</p>
+
+            <button id="logout" type="button">end session</button>
+
+          </div><!--end of end-session-->
 
           <div id="login-box">
 
