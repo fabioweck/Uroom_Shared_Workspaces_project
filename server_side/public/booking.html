@@ -41,15 +41,14 @@
             <input type="radio" name="status" value=0>Inactive
         </label>
 
-        </form>
+        <button type="submit" onclick="sendNewProperty()">Add Property</button>
+
 
         <!-- Testing upload images -->
         <form action="/upload" method="post" enctype="multipart/form-data">
             <input type="file" name="workspaceImage">
             <input type="submit" value="Upload">
-
-
-            <button type="submit" onclick="sendNewProperty()">Add Property</button>
+        </form>
     </div>
 
     <hr>

@@ -35,26 +35,29 @@ const findWorkspaceByOwner = async () => {
 
 const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
   let dropdownSearchBar;
+  let searchBar;
 
   if (isJustProperties) {
     dropdownSearchBar = document.getElementById("dropdown-search-bar-property");
+    searchBar = document.getElementById("search-bar-property");
   } else {
     dropdownSearchBar = document.getElementById(
       "dropdown-search-bar-workspace"
     );
+    searchBar = document.getElementById("search-bar-workspace");
   }
 
   const dropdownSearchBarValue =
     dropdownSearchBar.options[dropdownSearchBar.selectedIndex].value;
-
-  console.log("dropdownSearchBarValue", dropdownSearchBarValue);
   let filteredData;
   switch (dropdownSearchBarValue) {
     case "":
+      searchBar.setAttribute("type", "search");
       displayPropertiesWorkspaceData(propertiesWorkspaceData);
       break;
 
     case "lease_term":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesWorkspaceData.filter(({ lease_term }) =>
         lease_term.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -62,10 +65,11 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
       break;
 
     case "price":
+      searchBar.setAttribute("type", "number");
       const priceValue = parseInt(searchBarInputValue);
       if (priceValue !== "" && !isNaN(priceValue)) {
         filteredData = propertiesWorkspaceData.filter(({ price }) =>
-          price.includes(priceValue)
+          String(price).includes(String(priceValue))
         );
       } else {
         filteredData = propertiesWorkspaceData;
@@ -74,10 +78,11 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
       break;
 
     case "seats":
+      searchBar.setAttribute("type", "number");
       const seatsValue = parseInt(searchBarInputValue);
       if (seatsValue !== "" && !isNaN(seatsValue)) {
         filteredData = propertiesWorkspaceData.filter(({ seats }) =>
-          seats.includes(seatsValue)
+          String(seats).includes(String(seatsValue))
         );
       } else {
         filteredData = propertiesWorkspaceData;
@@ -86,6 +91,7 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
       break;
 
     case "smoking":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesWorkspaceData.filter(({ smoking }) =>
         smoking.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -93,10 +99,11 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
       break;
 
     case "sqft":
+      searchBar.setAttribute("type", "number");
       const sqftValue = parseInt(searchBarInputValue);
       if (sqftValue !== "" && !isNaN(sqftValue)) {
         filteredData = propertiesWorkspaceData.filter(({ sqft }) =>
-          sqft.includes(sqftValue)
+          String(sqft).includes(String(sqftValue))
         );
       } else {
         filteredData = propertiesWorkspaceData;
@@ -105,6 +112,7 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
       break;
 
     case "workspace_type":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesWorkspaceData.filter(({ workspace_type }) =>
         workspace_type.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -112,6 +120,7 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
       break;
 
     case "address":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesWorkspaceData.filter(({ address }) =>
         address.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -119,6 +128,7 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
       break;
 
     case "neighborhood":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesWorkspaceData.filter(({ neighborhood }) =>
         neighborhood.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -126,6 +136,7 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
       break;
 
     case "ParkingLot":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesWorkspaceData.filter(({ ParkingLot }) =>
         ParkingLot.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -133,6 +144,7 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
       break;
 
     case "PublicTransportation":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesWorkspaceData.filter(
         ({ PublicTransportation }) =>
           PublicTransportation.toLowerCase().includes(
@@ -213,6 +225,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
         neighborhood,
         ParkingLot,
         PublicTransportation,
+        workspace_status,
         property_id,
       } = propertyWorkspaceData;
 
@@ -236,8 +249,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       publicTransportationParagraph.innerHTML = `<strong>Public Transportation:</strong> ${PublicTransportation}`;
 
       var statusPropertyParagraph = document.createElement("p");
-      statusPropertyParagraph.innerHTML =
-        "<strong>Status Property:</strong> True";
+      statusPropertyParagraph.innerHTML = `<strong>Status Property:</strong> ${workspace_status}`;
 
       var idPropertyParagraph = document.createElement("p");
       idPropertyParagraph.innerHTML = `<strong>ID Property:</strong> ${property_id}`;
@@ -259,10 +271,14 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       updateButton.textContent = "Update";
       updateButton.value = `${property_id}`;
 
+      const statusActiveInactiveButton = !workspace_status
+        ? "Active"
+        : "Inactive";
       var activeInactiveButton = document.createElement("button");
       activeInactiveButton.className = "btn";
       activeInactiveButton.id = "btn-active-inactive-property";
-      activeInactiveButton.textContent = "Active";
+      activeInactiveButton.name = statusActiveInactiveButton;
+      activeInactiveButton.textContent = statusActiveInactiveButton;
       activeInactiveButton.value = `${property_id}`;
 
       buttonPropertyContainer.appendChild(updateButton);
@@ -293,13 +309,14 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       seats,
       smoking,
       sqft,
-      status,
+      workspace_status,
       workspace_type,
       workspace_id,
       address,
       neighborhood,
       ParkingLot,
       PublicTransportation,
+      property_status,
       property_id,
     } = propertyData;
 
@@ -328,7 +345,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
         <li><strong>Smoking: </strong>${smoking}</li>
         <li><strong>Sqft: </strong>${sqft}</li>
         <li><strong>Workspace Type: </strong>${workspace_type}</li>
-        <li><strong>WorkspaceStatus: </strong>${status}</li>
+        <li><strong>WorkspaceStatus: </strong>${workspace_status}</li>
         <li><strong>Workspace ID: </strong>${workspace_id}</li>
       `;
 
@@ -345,7 +362,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
         <li><strong>Address: </strong>${address}, ${neighborhood}</li>
         <li><strong>Parking lot: </strong>${ParkingLot}</li>
         <li><strong>Public transportation: </strong>${PublicTransportation}</li>
-        <li><strong>Property Status: </strong>?? Pendente ??</li>
+        <li><strong>Property Status: </strong>${property_status}</li>
         <li><strong>Property ID: </strong>${property_id}</li>
       `;
 
@@ -360,10 +377,14 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
     btnUpdateWorkspace.textContent = "Update";
     btnUpdateWorkspace.value = `${workspace_id}`;
 
+    const statusBtnActiveInactiveWorkspace = !workspace_status
+      ? "Active"
+      : "Inactive";
     const btnActiveInactiveWorkspace = document.createElement("button");
     btnActiveInactiveWorkspace.className = "btn";
     btnActiveInactiveWorkspace.id = `btn-active-inactive-workspace`;
-    btnActiveInactiveWorkspace.textContent = "Active";
+    btnActiveInactiveWorkspace.textContent = statusBtnActiveInactiveWorkspace;
+    btnActiveInactiveWorkspace.name = statusBtnActiveInactiveWorkspace;
     btnActiveInactiveWorkspace.value = `${workspace_id}`;
 
     buttonContainerProperty.appendChild(btnUpdateWorkspace);
@@ -477,7 +498,7 @@ addPropertyRadioContainerTransportation.className =
 
 // Create paragraph element for public transportation
 const paragraphTransportation = document.createElement("p");
-paragraphTransportation.textContent = "Is public transportation available?";
+paragraphTransportation.textContent = "Is there public transportation?";
 
 // Create radio-option-container element for public transportation
 const radioOptionContainerTransportation = document.createElement("div");

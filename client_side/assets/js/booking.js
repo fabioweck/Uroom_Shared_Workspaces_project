@@ -106,16 +106,19 @@ document
 → ### SEARCH BAR ### */
 const filterWorkspaceProperty = (searchBarInputValue) => {
   const dropdownSearchBar = document.getElementById("dropdown-search-bar");
+  const searchBar = document.getElementById("search-bar-input");
   const dropdownSearchBarValue =
     dropdownSearchBar.options[dropdownSearchBar.selectedIndex].value;
 
   let filteredData;
   switch (dropdownSearchBarValue) {
     case "":
+      searchBar.setAttribute("type", "search");
       displayPropertiesData(propertiesData);
       break;
 
     case "lease_term":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesData.filter(({ lease_term }) =>
         lease_term.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -123,10 +126,11 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
       break;
 
     case "price":
+      searchBar.setAttribute("type", "number");
       const priceValue = parseInt(searchBarInputValue);
       if (priceValue !== "" && !isNaN(priceValue)) {
         filteredData = propertiesData.filter(({ price }) =>
-          price.includes(priceValue)
+          String(price).includes(String(priceValue))
         );
       } else {
         filteredData = propertiesData;
@@ -135,10 +139,11 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
       break;
 
     case "seats":
+      searchBar.setAttribute("type", "number");
       const seatsValue = parseInt(searchBarInputValue);
       if (seatsValue !== "" && !isNaN(seatsValue)) {
         filteredData = propertiesData.filter(({ seats }) =>
-          seats.includes(seatsValue)
+          String(seats).includes(String(seatsValue))
         );
       } else {
         filteredData = propertiesData;
@@ -147,6 +152,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
       break;
 
     case "smoking":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesData.filter(({ smoking }) =>
         smoking.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -154,10 +160,11 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
       break;
 
     case "sqft":
+      searchBar.setAttribute("type", "number");
       const sqftValue = parseInt(searchBarInputValue);
       if (sqftValue !== "" && !isNaN(sqftValue)) {
         filteredData = propertiesData.filter(({ sqft }) =>
-          sqft.includes(sqftValue)
+          String(sqft).includes(String(sqftValue))
         );
       } else {
         filteredData = propertiesData;
@@ -166,6 +173,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
       break;
 
     case "workspace_type":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesData.filter(({ workspace_type }) =>
         workspace_type.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -173,6 +181,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
       break;
 
     case "address":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesData.filter(({ address }) =>
         address.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -180,6 +189,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
       break;
 
     case "neighborhood":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesData.filter(({ neighborhood }) =>
         neighborhood.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -187,6 +197,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
       break;
 
     case "ParkingLot":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesData.filter(({ ParkingLot }) =>
         ParkingLot.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -194,6 +205,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
       break;
 
     case "PublicTransportation":
+      searchBar.setAttribute("type", "search");
       filteredData = propertiesData.filter(({ PublicTransportation }) =>
         PublicTransportation.toLowerCase().includes(
           searchBarInputValue.toLowerCase()
@@ -249,16 +261,23 @@ const displayPropertiesData = (propertiesData) => {
       seats,
       smoking,
       sqft,
-      status,
+      workspace_status,
       workspace_type,
       workspace_id,
       address,
       neighborhood,
       ParkingLot,
       PublicTransportation,
+      property_status,
       property_id,
     } = propertyData;
 
+    if(!workspace_status){
+      console.log('index-skip',index);
+      return;
+    }
+
+    console.log('propertyData',propertyData);
     const roomDivision = document.createElement("div");
     roomDivision.className = "room-division";
     roomDivision.style.display = "none";
@@ -284,7 +303,7 @@ const displayPropertiesData = (propertiesData) => {
         <li><strong>Smoking: </strong>${smoking}</li>
         <li><strong>Sqft: </strong>${sqft}</li>
         <li><strong>Workspace Type: </strong>${workspace_type}</li>
-        <li><strong>WorkspaceStatus: </strong>${status}</li>
+        <li><strong>WorkspaceStatus: </strong>${workspace_status}</li>
         <li><strong>Workspace ID: </strong>${workspace_id}</li>
       `;
 
@@ -301,7 +320,7 @@ const displayPropertiesData = (propertiesData) => {
         <li><strong>Address: </strong>${address}, ${neighborhood}</li>
         <li><strong>Parking lot: </strong>${ParkingLot}</li>
         <li><strong>Public transportation: </strong>${PublicTransportation}</li>
-        <li><strong>Property Status: </strong>?? Pendente ??</li>
+        <li><strong>Property Status: </strong>${property_status}</li>
         <li><strong>Property ID: </strong>${property_id}</li>
       `;
 

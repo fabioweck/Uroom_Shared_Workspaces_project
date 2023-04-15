@@ -2,6 +2,7 @@
 const path = require('path');
 const { uuid } = require('uuidv4');
 const fs = require('fs');
+const { escape } = require('querystring');
 
 
 async function addUser(user) {
@@ -242,6 +243,51 @@ async function getReservedDate(workspace) {
     });
 };
 
+async function updateReservedDate(dates) {
+
+    const newBooking = dates;
+    const bookings = await loadJsonFile('bookings.json');
+    const workspaceBookings = bookings[0].workspace_bookings;
+    const bookingsForWorkspace = workspaceBookings[newBooking.workspace_id];
+
+    console.log('This is new booking: ', newBooking)
+    console.log('This is the booking file: ', bookings, bookingsForWorkspace);
+
+    return new Promise(async (resolve, reject) => {
+
+        {
+            for (const [year, months] of Object.entries(bookingsForWorkspace)) {
+                for (const [month, days] of Object.entries(months)) {
+                    for (const day of Object.entries(days)) {
+                        console.log(year, month, days, day);
+                        // formattedBookings.push({
+                        //     year: parseInt(year),
+                        //     month: parseInt(month),
+                        //     days
+                        // });
+                    }
+                }
+            }
+            //  console.log(bookingsForWorkspace);
+            // resolve(formattedBookings)
+        }
+
+    }).catch(err => {
+        const code = err.statusCode || 500;
+        const message = err.message || 'Error occurred while delisting workspace';
+        throw { code, message };
+    });
+
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -254,17 +300,17 @@ async function delistWorkspace(user_id, workspace_id) {
 
             if (workspace.workspace_id == workspace_id) {
                 if (workspace.user_id === user_id) {
-                    workspace.status = false;
-                    await writeJsonFile(workspaces, 'workspaces.json');
-
+                    workspace.workspace_status = false;
                     console.log('The workspace', workspace_id, 'was delisted');
 
                     resolve(workspace);
                 } else {
                     console.log('workspace not found');
+                    resolve();
                 }
             }
         }
+        await writeJsonFile(workspaces, 'workspaces.json');
     }).catch(err => {
         const code = err.statusCode || 500;
         const message = err.message || 'Error occurred while delisting workspace';
@@ -285,7 +331,7 @@ async function delistProperty(user_id, property_id) {
         for (const workspace of workspaces) {
             if (workspace.property_id == property_id) {
 
-                await delistWorkspace(user_id, workspace.workspace_id)
+                delistWorkspace(user_id, workspace.workspace_id)
                 workspaceDelisted.push(workspace.workspace_id);
             };
         }
@@ -296,14 +342,16 @@ async function delistProperty(user_id, property_id) {
 
                 if (property.user_id == user_id) {
 
-                    property.status = false;
-
-                    await writeJsonFile(properties, 'properties.json');
+                    property.property_status = false;
 
                     console.log('The workspace', property_id, 'was delisted');
-                }
-            }
+                } else {
+                    resolve('user not match the property');
+                };
+            };
         };
+
+        await writeJsonFile(properties, 'properties.json');
         resolve(`The property ${property_id} and workspace(s): ${workspaceDelisted} was delisted successful`);
 
     }).catch(err => {
@@ -346,4 +394,4 @@ async function writeJsonFile(data, fileName) {
 }
 
 
-module.exports = { addUser, login, addProperty, addWorkspace, findPropertyByOwner, findWorkspaceByOwner, getWorkspaceByOwner, delistWorkspace, delistProperty, getReservedDate }
+module.exports = { addUser, login, addProperty, addWorkspace, findPropertyByOwner, findWorkspaceByOwner, getWorkspaceByOwner, delistWorkspace, delistProperty, getReservedDate, updateReservedDate }

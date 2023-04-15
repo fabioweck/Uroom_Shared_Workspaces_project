@@ -5,34 +5,7 @@
     "neighborhood": "auburn bay",
     "ParkingLot": "yes",
     "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": 123456,
-    "address": "45 auburn",
-    "neighborhood": "auburn bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": 123457,
-    "address": "45 auburn",
-    "neighborhood": "auburn bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": 123458,
-    "address": "45 auburn",
-    "neighborhood": "auburn bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
+    "property_status": true,
     "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
   },
   {
@@ -41,7 +14,7 @@
     "neighborhood": "midnapore",
     "ParkingLot": "yes",
     "PublicTransportation": "no",
-    "status": "true",
+    "property_status": true,
     "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
   },
   {
@@ -50,16 +23,7 @@
     "neighborhood": "New West",
     "ParkingLot": "yes",
     "PublicTransportation": "yes",
-    "status": false,
-    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": 316898,
-    "address": "737 Carnarvon St",
-    "neighborhood": "New West",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": false,
+    "property_status": true,
     "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
   },
   {
@@ -68,7 +32,7 @@
     "neighborhood": "auburn bay",
     "ParkingLot": "yes",
     "PublicTransportation": "yes",
-    "status": "true",
+    "property_status": false,
     "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
   },
   {
@@ -77,7 +41,7 @@
     "neighborhood": "auburn bay",
     "ParkingLot": "yes",
     "PublicTransportation": "yes",
-    "status": "true",
+    "property_status": false,
     "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
   },
   {
@@ -86,365 +50,7 @@
     "neighborhood": "auburn bay",
     "ParkingLot": "yes",
     "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  {
-    "property_id": 726507,
-    "address": "45 auburn",
-    "neighborhood": "auburn bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  {
-    "property_id": "",
-    "address": "a",
-    "neighborhood": "b",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": "",
-    "address": "a",
-    "neighborhood": "b",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": "",
-    "address": "a",
-    "neighborhood": "b",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": "",
-    "address": "a",
-    "neighborhood": "b",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": "",
-    "address": "a",
-    "neighborhood": "b",
-    "ParkingLot": "no",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": 1234,
-    "address": "a",
-    "neighbourhood": "b",
-    "parkingLotValue": "yes",
-    "publicTransportationValue": "yes",
-    "status": true,
-    "currentUser": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": 1234,
-    "address": "a",
-    "neighbourhood": "b",
-    "parkingLotValue": "yes",
-    "publicTransportationValue": "yes",
-    "status": true,
-    "currentUser": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": 1234,
-    "address": "qw",
-    "neighbourhood": "as",
-    "parkingLotValue": "yes",
-    "publicTransportationValue": "yes",
-    "status": true,
-    "currentUser": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": 1234,
-    "address": "a",
-    "neighbourhood": "b",
-    "parkingLotValue": "yes",
-    "publicTransportationValue": "yes",
-    "status": true,
-    "currentUser": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": 1234,
-    "teste_address": "a",
-    "teste_neighbourhood": "b",
-    "teste_parkingLotValue": "No",
-    "teste_publicTransportationValue": "Yes",
-    "status": true,
-    "currentUser": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": 1234,
-    "teste_address": "a",
-    "teste_neighbourhood": "b",
-    "teste_parkingLotValue": "No",
-    "teste_publicTransportationValue": "Yes",
-    "status": true,
-    "currentUser": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {},
-  {
-    "property_id": "John",
-    "address": 30,
-    "neighborhood": "New York",
-    "ParkingLot": "John",
-    "PublicTransportation": "John",
-    "status": "John",
-    "user_id": "John"
-  },
-  {
-    "property_id": "John",
-    "address": 30,
-    "neighborhood": "New York",
-    "ParkingLot": "John",
-    "PublicTransportation": "John",
-    "status": "John",
-    "user_id": "John"
-  },
-  {
-    "property_id": "John",
-    "address": 30,
-    "neighborhood": "New York",
-    "ParkingLot": "John",
-    "PublicTransportation": "John",
-    "status": "John",
-    "user_id": "John"
-  },
-  {
-    "property_id": "John",
-    "address": 30,
-    "neighborhood": "New York",
-    "ParkingLot": "John",
-    "PublicTransportation": "John",
-    "status": "John",
-    "user_id": "John"
-  },
-  {
-    "property_id": "1234",
-    "address": "teste",
-    "neighborhood": "New York",
-    "ParkingLot": "Yes",
-    "PublicTransportation": "Yes",
-    "status": true,
-    "user_id": "121321314"
-  },
-  {
-    "property_id": "1234",
-    "address": "teste",
-    "neighborhood": "New York",
-    "ParkingLot": "Yes",
-    "PublicTransportation": "Yes",
-    "status": "true",
-    "user_id": "121321314"
-  },
-  {
-    "property_id": 1234,
-    "address": "teste",
-    "neighborhood": "New York",
-    "ParkingLot": "Yes",
-    "PublicTransportation": "Yes",
-    "status": "true",
-    "user_id": "121321314"
-  },
-  {
-    "property_id": 1234,
-    "address": "AS",
-    "neighbourhood": "AS",
-    "parkingLotValue": "yes",
-    "publicTransportationValue": "yes",
-    "status": true,
-    "currentUser": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": 1234,
-    "address": "a",
-    "neighbourhood": "b",
-    "parkingLotValue": "yes",
-    "publicTransportationValue": "yes",
-    "status": true,
-    "currentUser": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {
-    "property_id": 1234,
-    "address": "a",
-    "neighbourhood": "b",
-    "parkingLotValue": "yes",
-    "publicTransportationValue": "yes",
-    "status": true,
-    "currentUser": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-  },
-  {},
-  {
-    "property_id": 1234,
-    "address": "teste",
-    "neighborhood": "New York",
-    "ParkingLot": "Yes",
-    "PublicTransportation": "Yes",
-    "status": "true",
-    "user_id": "121321314"
-  },
-  {
-    "property_id": 1234,
-    "address": "teste",
-    "neighborhood": "New York",
-    "ParkingLot": "Yes",
-    "PublicTransportation": "Yes",
-    "status": "true",
-    "user_id": "121321314"
-  },
-  {
-    "property_id": 1234,
-    "address": "teste",
-    "neighborhood": "New York",
-    "ParkingLot": "Yes",
-    "PublicTransportation": "Yes",
-    "status": "true",
-    "user_id": "121321314"
-  },
-  {
-    "property_id": 726507,
-    "address": "45 auburn",
-    "neighborhood": "auburn bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  {
-    "query": "\n    query IntrospectionQuery {\n      __schema {\n        \n        queryType { name }\n        mutationType { name }\n        subscriptionType { name }\n        types {\n          ...FullType\n        }\n        directives {\n          name\n          description\n          \n          locations\n          args {\n            ...InputValue\n          }\n        }\n      }\n    }\n\n    fragment FullType on __Type {\n      kind\n      name\n      description\n      \n      fields(includeDeprecated: true) {\n        name\n        description\n        args {\n          ...InputValue\n        }\n        type {\n          ...TypeRef\n        }\n        isDeprecated\n        deprecationReason\n      }\n      inputFields {\n        ...InputValue\n      }\n      interfaces {\n        ...TypeRef\n      }\n      enumValues(includeDeprecated: true) {\n        name\n        description\n        isDeprecated\n        deprecationReason\n      }\n      possibleTypes {\n        ...TypeRef\n      }\n    }\n\n    fragment InputValue on __InputValue {\n      name\n      description\n      type { ...TypeRef }\n      defaultValue\n      \n      \n    }\n\n    fragment TypeRef on __Type {\n      kind\n      name\n      ofType {\n        kind\n        name\n        ofType {\n          kind\n          name\n          ofType {\n            kind\n            name\n            ofType {\n              kind\n              name\n              ofType {\n                kind\n                name\n                ofType {\n                  kind\n                  name\n                  ofType {\n                    kind\n                    name\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  "
-  },
-  {
-    "property_id": 726507,
-    "address": "45 auburn",
-    "neighborhood": "auburn bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  {
-    "property_id": 726507,
-    "address": "45 auburn",
-    "neighborhood": "auburn bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  {
-    "property_id": 726507,
-    "address": "45 auburn",
-    "neighborhood": "auburn bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  {
-    "property_id": 726507,
-    "address": "45 auburn",
-    "neighborhood": "auburn bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  {
-    "property_id": 726507,
-    "address": "45 auburn",
-    "neighborhood": "auburn bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  {
-    "property_id": 726507,
-    "address": "45 auburn",
-    "neighborhood": "auburn bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  {
-    "property_id": 726507,
-    "address": "45_auburn",
-    "neighborhood": "auburn_bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  {
-    "property_id": 726507,
-    "address": "45_auburn",
-    "neighborhood": "auburn_bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  {
-    "property_id": 726507,
-    "address": "45_auburn",
-    "neighborhood": "auburn_bay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  {
-    "property_id": 726507,
-    "address": "auburn",
-    "neighborhood": "auburnbay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  [
-    {
-      "property_id": 726507,
-      "address": "auburn",
-      "neighborhood": "auburnbay",
-      "ParkingLot": "yes",
-      "PublicTransportation": "yes",
-      "status": "true",
-      "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-    }
-  ],
-  {
-    "property_id": 726507,
-    "address": "auburn",
-    "neighborhood": "auburnbay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
-    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
-  },
-  {
-    "property_id": 726507,
-    "address": "auburn",
-    "neighborhood": "auburnbay",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "status": "true",
+    "property_status": false,
     "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
   }
 ]
