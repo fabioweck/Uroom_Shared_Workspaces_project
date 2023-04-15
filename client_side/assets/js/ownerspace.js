@@ -207,7 +207,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
     const propertiesContainer = document.getElementById("properties-container");
     propertiesContainer.innerHTML = "";
 
-    resultPropertiesWorkspaceData.forEach((propertyWorkspaceData) => {
+    resultPropertiesWorkspaceData.forEach((propertyWorkspaceData, index) => {
       const {
         address,
         neighborhood,
@@ -218,6 +218,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
 
       var propertyDivision = document.createElement("div");
       propertyDivision.className = "property-division";
+      propertyDivision.style.display = "none";
 
       var propertyDescriptionContainer = document.createElement("div");
       propertyDescriptionContainer.className = "property-description-container";
@@ -261,7 +262,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       var activeInactiveButton = document.createElement("button");
       activeInactiveButton.className = "btn";
       activeInactiveButton.id = "btn-active-inactive-property";
-      activeInactiveButton.textContent = "Active / Inactive";
+      activeInactiveButton.textContent = "Active";
       activeInactiveButton.value = `${property_id}`;
 
       buttonPropertyContainer.appendChild(updateButton);
@@ -271,6 +272,13 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       propertyDivision.appendChild(buttonPropertyContainer);
 
       propertiesContainer.appendChild(propertyDivision);
+
+      setTimeout(() => {
+        propertyDivision.style.animationDelay = `${index * 0.25}s`;
+        propertyDivision.style.opacity = "1";
+        propertyDivision.style.transform = "translateX(1000%)";
+        propertyDivision.style.display = "block";
+      }, index * 1);
     });
   }
 
@@ -278,7 +286,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
   const roomsContainer = document.getElementById("rooms-container");
   roomsContainer.innerHTML = "";
 
-  propertiesWorkspaceData.forEach((propertyData) => {
+  propertiesWorkspaceData.forEach((propertyData, index) => {
     const {
       lease_term,
       price,
@@ -297,6 +305,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
 
     const roomDivision = document.createElement("div");
     roomDivision.className = "room-division";
+    roomDivision.style.display = "none";
 
     const roomDescription = document.createElement("div");
     roomDescription.className = "room-description";
@@ -354,7 +363,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
     const btnActiveInactiveWorkspace = document.createElement("button");
     btnActiveInactiveWorkspace.className = "btn";
     btnActiveInactiveWorkspace.id = `btn-active-inactive-workspace`;
-    btnActiveInactiveWorkspace.textContent = "Active / Inactive";
+    btnActiveInactiveWorkspace.textContent = "Active";
     btnActiveInactiveWorkspace.value = `${workspace_id}`;
 
     buttonContainerProperty.appendChild(btnUpdateWorkspace);
@@ -365,6 +374,13 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
     roomDivision.appendChild(buttonContainerProperty);
 
     roomsContainer.appendChild(roomDivision);
+
+    setTimeout(() => {
+      roomDivision.style.animationDelay = `${index * 0.25}s`;
+      roomDivision.style.opacity = "1";
+      roomDivision.style.transform = "translateX(1000%)";
+      roomDivision.style.display = "block";
+    }, index * 1);
   });
 };
 

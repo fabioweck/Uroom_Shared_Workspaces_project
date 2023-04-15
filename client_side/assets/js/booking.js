@@ -242,7 +242,7 @@ const displayPropertiesData = (propertiesData) => {
   const roomsContainer = document.getElementById("rooms-container");
   roomsContainer.innerHTML = "";
 
-  propertiesData.forEach((propertyData) => {
+  propertiesData.forEach((propertyData, index) => {
     const {
       lease_term,
       price,
@@ -261,6 +261,7 @@ const displayPropertiesData = (propertiesData) => {
 
     const roomDivision = document.createElement("div");
     roomDivision.className = "room-division";
+    roomDivision.style.display = "none";
 
     const roomDescription = document.createElement("div");
     roomDescription.className = "room-description";
@@ -322,6 +323,13 @@ const displayPropertiesData = (propertiesData) => {
     roomDivision.appendChild(buttonContainer);
 
     roomsContainer.appendChild(roomDivision);
+
+    setTimeout(() => {
+      roomDivision.style.animationDelay = `${index * 0.25}s`;
+      roomDivision.style.opacity = "1";
+      roomDivision.style.transform = "translateX(1000%)";
+      roomDivision.style.display = "block";
+    }, index * 1);
   });
 };
 
