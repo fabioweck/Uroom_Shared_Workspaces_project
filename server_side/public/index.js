@@ -1,4 +1,4 @@
-const { response } = require("express");
+//const { response } = require("express");
 
 // router server config port
 const port = 3010;
@@ -94,8 +94,8 @@ async function sendNewProperty() {
     const neighborhood = document.getElementById("neighborhood").value;
     const ParkingLot = document.getElementById("parkingLot").value;
     const PublicTransportation = document.getElementById("publicTransportation").value;
-    const status = document.querySelector('input[name="status"]:checked').value;
-    const property_id = generateID();
+    const property_status = parseInt(document.querySelector('input[name="status"]:checked').value) ? true : false;
+    const property_id = generateID(); //------- remover daqui e passar para o back.
     const user_id = getCurrentUser();
 
     // Convert input values to JSON format
@@ -105,7 +105,7 @@ async function sendNewProperty() {
         neighborhood,
         ParkingLot,
         PublicTransportation,
-        status,
+        property_status,
         user_id
     };
 
@@ -139,7 +139,7 @@ async function sendNewWorkspace() {
     const sqft = parseFloat(document.getElementById("sqft").value);
     const lease_term = document.getElementById("lease_term").value;
     const property_id = parseInt(document.getElementById("property_id").value);
-    const status = parseInt(document.querySelector('input[name="status"]:checked').value) ? true : false;
+    const workspace_status = parseInt(document.querySelector('input[name="status"]:checked').value) ? true : false;
     const workspace_id = parseInt(generateID());
     const user_id = getCurrentUser();
 
@@ -154,7 +154,7 @@ async function sendNewWorkspace() {
         lease_term,
         property_id,
         user_id,
-        status
+        workspace_status
     };
 
     // Send POST request to server with new staff data
@@ -245,16 +245,36 @@ async function getReservedDate(workspace) {
 }
 
 
-async function updateReservedDate(workspace, bookingDate) {
-
+async function updateReservedDate(workspace) {
+    const user_id = getCurrentUser();
     const workspace_id = workspace;
+    const year = 2025;
+    const month = 4;
+    const days = [17, 22, 3, 2]
 
-    await fetch(`${baseUrl}updateReservedDate?workspace_id=${workspace_id}`)
+    const newBooking = {
+        user_id,
+        workspace_id,
+        year,
+        month,
+        days
+    }
+
+    console.log(newBooking);
+
+    await fetch(baseUrl + 'updateReservedDate', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newBooking),
+    })
         .then(response => response.json())
         .then(data => {
-            return data;
+            clearAllInputs()
+            console.log(data);
         })
-        .catch(error => console.error(error));
+        .catch((error) => console.error(error));
 }
 
 
@@ -304,4 +324,4 @@ function clearAllInputs() {
 //-----------------------------------
 //window.onload = async function () { };
 
-module.exports = { generateID }
+

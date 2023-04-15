@@ -8,22 +8,22 @@ const path = require("path");
 const fs = require("fs");
 const userService = require("../services/userService");
 const multer = require("multer"); // Multer is a middleware for handling multipart/form-data
-const { generateID } = require("../public");
-
-const cors = require("cors");
-router.use(cors());
-
-
-
 router.use(express.static("./public")); //  to use script in html, need to use static inside router file instead server file.
 router.use(express.static("./repository"));
 
+function generateID() {
+  return Math.floor(Math.random() * 900000) + 100000;
+}
+
 router.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
+
   res.header(
     "Access-Control-Allow-Headers",
+
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+
   next();
 });
 
@@ -130,6 +130,20 @@ router.get("/getReservedDate", async (req, res) => {
       res.status(200).send(data);
     })
     .catch((err) => {
+      res.status(err.code).send(err);
+    });
+});
+
+// Register new Bookings
+router.post("/updateReservedDate", (req, res) => {
+  //console.log('This is new booking: ', req.body)
+  userService
+    .updateReservedDate(req.body)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      //  console.error('passed here', err);
       res.status(err.code).send(err);
     });
 });

@@ -67,6 +67,24 @@ main {
   outline: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+@media screen and (max-width: 768px) {
+  .input {
+    width: 250px;
+  }
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+          appearance: textfield;
+  width: 280px;
+}
 
 /*
 ************************************************
@@ -457,7 +475,7 @@ header .mobile-menu-icon {
 }
 @media screen and (max-width: 768px) {
   .booking .workspaces-container .search-bar-container #dropdown-search-bar {
-    width: 300px;
+    width: 250px;
     margin: 0;
   }
 }
@@ -560,7 +578,7 @@ header .mobile-menu-icon {
   justify-content: center;
 }
 .booking .modal-calendar-container #modal-calendar .modal-content {
-  border: solid;
+  border: 2px solid #000000;
   padding: 20px;
   width: 80%;
   height: 550px;
@@ -570,7 +588,7 @@ header .mobile-menu-icon {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: lightgray;
+  background-color: #f0f0f0;
 }
 .booking .modal-calendar-container #modal-calendar .modal-content #calendar-container {
   display: flex;
@@ -590,12 +608,14 @@ header .mobile-menu-icon {
   justify-content: space-evenly;
   align-items: center;
   border: solid 2px;
+  border-radius: 4px;
   width: 100%;
 }
 .booking .modal-calendar-container #modal-calendar .modal-content #calendar-container table {
   width: 100%;
   border-collapse: separate;
   background-color: #252424;
+  border-radius: 4px;
   margin: 15px 0;
   height: 280px;
 }
@@ -632,6 +652,12 @@ header .mobile-menu-icon {
   justify-content: space-between;
   width: 50%;
 }
+@media screen and (max-width: 900px) {
+  .booking .modal-calendar-container #modal-calendar .modal-content .calendar-buttons-container-submit-close {
+    display: flex;
+    justify-content: center;
+  }
+}
 
 /*
 ************************************************
@@ -660,7 +686,7 @@ header .mobile-menu-icon {
     height: 150px;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 480px) {
   .ownerspace .owner-workspace-page-container {
     height: 280px;
     text-align: center;
@@ -697,7 +723,7 @@ header .mobile-menu-icon {
 }
 @media screen and (max-width: 768px) {
   .ownerspace .workspaces-container .search-bar-container .search-bar-divison #dropdown-search-bar-property {
-    width: 300px;
+    width: 250px;
     margin: 0;
   }
 }
@@ -721,7 +747,7 @@ header .mobile-menu-icon {
 }
 @media screen and (max-width: 768px) {
   .ownerspace .workspaces-container .search-bar-container .search-bar-divison #dropdown-search-bar-workspace {
-    width: 300px;
+    width: 250px;
     margin: 0;
   }
 }
@@ -774,6 +800,9 @@ header .mobile-menu-icon {
 @media screen and (max-width: 480px) {
   .ownerspace .workspaces-container .property-division {
     width: 100%;
+    min-width: -moz-min-content;
+    min-width: min-content;
+    height: 250px;
   }
 }
 .ownerspace .workspaces-container .property-division .property-description-container {
@@ -788,6 +817,30 @@ header .mobile-menu-icon {
   bottom: 0;
   left: 0;
   right: 0;
+}
+@media screen and (max-width: 480px) {
+  .ownerspace .workspaces-container .property-division .button-property-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.ownerspace .workspaces-container .property-division .button-property-container #btn-update-property {
+  background-color: #398378;
+}
+.ownerspace .workspaces-container .property-division .button-property-container #btn-update-property:hover {
+  background-color: #2a5f57;
+}
+.ownerspace .workspaces-container .property-division .button-property-container button[name=Inactive] {
+  background-color: #833e39;
+}
+.ownerspace .workspaces-container .property-division .button-property-container button[name=Inactive]:hover {
+  background-color: #5f2d2a;
+}
+.ownerspace .workspaces-container .property-division .button-property-container button[name=Active] {
+  background-color: #396283;
+}
+.ownerspace .workspaces-container .property-division .button-property-container button[name=Active]:hover {
+  background-color: #2a475f;
 }
 .ownerspace .workspaces-container .rooms-container {
   display: flex;
@@ -869,6 +922,24 @@ header .mobile-menu-icon {
   justify-content: space-around;
   margin: 20px;
 }
+.ownerspace .workspaces-container .rooms-container .room-division .button-container #btn-update-workspace {
+  background-color: #398378;
+}
+.ownerspace .workspaces-container .rooms-container .room-division .button-container #btn-update-workspace:hover {
+  background-color: #2a5f57;
+}
+.ownerspace .workspaces-container .rooms-container .room-division .button-container button[name=Inactive] {
+  background-color: #833e39;
+}
+.ownerspace .workspaces-container .rooms-container .room-division .button-container button[name=Inactive]:hover {
+  background-color: #5f2d2a;
+}
+.ownerspace .workspaces-container .rooms-container .room-division .button-container button[name=Active] {
+  background-color: #396283;
+}
+.ownerspace .workspaces-container .rooms-container .room-division .button-container button[name=Active]:hover {
+  background-color: #2a475f;
+}
 .ownerspace .modal-add-property-container #modal-add-property,
 .ownerspace .modal-add-property-container .modal-add-workspace,
 .ownerspace .modal-add-workspace-container #modal-add-property,
@@ -897,7 +968,7 @@ header .mobile-menu-icon {
   border: 2px solid #000000;
   padding: 20px;
   width: 80%;
-  height: 550px;
+  height: 600px;
   max-width: 600px;
   border-radius: 5px;
   display: flex;
@@ -905,19 +976,6 @@ header .mobile-menu-icon {
   align-items: center;
   justify-content: center;
   background-color: #f0f0f0;
-}
-@media screen and (max-width: 480px) {
-  .ownerspace .modal-add-property-container #modal-add-property .modal-content-property,
-  .ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace,
-  .ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property,
-  .ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace,
-  .ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property,
-  .ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace,
-  .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property,
-  .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace {
-    width: 85vw;
-    height: 85vh;
-  }
 }
 .ownerspace .modal-add-property-container #modal-add-property .modal-content-property h2,
 .ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace h2,
@@ -956,6 +1014,26 @@ header .mobile-menu-icon {
   font-size: 16px;
   color: #333;
   margin-top: 10px;
+  margin-bottom: 20px;
+  width: 90%;
+}
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-property-form input,
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-workspace-form input,
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace .add-property-form input,
+.ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace .add-workspace-form input,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property .add-property-form input,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property .add-workspace-form input,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace .add-property-form input,
+.ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace .add-workspace-form input,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property .add-property-form input,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property .add-workspace-form input,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace .add-property-form input,
+.ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace .add-workspace-form input,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property .add-property-form input,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property .add-workspace-form input,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .add-property-form input,
+.ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .add-workspace-form input {
+  width: 280px;
 }
 @media screen and (max-width: 480px) {
   .ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-property-form,
@@ -1222,6 +1300,42 @@ header .mobile-menu-icon {
   border-radius: 50%;
   background-color: #fff;
   transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+@media screen and (max-width: 768px) {
+  .ownerspace .modal-add-property-container #modal-add-property .modal-content-property,
+  .ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property,
+  .ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property,
+  .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property {
+    width: 75vw;
+    height: 75vh;
+  }
+}
+@media screen and (max-width: 480px) {
+  .ownerspace .modal-add-property-container #modal-add-property .modal-content-property,
+  .ownerspace .modal-add-property-container .modal-add-workspace .modal-content-property,
+  .ownerspace .modal-add-workspace-container #modal-add-property .modal-content-property,
+  .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-property {
+    width: 80vw;
+    height: 65vh;
+  }
+}
+@media screen and (max-width: 768px) {
+  .ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace,
+  .ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace,
+  .ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace,
+  .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace {
+    width: 75vw;
+    height: 85vh;
+  }
+}
+@media screen and (max-width: 480px) {
+  .ownerspace .modal-add-property-container #modal-add-property .modal-content-workspace,
+  .ownerspace .modal-add-property-container .modal-add-workspace .modal-content-workspace,
+  .ownerspace .modal-add-workspace-container #modal-add-property .modal-content-workspace,
+  .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace {
+    width: 80vw;
+    height: 90vh;
+  }
 }
 
 /*
