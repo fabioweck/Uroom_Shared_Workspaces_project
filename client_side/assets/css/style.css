@@ -330,15 +330,14 @@ header .mobile-menu-icon {
     display: none;
   }
 }
-#login .login-title #login-box,
+
 #login .login-title #logout-box {
   width: 100%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-#login .login-title #login-box input,
 #login .login-title #logout-box input {
   width: 50%;
   height: 40px;
@@ -347,7 +346,6 @@ header .mobile-menu-icon {
   font-size: 25px;
   color: #252424;
 }
-#login .login-title #login-box button,
 #login .login-title #logout-box button {
   border: none;
   border-radius: 5px;
@@ -360,13 +358,51 @@ header .mobile-menu-icon {
   font-size: 25px;
   cursor: pointer;
 }
-#login .login-title #login-box button:hover,
 #login .login-title #logout-box button:hover {
   background-color: rgba(57, 131, 120, 0.6352941176);
   transition: 0.5s;
 }
-#login .login-title #login-box a,
-#login .login-title #logout-box a {
+#login .login-title #logout-box p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: grey;
+  padding: 20px;
+  text-align: center;
+}
+#login .login-title #login-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#login .login-title #login-box input {
+  width: 50%;
+  height: 40px;
+  padding: 20px;
+  margin-top: 20px;
+  font-size: 25px;
+  color: #252424;
+}
+
+#login .login-title #login-box button {
+  border: none;
+  border-radius: 5px;
+  margin: 50px auto 10px;
+  color: white;
+  background-color: #398378;
+  padding: 10px 40px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+#login .login-title #login-box button:hover {
+  background-color: rgba(57, 131, 120, 0.6352941176);
+  transition: 0.5s;
+}
+#login .login-title #login-box a {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: grey;
   padding: 20px;
