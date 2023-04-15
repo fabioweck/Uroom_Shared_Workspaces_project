@@ -11,7 +11,7 @@ import { baseUrl } from "./general_conf.js";
 /*=============================================
 → ### LOGIN - LOGOUT FUNCTIONS ### */
 
-let loggedUser = localStorage.getItem('user_id');; //Assigns key to variable
+let loggedUser = localStorage.getItem('user_id'); //Assigns key to variable
 let login;
 
 
@@ -34,6 +34,7 @@ async function isLoggedIn () {
 
     else
     {
+        clearAllInputs();
         return;
     }
 }
