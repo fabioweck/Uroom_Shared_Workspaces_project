@@ -95,7 +95,7 @@ async function sendNewProperty() {
     const ParkingLot = document.getElementById("parkingLot").value;
     const PublicTransportation = document.getElementById("publicTransportation").value;
     const property_status = parseInt(document.querySelector('input[name="status"]:checked').value) ? true : false;
-    const property_id = generateID();
+    const property_id = generateID(); //------- remover daqui e passar para o back.
     const user_id = getCurrentUser();
 
     // Convert input values to JSON format
@@ -248,9 +248,9 @@ async function getReservedDate(workspace) {
 async function updateReservedDate(workspace) {
     const user_id = getCurrentUser();
     const workspace_id = workspace;
-    const year = 2023;
+    const year = 2025;
     const month = 4;
-    const days = [5, 6, 7]
+    const days = [17, 22, 3, 2]
 
     const newBooking = {
         user_id,

@@ -255,22 +255,24 @@ async function updateReservedDate(dates) {
 
     return new Promise(async (resolve, reject) => {
 
-        {
-            for (const [year, months] of Object.entries(bookingsForWorkspace)) {
-                for (const [month, days] of Object.entries(months)) {
-                    for (const day of Object.entries(days)) {
-                        console.log(year, month, days, day);
-                        // formattedBookings.push({
-                        //     year: parseInt(year),
-                        //     month: parseInt(month),
-                        //     days
-                        // });
-                    }
-                }
-            }
-            //  console.log(bookingsForWorkspace);
-            // resolve(formattedBookings)
+        if (!(newBooking.year in bookingsForWorkspace)) {
+            bookingsForWorkspace[newBooking.year] = {};
         }
+        if (!(newBooking.month in bookingsForWorkspace[newBooking.year])) {
+            bookingsForWorkspace[newBooking.year][newBooking.month] = [];
+        }
+        for (const day of newBooking.days) {
+            if (!bookingsForWorkspace[newBooking.year][newBooking.month].includes(day)) {
+                bookingsForWorkspace[newBooking.year][newBooking.month].push(day);
+            }
+        }
+
+        const sortedBookings = sortBookings(bookings);
+
+
+        await writeJsonFile(sortedBookings, 'bookings.json');
+
+
 
     }).catch(err => {
         const code = err.statusCode || 500;
@@ -280,6 +282,41 @@ async function updateReservedDate(dates) {
 
 }
 
+
+function sortBookings(bookings) {
+
+    for (const workspace_bookings in bookings[0]) {
+
+        for (const workspace_id in bookings[0][workspace_bookings]) {
+
+            if (Array.isArray(workspace_id)) {
+                bookings[0][workspace_bookings] = workspace_id.sort((a, b) => a - b);
+            }
+
+            for (const year in bookings[0][workspace_bookings][workspace_id]) {
+
+                if (Array.isArray(year)) {
+                    bookings[0][workspace_bookings][workspace_id] = year.sort((a, b) => a - b);
+                }
+
+                for (const month in bookings[0][workspace_bookings][workspace_id][year]) {
+
+                    if (Array.isArray(month)) {
+                        bookings[0][workspace_bookings][workspace_id][year] = month.sort((a, b) => a - b);
+                    }
+
+                    const days = bookings[0][workspace_bookings][workspace_id][year][month];
+                    console.log('test', days);
+
+                    if (Array.isArray(days)) {
+                        bookings[0][workspace_bookings][workspace_id][year][month] = days.sort((a, b) => a - b);
+                    }
+                }
+            }
+        }
+    }
+    return bookings;
+}
 
 
 
