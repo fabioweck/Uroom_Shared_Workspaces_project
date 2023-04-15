@@ -3,6 +3,27 @@
 ### GENERAL - NAV BAR AND FOOTER ###
 ************************************************
 */
+import { loggedUser } from "./login.js";
+
+/*=============================================
+→ ### LOAD CHECKER ### */
+
+const checkLogged = window.addEventListener("load", ()=>{
+   
+  const navbarLogin = document.querySelector('#link-login');
+
+  if(loggedUser)
+  {
+      navbarLogin.innerHTML = "Logout";
+  }
+
+  else
+  {
+      return;
+  }
+
+})
+
 /*==============================================
 → ### VIEW ICON MOBILE MENU ### */
 const viewMobileMenu = () => {

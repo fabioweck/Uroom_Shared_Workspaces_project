@@ -7,29 +7,28 @@
 → ### IMPORTS ### */
 import { baseUrl } from "./general_conf.js";
 
-
 /*=============================================
-→ ### LOGIN - LOGOUT FUNCTIONS ### */
+→ ### LOAD CHECKER ### */
 
-let loggedUser = localStorage.getItem('user_id'); //Assigns key to variable
+export let loggedUser = localStorage.getItem('user_id'); //Assigns key to variable
 let login;
-
 
 //Fields hidden/displayed after login/logout
 const loginFields = document.querySelector('#login-box');
-const navbarLogin = document.querySelector('#link-login');
 const logoutBox = document.querySelector('#logout-box');
 
 //Check if key exists and display logout box/hide login box
-window.onload = isLoggedIn();
+const checkLogged = window.addEventListener("load", ()=>{
+   
+    const navbarLogin = document.querySelector('#link-login');
 
-async function isLoggedIn () {
-    
-    if (loggedUser)
+    if(loggedUser)
     {
-        navbarLogin.innerHTML = "Logout";
+
         loginFields.style.display = "none";
+        navbarLogin.innerHTML = "Logout";
         logoutBox.style.display = "flex";
+        
     }
 
     else
@@ -37,12 +36,16 @@ async function isLoggedIn () {
         clearAllInputs();
         return;
     }
-}
 
+})
 
 try{
  login = document.querySelector('#submit').addEventListener('click', userLogin);
 }catch(err){}
+
+
+/*=============================================
+→ ### LOGIN - LOGOUT FUNCTIONS ### */
 
 //Function to fetch user and store key ID in local storage
 
@@ -74,7 +77,10 @@ async function userLogin() {
                 
                 response.json().then(data=>{
 
-                    displayError.style.display = "flex";
+                    $('#dv-display').slideDown("slow").css({
+                        "display":"flex",
+                        "content" : "any"
+                    });
                     displayError.innerHTML = data.message;
                     return;
                 })                        
@@ -96,7 +102,10 @@ async function userLogin() {
         });
 };
 
-const logout = document.querySelector('#logout').addEventListener('click', userLogout);
+try{
+    const logout = document.querySelector('#logout').addEventListener('click', userLogout);
+}catch(err){ };
+
 
 function userLogout() {
     localStorage.removeItem('user_id');
