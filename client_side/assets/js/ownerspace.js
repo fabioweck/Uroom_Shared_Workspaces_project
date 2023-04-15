@@ -476,7 +476,7 @@ inputTransportationYes.value = "yes";
 
 // Create label element for Yes option of public transportation
 const labelTransportationYes = document.createElement("label");
-labelTransportationYes.htmlFor = "yes";
+labelTransportationYes.htmlFor = "public-transportation-yes";
 labelTransportationYes.textContent = "Yes";
 
 // Create input element for No option of public transportation
@@ -488,7 +488,7 @@ inputTransportationNo.value = "no";
 
 // Create label element for No option of public transportation
 const labelTransportationNo = document.createElement("label");
-labelTransportationNo.htmlFor = "no";
+labelTransportationNo.htmlFor = "public-transportation-no";
 labelTransportationNo.textContent = "No";
 
 // Append radio button elements to radio-option-container for public transportation
@@ -727,7 +727,7 @@ yesRadioworkspaceType.id = "desk";
 yesRadioworkspaceType.value = "desk";
 
 const yesRadioLabelworkspaceType = document.createElement("label");
-yesRadioLabelworkspaceType.htmlFor = "yes";
+yesRadioLabelworkspaceType.htmlFor = "desk";
 yesRadioLabelworkspaceType.textContent = "Desk";
 
 const noRadioworkspaceType = document.createElement("input");
@@ -737,7 +737,7 @@ noRadioworkspaceType.id = "office";
 noRadioworkspaceType.value = "office";
 
 const noRadioLabelworkspaceType = document.createElement("label");
-noRadioLabelworkspaceType.htmlFor = "no";
+noRadioLabelworkspaceType.htmlFor = "office";
 noRadioLabelworkspaceType.textContent = "Office";
 
 workspaceTypeRadioContainer.appendChild(yesRadioworkspaceType);
@@ -1047,23 +1047,17 @@ const sendNewProperty = (event) => {
   //   user_id: getCurrentUser(),
   // };
 
-  const property_id = 1234;
-  const parkingLotValue = parkingLot.value;
-  const publicTransportationValue = publicTransportation.value;
-  const status = true;
-  const currentUser = getCurrentUser();
-
-  const postNewProperty = {
-    property_id,
-    address,
-    neighbourhood,
-    parkingLotValue,
-    publicTransportationValue,
-    status,
-    currentUser,
+  const myObj = {
+    property_id: 726507,
+    address: "auburn",
+    neighborhood: "auburnbay",
+    ParkingLot: "yes",
+    PublicTransportation: "yes",
+    status: "true",
+    user_id: "267b55a7-193a-47d2-bf0e-9dcc95706a90",
   };
 
-  serverPostNewProperty(myObject);
+  serverPostNewProperty(myObj);
 
   hideModalProperty(event);
 };
