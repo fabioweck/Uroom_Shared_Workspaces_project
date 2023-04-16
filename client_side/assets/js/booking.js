@@ -20,6 +20,17 @@ var selectedDays = []; // Array to store selected days on calendar
 var selectedDates = []; // Array to store selected dates on calendar
 var propertiesData = []; // Receive data from the server
 
+/*=============================================
+→ ### CALENDAR MODAL ### */
+// Get the modal element
+const modalCalendar = document.getElementById("modal-calendar");
+
+// Get the submit button element
+const submitBtn = modalCalendar.querySelector("#submit-selected-dates");
+
+// Get the close button element
+const cancelBtn = modalCalendar.querySelector("#button-cancel");
+
 // Function to create a new object with updated month value
 const createNewSelectedDateObject = () => {
   // Check if an object with current year and current month + 1 already exists
@@ -44,28 +55,33 @@ const createNewSelectedDateObject = () => {
   selectedDates.push(newSelectedDate); // Add the new object to selectedDates array
 };
 
-/*=============================================
-→ ### CALENDAR MODAL ### */
-// Get the modal element
-const modalCalendar = document.getElementById("modal-calendar");
+//Clear Selected dates object
+const clearSelectedDatesObject = () => {
+  selectedDates = [
+    {
+      user_id: getLoggedUser(),
+      workspace_id: buttonBookIdValue,
+      year: currentYear,
+      month: currentMonth + 1,
+      days: [],
+    },
+  ];
+};
 
-// Get the submit button element
-const submitBtn = modalCalendar.querySelector("#submit-selected-dates");
-
-// Get the close button element
-const cancelBtn = modalCalendar.querySelector("#button-cancel");
+// Clear selected days on calendar (class)
+const clearSelectDates = () => {
+  const selectedTds = document.querySelectorAll(".selected");
+  selectedTds.forEach((td) => {
+    td.classList.remove("selected");
+    td.classList.add("available");
+  });
+};
 
 // Show the modal when a button is clicked
 const showModal = () => {
   modalCalendar.style.display = "flex";
 
-  // selectedDates = [
-  //   {
-  //     year: presentYear,
-  //     month: presentMonth + 1,
-  //     days: [],
-  //   },
-  // ];
+  clearSelectedDatesObject();
 
   calendarModal();
 };
@@ -75,12 +91,7 @@ const hideModal = (event) => {
   if (event.target == cancelBtn || event.target == submitBtn) {
     modalCalendar.style.display = "none";
 
-    //reset the selected days on calendar
-    const selectedTds = document.querySelectorAll(".selected");
-    selectedTds.forEach((td) => {
-      td.classList.remove("selected");
-      td.classList.add("available");
-    });
+    clearSelectDates();
 
     currentMonth = presentMonth;
     currentYear = presentYear;

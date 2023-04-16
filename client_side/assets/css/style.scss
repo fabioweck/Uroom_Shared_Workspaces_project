@@ -724,6 +724,10 @@ header {
               background-color: $selectedColor;
               color: $txtColor0;
               cursor: pointer;
+
+              &:hover {
+                background-color: darken($selectedColor, 10%);
+              }
             }
           }
         }
