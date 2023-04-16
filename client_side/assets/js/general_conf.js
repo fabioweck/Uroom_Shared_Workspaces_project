@@ -5,6 +5,10 @@
 */
 export let loggedUser = localStorage.getItem('user_id'); //Assigns key to variable
 
+export const clearLoggerdUser = () => {
+  loggedUser = "";
+}
+
 /*=============================================
 → ### LOAD CHECKER ### */
 
