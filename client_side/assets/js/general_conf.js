@@ -1,5 +1,20 @@
 /*
 ************************************************
+### GENERAL - LOGIN ###
+************************************************
+*/
+export let loggedUser = localStorage.getItem("user_id"); //Assigns key to variable
+
+export const getLoggedUser = () => {
+  return loggedUser;
+};
+
+export const clearLoggerdUser = () => {
+  loggedUser = "";
+};
+
+/*
+************************************************
 ### GENERAL - NAV BAR AND FOOTER ###
 ************************************************
 */
@@ -63,7 +78,11 @@ btnMobileMenu.addEventListener("click", viewMobileMenu);
   document.getElementById("link-home").href = linkIndex;
 
   try {
-    document.getElementById("link-login").innerHTML = "Login";
+    if (loggedUser) {
+      document.getElementById("link-login").innerHTML = "Logout";
+    } else {
+      document.getElementById("link-login").innerHTML = "Login";
+    }
     document.getElementById("link-login").href = linkLogin;
   } catch (err) {}
 
@@ -86,33 +105,6 @@ btnMobileMenu.addEventListener("click", viewMobileMenu);
     "&copy; Weck Martins Evaristo Camargo. 2023.";
   document.getElementById("footer-copyright").innerHTML = "All Rights Reserved";
 })();
-
-/*
-************************************************
-### GENERAL - LOGIN ###
-************************************************
-*/
-export let loggedUser = localStorage.getItem("user_id"); //Assigns key to variable
-
-export const getLoggedUser = () => {
-  return loggedUser;
-};
-
-export const clearLoggerdUser = () => {
-  loggedUser = "";
-};
-
-/*=============================================
-→ ### LOAD CHECKER ### */
-
-const checkLogged = window.addEventListener("load", () => {
-  const navbarLogin = document.querySelector("#link-login");
-  if (loggedUser) {
-    navbarLogin.innerHTML = "Logout";
-  } else {
-    return;
-  }
-});
 
 /*
 ************************************************
@@ -161,7 +153,7 @@ export const serverGetAvailableDates = async (workspaceId) => {
   → ### POST - SELECTED DATES ### */
 export const serverPostSelectedDates = async (selectedDates) => {
   console.log("selectedDates Sent", selectedDates);
-  console.log('JSON.stringify(selectedDates)',JSON.stringify(selectedDates))
+  console.log("JSON.stringify(selectedDates)", JSON.stringify(selectedDates));
   await fetch(baseUrl + "updateReservedDate", {
     method: "POST",
     headers: {
