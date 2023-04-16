@@ -81,6 +81,8 @@ const clearSelectDates = () => {
 const showModal = () => {
   modalCalendar.style.display = "flex";
 
+  prevMonthButton.disabled = true;
+
   clearSelectedDatesObject();
 
   calendarModal();
@@ -580,7 +582,8 @@ const calendarTable = document.createElement("table");
 //   calendarYear.innerHTML = currentYear;
 // };
 
-const updateCalendar = () => { //unavailable Calendar (reversed)
+const updateCalendar = () => {
+  //unavailable Calendar (reversed)
   daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   calendarSubTitle.innerHTML = `Workspace ID: ${buttonBookIdValue}`;
   calendarTable.innerHTML = ""; // Clear existing table
@@ -628,7 +631,8 @@ const updateCalendar = () => { //unavailable Calendar (reversed)
         }
 
         td.addEventListener("click", () => {
-          if (td.classList.contains("available")) { // Check for "available" class
+          if (td.classList.contains("available")) {
+            // Check for "available" class
             if (td.classList.contains("selected")) {
               td.classList.remove("selected");
               td.classList.add("available"); // Reverse class name
@@ -641,7 +645,7 @@ const updateCalendar = () => { //unavailable Calendar (reversed)
               td.classList.add("selected");
               if (!selectedDays.includes(td.textContent)) {
                 selectedDays.push(parseInt(td.textContent));
-                
+
                 const updateSelectedDates = selectedDates.find(
                   (date) => date.month === currentMonth + 1
                 );
