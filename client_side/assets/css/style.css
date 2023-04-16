@@ -649,6 +649,9 @@ header .mobile-menu-icon {
   color: aliceblue;
   cursor: pointer;
 }
+.booking .modal-calendar-container #modal-calendar .modal-content #calendar-container table td.selected:hover {
+  background-color: #0062cc;
+}
 .booking .modal-calendar-container #modal-calendar .modal-content .calendar-buttons-container-submit-close {
   display: flex;
   justify-content: space-between;

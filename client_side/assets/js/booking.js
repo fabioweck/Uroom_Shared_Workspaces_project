@@ -20,6 +20,17 @@ var selectedDays = []; // Array to store selected days on calendar
 var selectedDates = []; // Array to store selected dates on calendar
 var propertiesData = []; // Receive data from the server
 
+/*=============================================
+→ ### CALENDAR MODAL ### */
+// Get the modal element
+const modalCalendar = document.getElementById("modal-calendar");
+
+// Get the submit button element
+const submitBtn = modalCalendar.querySelector("#submit-selected-dates");
+
+// Get the close button element
+const cancelBtn = modalCalendar.querySelector("#button-cancel");
+
 // Function to create a new object with updated month value
 const createNewSelectedDateObject = () => {
   // Check if an object with current year and current month + 1 already exists
@@ -44,28 +55,33 @@ const createNewSelectedDateObject = () => {
   selectedDates.push(newSelectedDate); // Add the new object to selectedDates array
 };
 
-/*=============================================
-→ ### CALENDAR MODAL ### */
-// Get the modal element
-const modalCalendar = document.getElementById("modal-calendar");
+//Clear Selected dates object
+const clearSelectedDatesObject = () => {
+  selectedDates = [
+    {
+      user_id: getLoggedUser(),
+      workspace_id: buttonBookIdValue,
+      year: currentYear,
+      month: currentMonth + 1,
+      days: [],
+    },
+  ];
+};
 
-// Get the submit button element
-const submitBtn = modalCalendar.querySelector("#submit-selected-dates");
-
-// Get the close button element
-const cancelBtn = modalCalendar.querySelector("#button-cancel");
+// Clear selected days on calendar (class)
+const clearSelectDates = () => {
+  const selectedTds = document.querySelectorAll(".selected");
+  selectedTds.forEach((td) => {
+    td.classList.remove("selected");
+    td.classList.add("available");
+  });
+};
 
 // Show the modal when a button is clicked
 const showModal = () => {
   modalCalendar.style.display = "flex";
 
-  // selectedDates = [
-  //   {
-  //     year: presentYear,
-  //     month: presentMonth + 1,
-  //     days: [],
-  //   },
-  // ];
+  clearSelectedDatesObject();
 
   calendarModal();
 };
@@ -75,12 +91,7 @@ const hideModal = (event) => {
   if (event.target == cancelBtn || event.target == submitBtn) {
     modalCalendar.style.display = "none";
 
-    //reset the selected days on calendar
-    const selectedTds = document.querySelectorAll(".selected");
-    selectedTds.forEach((td) => {
-      td.classList.remove("selected");
-      td.classList.add("available");
-    });
+    clearSelectDates();
 
     currentMonth = presentMonth;
     currentYear = presentYear;
@@ -475,7 +486,101 @@ const calendarYear = document.getElementById("calendar-year");
 const calendarTable = document.createElement("table");
 
 // Function to update the calendar with the current month's dates
-const updateCalendar = () => {
+// const updateCalendar = () => {
+//   daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+//   calendarSubTitle.innerHTML = `Workspace ID: ${buttonBookIdValue}`;
+//   calendarTable.innerHTML = ""; // Clear existing table
+
+//   // Create the header row with the days of the week
+//   const headerRow = document.createElement("tr");
+//   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+//   for (let day of daysOfWeek) {
+//     const th = document.createElement("th");
+//     th.textContent = day;
+//     headerRow.appendChild(th);
+//   }
+//   calendarTable.appendChild(headerRow);
+
+//   // Create the calendar rows with the days of the month
+//   for (let i = 1; i <= daysInMonth; i++) {
+//     const tr = document.createElement("tr");
+//     for (let j = 0; j < 7; j++) {
+//       const td = document.createElement("td");
+//       if (
+//         i <= daysInMonth &&
+//         j >= new Date(currentYear, currentMonth, i).getDay()
+//       ) {
+//         td.textContent = i;
+//         const foundDate = availableDates.find(
+//           (date) =>
+//             date.year === currentYear &&
+//             date.month === currentMonth + 1 &&
+//             date.days.includes(i)
+//         );
+//         if (foundDate) {
+//           td.className = "available";
+//         } else {
+//           td.className = "unavailable";
+//         }
+
+//         const foundDateSelected = selectedDates.find(
+//           (date) =>
+//             date.year === currentYear &&
+//             date.month === currentMonth + 1 &&
+//             date.days.includes(i)
+//         );
+//         if (foundDateSelected) {
+//           td.className = "selected";
+//         }
+
+//         td.addEventListener("click", () => {
+//           if (!td.classList.contains("unavailable")) {
+//             if (td.classList.contains("selected")) {
+//               td.classList.remove("selected");
+//               td.classList.add("available");
+//               const index = selectedDays.indexOf(td.textContent);
+//               if (index !== -1) {
+//                 selectedDays.splice(index, 1); // Remove from array if unselected
+//               }
+//             } else {
+//               td.classList.remove("available");
+//               td.classList.add("selected");
+//               if (!selectedDays.includes(td.textContent)) {
+//                 selectedDays.push(parseInt(td.textContent));
+
+//                 const updateSelectedDates = selectedDates.find(
+//                   (date) => date.month === currentMonth + 1
+//                 );
+//                 updateSelectedDates.days = [
+//                   ...updateSelectedDates.days,
+//                   ...selectedDays,
+//                 ]; //open both array in one
+//                 updateSelectedDates.days = [
+//                   ...new Set(updateSelectedDates.days),
+//                 ]; //remove duplicate values
+//                 updateSelectedDates.days = updateSelectedDates.days.sort(
+//                   (a, b) => a - b
+//                 ); // Sort the array in ascending numeric order
+//               }
+//             }
+//           }
+//         });
+//         i++;
+//       }
+//       tr.appendChild(td);
+//     }
+//     i--;
+//     calendarTable.appendChild(tr);
+//   }
+
+//   //Reset the selected days
+//   selectedDays = [];
+
+//   calendarMonth.innerHTML = monthNames[currentMonth];
+//   calendarYear.innerHTML = currentYear;
+// };
+
+const updateCalendar = () => { //unavailable Calendar (reversed)
   daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   calendarSubTitle.innerHTML = `Workspace ID: ${buttonBookIdValue}`;
   calendarTable.innerHTML = ""; // Clear existing table
@@ -507,9 +612,9 @@ const updateCalendar = () => {
             date.days.includes(i)
         );
         if (foundDate) {
-          td.className = "available";
+          td.className = "unavailable"; // Reverse class name
         } else {
-          td.className = "unavailable";
+          td.className = "available"; // Reverse class name
         }
 
         const foundDateSelected = selectedDates.find(
@@ -519,34 +624,34 @@ const updateCalendar = () => {
             date.days.includes(i)
         );
         if (foundDateSelected) {
-          td.className = "selected";
+          td.className = ""; // Remove "selected" class
         }
 
         td.addEventListener("click", () => {
-          if (!td.classList.contains("unavailable")) {
+          if (td.classList.contains("available")) { // Check for "available" class
             if (td.classList.contains("selected")) {
               td.classList.remove("selected");
-              td.classList.add("available");
+              td.classList.add("available"); // Reverse class name
               const index = selectedDays.indexOf(td.textContent);
               if (index !== -1) {
                 selectedDays.splice(index, 1); // Remove from array if unselected
               }
             } else {
-              td.classList.remove("available");
+              td.classList.remove("unavailable"); // Reverse class name
               td.classList.add("selected");
               if (!selectedDays.includes(td.textContent)) {
                 selectedDays.push(parseInt(td.textContent));
-
+                
                 const updateSelectedDates = selectedDates.find(
                   (date) => date.month === currentMonth + 1
                 );
                 updateSelectedDates.days = [
                   ...updateSelectedDates.days,
                   ...selectedDays,
-                ]; //open both array in one
+                ]; // Open both arrays into one
                 updateSelectedDates.days = [
                   ...new Set(updateSelectedDates.days),
-                ]; //remove duplicate values
+                ]; // Remove duplicate values
                 updateSelectedDates.days = updateSelectedDates.days.sort(
                   (a, b) => a - b
                 ); // Sort the array in ascending numeric order
@@ -562,7 +667,7 @@ const updateCalendar = () => {
     calendarTable.appendChild(tr);
   }
 
-  //Reset the selected days
+  // Reset the selected days
   selectedDays = [];
 
   calendarMonth.innerHTML = monthNames[currentMonth];

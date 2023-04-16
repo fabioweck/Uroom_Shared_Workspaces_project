@@ -3,41 +3,6 @@
 ### GENERAL - NAV BAR AND FOOTER ###
 ************************************************
 */
-export let loggedUser = localStorage.getItem('user_id'); //Assigns key to variable
-
-export const clearLoggerdUser = () => {
-  loggedUser = "";
-}
-
-/*=============================================
-→ ### LOAD CHECKER ### */
-
-const checkLogged = window.addEventListener("load", ()=>{
-   
-  const navbarLogin = document.querySelector('#link-login');
-  if(loggedUser)
-  {
-      navbarLogin.innerHTML = "Logout";
-  }
-  else
-  {
-      return;
-  }
-})
-
-
-/*=============================================
-→ ### HOME AND ABOUT PAGE - PICTURE EFFECT ### */
-
-try{
-  const codingImageEffect = $('#room-picture').fadeTo("slow", 1);
-}catch(err){};
-
-try{
-  const roomImageEffect = $('#coding-picture').fadeTo("slow", 1);
-}catch(err){};
-
-
 /*==============================================
 → ### VIEW ICON MOBILE MENU ### */
 const viewMobileMenu = () => {
@@ -122,6 +87,53 @@ btnMobileMenu.addEventListener("click", viewMobileMenu);
   document.getElementById("footer-copyright").innerHTML = "All Rights Reserved";
 })();
 
+/*
+************************************************
+### GENERAL - LOGIN ###
+************************************************
+*/
+export let loggedUser = localStorage.getItem("user_id"); //Assigns key to variable
+
+export const getLoggedUser = () => {
+  return loggedUser;
+};
+
+export const clearLoggerdUser = () => {
+  loggedUser = "";
+};
+
+/*=============================================
+→ ### LOAD CHECKER ### */
+
+const checkLogged = window.addEventListener("load", () => {
+  const navbarLogin = document.querySelector("#link-login");
+  if (loggedUser) {
+    navbarLogin.innerHTML = "Logout";
+  } else {
+    return;
+  }
+});
+
+/*
+************************************************
+### GENERAL - EFFECT ###
+************************************************
+*/
+/*=============================================
+→ ### HOME AND ABOUT PAGE - PICTURE EFFECT ### */
+try {
+  const codingImageEffect = $("#room-picture").fadeTo("slow", 1);
+} catch (err) {}
+
+try {
+  const roomImageEffect = $("#coding-picture").fadeTo("slow", 1);
+} catch (err) {}
+
+/*
+************************************************
+### GENERAL - SERVER ###
+************************************************
+*/
 /*==============================================
   → ### BASE SERVER ROUTE ### */
 const port = 3010;
@@ -136,7 +148,7 @@ export const getCurrentUser = () => {
 /*==============================================
   → ### GET - DATES TO CALENDAR ### */
 export const serverGetAvailableDates = async (workspaceId) => {
-  await fetch(`${baseUrl}getReservedDate?workspace_id=${workspaceId}`)
+  return fetch(`${baseUrl}getReservedDate?workspace_id=${workspaceId}`)
     .then((response) => response.json())
     .then((data) => {
       console.log("Available dates", data);
@@ -147,30 +159,19 @@ export const serverGetAvailableDates = async (workspaceId) => {
 
 /*==============================================
   → ### POST - SELECTED DATES ### */
-export const serverPostSelectedDates = async (dates) => {
-
-  ///////// in construction
-  const newBooking = {
-    user_id,
-    workspace_id,
-    year,
-    month,
-    days,
-  };
-
-  console.log(newBooking);
-
+export const serverPostSelectedDates = async (selectedDates) => {
+  console.log("selectedDates Sent", selectedDates);
+  console.log('JSON.stringify(selectedDates)',JSON.stringify(selectedDates))
   await fetch(baseUrl + "updateReservedDate", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(newBooking),
+    body: JSON.stringify(selectedDates),
   })
     .then((response) => response.json())
     .then((data) => {
-      clearAllInputs();
-      console.log(data);
+      console.log("serverPostSelectedDates data", data);
     })
     .catch((error) => console.error(error));
 };

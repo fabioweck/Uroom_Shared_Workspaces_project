@@ -1,13 +1,7 @@
-//const { response } = require("express");
 
 // router server config port
 const port = 3010;
 const baseUrl = `http://localhost:${port}/`;
-
-function generateID() {
-    return Math.floor(Math.random() * 900000) + 100000;
-}
-
 
 async function sendNewUserClient() {
 
@@ -27,10 +21,6 @@ async function sendNewUserClient() {
         owner,
     };
 
-    console.log(newUserData);
-    console.log(typeof newUserData.owner); // Output: boolean
-
-
     // Send POST request to server with new staff data
     await fetch(baseUrl + 'newUser', {
         method: "POST",
@@ -47,6 +37,43 @@ async function sendNewUserClient() {
         )
         .catch((error) => console.error(error));
 }
+
+async function updateUser() {
+
+    // Retrieve input values from HTML form
+    const fullName = document.getElementById("FullName").value;
+    const phoneNumber = document.getElementById("phoneNumber").value;
+    const emailAddress = document.getElementById("emailAddress").value;
+    const password = document.getElementById("password").value;
+    const owner = parseInt(document.querySelector('input[name="owner"]:checked').value) ? true : false;
+    const user_id = getCurrentUser();
+    // Convert input values to JSON format
+    const newUserData = {
+        user_id,
+        fullName,
+        phoneNumber,
+        emailAddress,
+        password,
+        owner,
+    };
+
+    // Send POST request to server with new staff data
+    await fetch(baseUrl + 'updateUser', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUserData),
+    })
+
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        }
+        )
+        .catch((error) => console.error(error));
+}
+
 
 async function userLogin() {
 
@@ -95,12 +122,10 @@ async function sendNewProperty() {
     const ParkingLot = document.getElementById("parkingLot").value;
     const PublicTransportation = document.getElementById("publicTransportation").value;
     const property_status = parseInt(document.querySelector('input[name="status"]:checked').value) ? true : false;
-    const property_id = generateID(); //------- remover daqui e passar para o back.
     const user_id = getCurrentUser();
 
     // Convert input values to JSON format
     const newPropertyData = {
-        property_id,
         address,
         neighborhood,
         ParkingLot,
@@ -125,7 +150,6 @@ async function sendNewProperty() {
         }
         )
         .catch((error) => console.error(error));
-
 }
 
 
@@ -140,12 +164,10 @@ async function sendNewWorkspace() {
     const lease_term = document.getElementById("lease_term").value;
     const property_id = parseInt(document.getElementById("property_id").value);
     const workspace_status = parseInt(document.querySelector('input[name="status"]:checked').value) ? true : false;
-    const workspace_id = parseInt(generateID());
     const user_id = getCurrentUser();
 
     // Convert input values to JSON format
     const newWorkspaceData = {
-        workspace_id,
         workspace_type,
         seats,
         smoking,
@@ -247,7 +269,7 @@ async function getReservedDate(workspace) {
 
 async function updateReservedDate(workspace) {
     const user_id = getCurrentUser();
-    const workspace_id = workspace;
+    const workspace_id = '552491';
     const year = 2025;
     const month = 4;
     const days = [17, 22, 3, 2]
@@ -276,11 +298,6 @@ async function updateReservedDate(workspace) {
         })
         .catch((error) => console.error(error));
 }
-
-
-
-
-
 
 //====================Standard Functions======================//
 
@@ -319,9 +336,3 @@ function clearAllInputs() {
         input.value = '';
     });
 }
-
-
-//-----------------------------------
-//window.onload = async function () { };
-
-
