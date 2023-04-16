@@ -5,9 +5,12 @@
 */
 /*=============================================
 → ### IMPORTS ### */
-import { baseUrl } from "./general_conf.js";
-import { serverGetAvailableDates } from "./general_conf.js"
-import { serverPostSelectedDates } from "./general_conf.js"
+import {
+  baseUrl,
+  getLoggedUser,
+  serverGetAvailableDates,
+  serverPostSelectedDates,
+} from "./general_conf.js";
 
 /*=============================================
 → ### GLOBAL VARIABLES ### */
@@ -31,6 +34,8 @@ const createNewSelectedDateObject = () => {
 
   // Create a new object with updated month value
   let newSelectedDate = {
+    user_id: getLoggedUser(),
+    workspace_id: buttonBookIdValue,
     year: currentYear,
     month: currentMonth + 1,
     days: selectedDays,
@@ -54,13 +59,13 @@ const cancelBtn = modalCalendar.querySelector("#button-cancel");
 const showModal = () => {
   modalCalendar.style.display = "flex";
 
-  selectedDates = [
-    {
-      year: presentYear,
-      month: presentMonth + 1,
-      days: [],
-    },
-  ];
+  // selectedDates = [
+  //   {
+  //     year: presentYear,
+  //     month: presentMonth + 1,
+  //     days: [],
+  //   },
+  // ];
 
   calendarModal();
 };
@@ -89,6 +94,7 @@ document.addEventListener("click", (event) => {
   if (event.target.matches(`#btn-book`)) {
     buttonBookIdValue = event.target.value;
     showModal();
+    createNewSelectedDateObject();
   }
 });
 
@@ -274,12 +280,12 @@ const displayPropertiesData = (propertiesData) => {
       property_id,
     } = propertyData;
 
-    if(!workspace_status){
-      console.log('index-skip',index);
+    if (!workspace_status) {
+      console.log("index-skip", index);
       return;
     }
 
-    console.log('propertyData',propertyData);
+    console.log("propertyData", propertyData);
     const roomDivision = document.createElement("div");
     roomDivision.className = "room-division";
     roomDivision.style.display = "none";
@@ -357,7 +363,6 @@ const displayPropertiesData = (propertiesData) => {
 /*=============================================
 → ### CREATE THE CALENDAR ### */
 const calendarModal = async () => {
-  // availableDates = getAvailableDates();
   availableDates = await serverGetAvailableDates(buttonBookIdValue);
   updateCalendar();
 };
@@ -390,13 +395,13 @@ let currentMonth = currentDate.getMonth(); //Navigation
 let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
 // Initialize the selectedDates with the present month and year
-selectedDates = [
-  {
-    year: presentYear,
-    month: presentMonth + 1,
-    days: selectedDays,
-  },
-];
+// selectedDates = [
+//   {
+//     year: presentYear,
+//     month: presentMonth + 1,
+//     days: selectedDays,
+//   },
+// ];
 
 const monthNames = [
   "January",
@@ -614,10 +619,7 @@ const sendSelectedDates = () => {
   const filteredDatesResult = selectedDates.filter(
     (date) => date.days.length > 0
   );
-  console.log(
-    `Post Simulation - Dates sent to server, property id ${buttonBookIdValue}`
-  );
-  console.log(filteredDatesResult);
+  serverPostSelectedDates(filteredDatesResult);
 };
 
 submitBtn.addEventListener("click", sendSelectedDates);
