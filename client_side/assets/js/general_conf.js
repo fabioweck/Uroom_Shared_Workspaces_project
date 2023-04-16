@@ -161,7 +161,7 @@ export const serverGetAvailableDates = async (workspaceId) => {
   → ### POST - SELECTED DATES ### */
 export const serverPostSelectedDates = async (selectedDates) => {
   console.log("selectedDates Sent", selectedDates);
-
+  console.log('JSON.stringify(selectedDates)',JSON.stringify(selectedDates))
   await fetch(baseUrl + "updateReservedDate", {
     method: "POST",
     headers: {
@@ -171,7 +171,7 @@ export const serverPostSelectedDates = async (selectedDates) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("serverPostSelectedDates data",data);
+      console.log("serverPostSelectedDates data", data);
     })
     .catch((error) => console.error(error));
 };
