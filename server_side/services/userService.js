@@ -2,6 +2,7 @@
 const path = require('path');
 const { uuid } = require('uuidv4');
 const fs = require('fs');
+const { escape } = require('querystring');
 
 
 async function addUser(user) {
@@ -242,6 +243,88 @@ async function getReservedDate(workspace) {
     });
 };
 
+async function updateReservedDate(dates) {
+
+    const newBooking = dates;
+    const bookings = await loadJsonFile('bookings.json');
+    const workspaceBookings = bookings[0].workspace_bookings;
+    const bookingsForWorkspace = workspaceBookings[newBooking.workspace_id];
+
+    console.log('This is new booking: ', newBooking)
+    console.log('This is the booking file: ', bookings, bookingsForWorkspace);
+
+    return new Promise(async (resolve, reject) => {
+
+        if (!(newBooking.year in bookingsForWorkspace)) {
+            bookingsForWorkspace[newBooking.year] = {};
+        }
+        if (!(newBooking.month in bookingsForWorkspace[newBooking.year])) {
+            bookingsForWorkspace[newBooking.year][newBooking.month] = [];
+        }
+        for (const day of newBooking.days) {
+            if (!bookingsForWorkspace[newBooking.year][newBooking.month].includes(day)) {
+                bookingsForWorkspace[newBooking.year][newBooking.month].push(day);
+            }
+        }
+
+        const sortedBookings = sortBookings(bookings);
+
+
+        await writeJsonFile(sortedBookings, 'bookings.json');
+
+
+
+    }).catch(err => {
+        const code = err.statusCode || 500;
+        const message = err.message || 'Error occurred while delisting workspace';
+        throw { code, message };
+    });
+
+}
+
+
+function sortBookings(bookings) {
+
+    for (const workspace_bookings in bookings[0]) {
+
+        for (const workspace_id in bookings[0][workspace_bookings]) {
+
+            if (Array.isArray(workspace_id)) {
+                bookings[0][workspace_bookings] = workspace_id.sort((a, b) => a - b);
+            }
+
+            for (const year in bookings[0][workspace_bookings][workspace_id]) {
+
+                if (Array.isArray(year)) {
+                    bookings[0][workspace_bookings][workspace_id] = year.sort((a, b) => a - b);
+                }
+
+                for (const month in bookings[0][workspace_bookings][workspace_id][year]) {
+
+                    if (Array.isArray(month)) {
+                        bookings[0][workspace_bookings][workspace_id][year] = month.sort((a, b) => a - b);
+                    }
+
+                    const days = bookings[0][workspace_bookings][workspace_id][year][month];
+                    console.log('test', days);
+
+                    if (Array.isArray(days)) {
+                        bookings[0][workspace_bookings][workspace_id][year][month] = days.sort((a, b) => a - b);
+                    }
+                }
+            }
+        }
+    }
+    return bookings;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -254,17 +337,17 @@ async function delistWorkspace(user_id, workspace_id) {
 
             if (workspace.workspace_id == workspace_id) {
                 if (workspace.user_id === user_id) {
-                    workspace.status = false;
-                    await writeJsonFile(workspaces, 'workspaces.json');
-
+                    workspace.workspace_status = false;
                     console.log('The workspace', workspace_id, 'was delisted');
 
                     resolve(workspace);
                 } else {
                     console.log('workspace not found');
+                    resolve();
                 }
             }
         }
+        await writeJsonFile(workspaces, 'workspaces.json');
     }).catch(err => {
         const code = err.statusCode || 500;
         const message = err.message || 'Error occurred while delisting workspace';
@@ -285,7 +368,7 @@ async function delistProperty(user_id, property_id) {
         for (const workspace of workspaces) {
             if (workspace.property_id == property_id) {
 
-                await delistWorkspace(user_id, workspace.workspace_id)
+                delistWorkspace(user_id, workspace.workspace_id)
                 workspaceDelisted.push(workspace.workspace_id);
             };
         }
@@ -296,14 +379,16 @@ async function delistProperty(user_id, property_id) {
 
                 if (property.user_id == user_id) {
 
-                    property.status = false;
-
-                    await writeJsonFile(properties, 'properties.json');
+                    property.property_status = false;
 
                     console.log('The workspace', property_id, 'was delisted');
-                }
-            }
+                } else {
+                    resolve('user not match the property');
+                };
+            };
         };
+
+        await writeJsonFile(properties, 'properties.json');
         resolve(`The property ${property_id} and workspace(s): ${workspaceDelisted} was delisted successful`);
 
     }).catch(err => {
@@ -346,4 +431,4 @@ async function writeJsonFile(data, fileName) {
 }
 
 
-module.exports = { addUser, login, addProperty, addWorkspace, findPropertyByOwner, findWorkspaceByOwner, getWorkspaceByOwner, delistWorkspace, delistProperty, getReservedDate }
+module.exports = { addUser, login, addProperty, addWorkspace, findPropertyByOwner, findWorkspaceByOwner, getWorkspaceByOwner, delistWorkspace, delistProperty, getReservedDate, updateReservedDate }

@@ -16,8 +16,10 @@ $txtColor2: grey;
 $txtColor3: white;
 $txtColor4: #333;
 
-$btnColor0: white;
+$btnColor0: grey;
 $btnColor1: #398378;
+$btnColor2: #396283;
+$btnColor3: #833e39;
 
 $selectedColor: #007bff;
 $availableColor: #28a745;
@@ -76,7 +78,7 @@ main {
   }
 
   &:disabled {
-    background-color: $txtColor2;
+    background-color: $btnColor0;
     cursor: not-allowed;
   }
 }
@@ -97,6 +99,22 @@ main {
     outline: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
+
+  @media screen and (max-width: $max-width1) {
+    width: 250px;
+  }
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  width: 280px;
 }
 
 /*
@@ -512,7 +530,7 @@ header {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
         @media screen and (max-width: $max-width1) {
-          width: 300px;
+          width: 250px;
           margin: 0;
         }
 
@@ -628,7 +646,7 @@ header {
       justify-content: center;
 
       .modal-content {
-        border: solid;
+        border: 2px solid #000000;
         padding: 20px;
         width: 80%;
         height: 550px;
@@ -638,7 +656,7 @@ header {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: $bgColor3;
+        background-color: #f0f0f0;
 
         #calendar-container {
           display: flex;
@@ -659,6 +677,7 @@ header {
             justify-content: space-evenly;
             align-items: center;
             border: solid 2px;
+            border-radius: 4px;
             width: 100%;
           }
 
@@ -666,9 +685,9 @@ header {
             width: 100%;
             border-collapse: separate;
             background-color: $bgColor5;
+            border-radius: 4px;
             margin: 15px 0;
             height: 280px;
-
             th,
             td {
               width: 50px;
@@ -709,6 +728,11 @@ header {
           display: flex;
           justify-content: space-between;
           width: 50%;
+
+          @media screen and (max-width: 900px) {
+            display: flex;
+            justify-content: center;
+          }
         }
       }
     }
@@ -741,7 +765,7 @@ header {
       height: 150px;
     }
 
-    @media screen and (max-width: $max-width1) {
+    @media screen and (max-width: $max-width2) {
       height: 280px;
       text-align: center;
     }
@@ -778,7 +802,7 @@ header {
           display: none;
 
           @media screen and (max-width: $max-width1) {
-            width: 300px;
+            width: 250px;
             margin: 0;
           }
 
@@ -804,7 +828,7 @@ header {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
           @media screen and (max-width: $max-width1) {
-            width: 300px;
+            width: 250px;
             margin: 0;
           }
 
@@ -864,6 +888,8 @@ header {
 
       @media screen and (max-width: $max-width2) {
         width: 100%;
+        min-width: min-content;
+        height: 250px;
       }
 
       .property-description-container {
@@ -879,6 +905,35 @@ header {
         bottom: 0;
         left: 0;
         right: 0;
+
+        @media screen and (max-width: $max-width2) {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        #btn-update-property {
+          background-color: $btnColor1;
+
+          &:hover {
+            background-color: darken($btnColor1, 10%);
+          }
+        }
+
+        button[name="Inactive"] {
+          background-color: $btnColor3;
+
+          &:hover {
+            background-color: darken($btnColor3, 10%);
+          }
+        }
+
+        button[name="Active"] {
+          background-color: $btnColor2;
+
+          &:hover {
+            background-color: darken($btnColor2, 10%);
+          }
+        }
       }
     }
 
@@ -966,6 +1021,30 @@ header {
           display: flex;
           justify-content: space-around;
           margin: 20px;
+
+          #btn-update-workspace {
+            background-color: $btnColor1;
+
+            &:hover {
+              background-color: darken($btnColor1, 10%);
+            }
+          }
+
+          button[name="Inactive"] {
+            background-color: $btnColor3;
+
+            &:hover {
+              background-color: darken($btnColor3, 10%);
+            }
+          }
+
+          button[name="Active"] {
+            background-color: $btnColor2;
+
+            &:hover {
+              background-color: darken($btnColor2, 10%);
+            }
+          }
         }
       }
     }
@@ -993,7 +1072,7 @@ header {
         border: 2px solid #000000;
         padding: 20px;
         width: 80%;
-        height: 550px;
+        height: 600px;
         max-width: 600px;
         border-radius: 5px;
         display: flex;
@@ -1001,11 +1080,6 @@ header {
         align-items: center;
         justify-content: center;
         background-color: #f0f0f0;
-
-        @media screen and (max-width: $max-width2) {
-          width: 85vw;
-          height: 85vh;
-        }
 
         h2 {
           padding: 10px;
@@ -1024,6 +1098,12 @@ header {
           font-size: 16px;
           color: $txtColor4;
           margin-top: 10px;
+          margin-bottom: 20px;
+          width: 90%;
+
+          input {
+            width: 280px;
+          }
 
           @media screen and (max-width: $max-width2) {
             border: none;
@@ -1108,6 +1188,27 @@ header {
               }
             }
           }
+        }
+      }
+
+      .modal-content-property {
+        @media screen and (max-width: $max-width1) {
+          width: 75vw;
+          height: 75vh;
+        }
+        @media screen and (max-width: $max-width2) {
+          width: 80vw;
+          height: 65vh;
+        }
+      }
+      .modal-content-workspace {
+        @media screen and (max-width: $max-width1) {
+          width: 75vw;
+          height: 85vh;
+        }
+        @media screen and (max-width: $max-width2) {
+          width: 80vw;
+          height: 90vh;
         }
       }
     }
