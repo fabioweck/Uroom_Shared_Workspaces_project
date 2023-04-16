@@ -6,8 +6,8 @@
 /*=============================================
 → ### IMPORTS ### */
 import { baseUrl } from "./general_conf.js";
-import { serverGetAvailableDates } from "./general_conf.js"
-import { serverPostSelectedDates } from "./general_conf.js"
+import { serverGetAvailableDates } from "./general_conf.js";
+import { serverPostSelectedDates } from "./general_conf.js";
 
 /*=============================================
 → ### GLOBAL VARIABLES ### */
@@ -274,12 +274,12 @@ const displayPropertiesData = (propertiesData) => {
       property_id,
     } = propertyData;
 
-    if(!workspace_status){
-      console.log('index-skip',index);
+    if (!workspace_status) {
+      console.log("index-skip", index);
       return;
     }
 
-    console.log('propertyData',propertyData);
+    console.log("propertyData", propertyData);
     const roomDivision = document.createElement("div");
     roomDivision.className = "room-division";
     roomDivision.style.display = "none";
@@ -357,7 +357,6 @@ const displayPropertiesData = (propertiesData) => {
 /*=============================================
 → ### CREATE THE CALENDAR ### */
 const calendarModal = async () => {
-  // availableDates = getAvailableDates();
   availableDates = await serverGetAvailableDates(buttonBookIdValue);
   updateCalendar();
 };

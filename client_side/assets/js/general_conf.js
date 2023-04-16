@@ -136,7 +136,7 @@ export const getCurrentUser = () => {
 /*==============================================
   → ### GET - DATES TO CALENDAR ### */
 export const serverGetAvailableDates = async (workspaceId) => {
-  await fetch(`${baseUrl}getReservedDate?workspace_id=${workspaceId}`)
+  return fetch(`${baseUrl}getReservedDate?workspace_id=${workspaceId}`)
     .then((response) => response.json())
     .then((data) => {
       console.log("Available dates", data);
