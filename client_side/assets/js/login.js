@@ -19,7 +19,7 @@ const logoutBox = document.querySelector("#logout-box");
 const checkLogged = window.addEventListener("load", () => {
   const navbarLogin = document.querySelector("#link-login");
 
-  if (getLoggedUser) {
+  if (getLoggedUser()) {
     loginFields.style.display = "none";
     navbarLogin.innerHTML = "Logout";
     logoutBox.style.display = "flex";
