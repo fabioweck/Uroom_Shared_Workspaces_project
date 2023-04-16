@@ -242,10 +242,11 @@ header {
   position: relative;
   text-align: center;
 
-  img {
+  #room-picture {
     display: block;
     max-width: 100%;
     height: auto;
+    opacity: 0.1;
   }
 
   .title {
@@ -1226,6 +1227,94 @@ header {
     }
   }
 }
+
+/*
+************************************************
+### MAIN - ABOUT PAGE ###
+************************************************
+*/
+
+.container{
+
+  #introduction{
+    .intro-container{
+      #coding-picture {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        opacity: 0.1;
+      }
+    }
+  }
+  
+
+}
+
+/*
+************************************************
+### MAIN - CONTACT PAGE ###
+************************************************
+*/
+
+.container{
+
+  #contact-us{
+
+    display: flex;
+    flex-direction: row;
+    margin: 100px auto;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    
+
+    .half-card-left{
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      color: $txtColor1;
+
+      h1{   
+        padding: 10px 30px;
+        font-size: 40px;
+      }
+
+      h2{
+        padding: 10px 20px;
+        font-size: 30px;
+      }
+
+    }
+
+    .half-card-right{
+      width: 100%;
+      text-align: center;
+
+      input{
+        font-size: 25px;
+      }
+      #form-text {
+        width: 100%;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        resize: none;
+      }
+    }
+
+  }
+
+}
+
 
 /*
 ************************************************
