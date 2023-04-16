@@ -287,38 +287,41 @@ async function getReservedDate(workspace) {
 }
 
 async function updateReservedDate(dates) {
-  const newBooking = dates;
-  const bookings = await loadJsonFile("bookings.json");
-  const workspaceBookings = bookings[0].workspace_bookings;
-  const bookingsForWorkspace = workspaceBookings[newBooking.workspace_id];
-
-  console.log("from front", dates);
-  console.log("from file", bookings);
-  return new Promise(async (resolve, reject) => {
-    if (!(newBooking.year in bookingsForWorkspace)) {
-      bookingsForWorkspace[newBooking.year] = {};
-    }
-    if (!(newBooking.month in bookingsForWorkspace[newBooking.year])) {
-      bookingsForWorkspace[newBooking.year][newBooking.month] = [];
-    }
-    for (const day of newBooking.days) {
-      if (
-        !bookingsForWorkspace[newBooking.year][newBooking.month].includes(day)
-      ) {
-        bookingsForWorkspace[newBooking.year][newBooking.month].push(day);
-      }
-    }
-
-    const sortedBookings = sortBookings(bookings);
-
-    await writeJsonFile(sortedBookings, "bookings.json");
-    resolve("mensagem do leandro");
-  }).catch((err) => {
-    const code = err.statusCode || 500;
-    const message = err.message || "Error occurred while delisting workspace";
-    throw { code, message };
-  });
-}
+    const newBooking = dates;
+    const bookings = await loadJsonFile("bookings.json");
+    const workspaceBookings = bookings[0].workspace_bookings;
+    const bookingsForWorkspace = workspaceBookings[newBooking.workspace_id] || {}; // Add null check here
+  
+    console.log("from front", dates);
+    console.log("from file", bookings);
+    return new Promise(async (resolve, reject) => {
+      newBooking.forEach((book) => {
+        if (!(book.year in bookingsForWorkspace)) {
+          bookingsForWorkspace[book.year] = {};
+        }
+        if (!(book.month in bookingsForWorkspace[book.year])) {
+          bookingsForWorkspace[book.year][book.month] = [];
+        }
+        for (const day of book.days) {
+          if (
+            !bookingsForWorkspace[book.year][book.month].includes(day)
+          ) {
+            bookingsForWorkspace[book.year][book.month].push(day);
+          }
+        }
+      });
+  
+      const sortedBookings = sortBookings(bookings);
+  
+      await writeJsonFile(sortedBookings, "bookings.json");
+      resolve("mensagem do leandro");
+    }).catch((err) => {
+      const code = err.statusCode || 500;
+      const message = err.message || "Error occurred while delisting workspace";
+      throw { code, message };
+    });
+  }
+  
 
 function sortBookings(bookings) {
   for (const workspace_bookings in bookings[0]) {
