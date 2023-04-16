@@ -5,12 +5,10 @@
 */
 /*=============================================
 → ### IMPORTS ### */
-import { baseUrl } from "./general_conf.js";
+import { baseUrl, loggedUser } from "./general_conf.js";
 
 /*=============================================
 → ### LOAD CHECKER ### */
-
-export let loggedUser = localStorage.getItem('user_id'); //Assigns key to variable
 let login;
 
 //Fields hidden/displayed after login/logout

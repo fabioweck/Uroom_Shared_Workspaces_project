@@ -3,7 +3,7 @@
 ### GENERAL - NAV BAR AND FOOTER ###
 ************************************************
 */
-import { loggedUser } from "./login.js";
+export let loggedUser = localStorage.getItem('user_id'); //Assigns key to variable
 
 /*=============================================
 → ### LOAD CHECKER ### */
