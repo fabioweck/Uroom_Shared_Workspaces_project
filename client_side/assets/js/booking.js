@@ -81,6 +81,8 @@ const clearSelectDates = () => {
 const showModal = () => {
   modalCalendar.style.display = "flex";
 
+  prevMonthButton.disabled = true;
+
   clearSelectedDatesObject();
 
   calendarModal();
@@ -486,101 +488,7 @@ const calendarYear = document.getElementById("calendar-year");
 const calendarTable = document.createElement("table");
 
 // Function to update the calendar with the current month's dates
-// const updateCalendar = () => {
-//   daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-//   calendarSubTitle.innerHTML = `Workspace ID: ${buttonBookIdValue}`;
-//   calendarTable.innerHTML = ""; // Clear existing table
-
-//   // Create the header row with the days of the week
-//   const headerRow = document.createElement("tr");
-//   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-//   for (let day of daysOfWeek) {
-//     const th = document.createElement("th");
-//     th.textContent = day;
-//     headerRow.appendChild(th);
-//   }
-//   calendarTable.appendChild(headerRow);
-
-//   // Create the calendar rows with the days of the month
-//   for (let i = 1; i <= daysInMonth; i++) {
-//     const tr = document.createElement("tr");
-//     for (let j = 0; j < 7; j++) {
-//       const td = document.createElement("td");
-//       if (
-//         i <= daysInMonth &&
-//         j >= new Date(currentYear, currentMonth, i).getDay()
-//       ) {
-//         td.textContent = i;
-//         const foundDate = availableDates.find(
-//           (date) =>
-//             date.year === currentYear &&
-//             date.month === currentMonth + 1 &&
-//             date.days.includes(i)
-//         );
-//         if (foundDate) {
-//           td.className = "available";
-//         } else {
-//           td.className = "unavailable";
-//         }
-
-//         const foundDateSelected = selectedDates.find(
-//           (date) =>
-//             date.year === currentYear &&
-//             date.month === currentMonth + 1 &&
-//             date.days.includes(i)
-//         );
-//         if (foundDateSelected) {
-//           td.className = "selected";
-//         }
-
-//         td.addEventListener("click", () => {
-//           if (!td.classList.contains("unavailable")) {
-//             if (td.classList.contains("selected")) {
-//               td.classList.remove("selected");
-//               td.classList.add("available");
-//               const index = selectedDays.indexOf(td.textContent);
-//               if (index !== -1) {
-//                 selectedDays.splice(index, 1); // Remove from array if unselected
-//               }
-//             } else {
-//               td.classList.remove("available");
-//               td.classList.add("selected");
-//               if (!selectedDays.includes(td.textContent)) {
-//                 selectedDays.push(parseInt(td.textContent));
-
-//                 const updateSelectedDates = selectedDates.find(
-//                   (date) => date.month === currentMonth + 1
-//                 );
-//                 updateSelectedDates.days = [
-//                   ...updateSelectedDates.days,
-//                   ...selectedDays,
-//                 ]; //open both array in one
-//                 updateSelectedDates.days = [
-//                   ...new Set(updateSelectedDates.days),
-//                 ]; //remove duplicate values
-//                 updateSelectedDates.days = updateSelectedDates.days.sort(
-//                   (a, b) => a - b
-//                 ); // Sort the array in ascending numeric order
-//               }
-//             }
-//           }
-//         });
-//         i++;
-//       }
-//       tr.appendChild(td);
-//     }
-//     i--;
-//     calendarTable.appendChild(tr);
-//   }
-
-//   //Reset the selected days
-//   selectedDays = [];
-
-//   calendarMonth.innerHTML = monthNames[currentMonth];
-//   calendarYear.innerHTML = currentYear;
-// };
-
-const updateCalendar = () => { //unavailable Calendar (reversed)
+const updateCalendar = () => {
   daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   calendarSubTitle.innerHTML = `Workspace ID: ${buttonBookIdValue}`;
   calendarTable.innerHTML = ""; // Clear existing table
@@ -628,7 +536,7 @@ const updateCalendar = () => { //unavailable Calendar (reversed)
         }
 
         td.addEventListener("click", () => {
-          if (td.classList.contains("available")) { // Check for "available" class
+          if (!td.classList.contains("unavailable")) {
             if (td.classList.contains("selected")) {
               td.classList.remove("selected");
               td.classList.add("available"); // Reverse class name
