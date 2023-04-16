@@ -4,6 +4,11 @@ const { uuid } = require('uuidv4');
 const fs = require('fs');
 const { escape } = require('querystring');
 
+function generateID() {
+    return Math.floor(Math.random() * 900000) + 100000;
+}
+
+
 
 async function addUser(user) {
 
@@ -42,8 +47,57 @@ async function addUser(user) {
         const message = err_2.message || 'Error occurred while logging in';
         throw { code, message };
     }
-
 }
+
+// async function updateUser(updateUser) {
+
+//     const users = await loadJsonFile('users.json');
+
+//     return new Promise(async (resolve, reject) => {
+
+//         for (const user of users) {
+//             if (user.user_id == updateUser.user_id) {
+//                 user.fullName = updateUser.fullName;
+//                 user.phoneNumber = updateUser.phoneNumber;
+//                 user.emailAddress = updateUser.emailAddress;
+//                 user.owner = updateUser.owner;
+
+//                 console.log('user after update:', user)
+//                 resolve(user);
+//             }
+//         }
+//         await writeJsonFile(users, 'users.json')
+
+//     }).catch(err => {
+//         const code = err.statusCode || 500;
+//         const message = err.message || 'Error occurred while delisting workspace';
+//         throw { code, message };
+//     });
+// };
+
+async function updateUser(updateUser) {
+
+    const users = await loadJsonFile('users.json');
+
+    return new Promise(async (resolve, reject) => {
+
+        for (const user of users) {
+            if (user.user_id == updateUser.user_id) {
+                Object.assign(user, updateUser);
+                console.log('user after update:', user)
+                resolve(user);
+            }
+        }
+        await writeJsonFile(users, 'users.json')
+
+    }).catch(err => {
+        const code = err.statusCode || 500;
+        const message = err.message || 'Error occurred while delisting workspace';
+        throw { code, message };
+    });
+};
+
+
 
 async function login(user) {
 
@@ -81,6 +135,12 @@ async function addProperty(newProperty) {
 
     const filePath = path.join(__dirname, '../repository/properties.json');
 
+    newProperty.property_id = generateID();
+
+    const firstThreeLetters = newProperty.user_id.substring(0, 3);
+    newProperty.property_id = firstThreeLetters + "-" + newProperty.property_id;
+
+
     try {
         return await new Promise((resolve, reject) => {
 
@@ -88,6 +148,7 @@ async function addProperty(newProperty) {
                 if (err) {
                     reject({ statusCode: 500, message: err.message });
                 } else {
+
 
                     // Parse existing data from JSON string
                     const existingData = JSON.parse(data);
@@ -100,7 +161,7 @@ async function addProperty(newProperty) {
                         if (err_1) {
                             reject({ statusCode: 500, message: err_1.message });
                         } else {
-                            resolve(newProperty.address);
+                            resolve(newProperty);
                         }
                     });
                 };
@@ -117,9 +178,12 @@ async function addProperty(newProperty) {
 
 async function addWorkspace(newWorkspace) {
 
-
-
     const filePath = path.join(__dirname, '../repository/workspaces.json');
+
+    newWorkspace.workspace_id = generateID();
+
+    const firstThreeLetters = newWorkspace.user_id.substring(0, 3);
+    newWorkspace.workspace_id = firstThreeLetters + "-" + newWorkspace.workspace_id;
 
     try {
         return await new Promise((resolve, reject) => {
@@ -139,7 +203,7 @@ async function addWorkspace(newWorkspace) {
                         if (err_1) {
                             reject({ statusCode: 500, message: err_1.message });
                         } else {
-                            resolve(newWorkspace.workspace_type);
+                            resolve(newWorkspace);
                         }
                     });
                 };
@@ -250,9 +314,8 @@ async function updateReservedDate(dates) {
     const workspaceBookings = bookings[0].workspace_bookings;
     const bookingsForWorkspace = workspaceBookings[newBooking.workspace_id];
 
-    console.log('This is new booking: ', newBooking)
-    console.log('This is the booking file: ', bookings, bookingsForWorkspace);
-
+    console.log('from front', dates);
+    console.log('from file', bookings);
     return new Promise(async (resolve, reject) => {
 
         if (!(newBooking.year in bookingsForWorkspace)) {
@@ -268,7 +331,6 @@ async function updateReservedDate(dates) {
         }
 
         const sortedBookings = sortBookings(bookings);
-
 
         await writeJsonFile(sortedBookings, 'bookings.json');
 
@@ -306,7 +368,6 @@ function sortBookings(bookings) {
                     }
 
                     const days = bookings[0][workspace_bookings][workspace_id][year][month];
-                    console.log('test', days);
 
                     if (Array.isArray(days)) {
                         bookings[0][workspace_bookings][workspace_id][year][month] = days.sort((a, b) => a - b);
@@ -317,15 +378,6 @@ function sortBookings(bookings) {
     }
     return bookings;
 }
-
-
-
-
-
-
-
-
-
 
 
 async function delistWorkspace(user_id, workspace_id) {
@@ -431,4 +483,4 @@ async function writeJsonFile(data, fileName) {
 }
 
 
-module.exports = { addUser, login, addProperty, addWorkspace, findPropertyByOwner, findWorkspaceByOwner, getWorkspaceByOwner, delistWorkspace, delistProperty, getReservedDate, updateReservedDate }
+module.exports = { addUser, login, addProperty, addWorkspace, findPropertyByOwner, findWorkspaceByOwner, getWorkspaceByOwner, delistWorkspace, delistProperty, getReservedDate, updateReservedDate, updateUser }

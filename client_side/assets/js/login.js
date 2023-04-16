@@ -5,7 +5,7 @@
 */
 /*=============================================
 → ### IMPORTS ### */
-import { baseUrl, loggedUser, clearLoggerdUser } from "./general_conf.js";
+import { baseUrl, getLoggedUser, clearLoggerdUser } from "./general_conf.js";
 
 /*=============================================
 → ### LOAD CHECKER ### */
@@ -19,7 +19,7 @@ const logoutBox = document.querySelector("#logout-box");
 const checkLogged = window.addEventListener("load", () => {
   const navbarLogin = document.querySelector("#link-login");
 
-  if (loggedUser) {
+  if (getLoggedUser) {
     loginFields.style.display = "none";
     navbarLogin.innerHTML = "Logout";
     logoutBox.style.display = "flex";
