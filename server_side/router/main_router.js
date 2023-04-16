@@ -45,6 +45,18 @@ router.post("/newUser", (req, res) => {
     });
 });
 
+// Update data for current User
+router.post("/updateUser", (req, res) => {
+  userService
+    .updateUser(req.body)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      res.status(err.code).send(err);
+    });
+});
+
 // to login
 router.post("/login", (req, res) => {
   userService
