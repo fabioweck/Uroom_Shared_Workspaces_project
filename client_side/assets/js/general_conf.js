@@ -11,18 +11,28 @@ import { loggedUser } from "./login.js";
 const checkLogged = window.addEventListener("load", ()=>{
    
   const navbarLogin = document.querySelector('#link-login');
-
   if(loggedUser)
   {
       navbarLogin.innerHTML = "Logout";
   }
-
   else
   {
       return;
   }
-
 })
+
+
+/*=============================================
+→ ### HOME AND ABOUT PAGE - PICTURE EFFECT ### */
+
+try{
+  const codingImageEffect = $('#room-picture').fadeTo("slow", 1);
+}catch(err){};
+
+try{
+  const roomImageEffect = $('#coding-picture').fadeTo("slow", 1);
+}catch(err){};
+
 
 /*==============================================
 → ### VIEW ICON MOBILE MENU ### */
