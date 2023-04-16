@@ -6,6 +6,8 @@
 /*=============================================
 → ### IMPORTS ### */
 import { baseUrl } from "./general_conf.js";
+import { serverGetAvailableDates } from "./general_conf.js"
+import { serverPostSelectedDates } from "./general_conf.js"
 
 /*=============================================
 → ### GLOBAL VARIABLES ### */
@@ -354,33 +356,30 @@ const displayPropertiesData = (propertiesData) => {
 
 /*=============================================
 → ### CREATE THE CALENDAR ### */
-const calendarModal = () => {
-  availableDates = getAvailableDates();
+const calendarModal = async () => {
+  // availableDates = getAvailableDates();
+  availableDates = await serverGetAvailableDates(buttonBookIdValue);
   updateCalendar();
 };
 
-const getAvailableDates = () => {
-  const dates = [
-    {
-      year: 2023,
-      month: 4,
-      days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 18, 19, 20, 21, 22, 23, 24],
-    },
-    { year: 2023, month: 5, days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
-    { year: 2023, month: 6, days: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24] },
-    { year: 2023, month: 7, days: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24] },
-    { year: 2023, month: 8, days: [29, 30, 31] },
-    { year: 2023, month: 9, days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
-  ];
+// const getAvailableDates = () => {
+//   const dates = [
+//     { year: 2023, month: 4, days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 18, 19, 20, 21, 22, 23, 24] },
+//     { year: 2023, month: 5, days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
+//     { year: 2023, month: 6, days: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24] },
+//     { year: 2023, month: 7, days: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24] },
+//     { year: 2023, month: 8, days: [29, 30, 31] },
+//     { year: 2023, month: 9, days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
+//   ];
 
-  availableDates = dates;
+//   availableDates = dates;
 
-  console.log(
-    `Get Simulation - Available dates, property id ${buttonBookIdValue}`
-  );
-  console.log(`availableDates`, availableDates);
-  return availableDates;
-};
+//   console.log(
+//     `Get Simulation - Available dates, property id ${buttonBookIdValue}`
+//   );
+//   console.log(`availableDates`, availableDates);
+//   return availableDates;
+// };
 
 const calendarContainer = document.getElementById("calendar-container");
 const currentDate = new Date();

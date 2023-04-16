@@ -229,29 +229,32 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
         property_id,
       } = propertyWorkspaceData;
 
-      var propertyDivision = document.createElement("div");
+      const propertyDivision = document.createElement("div");
       propertyDivision.className = "property-division";
       propertyDivision.style.display = "none";
 
-      var propertyDescriptionContainer = document.createElement("div");
+      const propertyDescriptionContainer = document.createElement("div");
       propertyDescriptionContainer.className = "property-description-container";
 
-      var propertyDescriptionWrap = document.createElement("div");
+      const propertyDescriptionWrap = document.createElement("div");
       propertyDescriptionWrap.className = "property-description-wrap";
 
-      var addressParagraph = document.createElement("p");
+      const addressParagraph = document.createElement("p");
       addressParagraph.innerHTML = `<strong>Address: </strong>${address} ${neighborhood}`;
 
-      var parkingLotParagraph = document.createElement("p");
+      const parkingLotParagraph = document.createElement("p");
       parkingLotParagraph.innerHTML = `<strong>Parking Lot:</strong> ${ParkingLot}`;
 
-      var publicTransportationParagraph = document.createElement("p");
+      const publicTransportationParagraph = document.createElement("p");
       publicTransportationParagraph.innerHTML = `<strong>Public Transportation:</strong> ${PublicTransportation}`;
 
-      var statusPropertyParagraph = document.createElement("p");
-      statusPropertyParagraph.innerHTML = `<strong>Status Property:</strong> ${workspace_status}`;
+      const iconStatusPropertyParagraph = workspace_status
+        ? `<i class="fa-solid fa-circle-check fa-2xl" style="color: #1f5132;"></i>`
+        : `<i class="fa-solid fa-circle-xmark fa-2xl" style="color: #511f1f;"></i>`;
+      const statusPropertyParagraph = document.createElement("p");
+      statusPropertyParagraph.innerHTML = `<strong>Status Property:</strong> ${iconStatusPropertyParagraph}`;
 
-      var idPropertyParagraph = document.createElement("p");
+      const idPropertyParagraph = document.createElement("p");
       idPropertyParagraph.innerHTML = `<strong>ID Property:</strong> ${property_id}`;
 
       propertyDescriptionWrap.appendChild(addressParagraph);
@@ -261,20 +264,21 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       propertyDescriptionWrap.appendChild(idPropertyParagraph);
 
       propertyDescriptionContainer.appendChild(propertyDescriptionWrap);
+      propertyDescriptionContainer.appendChild(statusPropertyParagraph);
 
-      var buttonPropertyContainer = document.createElement("div");
+      const buttonPropertyContainer = document.createElement("div");
       buttonPropertyContainer.className = "button-property-container";
 
-      var updateButton = document.createElement("button");
+      const updateButton = document.createElement("button");
       updateButton.className = "btn";
       updateButton.id = "btn-update-property";
       updateButton.textContent = "Update";
       updateButton.value = `${property_id}`;
 
       const statusActiveInactiveButton = !workspace_status
-        ? "Active"
-        : "Inactive";
-      var activeInactiveButton = document.createElement("button");
+        ? "Activate"
+        : "Deactivate";
+      const activeInactiveButton = document.createElement("button");
       activeInactiveButton.className = "btn";
       activeInactiveButton.id = "btn-active-inactive-property";
       activeInactiveButton.name = statusActiveInactiveButton;
@@ -378,8 +382,8 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
     btnUpdateWorkspace.value = `${workspace_id}`;
 
     const statusBtnActiveInactiveWorkspace = !workspace_status
-      ? "Active"
-      : "Inactive";
+      ? "Activate"
+      : "Deactivate";
     const btnActiveInactiveWorkspace = document.createElement("button");
     btnActiveInactiveWorkspace.className = "btn";
     btnActiveInactiveWorkspace.id = `btn-active-inactive-workspace`;

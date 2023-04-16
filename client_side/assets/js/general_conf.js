@@ -130,8 +130,49 @@ export const getCurrentUser = () => {
 };
 
 /*==============================================
-  → ### POST - NEW PROPERTY ### */
+  → ### GET - DATES TO CALENDAR ### */
+export const serverGetAvailableDates = async (workspaceId) => {
+  await fetch(`${baseUrl}getReservedDate?workspace_id=${workspaceId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Available dates", data);
+      return data;
+    })
+    .catch((error) => console.error(error));
+};
 
+/*==============================================
+  → ### POST - SELECTED DATES ### */
+export const serverPostSelectedDates = async (dates) => {
+
+  ///////// in construction
+  const newBooking = {
+    user_id,
+    workspace_id,
+    year,
+    month,
+    days,
+  };
+
+  console.log(newBooking);
+
+  await fetch(baseUrl + "updateReservedDate", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newBooking),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      clearAllInputs();
+      console.log(data);
+    })
+    .catch((error) => console.error(error));
+};
+
+/*==============================================
+  → ### POST - NEW PROPERTY ### */
 export const serverPostNewProperty = async (postNewProperty) => {
   await fetch(baseUrl + "newProperty", {
     method: "POST",
