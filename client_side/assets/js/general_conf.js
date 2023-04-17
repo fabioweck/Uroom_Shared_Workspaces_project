@@ -137,10 +137,39 @@ export const getCurrentUser = () => {
   return localStorage.getItem("user_id");
 };
 
+/*=============================================
+→ ### FETCH ALL PROPERTIES DATA FROM SERVER ### */
+export const findWorkspace = async () => {
+
+  return await fetch(baseUrl + "getWorkspaceByOwner")
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((obj) => delete obj.user_id);
+      return data;
+    })
+    .catch((error) => console.error(error));
+};
+
+/*=============================================
+→ ### FETCH PROPERTIES AND WORKSPACE DATA FROM SERVER ### */
+export const findWorkspaceByOwner = async () => {
+  const user_id = getCurrentUser();
+
+  return await fetch(
+    baseUrl + "getWorkspaceByOwner?user_id=" + user_id
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((obj) => delete obj.user_id);
+      return data;
+    })
+    .catch((error) => console.error(error));
+};
+
 /*==============================================
   → ### GET - DATES TO CALENDAR ### */
 export const serverGetAvailableDates = async (workspaceId) => {
-  return fetch(`${baseUrl}getReservedDate?workspace_id=${workspaceId}`)
+  return await fetch(`${baseUrl}getReservedDate?workspace_id=${workspaceId}`)
     .then((response) => response.json())
     .then((data) => {
       console.log("Available dates", data);

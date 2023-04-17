@@ -5,30 +5,17 @@
 */
 /*=============================================
 → ### IMPORTS ### */
-import { baseUrl } from "./general_conf.js";
-import { getCurrentUser } from "./general_conf.js";
-import { serverPostNewProperty } from "./general_conf.js";
+import {
+  baseUrl,
+  getCurrentUser,
+  serverPostNewProperty,
+  findWorkspaceByOwner,
+} from "./general_conf.js";
 
 /*=============================================
 → ### GLOBAL VARIABLES ### */
 var buttonIdValue; // Store the id from the button
 var propertiesWorkspaceData = []; // Receive data from the server
-
-/*=============================================
-→ ### FETCH PROPERTIES AND WORKSPACE DATA FROM SERVER ### */
-const findWorkspaceByOwner = async () => {
-  const user_id = localStorage.getItem("user_id");
-
-  const filtered = await fetch(
-    baseUrl + "getWorkspaceByOwner?user_id=" + user_id
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      data.forEach((obj) => delete obj.user_id);
-      propertiesWorkspaceData = data;
-    })
-    .catch((error) => console.error(error));
-};
 
 /*=============================================
 → ### SEARCH BAR WORKSPACE ### */
@@ -1157,7 +1144,7 @@ submitBtnWorkspace.addEventListener("click", sendNewWorkspace);
 /*=============================================
 → ### ON LOAD THE PAGE ### */
 window.onload = async () => {
-  await findWorkspaceByOwner();
+  propertiesWorkspaceData = await findWorkspaceByOwner();
   displayPropertiesWorkspaceData(propertiesWorkspaceData);
   document.getElementById("btn-my-rooms").disabled = true;
   console.log("propertiesWorkspaceData", propertiesWorkspaceData);

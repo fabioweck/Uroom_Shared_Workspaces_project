@@ -10,6 +10,7 @@ import {
   getLoggedUser,
   serverGetAvailableDates,
   serverPostSelectedDates,
+  findWorkspace,
 } from "./general_conf.js";
 
 /*=============================================
@@ -254,22 +255,6 @@ searchBarInput.addEventListener("input", (event) => {
 });
 
 /*=============================================
-→ ### FETCH PROPERTIES DATA FROM SERVER ### */
-const findWorkspaceByOwner = async () => {
-  const user_id = localStorage.getItem("user_id");
-
-  const filtered = await fetch(
-    baseUrl + "getWorkspaceByOwner?user_id=" + user_id
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      data.forEach((obj) => delete obj.user_id);
-      propertiesData = data;
-    })
-    .catch((error) => console.error(error));
-};
-
-/*=============================================
 → ### DISPLAY PROPERTIES DATA ### */
 const displayPropertiesData = (propertiesData) => {
   const roomsContainer = document.getElementById("rooms-container");
@@ -298,7 +283,6 @@ const displayPropertiesData = (propertiesData) => {
       return;
     }
 
-    console.log("propertyData", propertyData);
     const roomDivision = document.createElement("div");
     roomDivision.className = "room-division";
     roomDivision.style.display = "none";
@@ -612,7 +596,7 @@ submitBtn.addEventListener("click", hideModal);
 /*=============================================
 → ### ON LOAD THE PAGE ### */
 window.onload = async () => {
-  // findWorkspace();
-  await findWorkspaceByOwner();
+  propertiesData = await findWorkspace();
   displayPropertiesData(propertiesData);
+  console.log('propertiesData',propertiesData);
 };
