@@ -55,7 +55,8 @@
           <section id="contact-us">
 
             <div class="half-card-left">
-              <h1>Let's chat.<br/> We would love to hear you!</h1>
+              <img src="../img/color-logo.png">
+              <h1>Let's chat.<br/> We would love to hear you!</h1>              
               <h2>Leave us a message.</h2>
             </div>
 
@@ -63,13 +64,21 @@
               <form action="mailto:someone@example.com" method="post" enctype="text/plain">
                 <input type="text" name="name" placeholder="full name"><br>
                 <input type="text" name="mail" placeholder="e-mail"><br>
-                <textarea id="form-text" type="text" name="comment" size="50"></textarea>
-                <input type="submit" value="Send">
-                <input type="reset" value="Reset">
+                <textarea id="form-text" type="text" name="comment" size="50" placeholder="your message here..."></textarea>
+                <input id="sendMsg" type="submit" value="Send" >
                 </form>
             </div>
 
           </section>
+
+          <section class="map">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5016.213279219463!2d-114.08250734210016!3d51.05111870617487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716ffae8c0a2c5%3A0x61b89a672ef0a7f5!2sCentennial%20Place%20West%20Tower!5e0!3m2!1sen!2sca!4v1681694770109!5m2!1sen!2sca" 
+               style="border:0;" allowfullscreen="" 
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </section>
+
+          <div class="adjust-content-top"></div><!--Ghost div to adjust bottom margin-->
           <!--introduction-->
         </main>
         <!--container-->
