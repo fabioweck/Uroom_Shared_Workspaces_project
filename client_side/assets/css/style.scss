@@ -263,7 +263,7 @@ header {
       text-align: center;
 
       @media screen and (max-width: $max-width1) {
-        font-size: 25px;
+        font-size: 28px;
       }
     }
   }
@@ -1246,11 +1246,24 @@ header {
         display: block;
         max-width: 100%;
         height: auto;
-        opacity: 0.1;
+        opacity: 0;
       }
     }
   }
-  
+
+  .about-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    p{
+      width: 75%;
+      font-size: 20px;
+      text-align: justify;
+      padding-bottom: 30px;
+    }
+  }
 
 }
 
@@ -1269,16 +1282,22 @@ header {
     margin: 100px auto;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    height: 70vh;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
     
+    @media screen and (max-width: $max-width1){
+      flex-direction: column;
+      height: 150vh;
+      width: 80%;
+    }
 
     .half-card-left{
 
       display: flex;
       flex-direction: column;
       justify-content: space-around;
+      align-items: center;
       width: 100%;
       height: 100%;
       text-align: center;
@@ -1287,6 +1306,21 @@ header {
       h1{   
         padding: 10px 30px;
         font-size: 40px;
+      }
+
+      img{
+        width:40%;
+
+        @media screen and (max-width: $max-width1)
+        {
+          width: 60%;
+        }
+
+        @media screen and (max-width: $max-width2)
+        {
+          width: 80%;
+        }
+
       }
 
       h2{
@@ -1300,23 +1334,79 @@ header {
       width: 100%;
       text-align: center;
 
-      input{
-        font-size: 25px;
+      form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
+
+      input{
+        border: 1px solid $bgColor3;
+        font-size: 25px;
+        padding: 10px 0px;
+        margin: 10px 0px;
+        width: 70%;
+      }    
+
       #form-text {
-        width: 100%;
+
+        font-size: 18px;
+        width: 70%;
         height: 150px;
-        padding: 12px 20px;
         box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-        background-color: #f8f8f8;
+        border: 1px solid $bgColor3;
         resize: none;
       }
+
+      #sendMsg{
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        width: 15%;
+        color: white;
+        background-color: $bgColor1;
+        padding: 10px 10px;
+        text-decoration: none;
+        font-size: 25px;
+      }
+
+      #sendMsg:hover {
+        background-color: $bgColor2;
+        transition: 0.5s;
+      }
+
+      @media screen and (max-width: $max-width1){
+        #sendMsg{
+          width: 30%;
+        }
+      }
+
+
     }
 
   }
 
+  .map{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    
+
+    iframe{
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 10px;
+      margin: 0 10%;
+      width: 100%;
+      height: 400px;
+    }
+
+    @media screen and (max-width: $max-width1){
+      iframe{
+        width: 80%;
+      }
+    }
+  }
 }
 
 

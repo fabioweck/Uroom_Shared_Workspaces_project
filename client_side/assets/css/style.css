@@ -231,7 +231,7 @@ header .mobile-menu-icon {
 }
 @media screen and (max-width: 768px) {
   .intro-container .title h2 {
-    font-size: 25px;
+    font-size: 28px;
   }
 }
 
@@ -1357,7 +1357,19 @@ header .mobile-menu-icon {
   display: block;
   max-width: 100%;
   height: auto;
-  opacity: 0.1;
+  opacity: 0;
+}
+.container .about-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.container .about-container p {
+  width: 75%;
+  font-size: 20px;
+  text-align: justify;
+  padding-bottom: 30px;
 }
 
 /*
@@ -1371,14 +1383,22 @@ header .mobile-menu-icon {
   margin: 100px auto;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  height: 70vh;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
+}
+@media screen and (max-width: 768px) {
+  .container #contact-us {
+    flex-direction: column;
+    height: 150vh;
+    width: 80%;
+  }
 }
 .container #contact-us .half-card-left {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   width: 100%;
   height: 100%;
   text-align: center;
@@ -1388,6 +1408,19 @@ header .mobile-menu-icon {
   padding: 10px 30px;
   font-size: 40px;
 }
+.container #contact-us .half-card-left img {
+  width: 40%;
+}
+@media screen and (max-width: 768px) {
+  .container #contact-us .half-card-left img {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .container #contact-us .half-card-left img {
+    width: 80%;
+  }
+}
 .container #contact-us .half-card-left h2 {
   padding: 10px 20px;
   font-size: 30px;
@@ -1396,18 +1429,63 @@ header .mobile-menu-icon {
   width: 100%;
   text-align: center;
 }
+.container #contact-us .half-card-right form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .container #contact-us .half-card-right input {
+  border: 1px solid lightgray;
   font-size: 25px;
+  padding: 10px 0px;
+  margin: 10px 0px;
+  width: 70%;
 }
 .container #contact-us .half-card-right #form-text {
-  width: 100%;
+  font-size: 18px;
+  width: 70%;
   height: 150px;
-  padding: 12px 20px;
   box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
+  border: 1px solid lightgray;
   resize: none;
+}
+.container #contact-us .half-card-right #sendMsg {
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 15%;
+  color: white;
+  background-color: #398378;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 25px;
+}
+.container #contact-us .half-card-right #sendMsg:hover {
+  background-color: rgba(57, 131, 120, 0.6352941176);
+  transition: 0.5s;
+}
+@media screen and (max-width: 768px) {
+  .container #contact-us .half-card-right #sendMsg {
+    width: 30%;
+  }
+}
+.container .map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+.container .map iframe {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  margin: 0 10%;
+  width: 100%;
+  height: 400px;
+}
+@media screen and (max-width: 768px) {
+  .container .map iframe {
+    width: 80%;
+  }
 }
 
 /*
