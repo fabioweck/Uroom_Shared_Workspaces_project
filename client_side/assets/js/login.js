@@ -65,8 +65,7 @@ async function userLogin() {
       if (response.status == 401) {
         response.json().then((data) => {
           $("#dv-display").slideDown("slow").css({
-            display: "flex",
-            content: "any",
+            display: "flex"
           });
           displayError.innerHTML = data.message;
           return;
