@@ -49,20 +49,30 @@
 
     <main class="container">
         <div class="adjust-content-top"></div>
+        <div id="dv-display"></div><!-- hidden div -displays a message when login email or password fails-->
       <section id="login">
         <div class="login-title">
           <img src="../img/color-logo.png" />
 
-          <form id="login-box">
+          <form id="signup-box">
 
-            <input type="text" id="fname" name="fname" placeholder="full name"/>
+            <input type="text" id="fullName" name="fname" placeholder="full name"/>
 
-            <input type="text" id="phone" name="phone" placeholder="phone number"/>
+            <input type="text" id="phoneNumber" name="phone" placeholder="phone number"/>
 
-            <input type="email" id="lname" name="lname" placeholder="e-mail"/>
+            <input type="email" id="emailAddress" name="email" placeholder="e-mail"/>
 
-            <input type="password" id="fname" name="fname" placeholder="password"/>
-            <button type="button">submit</button>
+            <input type="password" id="password" name="password" placeholder="password"/>
+
+            <p>are you an owner?</p>
+
+            <label class="switch">
+              <input name="owner" type="checkbox" value="checked">
+              <span class="slider round"></span>
+            </label>
+
+            <button id="sendNewUser" type="button">submit</button>
+
           </form>
           <!--login-box-->
         </div>
@@ -83,7 +93,7 @@
     </footer>
 
     <!--scripts-->
-    <script type="module" src="../js/script.js"></script>
+    <script type="module" src="../js/signup.js"></script>
     <script type="module" src="../js/general_conf.js"></script>
     <!--scripts-->
   </body>
