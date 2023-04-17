@@ -188,6 +188,58 @@ router.post("/delistProperty", async (req, res) => {
     });
 });
 
+//==================================search===========================//
+router.get("/search", async (req, res) => {
+  const orderBy = req.query.orderBy;
+  userService
+    .search(req.query)
+    .then((workspaces) => {
+      console.log(`${workspaces}`);
+      res.status(200).send(workspaces);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+      res.status(err.code).send(err);
+    });
+});
+
+//==================================Rating===========================//
+router.post("/rateWorkspace", async (req, res) => {
+  userService
+    .rateWorkspace(req.body)
+    .then((workspace) => {
+      res.status(200).send(workspace);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+      res.status(err.code).send(err);
+    });
+});
+
+router.post("/rateCoworker", async (req, res) => {
+  userService
+    .rateCoworker(req.body)
+    .then((user) => {
+      res.status(200).send(user);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+      res.status(err.code).send(err);
+    });
+});
+//==================================Review===========================//
+router.post("/reviewWorkspace", async (req, res) => {
+  userService
+    .reviewWorkspace(req.body)
+    .then((workspace) => {
+      res.status(200).send(workspace);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+      res.status(err.code).send(err);
+    });
+});
+
 //==================================Testing===========================//
 
 const storage = multer.diskStorage({

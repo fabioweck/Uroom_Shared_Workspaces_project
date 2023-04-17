@@ -380,25 +380,6 @@ const calendarModal = async () => {
   updateCalendar();
 };
 
-// const getAvailableDates = () => {
-//   const dates = [
-//     { year: 2023, month: 4, days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 18, 19, 20, 21, 22, 23, 24] },
-//     { year: 2023, month: 5, days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
-//     { year: 2023, month: 6, days: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24] },
-//     { year: 2023, month: 7, days: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24] },
-//     { year: 2023, month: 8, days: [29, 30, 31] },
-//     { year: 2023, month: 9, days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
-//   ];
-
-//   availableDates = dates;
-
-//   console.log(
-//     `Get Simulation - Available dates, property id ${buttonBookIdValue}`
-//   );
-//   console.log(`availableDates`, availableDates);
-//   return availableDates;
-// };
-
 const calendarContainer = document.getElementById("calendar-container");
 const currentDate = new Date();
 let presentYear = currentDate.getFullYear();
@@ -406,15 +387,6 @@ let presentMonth = currentDate.getMonth();
 let currentYear = currentDate.getFullYear(); //Navigation
 let currentMonth = currentDate.getMonth(); //Navigation
 let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-// Initialize the selectedDates with the present month and year
-// selectedDates = [
-//   {
-//     year: presentYear,
-//     month: presentMonth + 1,
-//     days: selectedDays,
-//   },
-// ];
 
 const monthNames = [
   "January",
@@ -487,7 +459,6 @@ const calendarYear = document.getElementById("calendar-year");
 // Create a table element to represent the calendar
 const calendarTable = document.createElement("table");
 
-// Function to update the calendar with the current month's dates
 const updateCalendar = () => {
   daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   calendarSubTitle.innerHTML = `Workspace ID: ${buttonBookIdValue}`;
@@ -520,9 +491,9 @@ const updateCalendar = () => {
             date.days.includes(i)
         );
         if (foundDate) {
-          td.className = "unavailable"; // Reverse class name
+          td.className = "unavailable";
         } else {
-          td.className = "available"; // Reverse class name
+          td.className = "available";
         }
 
         const foundDateSelected = selectedDates.find(
@@ -532,20 +503,20 @@ const updateCalendar = () => {
             date.days.includes(i)
         );
         if (foundDateSelected) {
-          td.className = ""; // Remove "selected" class
+          td.className = "selected";
         }
 
         td.addEventListener("click", () => {
           if (!td.classList.contains("unavailable")) {
             if (td.classList.contains("selected")) {
               td.classList.remove("selected");
-              td.classList.add("available"); // Reverse class name
+              td.classList.add("available");
               const index = selectedDays.indexOf(td.textContent);
               if (index !== -1) {
-                selectedDays.splice(index, 1); // Remove from array if unselected
+                selectedDays.splice(index, 1);
               }
             } else {
-              td.classList.remove("unavailable"); // Reverse class name
+              td.classList.remove("available");
               td.classList.add("selected");
               if (!selectedDays.includes(td.textContent)) {
                 selectedDays.push(parseInt(td.textContent));

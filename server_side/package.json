@@ -4,10 +4,11 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.22",
     "uuidv4": "^6.2.13"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "name": "final_project_workspacev1",
   "version": "1.0.0",

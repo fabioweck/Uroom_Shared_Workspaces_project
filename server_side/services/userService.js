@@ -3,6 +3,7 @@ const path = require("path");
 const { uuid } = require("uuidv4");
 const fs = require("fs");
 const { escape } = require("querystring");
+const { buildCriteria } = require("./search");
 
 function generateID() {
   return Math.floor(Math.random() * 900000) + 100000;
@@ -159,6 +160,126 @@ async function addProperty(newProperty) {
   }
 }
 
+async function rateWorkspace(rateWorkspace) {
+  try {
+    const workspaces = await loadJsonFile("workspaces.json");
+    return new Promise((resolve, reject) => {
+      var workspace = workspaces.find((workspace) => {
+        return workspace.workspace_id == rateWorkspace.workspace_id;
+      });
+
+      if (!workspace) {
+        reject({ code: 404, message: "Workspace not found" });
+      }
+
+      var rates = workspace["rates"];
+      if (rates === undefined) {
+        rates = [];
+      }
+      rates.push(rateWorkspace.rate);
+      workspace["rates"] = rates;
+
+      const filePath = path.join(__dirname, "../repository/workspaces.json");
+      fs.writeFile(filePath, JSON.stringify(workspaces), (err_1) => {
+        if (err_1) {
+          reject({ statusCode: 500, message: err_1.message });
+        } else {
+          resolve(workspace);
+        }
+      });
+    });
+  } catch (err_2) {
+    const code = err_2.statusCode || 500;
+    const message = err_2.message || "Error occurred while add in";
+    throw { code, message };
+  }
+}
+
+async function rateCoworker(rateCoworker) {
+  try {
+    const users = await loadJsonFile("users.json");
+    return new Promise((resolve, reject) => {
+      var user = users.find((user) => {
+        return user.user_id == rateCoworker.user_id;
+      });
+
+      if (!user) {
+        reject({ code: 404, message: "Coworker not found" });
+      }
+
+      var rates = user["rates"];
+      if (rates === undefined) {
+        rates = [];
+      }
+      rates.push(rateCoworker.rate);
+      user["rates"] = rates;
+
+      const filePath = path.join(__dirname, "../repository/users.json");
+      fs.writeFile(filePath, JSON.stringify(users), (err_1) => {
+        if (err_1) {
+          reject({ statusCode: 500, message: err_1.message });
+        } else {
+          resolve(user);
+        }
+      });
+    });
+  } catch (err_2) {
+    const code = err_2.statusCode || 500;
+    const message = err_2.message || "Error occurred while add in";
+    throw { code, message };
+  }
+}
+
+async function reviewWorkspace(reviewWorkspace) {
+  try {
+    const workspaces = await loadJsonFile("workspaces.json");
+    return new Promise((resolve, reject) => {
+      var workspace = workspaces.find((workspace) => {
+        return workspace.workspace_id == reviewWorkspace.workspace_id;
+      });
+
+      if (!workspace) {
+        reject({ code: 404, message: "Workspace not found" });
+      }
+
+      var reviews = workspace["reviews"];
+      if (reviews === undefined) {
+        reviews = [];
+      }
+      reviews.push(reviewWorkspace.review);
+      workspace["reviews"] = reviews;
+
+      const filePath = path.join(__dirname, "../repository/workspaces.json");
+      fs.writeFile(filePath, JSON.stringify(workspaces), (err_1) => {
+        if (err_1) {
+          reject({ statusCode: 500, message: err_1.message });
+        } else {
+          resolve(workspace);
+        }
+      });
+    });
+  } catch (err_2) {
+    const code = err_2.statusCode || 500;
+    const message = err_2.message || "Error occurred while add in";
+    throw { code, message };
+  }
+}
+
+async function search(orderBy) {
+  try {
+    const workspaces = await loadJsonFile("workspaces.json");
+    return new Promise((resolve, reject) => {
+      var criteria = buildCriteria(orderBy);
+      workspaces.sort(criteria);
+      resolve(workspaces);
+    });
+  } catch (err_2) {
+    const code = err_2.statusCode || 500;
+    const message = err_2.message || "Error occurred while add in";
+    throw { code, message };
+  }
+}
+
 async function addWorkspace(newWorkspace) {
   const filePath = path.join(__dirname, "../repository/workspaces.json");
 
@@ -276,6 +397,7 @@ async function getReservedDate(workspace) {
           });
         }
       }
+
       console.log(bookingsForWorkspace);
       resolve(formattedBookings);
     }
@@ -287,41 +409,38 @@ async function getReservedDate(workspace) {
 }
 
 async function updateReservedDate(dates) {
-    const newBooking = dates;
-    const bookings = await loadJsonFile("bookings.json");
-    const workspaceBookings = bookings[0].workspace_bookings;
-    const bookingsForWorkspace = workspaceBookings[newBooking.workspace_id] || {}; // Add null check here
-  
-    console.log("from front", dates);
-    console.log("from file", bookings);
-    return new Promise(async (resolve, reject) => {
-      newBooking.forEach((book) => {
-        if (!(book.year in bookingsForWorkspace)) {
-          bookingsForWorkspace[book.year] = {};
+  const newBooking = dates;
+  const bookings = await loadJsonFile("bookings.json");
+  const workspaceBookings = bookings[0].workspace_bookings;
+  const bookingsForWorkspace = workspaceBookings[newBooking.workspace_id] || {}; // Add null check here
+
+  console.log("from front", dates);
+  console.log("from file", bookings);
+  return new Promise(async (resolve, reject) => {
+    newBooking.forEach((book) => {
+      if (!(book.year in bookingsForWorkspace)) {
+        bookingsForWorkspace[book.year] = {};
+      }
+      if (!(book.month in bookingsForWorkspace[book.year])) {
+        bookingsForWorkspace[book.year][book.month] = [];
+      }
+      for (const day of book.days) {
+        if (!bookingsForWorkspace[book.year][book.month].includes(day)) {
+          bookingsForWorkspace[book.year][book.month].push(day);
         }
-        if (!(book.month in bookingsForWorkspace[book.year])) {
-          bookingsForWorkspace[book.year][book.month] = [];
-        }
-        for (const day of book.days) {
-          if (
-            !bookingsForWorkspace[book.year][book.month].includes(day)
-          ) {
-            bookingsForWorkspace[book.year][book.month].push(day);
-          }
-        }
-      });
-  
-      const sortedBookings = sortBookings(bookings);
-  
-      await writeJsonFile(sortedBookings, "bookings.json");
-      resolve("mensagem do leandro");
-    }).catch((err) => {
-      const code = err.statusCode || 500;
-      const message = err.message || "Error occurred while delisting workspace";
-      throw { code, message };
+      }
     });
-  }
-  
+
+    const sortedBookings = sortBookings(bookings);
+
+    await writeJsonFile(sortedBookings, "bookings.json");
+    resolve("mensagem do leandro");
+  }).catch((err) => {
+    const code = err.statusCode || 500;
+    const message = err.message || "Error occurred while delisting workspace";
+    throw { code, message };
+  });
+}
 
 function sortBookings(bookings) {
   for (const workspace_bookings in bookings[0]) {
@@ -465,4 +584,8 @@ module.exports = {
   getReservedDate,
   updateReservedDate,
   updateUser,
+  rateWorkspace,
+  rateCoworker,
+  search,
+  reviewWorkspace,
 };
