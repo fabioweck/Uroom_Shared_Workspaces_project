@@ -548,7 +548,7 @@ const displayPropertiesData = (propertiesData) => {
     // Create a span element for the highlight
     var highlightElement = document.createElement("span");
     highlightElement.classList.add("highlight");
-    highlightElement.textContent = `${property_id}`;
+    highlightElement.textContent = `${workspace_id}`;
 
     // Append the subtitle and highlight elements to the div element
     workspaceDivisionDiv5.appendChild(subtitleElement);
