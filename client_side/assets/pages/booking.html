@@ -18,6 +18,7 @@
       src="https://kit.fontawesome.com/dd5f4a2a4e.js"
       crossorigin="anonymous"
     ></script>
+
     <title>SODV1201 - Final Project</title>
   </head>
 
@@ -58,16 +59,16 @@
       <!--my-workspace-container-->
 
       <section class="workspaces-container">
-        <form class="search-bar-container">
+        <div class="search-bar-container">
           <select id="dropdown-search-bar">
+            <option value="address">Address</option>
+            <option value="neighborhood">Neighborhood</option>
             <option value="lease_term">Lease Term</option>
             <option value="price">Price</option>
             <option value="seats">Seats</option>
             <option value="smoking">Smoking</option>
             <option value="sqft">Square Feet</option>
             <option value="workspace_type">Workspace Type</option>
-            <option value="address">Address</option>
-            <option value="neighborhood">Neighborhood</option>
             <option value="ParkingLot">Parking Lot</option>
             <option value="PublicTransportation">Public Transportation</option>
           </select>
@@ -80,8 +81,12 @@
             id="search-bar-input"
             autocomplete="off"
           />
-        </form>
+        </div>
         <!--search-bar-container-->
+
+        <!------------------------------------->
+
+        <!------------------------------------->
 
         <div class="rooms-container" id="rooms-container"></div>
       </section>
