@@ -388,7 +388,7 @@ header {
       border-radius: 20px;
 
       @media screen and (max-width: $max-width1) {
-        display: none;
+        width: 60%;
       }
     }
 
@@ -484,105 +484,135 @@ header {
 ************************************************
 */
 
-#signup-box {
+
+#success-message{
+  display: none;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  font-size: 50px;
+  color: $txtColor1;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
-  input {
-    width: 70%;
-    height: 40px;
-    padding: 10px;
-    margin: 10px 0px;
-    font-size: 25px;
-    color: $bgColor5;
+#login{
+
+  @media screen and (max-width: $max-width1)
+  {
+    height: 110vh;
   }
 
-  button {
-    border: none;
-    border-radius: 5px;
-    color: white;
-    background-color: $bgColor1;
-    padding: 10px 40px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 25px;
-    cursor: pointer;
-    margin: 10px 0px;
-  }
+  #signup-box {
 
-  button:hover {
-    background-color: $bgColor2;
-    transition: 0.5s;
-  }
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 
-  p {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: grey;
-    margin: 10px 0px;
-    text-align: center;
-  }
 
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    margin: 10px 0px;
-  }
+    input {
+      width: 70%;
+      height: 40px;
+      padding: 10px;
+      margin: 10px 0px;
+      font-size: 25px;
+      color: $bgColor5;
+      
+      @media screen and (max-width: $max-width1)
+      {
+        font-size: 20px;
+        padding: 10px;
+        height: 25px;
+      }
 
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
+    }
 
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-  }
+    button {
+      border: none;
+      border-radius: 5px;
+      color: white;
+      background-color: $bgColor1;
+      padding: 10px 40px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 25px;
+      cursor: pointer;
+      margin: 10px 0px;
+    }
 
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-  }
+    button:hover {
+      background-color: $bgColor2;
+      transition: 0.5s;
+    }
 
-  input:checked + .slider {
-    background-color: $bgColor1;
-  }
 
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196f3;
-  }
+    p {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      color: grey;
+      margin: 10px 0px;
+      text-align: center;
+    }
 
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
 
-  .slider.round {
-    border-radius: 34px;
-  }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      margin: 10px 0px;
+    }
 
-  .slider.round:before {
-    border-radius: 50%;
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: $bgColor1;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
   }
 }
 /*
@@ -1489,13 +1519,14 @@ header {
       input {
         border: 1px solid $bgColor3;
         font-size: 25px;
-        padding: 10px 0px;
+        padding: 10px;
         margin: 10px 0px;
-        width: 70%;
-      }
+        width: 64%;
+      }    
 
       #form-text {
         font-size: 18px;
+        padding: 10px;
         width: 70%;
         height: 150px;
         box-sizing: border-box;

@@ -1,9 +1,11 @@
 const port = 3010;
 const baseUrl = `http://localhost:${port}/`;
 
-const submitNewUser = document.querySelector("#sendNewUser").addEventListener('click', sendNewUserClient);
+const submitNewUser = document.querySelector("#sendNewUser").addEventListener('click',sendNewUserClient);
 
 async function sendNewUserClient() {
+
+  event.preventDefault();
 
     // Retrieve input values from HTML form
     const fullName = document.getElementById("fullName").value;
@@ -16,7 +18,6 @@ async function sendNewUserClient() {
     if (!checkOwner.checked) {
         owner = "false";
     }
-
     else {
         owner = "true";
     }
@@ -30,7 +31,9 @@ async function sendNewUserClient() {
         owner,
     };
 
-    console.log(newUserData);
+    // console.log(newUserData);
+
+    const displayError = document.querySelector("#dv-display");
 
     // Send POST request to server with new staff data
     await fetch(baseUrl + 'newUser', {
@@ -40,24 +43,14 @@ async function sendNewUserClient() {
         },
         body: JSON.stringify(newUserData),
     })
+    
+    .then(response=>response.json())
+    .then((data) => {
 
-    .then((response) => {
-        if (response.status == 401) {
-          response.json().then((data) => {
-            $("#dv-display").slideDown("slow").css({
-              display: "flex"
-            });
-            displayError.innerHTML = data.message;
-            return;
-          });
-        } else if (response.status == 200) {
-          return response.json();
-        }
+      localStorage.setItem("user_id", data.user_id);
+      window.location.href = "booking.html";
+      console.log(data);
+
       })
-      .then((data) => {
-            console.log(data);
-        }
-        )
-        .catch((error) => console.error(error));
-
+      .catch((error) => {});
 }

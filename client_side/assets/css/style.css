@@ -346,7 +346,7 @@ header .mobile-menu-icon {
 }
 @media screen and (max-width: 768px) {
   #login .login-title img {
-    display: none;
+    width: 60%;
   }
 }
 #login .login-title #logout-box {
@@ -429,14 +429,28 @@ header .mobile-menu-icon {
 ### MAIN - SIGN-UP PAGE ###
 ************************************************
 */
-#signup-box {
+#success-message {
+  display: none;
+  width: 100%;
+  font-size: 50px;
+  color: #398378;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  #login {
+    height: 110vh;
+  }
+}
+#login #signup-box {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
-#signup-box input {
+#login #signup-box input {
   width: 70%;
   height: 40px;
   padding: 10px;
@@ -444,7 +458,14 @@ header .mobile-menu-icon {
   font-size: 25px;
   color: #252424;
 }
-#signup-box button {
+@media screen and (max-width: 768px) {
+  #login #signup-box input {
+    font-size: 20px;
+    padding: 10px;
+    height: 25px;
+  }
+}
+#login #signup-box button {
   border: none;
   border-radius: 5px;
   color: white;
@@ -456,29 +477,29 @@ header .mobile-menu-icon {
   cursor: pointer;
   margin: 10px 0px;
 }
-#signup-box button:hover {
+#login #signup-box button:hover {
   background-color: rgba(57, 131, 120, 0.6352941176);
   transition: 0.5s;
 }
-#signup-box p {
+#login #signup-box p {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: grey;
   margin: 10px 0px;
   text-align: center;
 }
-#signup-box .switch {
+#login #signup-box .switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
   margin: 10px 0px;
 }
-#signup-box .switch input {
+#login #signup-box .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-#signup-box .slider {
+#login #signup-box .slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -488,7 +509,7 @@ header .mobile-menu-icon {
   background-color: #ccc;
   transition: 0.4s;
 }
-#signup-box .slider:before {
+#login #signup-box .slider:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -498,19 +519,20 @@ header .mobile-menu-icon {
   background-color: white;
   transition: 0.4s;
 }
-#signup-box input:checked + .slider {
+#login #signup-box input:checked + .slider {
   background-color: #398378;
 }
-#signup-box input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+
+#login #signup-box input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
 }
-#signup-box input:checked + .slider:before {
+#login #signup-box input:checked + .slider:before {
   transform: translateX(26px);
 }
-#signup-box .slider.round {
+#login #signup-box .slider.round {
   border-radius: 34px;
 }
-#signup-box .slider.round:before {
+#login #signup-box .slider.round:before {
   border-radius: 50%;
 }
 
@@ -1562,12 +1584,13 @@ header .mobile-menu-icon {
 .container #contact-us .half-card-right input {
   border: 1px solid lightgray;
   font-size: 25px;
-  padding: 10px 0px;
+  padding: 10px;
   margin: 10px 0px;
-  width: 70%;
+  width: 64%;
 }
 .container #contact-us .half-card-right #form-text {
   font-size: 18px;
+  padding: 10px;
   width: 70%;
   height: 150px;
   box-sizing: border-box;

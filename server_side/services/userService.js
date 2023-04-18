@@ -36,7 +36,7 @@ async function addUser(user) {
                         if (err_1) {
                             reject({ statusCode: 500, message: err_1.message });
                         } else {
-                            resolve(user.fullName);
+                            resolve({ user_id: user.user_id });
                         }
                     });
                 };
@@ -49,31 +49,6 @@ async function addUser(user) {
     }
 }
 
-// async function updateUser(updateUser) {
-
-//     const users = await loadJsonFile('users.json');
-
-//     return new Promise(async (resolve, reject) => {
-
-//         for (const user of users) {
-//             if (user.user_id == updateUser.user_id) {
-//                 user.fullName = updateUser.fullName;
-//                 user.phoneNumber = updateUser.phoneNumber;
-//                 user.emailAddress = updateUser.emailAddress;
-//                 user.owner = updateUser.owner;
-
-//                 console.log('user after update:', user)
-//                 resolve(user);
-//             }
-//         }
-//         await writeJsonFile(users, 'users.json')
-
-//     }).catch(err => {
-//         const code = err.statusCode || 500;
-//         const message = err.message || 'Error occurred while delisting workspace';
-//         throw { code, message };
-//     });
-// };
 
 async function updateUser(updateUser) {
 
@@ -216,6 +191,7 @@ async function addWorkspace(newWorkspace) {
     }
 }
 
+// We can inactive this function !!! Replace by getWorlspaceByOwner();
 async function findPropertyByOwner(user_id) {
 
     const property = await loadJsonFile('properties.json');
@@ -232,7 +208,7 @@ async function findPropertyByOwner(user_id) {
     });
 };
 
-
+// We can inactive this function !!! Replace by getWorlspaceByOwner();
 async function findWorkspaceByOwner(user_id) {
 
     const workspace = await loadJsonFile('workspaces.json');
@@ -253,12 +229,16 @@ async function getWorkspaceByOwner(user_id = null) {
 
     const workspaces = await loadJsonFile('workspaces.json');
     const properties = await loadJsonFile('properties.json');
-
     return new Promise((resolve, reject) => {
-        {
 
-            const mergedData = [];
-            for (const property of properties) {
+        const mergedData = [];
+
+        for (const property of properties) {
+
+            const propertyExists = workspaces.some(workspace => workspace.property_id === property.property_id);
+
+            // merge properties with workspace associated
+            if (propertyExists) {
                 for (const workspace of workspaces) {
                     if (property.property_id == workspace.property_id) {
                         if (user_id === null || user_id === workspace.user_id) {
@@ -267,10 +247,17 @@ async function getWorkspaceByOwner(user_id = null) {
                         }
                     }
                 }
+            } else {
+                // merge properties with NO workspaces
+                if (user_id === null || user_id === property.user_id) {
+                    const mergedObject = { ...workspaces[0], ...property };
+                    mergedData.push(mergedObject);
+                }
             }
-            console.log(mergedData);
-            resolve(mergedData);
         }
+        console.log(mergedData);
+        resolve(mergedData);
+
     }).catch(err => {
         const code = err.statusCode || 500;
         const message = err.message || 'Error occurred while filter properties';
@@ -309,32 +296,36 @@ async function getReservedDate(workspace) {
 
 async function updateReservedDate(dates) {
 
-    const newBooking = dates;
+    const allNewBookings = dates;
     const bookings = await loadJsonFile('bookings.json');
     const workspaceBookings = bookings[0].workspace_bookings;
-    const bookingsForWorkspace = workspaceBookings[newBooking.workspace_id];
+    const bookingsForWorkspace = workspaceBookings[allNewBookings.workspace_id];
 
-    console.log('from front', dates);
+    console.log('from front', allNewBookings);
     console.log('from file', bookings);
     return new Promise(async (resolve, reject) => {
+        for (const monthBook in allNewBookings) {
+            for (const newBook in monthBook) {
 
-        if (!(newBooking.year in bookingsForWorkspace)) {
-            bookingsForWorkspace[newBooking.year] = {};
-        }
-        if (!(newBooking.month in bookingsForWorkspace[newBooking.year])) {
-            bookingsForWorkspace[newBooking.year][newBooking.month] = [];
-        }
-        for (const day of newBooking.days) {
-            if (!bookingsForWorkspace[newBooking.year][newBooking.month].includes(day)) {
-                bookingsForWorkspace[newBooking.year][newBooking.month].push(day);
+                if (!(newBook.year in bookingsForWorkspace)) {
+                    bookingsForWorkspace[newBook.year] = {};
+                }
+                if (!(newBook.month in bookingsForWorkspace[newBook.year])) {
+                    bookingsForWorkspace[newBook.year][newBook.month] = [];
+                }
+                for (const day of newBook.days) {
+                    if (!bookingsForWorkspace[newBook.year][newBook.month].includes(day)) {
+                        bookingsForWorkspace[newBook.year][newBook.month].push(day);
+                    }
+                }
             }
+
+            const sortedBookings = sortBookings(bookings);
+
+            await writeJsonFile(sortedBookings, 'bookings.json');
+
+            resolve('passed');
         }
-
-        const sortedBookings = sortBookings(bookings);
-
-        await writeJsonFile(sortedBookings, 'bookings.json');
-
-        resolve('passed');
 
 
     }).catch(err => {

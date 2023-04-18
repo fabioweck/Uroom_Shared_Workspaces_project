@@ -43,8 +43,8 @@ router.get('/', function (req, res) {
 router.post('/newUser', (req, res) => {
 
     userService.addUser(req.body)
-        .then(userFullName => {
-            res.status(200).send(userFullName);
+        .then(data => {
+            res.status(200).send(data);
         })
         .catch(err => {
             res.status(err.code).send(err);
