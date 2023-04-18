@@ -484,14 +484,6 @@ header {
 ************************************************
 */
 
-#success-message{
-  display: none;
-  width: 100%;
-  font-size: 50px;
-  color: $txtColor1;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
 #login{
 
   @media screen and (max-width: $max-width1)
@@ -1387,7 +1379,7 @@ header {
 
   .about-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
 
@@ -1397,6 +1389,19 @@ header {
       text-align: justify;
       padding-bottom: 30px;
     }
+
+    ul{
+      width: 80%;
+      list-style-type: none;
+    }
+    li{
+      width: 100%;
+      font-size: 20px;
+      text-align: center;
+      margin: 20px 0;
+      padding: 0;
+    }
+
   }
 
 }
@@ -1496,7 +1501,7 @@ header {
       #sendMsg{
         border: none;
         border-radius: 5px;
-        margin-bottom: 20px;
+        margin: 20px;
         width: 15%;
         color: white;
         background-color: $bgColor1;

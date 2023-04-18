@@ -87,6 +87,19 @@ router.post('/newProperty', (req, res) => {
         });
 });
 
+
+// Update data for current Property
+router.post('/updateProperty', (req, res) => {
+
+    userService.updateProperty(req.body)
+        .then(data => {
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(err.code).send(err);
+        });
+});
+
 // Register new Workspace
 router.post('/newWorkspace', (req, res) => {
     userService.addWorkspace(req.body)
@@ -98,6 +111,22 @@ router.post('/newWorkspace', (req, res) => {
             res.status(err.code).send(err);
         });
 });
+
+
+// Update data for current Workspace
+router.post('/updateWorkspace', (req, res) => {
+
+    userService.updateWorkspace(req.body)
+        .then(data => {
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(err.code).send(err);
+        });
+});
+
+
+
 
 router.get('/findPropertyByOwner', async (req, res) => {
 
