@@ -502,7 +502,7 @@ header .mobile-menu-icon {
   background-color: #398378;
 }
 #signup-box input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 #signup-box input:checked + .slider:before {
   transform: translateX(26px);
@@ -576,17 +576,19 @@ header .mobile-menu-icon {
 }
 .booking .workspaces-container .rooms-container {
   display: flex;
-  flex-direction: column;
-  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 20px 20px;
+  flex-basis: calc(33.33% - 40px);
 }
-.booking .workspaces-container .rooms-container .room-division {
-  margin-left: 20px;
+.booking .workspaces-container .rooms-container:not(:last-child) {
   margin-right: 20px;
-  margin-bottom: 20px;
+}
+.booking .workspaces-container .rooms-container .property-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
   background-color: #f0f0f0;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -596,6 +598,9 @@ header .mobile-menu-icon {
   animation-fill-mode: forwards;
   opacity: 0;
   transform: translateX(100%);
+  margin-bottom: 20px;
+  width: 300px;
+  margin: 10px;
 }
 @keyframes fadeRight {
   0% {
@@ -607,53 +612,82 @@ header .mobile-menu-icon {
     transform: translateX(0%);
   }
 }
-.booking .workspaces-container .rooms-container .room-division .room-description {
+@media screen and (max-width: 480px) {
+  .booking .workspaces-container .rooms-container .property-card {
+    width: 100%;
+  }
+}
+.booking .workspaces-container .rooms-container .wrap-img {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
 }
 @media screen and (max-width: 768px) {
-  .booking .workspaces-container .rooms-container .room-division .room-description {
+  .booking .workspaces-container .rooms-container .wrap-img {
     flex-direction: column;
   }
 }
-.booking .workspaces-container .rooms-container .room-division .room-description img {
-  width: 50%;
-  margin: 50px;
-  border-radius: 4px;
+.booking .workspaces-container .rooms-container .wrap-img .property-image {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-@media screen and (max-width: 768px) {
-  .booking .workspaces-container .rooms-container .room-division .room-description img {
-    width: 80%;
-    margin: 20px;
-    min-width: 300px;
-  }
+.booking .workspaces-container .rooms-container .address-neighborhood {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
 }
-.booking .workspaces-container .rooms-container .room-division .room-description .div-workspace {
+.booking .workspaces-container .rooms-container .property-info-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
   width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.booking .workspaces-container .rooms-container .property-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 10px;
-}
-.booking .workspaces-container .rooms-container .room-division .room-description .div-workspace ul {
+  margin-bottom: 8px;
   width: 100%;
 }
-.booking .workspaces-container .rooms-container .room-division .div-property {
+.booking .workspaces-container .rooms-container .subtitle-highlight {
+  font-size: 16px;
+  color: #555;
+}
+.booking .workspaces-container .rooms-container .highlight, .booking .workspaces-container .rooms-container .icon-highlight {
+  font-weight: bold;
+  font-size: 20px;
+  color: #555;
+}
+.booking .workspaces-container .rooms-container .parking-info {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #777;
+  opacity: 0.8;
+}
+.booking .workspaces-container .rooms-container .workspace-division {
+  display: flex;
+  justify-content: space-evenly;
+}
+.booking .workspaces-container .rooms-container .workspace-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 0;
+  width: 100%;
+  margin-bottom: 8px;
 }
-.booking .workspaces-container .rooms-container .room-division .div-property ul {
-  list-style-type: none;
-}
-.booking .workspaces-container .rooms-container .room-division .button-container {
+.booking .workspaces-container .rooms-container .btn-container {
+  margin: 5px 0;
   display: flex;
   justify-content: center;
-  margin: 20px;
 }
 .booking .modal-calendar-container #modal-calendar {
   border: solid;
@@ -944,6 +978,7 @@ header .mobile-menu-icon {
 .ownerspace .workspaces-container .rooms-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   width: 100%;
 }
 .ownerspace .workspaces-container .rooms-container .room-division {
