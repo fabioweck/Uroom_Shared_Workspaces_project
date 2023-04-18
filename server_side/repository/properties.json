@@ -27,12 +27,21 @@
         "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
     },
     {
+        "property_id": 316900,
+        "address": "737 Carnarvon St",
+        "neighborhood": "New West",
+        "ParkingLot": "yes",
+        "PublicTransportation": "yes",
+        "property_status": true,
+        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
+    },
+    {
         "property_id": 726507,
         "address": "45 auburn",
         "neighborhood": "auburn bay",
         "ParkingLot": "yes",
         "PublicTransportation": "yes",
-        "property_status": true,
+        "property_status": false,
         "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
     },
     {
@@ -77,5 +86,23 @@
         "property_status": true,
         "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90",
         "property_id": 230131
+    },
+    {
+        "address": "45 auburn",
+        "neighborhood": "auburn bay",
+        "ParkingLot": "yes",
+        "PublicTransportation": "yes",
+        "status": "true",
+        "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90",
+        "property_id": "267-813760"
+    },
+    {
+        "address": "260 Midland Pl",
+        "neighborhood": "Midnapore",
+        "ParkingLot": "no",
+        "PublicTransportation": "yes",
+        "status": "true",
+        "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90",
+        "property_id": "267-909409"
     }
 ]

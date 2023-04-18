@@ -1,14 +1,7 @@
 const port = 3010;
 const baseUrl = `http://localhost:${port}/`;
 
-const submitNewUser = document.querySelector("#sendNewUser").addEventListener('click', (e)=>{
-
-  e.preventDefault();
-  document.querySelector('#signup-box').style.display = "none";
-  document.querySelector('#success-message').style.display = "flex";
-  sendNewUserClient();
-  
-})
+const submitNewUser = document.querySelector("#sendNewUser").addEventListener('click',sendNewUserClient);
 
 async function sendNewUserClient() {
 
@@ -55,7 +48,7 @@ async function sendNewUserClient() {
     .then((data) => {
 
       localStorage.setItem("user_id", data.user_id);
-      // window.location.href = "booking.html";
+      window.location.href = "booking.html";
       console.log(data);
 
       })
