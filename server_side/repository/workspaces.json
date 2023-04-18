@@ -1,5 +1,17 @@
 [
     {
+        "workspace_id": null,
+        "workspace_type": null,
+        "seats": null,
+        "smoking": null,
+        "price": null,
+        "sqft": null,
+        "lease_term": null,
+        "property_id": null,
+        "user_id": null,
+        "workspace_status": null
+    },
+    {
         "workspace_id": 552490,
         "workspace_type": "desk",
         "seats": 4,
@@ -33,7 +45,7 @@
         "lease_term": "dayly",
         "property_id": 316899,
         "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
-        "workspace_status": true
+        "workspace_status": false
     },
     {
         "workspace_type": "desk",
@@ -58,5 +70,17 @@
         "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
         "workspace_status": true,
         "workspace_id": "180-728508"
+    },
+    {
+        "workspace_type": "meeting room",
+        "seats": "20",
+        "smoking": "no",
+        "price": "200",
+        "sqft": "500",
+        "lease_term": "daily",
+        "property_id": "316899",
+        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+        "status": "true",
+        "workspace_id": "180-731085"
     }
 ]
