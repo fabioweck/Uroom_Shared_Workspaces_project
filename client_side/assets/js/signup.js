@@ -5,8 +5,6 @@ const submitNewUser = document.querySelector("#sendNewUser").addEventListener('c
 
 async function sendNewUserClient() {
 
-  event.preventDefault();
-
     // Retrieve input values from HTML form
     const fullName = document.getElementById("fullName").value;
     const phoneNumber = document.getElementById("phoneNumber").value;
@@ -44,7 +42,19 @@ async function sendNewUserClient() {
         body: JSON.stringify(newUserData),
     })
     
-    .then(response=>response.json())
+    .then((response)=>{
+        if (response.status == 400) {
+            response.json().then((data) => {
+              $("#dv-display").slideDown("slow").css({
+                display: "flex"
+              });
+              displayError.innerHTML = data.message;
+              return;
+            });
+          } else if (response.status == 200) {
+            return response.json();
+          }
+        })
     .then((data) => {
 
       localStorage.setItem("user_id", data.user_id);

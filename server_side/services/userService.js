@@ -11,40 +11,30 @@ function generateID() {
 
 
 async function addUser(user) {
-
     const filePath = path.join(__dirname, '../repository/users.json');
 
     try {
-        return await new Promise((resolve, reject) => {
+        const data = await loadJsonFile('users.json');
 
-            fs.readFile(filePath, (err, data) => {
-                if (err) {
-                    reject({ statusCode: 500, message: err.message });
-                } else {
+        // Check if the email address already exists in the users.json file
+        const existingUser = data.find(u => u.emailAddress === user.emailAddress);
 
-                    //to add automatic ID
-                    user.user_id = uuid();
+        if (existingUser) {
+            throw { statusCode: 400, message: 'Email address already in use.' };
+        }
 
-                    // Parse existing data from JSON string
-                    const existingData = JSON.parse(data);
+        // Add the user to the existing data
+        user.user_id = uuid();
+        data.push(user);
 
-                    // Add new form data to existing data
-                    existingData.push(user);
+        // Write the updated data back to the file
+        await writeJsonFile(data, 'users.json')
 
-                    //  Write updated data back to JSON file
-                    fs.writeFile(filePath, JSON.stringify(existingData), (err_1) => {
-                        if (err_1) {
-                            reject({ statusCode: 500, message: err_1.message });
-                        } else {
-                            resolve({ user_id: user.user_id });
-                        }
-                    });
-                };
-            });
-        });
-    } catch (err_2) {
-        const code = err_2.statusCode || 500;
-        const message = err_2.message || 'Error occurred while logging in';
+        return { user_id: user.user_id };
+
+    } catch (err) {
+        const code = err.statusCode || 500;
+        const message = err.message || 'Error occurred while adding user';
         throw { code, message };
     }
 }
@@ -71,6 +61,7 @@ async function updateUser(updateUser) {
         throw { code, message };
     });
 };
+
 
 
 
@@ -151,6 +142,28 @@ async function addProperty(newProperty) {
 
 }
 
+async function updateProperty(updateProperty) {
+
+    const properties = await loadJsonFile('properties.json');
+
+    return new Promise(async (resolve, reject) => {
+
+        for (const property of properties) {
+            if (property.user_id == updateProperty.user_id) {
+                Object.assign(property, updateProperty);
+                console.log('property after update:', property)
+                resolve(property);
+            }
+        }
+        await writeJsonFile(properties, 'properties.json')
+
+    }).catch(err => {
+        const code = err.statusCode || 500;
+        const message = err.message || 'Error occurred while delisting workspace';
+        throw { code, message };
+    });
+};
+
 async function addWorkspace(newWorkspace) {
 
     const filePath = path.join(__dirname, '../repository/workspaces.json');
@@ -190,6 +203,28 @@ async function addWorkspace(newWorkspace) {
         throw { code, message };
     }
 }
+
+async function updateWorkspace(updateWorkspace) {
+
+    const workspaces = await loadJsonFile('workspaces.json');
+
+    return new Promise(async (resolve, reject) => {
+
+        for (const workspace of workspaces) {
+            if (workspace.user_id == updateWorkspace.user_id) {
+                Object.assign(workspace, updateWorkspace);
+                console.log('workspace after update:', workspace)
+                resolve(workspace);
+            }
+        }
+        await writeJsonFile(workspaces, 'workspaces.json')
+
+    }).catch(err => {
+        const code = err.statusCode || 500;
+        const message = err.message || 'Error occurred while delisting workspace';
+        throw { code, message };
+    });
+};
 
 // We can inactive this function !!! Replace by getWorlspaceByOwner();
 async function findPropertyByOwner(user_id) {
@@ -294,46 +329,40 @@ async function getReservedDate(workspace) {
     });
 };
 
-async function updateReservedDate(dates) {
 
+async function updateReservedDate(dates) {
     const allNewBookings = dates;
     const bookings = await loadJsonFile('bookings.json');
     const workspaceBookings = bookings[0].workspace_bookings;
-    const bookingsForWorkspace = workspaceBookings[allNewBookings.workspace_id];
+    const bookingsForWorkspace = workspaceBookings[allNewBookings[0].workspace_id];
 
-    console.log('from front', allNewBookings);
-    console.log('from file', bookings);
+    let sortedBookings;
+
     return new Promise(async (resolve, reject) => {
-        for (const monthBook in allNewBookings) {
-            for (const newBook in monthBook) {
-
-                if (!(newBook.year in bookingsForWorkspace)) {
-                    bookingsForWorkspace[newBook.year] = {};
-                }
-                if (!(newBook.month in bookingsForWorkspace[newBook.year])) {
-                    bookingsForWorkspace[newBook.year][newBook.month] = [];
-                }
-                for (const day of newBook.days) {
-                    if (!bookingsForWorkspace[newBook.year][newBook.month].includes(day)) {
-                        bookingsForWorkspace[newBook.year][newBook.month].push(day);
-                    }
+        for (const newBook of allNewBookings) {
+            if (!(newBook.year in bookingsForWorkspace)) {
+                bookingsForWorkspace[newBook.year] = {};
+            }
+            if (!(newBook.month in bookingsForWorkspace[newBook.year])) {
+                bookingsForWorkspace[newBook.year][newBook.month] = [];
+            }
+            for (const day of newBook.days) {
+                if (!bookingsForWorkspace[newBook.year][newBook.month].includes(day)) {
+                    bookingsForWorkspace[newBook.year][newBook.month].push(day);
                 }
             }
 
-            const sortedBookings = sortBookings(bookings);
-
-            await writeJsonFile(sortedBookings, 'bookings.json');
-
-            resolve('passed');
+            sortedBookings = sortBookings(bookings);
         }
 
+        await writeJsonFile(sortedBookings, 'bookings.json');
+        resolve({ statusCode: 200, message: 'Booking registered.' });
 
     }).catch(err => {
         const code = err.statusCode || 500;
         const message = err.message || 'Error occurred while delisting workspace';
         throw { code, message };
     });
-
 }
 
 
@@ -475,4 +504,4 @@ async function writeJsonFile(data, fileName) {
 }
 
 
-module.exports = { addUser, login, addProperty, addWorkspace, findPropertyByOwner, findWorkspaceByOwner, getWorkspaceByOwner, delistWorkspace, delistProperty, getReservedDate, updateReservedDate, updateUser }
+module.exports = { addUser, login, addProperty, addWorkspace, findPropertyByOwner, findWorkspaceByOwner, getWorkspaceByOwner, delistWorkspace, delistProperty, getReservedDate, updateReservedDate, updateUser, updateProperty, updateWorkspace }

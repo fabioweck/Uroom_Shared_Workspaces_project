@@ -429,13 +429,6 @@ header .mobile-menu-icon {
 ### MAIN - SIGN-UP PAGE ###
 ************************************************
 */
-#success-message {
-  display: none;
-  width: 100%;
-  font-size: 50px;
-  color: #398378;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
 
 @media screen and (max-width: 768px) {
   #login {
@@ -1516,7 +1509,7 @@ header .mobile-menu-icon {
 }
 .container .about-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
 }
@@ -1525,6 +1518,17 @@ header .mobile-menu-icon {
   font-size: 20px;
   text-align: justify;
   padding-bottom: 30px;
+}
+.container .about-container ul {
+  width: 80%;
+  list-style-type: none;
+}
+.container .about-container li {
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  margin: 20px 0;
+  padding: 0;
 }
 
 /*
@@ -1608,7 +1612,7 @@ header .mobile-menu-icon {
 .container #contact-us .half-card-right #sendMsg {
   border: none;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin: 20px;
   width: 15%;
   color: white;
   background-color: #398378;
