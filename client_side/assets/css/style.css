@@ -435,7 +435,6 @@ header .mobile-menu-icon {
   font-size: 50px;
   color: #398378;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-align: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -522,7 +521,6 @@ header .mobile-menu-icon {
 #login #signup-box input:checked + .slider {
   background-color: #398378;
 }
-
 #login #signup-box input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
 }
@@ -628,6 +626,16 @@ header .mobile-menu-icon {
   0% {
     opacity: 0;
     transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+@keyframes unset {
+  0% {
+    opacity: 0;
+    transform: translateX(0%);
   }
   100% {
     opacity: 1;
