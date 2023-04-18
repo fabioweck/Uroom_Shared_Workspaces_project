@@ -21,8 +21,8 @@
     "property_id": 316899,
     "address": "738 Carnarvon St",
     "neighborhood": "New West",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
+    "ParkingLot": "no",
+    "PublicTransportation": "no",
     "property_status": true,
     "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
   },

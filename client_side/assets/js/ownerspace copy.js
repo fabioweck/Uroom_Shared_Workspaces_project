@@ -45,7 +45,6 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
 
     case "lease_term":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: dayly, weekly or monthly");
       filteredData = propertiesWorkspaceData.filter(({ lease_term }) =>
         lease_term.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -54,7 +53,6 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
 
     case "price":
       searchBar.setAttribute("type", "number");
-      searchBar.setAttribute("placeholder", "Search (just numbers)");
       const priceValue = parseInt(searchBarInputValue);
       if (priceValue !== "" && !isNaN(priceValue)) {
         filteredData = propertiesWorkspaceData.filter(({ price }) =>
@@ -68,7 +66,6 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
 
     case "seats":
       searchBar.setAttribute("type", "number");
-      searchBar.setAttribute("placeholder", "Search (just numbers)");
       const seatsValue = parseInt(searchBarInputValue);
       if (seatsValue !== "" && !isNaN(seatsValue)) {
         filteredData = propertiesWorkspaceData.filter(({ seats }) =>
@@ -82,7 +79,6 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
 
     case "smoking":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: yes or no");
       filteredData = propertiesWorkspaceData.filter(({ smoking }) =>
         smoking.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -91,7 +87,6 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
 
     case "sqft":
       searchBar.setAttribute("type", "number");
-      searchBar.setAttribute("placeholder", "Search (just numbers)");
       const sqftValue = parseInt(searchBarInputValue);
       if (sqftValue !== "" && !isNaN(sqftValue)) {
         filteredData = propertiesWorkspaceData.filter(({ sqft }) =>
@@ -105,7 +100,6 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
 
     case "workspace_type":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: desk or room");
       filteredData = propertiesWorkspaceData.filter(({ workspace_type }) =>
         workspace_type.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -130,7 +124,6 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
 
     case "ParkingLot":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: yes or no");
       filteredData = propertiesWorkspaceData.filter(({ ParkingLot }) =>
         ParkingLot.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -139,7 +132,6 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
 
     case "PublicTransportation":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: yes or no");
       filteredData = propertiesWorkspaceData.filter(
         ({ PublicTransportation }) =>
           PublicTransportation.toLowerCase().includes(
@@ -189,8 +181,6 @@ searchBarInputProperty.addEventListener("input", (event) => {
 
 /*=============================================
 → ### DISPLAY PROPERTIES AND WORKSPACE DATA ### */
-let isFirstCallProperties = true;
-let isFirstCallWorkspaces = true;
 const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
   {
     // → === HTML Properties ===
@@ -239,23 +229,15 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       const addressParagraph = document.createElement("p");
       addressParagraph.innerHTML = `<strong>Address: </strong>${address} ${neighborhood}`;
 
-      const iconContext1 =
-        ParkingLot == "yes"
-          ? `<i class="fa-solid fa-circle-check fa-lg" style="color: #1f5132;"></i>`
-          : `<i class="fa-solid fa-circle-xmark fa-lg" style="color: #511f1f;"></i>`;
       const parkingLotParagraph = document.createElement("p");
-      parkingLotParagraph.innerHTML = `<strong>Parking Lot:</strong> ${iconContext1}`;
+      parkingLotParagraph.innerHTML = `<strong>Parking Lot:</strong> ${ParkingLot}`;
 
-      const iconContext2 =
-        PublicTransportation == "yes"
-          ? `<i class="fa-solid fa-circle-check fa-lg" style="color: #1f5132;"></i>`
-          : `<i class="fa-solid fa-circle-xmark fa-lg" style="color: #511f1f;"></i>`;
       const publicTransportationParagraph = document.createElement("p");
-      publicTransportationParagraph.innerHTML = `<strong>Public Transportation:</strong> ${iconContext2}`;
+      publicTransportationParagraph.innerHTML = `<strong>Public Transportation:</strong> ${PublicTransportation}`;
 
       const iconStatusPropertyParagraph = workspace_status
-        ? `<i class="fa-solid fa-square-check fa-2xl" style="color: #1f5132;"></i>`
-        : `<i class="fa-solid fa-rectangle-xmark fa-2xl" style="color: #511f1f;"></i>`;
+        ? `<i class="fa-solid fa-circle-check fa-2xl" style="color: #1f5132;"></i>`
+        : `<i class="fa-solid fa-circle-xmark fa-2xl" style="color: #511f1f;"></i>`;
       const statusPropertyParagraph = document.createElement("p");
       statusPropertyParagraph.innerHTML = `<strong>Status Property:</strong> ${iconStatusPropertyParagraph}`;
 
@@ -266,7 +248,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       propertyDescriptionWrap.appendChild(parkingLotParagraph);
       propertyDescriptionWrap.appendChild(publicTransportationParagraph);
       propertyDescriptionWrap.appendChild(statusPropertyParagraph);
-      // propertyDescriptionWrap.appendChild(idPropertyParagraph);
+      propertyDescriptionWrap.appendChild(idPropertyParagraph);
 
       propertyDescriptionContainer.appendChild(propertyDescriptionWrap);
       propertyDescriptionContainer.appendChild(statusPropertyParagraph);
@@ -298,19 +280,13 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
 
       propertiesContainer.appendChild(propertyDivision);
 
-      if (isFirstCallProperties) {
-        setTimeout(() => {
-          propertyDivision.style.animationDelay = `${index * 0.25}s`;
-          propertyDivision.style.opacity = "1";
-          propertyDivision.style.transform = "translateX(1000%)";
-          propertyDivision.style.display = "block";
-        }, index * 1);
-      } else {
+      setTimeout(() => {
+        propertyDivision.style.animationDelay = `${index * 0.25}s`;
+        propertyDivision.style.opacity = "1";
+        propertyDivision.style.transform = "translateX(1000%)";
         propertyDivision.style.display = "block";
-        propertyDivision.style.animationDuration = "0s";
-      }
+      }, index * 1);
     });
-    isFirstCallProperties = false;
   }
 
   // → === HTML Workspaces ===
@@ -335,324 +311,53 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       property_id,
     } = propertyData;
 
-    // Create the outer div element with class "property-card"
-    const propertyCard = document.createElement("div");
-    propertyCard.className = "property-card";
-    propertyCard.style.display = "none";
-
-    // Create the div element with class "wrap-img"
-    const wrapImg = document.createElement("div");
-    wrapImg.className = "wrap-img";
-
-    // Create the img element with src, alt, and class attributes
-    const propertyImage = document.createElement("img");
-    propertyImage.src = "../img/room01.jpg";
-    propertyImage.alt = "Property Image";
-    propertyImage.className = "property-image";
-
-    // Append the propertyImage element to the wrapImg element
-    wrapImg.appendChild(propertyImage);
-
-    // Create the div element with class "address-neighborhood"
-    const addressNeighborhood = document.createElement("div");
-    addressNeighborhood.className = "address-neighborhood";
-
-    // Set the text content for the address neighborhood element
-    addressNeighborhood.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${address}, ${neighborhood}`;
-
-    // Create the outer div element with class "property-info-container"
-    const propertyInfoContainer = document.createElement("div");
-    propertyInfoContainer.className = "property-info-container";
-
-    // Create the first property info div element with class "property-info"
-    const propertyInfo1 = document.createElement("div");
-    propertyInfo1.className = "property-info";
-
-    // Create the span element with class "subtitle-highlight" for the first property info
-    const subtitleHighlight1 = document.createElement("span");
-    subtitleHighlight1.className = "subtitle-highlight";
-    subtitleHighlight1.textContent = "Parking:";
-
-    // Create the span element with class "icon-highlight" for the first property info
-    const iconContext1 =
-      ParkingLot == "yes"
-        ? `<i class="fa-solid fa-circle-check fa-lg" style="color: #1f5132;"></i>`
-        : `<i class="fa-solid fa-circle-xmark fa-lg" style="color: #511f1f;"></i>`;
-    const iconHighlight1 = document.createElement("span");
-    iconHighlight1.className = "icon-highlight";
-    iconHighlight1.innerHTML = `${iconContext1}`;
-
-    // Append the subtitleHighlight1 and iconHighlight1 elements to the propertyInfo1 element
-    propertyInfo1.appendChild(subtitleHighlight1);
-    propertyInfo1.appendChild(iconHighlight1);
-
-    // Create the second property info div element with class "property-info"
-    const propertyInfo2 = document.createElement("div");
-    propertyInfo2.className = "property-info";
-
-    // Create the span element with class "subtitle-highlight" for the second property info
-    const subtitleHighlight2 = document.createElement("span");
-    subtitleHighlight2.className = "subtitle-highlight";
-    subtitleHighlight2.textContent = "Pub Transp:";
-
-    // Create the span element with class "icon-highlight" for the second property info
-    const iconContext2 =
-      PublicTransportation == "yes"
-        ? `<i class="fa-solid fa-circle-check fa-lg" style="color: #1f5132;"></i>`
-        : `<i class="fa-solid fa-circle-xmark fa-lg" style="color: #511f1f;"></i>`;
-    const iconHighlight2 = document.createElement("span");
-    iconHighlight2.className = "icon-highlight";
-    iconHighlight2.innerHTML = `${iconContext2}`;
-
-    // Append the subtitleHighlight2 and iconHighlight2 elements to the propertyInfo2 element
-    propertyInfo2.appendChild(subtitleHighlight2);
-    propertyInfo2.appendChild(iconHighlight2);
-
-    // Append the propertyInfo1 and propertyInfo2 elements to the propertyInfoContainer element
-    propertyInfoContainer.appendChild(propertyInfo1);
-    propertyInfoContainer.appendChild(propertyInfo2);
-
-    // Create div element with class "wrap-workspace"
-    const wrapWorkspaceDiv = document.createElement("div");
-    wrapWorkspaceDiv.className = "wrap-workspace";
-
-    // Create div element with class "workspace-info-container"
-    const workspaceInfoContainerDiv = document.createElement("div");
-    workspaceInfoContainerDiv.className = "workspace-info-container";
-
-    // Create div element with class "workspace-division"
-    const workspaceDivisionDiv = document.createElement("div");
-    workspaceDivisionDiv.className = "workspace-division";
-
-    // Create div element with class "workspace-info" for Lease Term
-    const leaseTermWorkspaceInfoDiv = document.createElement("div");
-    leaseTermWorkspaceInfoDiv.className = "workspace-info";
-
-    // Create span element with class "subtitle-highlight" for Lease Term label
-    const leaseTermLabelSpan = document.createElement("span");
-    leaseTermLabelSpan.className = "subtitle-highlight";
-    leaseTermLabelSpan.textContent = "Term:";
-
-    // Create span element with class "highlight" for Lease Term value
-    const leaseTermValueSpan = document.createElement("span");
-    leaseTermValueSpan.className = "highlight";
-    leaseTermValueSpan.textContent = `${lease_term}`;
-
-    // Append Lease Term label and value spans to Lease Term workspace-info div
-    leaseTermWorkspaceInfoDiv.appendChild(leaseTermLabelSpan);
-    leaseTermWorkspaceInfoDiv.appendChild(leaseTermValueSpan);
-
-    // Create div element with class "workspace-info" for Price
-    const priceWorkspaceInfoDiv = document.createElement("div");
-    priceWorkspaceInfoDiv.className = "workspace-info";
-
-    // Create span element with class "subtitle-highlight" for Price label
-    const priceLabelSpan = document.createElement("span");
-    priceLabelSpan.className = "subtitle-highlight";
-    priceLabelSpan.textContent = "Price:";
-
-    // Create span element with class "highlight" for Price value
-    const priceValueSpan = document.createElement("span");
-    priceValueSpan.className = "highlight";
-    priceValueSpan.textContent = `${price}`;
-
-    // Append Price label and value spans to Price workspace-info div
-    priceWorkspaceInfoDiv.appendChild(priceLabelSpan);
-    priceWorkspaceInfoDiv.appendChild(priceValueSpan);
-
-    // Append Lease Term and Price workspace-info divs to workspace-division div
-    workspaceDivisionDiv.appendChild(leaseTermWorkspaceInfoDiv);
-    workspaceDivisionDiv.appendChild(priceWorkspaceInfoDiv);
-
-    // Create div element with class "workspace-division"
-    const workspaceDivisionDiv2 = document.createElement("div");
-    workspaceDivisionDiv2.className = "workspace-division";
-
-    // Create div element with class "workspace-info" for Seats
-    const seatsWorkspaceInfoDiv = document.createElement("div");
-    seatsWorkspaceInfoDiv.className = "workspace-info";
-
-    // Create span element with class "subtitle-highlight" for Seats label
-    const seatsLabelSpan = document.createElement("span");
-    seatsLabelSpan.className = "subtitle-highlight";
-    seatsLabelSpan.textContent = "Seats:";
-
-    // Create span element with class "highlight" for Seats value
-    const seatsValueSpan = document.createElement("span");
-    seatsValueSpan.className = "highlight";
-    seatsValueSpan.textContent = `${seats}`;
-
-    // Append Seats label and value spans to Seats workspace-info div
-    seatsWorkspaceInfoDiv.appendChild(seatsLabelSpan);
-    seatsWorkspaceInfoDiv.appendChild(seatsValueSpan);
-
-    // Create div element with class "workspace-info" for Smoking
-    const smokingWorkspaceInfoDiv = document.createElement("div");
-    smokingWorkspaceInfoDiv.className = "workspace-info";
-
-    // Create span element with class "subtitle-highlight" for Smoking label
-    const smokingLabelSpan = document.createElement("span");
-    smokingLabelSpan.className = "subtitle-highlight";
-    smokingLabelSpan.textContent = "Smoking:";
-
-    // Create span element with class "highlight" for Smoking value
-    const iconContext3 =
-      smoking == "yes"
-        ? `<i class="fa-solid fa-circle-check fa-lg" style="color: #1f5132;"></i>`
-        : `<i class="fa-solid fa-circle-xmark fa-lg" style="color: #511f1f;"></i>`;
-    const smokingValueSpan = document.createElement("span");
-    smokingValueSpan.className = "highlight";
-    smokingValueSpan.innerHTML = `${iconContext3}`;
-
-    // Append Smoking label and value spans to Smoking workspace-info div
-    smokingWorkspaceInfoDiv.appendChild(smokingLabelSpan);
-    smokingWorkspaceInfoDiv.appendChild(smokingValueSpan);
-
-    // Create div element with class "workspace-info" for Sqft
-    const sqftWorkspaceInfoDiv = document.createElement("div");
-    sqftWorkspaceInfoDiv.className = "workspace-info";
-
-    // Create span element with class "subtitle-highlight" for Sqft label
-    const sqftLabelSpan = document.createElement("span");
-    sqftLabelSpan.className = "subtitle-highlight";
-    sqftLabelSpan.textContent = "Sqft:";
-
-    // Create span element with class "highlight" for Sqft value
-    const sqftValueSpan = document.createElement("span");
-    sqftValueSpan.className = "highlight";
-    sqftValueSpan.textContent = `${sqft}`;
-
-    // Append Sqft label and value spans to Sqft workspace-info div
-    sqftWorkspaceInfoDiv.appendChild(sqftLabelSpan);
-    sqftWorkspaceInfoDiv.appendChild(sqftValueSpan);
-
-    // Append Seats, Smoking, and Sqft workspace-info divs to workspace-division div
-    workspaceDivisionDiv2.appendChild(seatsWorkspaceInfoDiv);
-    workspaceDivisionDiv2.appendChild(smokingWorkspaceInfoDiv);
-    workspaceDivisionDiv2.appendChild(sqftWorkspaceInfoDiv);
-
-    // Create a new div element
-    const workspaceDivisionDiv3 = document.createElement("div");
-    workspaceDivisionDiv3.className = "workspace-division";
-
-    // Create a new div element
-    const workspaceInfo = document.createElement("div");
-    workspaceInfo.className = "workspace-info";
-
-    // Create a new span element for subtitle-highlight
-    const subtitleHighlight = document.createElement("span");
-    subtitleHighlight.className = "subtitle-highlight";
-    subtitleHighlight.textContent = "Type:";
-
-    // Create a new span element for highlight
-    const highlight = document.createElement("span");
-    highlight.className = "highlight";
-    highlight.textContent = `${workspace_type}`;
-
-    // Append subtitle-highlight span element to workspace-info div element
-    workspaceInfo.appendChild(subtitleHighlight);
-
-    // Append highlight span element to workspace-info div element
-    workspaceInfo.appendChild(highlight);
-
-    // Append workspace-info div element to workspace-division div element
-    // workspaceDivisionDiv3.appendChild(workspaceInfo);
-    workspaceDivisionDiv.appendChild(workspaceInfo);
-
-    // Create a div element
-    const workspaceDivisionDiv4 = document.createElement("div");
-
-    // Add "workspace-info" class to the div element
-    workspaceDivisionDiv4.classList.add("workspace-status");
-
-    // Create a span element for the subtitle
-    const subtitleElement1 = document.createElement("span");
-    subtitleElement1.classList.add("subtitle-highlight");
-    subtitleElement1.textContent = "Workspace Status:";
-
-    const statushighlightElementWorkspace = workspace_status
-      ? `<i class="fa-solid fa-square-check fa-xl" style="color: #1f5132;"></i>`
-      : `<i class="fa-solid fa-rectangle-xmark fa-xl" style="color: #511f1f;"></i>`;
-    // Create a span element for the highlight
-    const highlightElement = document.createElement("span");
-    highlightElement.classList.add("highlight");
-    highlightElement.innerHTML = `${statushighlightElementWorkspace}`;
-
-    // Append the subtitle and highlight elements to the div element
-    workspaceDivisionDiv4.appendChild(subtitleElement1);
-    workspaceDivisionDiv4.appendChild(highlightElement);
-
-    // Create a div element
-    const workspaceDivisionDiv5 = document.createElement("div");
-
-    // Add "workspace-info" class to the div element
-    workspaceDivisionDiv5.classList.add("workspace-info");
-
-    // Create a span element for the subtitle
-    const subtitleElement2 = document.createElement("span");
-    subtitleElement2.classList.add("subtitle-highlight");
-    subtitleElement2.textContent = "Workspace ID:";
-
-    // Create a span element for the highlight
-    const highlightElement2 = document.createElement("span");
-    highlightElement2.classList.add("highlight");
-    highlightElement2.textContent = `${workspace_id}`;
-
-    // Append the subtitle and highlight elements to the div element
-    workspaceDivisionDiv5.appendChild(subtitleElement2);
-    workspaceDivisionDiv5.appendChild(highlightElement2);
-
-    // Create a div element
-    const workspaceDivisionDiv6 = document.createElement("div");
-
-    // Add "workspace-info" class to the div element
-    workspaceDivisionDiv6.classList.add("workspace-info");
-
-    // Create a span element for the subtitle
-    const subtitleElement3 = document.createElement("span");
-    subtitleElement3.classList.add("subtitle-highlight");
-    subtitleElement3.textContent = "Property Status:";
-
-    // Create a span element for the highlight
-    const highlightElement3 = document.createElement("span");
-    highlightElement3.classList.add("highlight");
-    highlightElement3.textContent = `${property_status}`;
-
-    // Append the subtitle and highlight elements to the div element
-    workspaceDivisionDiv6.appendChild(subtitleElement3);
-    workspaceDivisionDiv6.appendChild(highlightElement3);
-
-    // Create a div element
-    const workspaceDivisionDiv7 = document.createElement("div");
-
-    // Add "workspace-info" class to the div element
-    workspaceDivisionDiv7.classList.add("workspace-info");
-
-    // Create a span element for the subtitle
-    const subtitleElement4 = document.createElement("span");
-    subtitleElement4.classList.add("subtitle-highlight");
-    subtitleElement4.textContent = "Property ID:";
-
-    // Create a span element for the highlight
-    const highlightElement4 = document.createElement("span");
-    highlightElement4.classList.add("highlight");
-    highlightElement4.textContent = `${property_id}`;
-
-    // Append the subtitle and highlight elements to the div element
-    workspaceDivisionDiv7.appendChild(subtitleElement4);
-    workspaceDivisionDiv7.appendChild(highlightElement4);
-
-    // Append workspace-division div to workspace-info-container div
-    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv);
-    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv2);
-    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv3);
-    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv4);
-    // workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv5);
-    // workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv6);
-    // workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv7);
-
-    // Append workspace-info-container div to wrap-workspace div
-    wrapWorkspaceDiv.appendChild(workspaceInfoContainerDiv);
+    const roomDivision = document.createElement("div");
+    roomDivision.className = "room-division";
+    roomDivision.style.display = "none";
+
+    const roomDescription = document.createElement("div");
+    roomDescription.className = "room-description";
+
+    const image = document.createElement("img");
+    image.src = "../img/room01.jpg";
+    image.alt = "Image Room";
+
+    const divWorkspace = document.createElement("div");
+    divWorkspace.className = "workplace-description";
+
+    const divWorkspaceWrap = document.createElement("div");
+    divWorkspaceWrap.className = "wrap-description";
+
+    const ulWorkspace = document.createElement("ul");
+    ulWorkspace.innerHTML = `
+        <li><strong>Lease term: </strong>${lease_term}</li>
+        <li><strong>Price: </strong>${price}</li>
+        <li><strong>Seats: </strong>${seats}</li>
+        <li><strong>Smoking: </strong>${smoking}</li>
+        <li><strong>Sqft: </strong>${sqft}</li>
+        <li><strong>Workspace Type: </strong>${workspace_type}</li>
+        <li><strong>WorkspaceStatus: </strong>${workspace_status}</li>
+        <li><strong>Workspace ID: </strong>${workspace_id}</li>
+      `;
+
+    roomDescription.appendChild(image);
+    roomDescription.appendChild(divWorkspace);
+    divWorkspaceWrap.appendChild(ulWorkspace);
+    divWorkspace.appendChild(divWorkspaceWrap);
+
+    const divProperty = document.createElement("div");
+    divProperty.className = "property-description-container";
+
+    const ulProperty = document.createElement("ul");
+    ulProperty.innerHTML = `
+        <li><strong>Address: </strong>${address}, ${neighborhood}</li>
+        <li><strong>Parking lot: </strong>${ParkingLot}</li>
+        <li><strong>Public transportation: </strong>${PublicTransportation}</li>
+        <li><strong>Property Status: </strong>${property_status}</li>
+        <li><strong>Property ID: </strong>${property_id}</li>
+      `;
+
+    divProperty.appendChild(ulProperty);
 
     const buttonContainerProperty = document.createElement("div");
     buttonContainerProperty.className = "button-container";
@@ -673,32 +378,22 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
     btnActiveInactiveWorkspace.name = statusBtnActiveInactiveWorkspace;
     btnActiveInactiveWorkspace.value = `${workspace_id}`;
 
-    // Append button to btn-container
     buttonContainerProperty.appendChild(btnUpdateWorkspace);
     buttonContainerProperty.appendChild(btnActiveInactiveWorkspace);
 
-    // Append the elements
-    propertyCard.appendChild(wrapImg);
-    propertyCard.appendChild(addressNeighborhood);
-    propertyCard.appendChild(propertyInfoContainer);
-    propertyCard.appendChild(wrapWorkspaceDiv);
-    propertyCard.appendChild(buttonContainerProperty);
+    roomDivision.appendChild(roomDescription);
+    roomDivision.appendChild(divProperty);
+    roomDivision.appendChild(buttonContainerProperty);
 
-    roomsContainer.appendChild(propertyCard);
+    roomsContainer.appendChild(roomDivision);
 
-    if (isFirstCallWorkspaces) {
-      setTimeout(() => {
-        propertyCard.style.animationDelay = `${index * 0.25}s`;
-        propertyCard.style.opacity = "1";
-        propertyCard.style.transform = "translateX(1000%)";
-        propertyCard.style.display = "block";
-      }, index * 1);
-    } else {
-      propertyCard.style.display = "block";
-      propertyCard.style.animationDuration = "0s";
-    }
+    setTimeout(() => {
+      roomDivision.style.animationDelay = `${index * 0.25}s`;
+      roomDivision.style.opacity = "1";
+      roomDivision.style.transform = "translateX(1000%)";
+      roomDivision.style.display = "block";
+    }, index * 1);
   });
-  isFirstCallWorkspaces = false;
 };
 
 /*=============================================
@@ -1307,10 +1002,6 @@ document.addEventListener("click", (event) => {
     showSearchWorkspaceProperties();
     document.getElementById("btn-my-properties").disabled = true;
     document.getElementById("btn-my-rooms").disabled = false;
-    isFirstCallProperties = true;
-    displayPropertiesWorkspaceData(propertiesWorkspaceData);
-    document.getElementById("search-bar-property").value = "";
-    document.getElementById("dropdown-search-bar-property").value = "address";
   }
 });
 
@@ -1342,10 +1033,6 @@ document.addEventListener("click", (event) => {
     showSearchWorkspace();
     document.getElementById("btn-my-properties").disabled = false;
     document.getElementById("btn-my-rooms").disabled = true;
-    isFirstCallWorkspaces = true;
-    displayPropertiesWorkspaceData(propertiesWorkspaceData);
-    document.getElementById("search-bar-workspace").value = "";
-    document.getElementById("dropdown-search-bar-workspace").value = "address";
   }
 });
 

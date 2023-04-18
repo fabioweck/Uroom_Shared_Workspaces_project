@@ -429,7 +429,6 @@ header .mobile-menu-icon {
 ### MAIN - SIGN-UP PAGE ###
 ************************************************
 */
-
 @media screen and (max-width: 768px) {
   #login {
     height: 110vh;
@@ -515,7 +514,7 @@ header .mobile-menu-icon {
   background-color: #398378;
 }
 #login #signup-box input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 #login #signup-box input:checked + .slider:before {
   transform: translateX(26px);
@@ -685,7 +684,8 @@ header .mobile-menu-icon {
   font-size: 16px;
   color: #555;
 }
-.booking .workspaces-container .rooms-container .highlight, .booking .workspaces-container .rooms-container .icon-highlight {
+.booking .workspaces-container .rooms-container .highlight,
+.booking .workspaces-container .rooms-container .icon-highlight {
   font-weight: bold;
   font-size: 20px;
   color: #555;
@@ -1000,18 +1000,19 @@ header .mobile-menu-icon {
 }
 .ownerspace .workspaces-container .rooms-container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 20px 20px;
+  flex-basis: calc(33.33% - 40px);
 }
-.ownerspace .workspaces-container .rooms-container .room-division {
-  margin-left: 20px;
+.ownerspace .workspaces-container .rooms-container:not(:last-child) {
   margin-right: 20px;
-  margin-bottom: 20px;
+}
+.ownerspace .workspaces-container .rooms-container .property-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
   background-color: #f0f0f0;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -1021,6 +1022,9 @@ header .mobile-menu-icon {
   animation-fill-mode: forwards;
   opacity: 0;
   transform: translateX(100%);
+  margin-bottom: 20px;
+  width: 300px;
+  margin: 10px;
 }
 @keyframes fadeRight {
   0% {
@@ -1032,70 +1036,120 @@ header .mobile-menu-icon {
     transform: translateX(0%);
   }
 }
-.ownerspace .workspaces-container .rooms-container .room-division .room-description {
+@keyframes unset {
+  0% {
+    opacity: 0;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+@media screen and (max-width: 480px) {
+  .ownerspace .workspaces-container .rooms-container .property-card {
+    width: 100%;
+  }
+}
+.ownerspace .workspaces-container .rooms-container .wrap-img {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
 }
 @media screen and (max-width: 768px) {
-  .ownerspace .workspaces-container .rooms-container .room-division .room-description {
+  .ownerspace .workspaces-container .rooms-container .wrap-img {
     flex-direction: column;
   }
 }
-.ownerspace .workspaces-container .rooms-container .room-division .room-description img {
-  width: 50%;
-  margin: 50px;
-  border-radius: 4px;
+.ownerspace .workspaces-container .rooms-container .wrap-img .property-image {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-@media screen and (max-width: 768px) {
-  .ownerspace .workspaces-container .rooms-container .room-division .room-description img {
-    width: 80%;
-    margin: 20px;
-    min-width: 300px;
-  }
+.ownerspace .workspaces-container .rooms-container .address-neighborhood {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
 }
-.ownerspace .workspaces-container .rooms-container .room-division .room-description .workplace-description {
+.ownerspace .workspaces-container .rooms-container .property-info-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
   width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.ownerspace .workspaces-container .rooms-container .property-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 10px;
-}
-.ownerspace .workspaces-container .rooms-container .room-division .room-description .workplace-description ul {
+  margin-bottom: 8px;
   width: 100%;
 }
-.ownerspace .workspaces-container .rooms-container .room-division .property-description-container {
+.ownerspace .workspaces-container .rooms-container .subtitle-highlight {
+  font-size: 16px;
+  color: #555;
+}
+.ownerspace .workspaces-container .rooms-container .highlight,
+.ownerspace .workspaces-container .rooms-container .icon-highlight {
+  font-weight: bold;
+  font-size: 20px;
+  color: #555;
+}
+.ownerspace .workspaces-container .rooms-container .parking-info {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #777;
+  opacity: 0.8;
+}
+.ownerspace .workspaces-container .rooms-container .workspace-division {
+  display: flex;
+  justify-content: space-evenly;
+}
+.ownerspace .workspaces-container .rooms-container .workspace-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 0;
+  width: 100%;
+  margin-bottom: 8px;
 }
-.ownerspace .workspaces-container .rooms-container .room-division .property-description-container ul {
-  list-style-type: none;
+.ownerspace .workspaces-container .rooms-container .workspace-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
 }
-.ownerspace .workspaces-container .rooms-container .room-division .button-container {
+.ownerspace .workspaces-container .rooms-container .button-container {
   display: flex;
   justify-content: space-around;
-  margin: 20px;
+  margin: 10px;
 }
-.ownerspace .workspaces-container .rooms-container .room-division .button-container #btn-update-workspace {
+.ownerspace .workspaces-container .rooms-container .button-container #btn-update-workspace {
   background-color: #398378;
+  padding: 12px 0px;
 }
-.ownerspace .workspaces-container .rooms-container .room-division .button-container #btn-update-workspace:hover {
+.ownerspace .workspaces-container .rooms-container .button-container #btn-update-workspace:hover {
   background-color: #2a5f57;
 }
-.ownerspace .workspaces-container .rooms-container .room-division .button-container button[name=Deactivate] {
+.ownerspace .workspaces-container .rooms-container .button-container button[name=Deactivate] {
   background-color: #833e39;
+  padding: 12px 0px;
 }
-.ownerspace .workspaces-container .rooms-container .room-division .button-container button[name=Deactivate]:hover {
+.ownerspace .workspaces-container .rooms-container .button-container button[name=Deactivate]:hover {
   background-color: #5f2d2a;
 }
-.ownerspace .workspaces-container .rooms-container .room-division .button-container button[name=Activate] {
+.ownerspace .workspaces-container .rooms-container .button-container button[name=Activate] {
   background-color: #396283;
+  padding: 12px 0px;
 }
-.ownerspace .workspaces-container .rooms-container .room-division .button-container button[name=Activate]:hover {
+.ownerspace .workspaces-container .rooms-container .button-container button[name=Activate]:hover {
   background-color: #2a475f;
 }
 .ownerspace .modal-add-property-container #modal-add-property,
