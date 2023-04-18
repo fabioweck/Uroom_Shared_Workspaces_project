@@ -484,6 +484,7 @@ header {
 ************************************************
 */
 
+
 #success-message{
   display: none;
   width: 100%;
@@ -506,6 +507,7 @@ header {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
 
     input {
       width: 70%;
@@ -542,12 +544,14 @@ header {
       transition: 0.5s;
     }
 
+
     p {
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       color: grey;
       margin: 10px 0px;
       text-align: center;
     }
+
 
     .switch {
       position: relative;
@@ -610,7 +614,6 @@ header {
     }
 
   }
-
 }
 /*
 ************************************************
@@ -676,19 +679,28 @@ header {
       }
     }
 
+
+
     .rooms-container {
       display: flex;
-      flex-direction: column;
-      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      margin: 20px 20px;
 
-      .room-division {
-        margin-left: 20px;
+      flex-basis: calc(
+        33.33% - 40px
+      ); 
+
+      &:not(:last-child) {
         margin-right: 20px;
-        margin-bottom: 20px;
+      }
+
+      .property-card {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 20px;
+        //padding: 20px;
         background-color: #f0f0f0;
         border-radius: 4px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
@@ -699,6 +711,9 @@ header {
         animation-fill-mode: forwards;
         opacity: 0;
         transform: translateX(100%);
+        margin-bottom: 20px;
+        width: 300px;
+        margin: 10px;
 
         @keyframes fadeRight {
           0% {
@@ -711,59 +726,94 @@ header {
           }
         }
 
-        .room-description {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        @media screen and (max-width: $max-width2) {
           width: 100%;
-
-          @media screen and (max-width: $max-width1) {
-            flex-direction: column;
-          }
-
-          img {
-            width: 50%;
-            margin: 50px;
-            border-radius: 4px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-              0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-            @media screen and (max-width: $max-width1) {
-              width: 80%;
-              margin: 20px;
-              min-width: 300px;
-            }
-          }
-
-          .div-workspace {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0 10px;
-
-            ul {
-              width: 100%;
-            }
-          }
         }
 
-        .div-property {
-          display: flex;
+      }
+
+      .wrap-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media screen and (max-width: $max-width1) {
           flex-direction: column;
-          align-items: center;
-          margin: 20px 0;
-
-          ul {
-            list-style-type: none;
-          }
         }
 
-        .button-container {
-          display: flex;
-          justify-content: center;
-          margin: 20px;
+        .property-image {
+          width: 100%;
+          object-fit: cover;
+          border-radius: 5px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
+      }
+
+      .address-neighborhood {
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .property-info-container {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .property-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 8px;
+        width: 100%;
+      }
+
+      .subtitle-highlight {
+        font-size: 16px;
+        color: #555;
+      }
+
+      .highlight, .icon-highlight {
+        font-weight: bold;
+        font-size: 20px;
+        color: #555;
+      }
+
+     
+
+      .parking-info {
+        margin-top: 8px;
+        font-size: 12px;
+        color: #777;
+        opacity: 0.8;
+      }
+
+      .workspace-division{
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      .workspace-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 8px;
+      }
+
+      .btn-container {
+        margin: 5px 0;
+        display: flex;
+        justify-content: center;
       }
     }
   }
@@ -1088,6 +1138,7 @@ header {
     .rooms-container {
       display: flex;
       flex-direction: column;
+      justify-content: space-around;
       width: 100%;
 
       .room-division {
@@ -1372,10 +1423,9 @@ header {
 ************************************************
 */
 
-.container{
-
-  #introduction{
-    .intro-container{
+.container {
+  #introduction {
+    .intro-container {
       #coding-picture {
         display: block;
         max-width: 100%;
@@ -1385,20 +1435,19 @@ header {
     }
   }
 
-  .about-container{
+  .about-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
 
-    p{
+    p {
       width: 75%;
       font-size: 20px;
       text-align: justify;
       padding-bottom: 30px;
     }
   }
-
 }
 
 /*
@@ -1407,10 +1456,8 @@ header {
 ************************************************
 */
 
-.container{
-
-  #contact-us{
-
+.container {
+  #contact-us {
     display: flex;
     flex-direction: row;
     margin: 100px auto;
@@ -1419,15 +1466,14 @@ header {
     height: 70vh;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
-    
-    @media screen and (max-width: $max-width1){
+
+    @media screen and (max-width: $max-width1) {
       flex-direction: column;
       height: 150vh;
       width: 80%;
     }
 
-    .half-card-left{
-
+    .half-card-left {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -1437,44 +1483,40 @@ header {
       text-align: center;
       color: $txtColor1;
 
-      h1{   
+      h1 {
         padding: 10px 30px;
         font-size: 40px;
       }
 
-      img{
-        width:40%;
+      img {
+        width: 40%;
 
-        @media screen and (max-width: $max-width1)
-        {
+        @media screen and (max-width: $max-width1) {
           width: 60%;
         }
 
-        @media screen and (max-width: $max-width2)
-        {
+        @media screen and (max-width: $max-width2) {
           width: 80%;
         }
-
       }
 
-      h2{
+      h2 {
         padding: 10px 20px;
         font-size: 30px;
       }
-
     }
 
-    .half-card-right{
+    .half-card-right {
       width: 100%;
       text-align: center;
 
-      form{
+      form {
         display: flex;
         flex-direction: column;
         align-items: center;
       }
 
-      input{
+      input {
         border: 1px solid $bgColor3;
         font-size: 25px;
         padding: 10px;
@@ -1483,7 +1525,6 @@ header {
       }    
 
       #form-text {
-
         font-size: 18px;
         padding: 10px;
         width: 70%;
@@ -1493,7 +1534,7 @@ header {
         resize: none;
       }
 
-      #sendMsg{
+      #sendMsg {
         border: none;
         border-radius: 5px;
         margin-bottom: 20px;
@@ -1510,40 +1551,36 @@ header {
         transition: 0.5s;
       }
 
-      @media screen and (max-width: $max-width1){
-        #sendMsg{
+      @media screen and (max-width: $max-width1) {
+        #sendMsg {
           width: 30%;
         }
       }
-
-
     }
-
   }
 
-  .map{
+  .map {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 70vh;
-    
 
-    iframe{
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    iframe {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
       border-radius: 10px;
       margin: 0 10%;
       width: 100%;
       height: 400px;
     }
 
-    @media screen and (max-width: $max-width1){
-      iframe{
+    @media screen and (max-width: $max-width1) {
+      iframe {
         width: 80%;
       }
     }
   }
 }
-
 
 /*
 ************************************************
