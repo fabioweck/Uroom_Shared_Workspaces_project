@@ -149,6 +149,9 @@ header {
       align-items: center;
       padding-left: 30px;
 
+      @media screen and (max-width: 920px) {
+        padding-left: 10px;}
+
       .adjust-content-greeting{
         width: 80px;
 

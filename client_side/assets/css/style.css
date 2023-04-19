@@ -119,6 +119,11 @@ header .container .logo {
   align-items: center;
   padding-left: 30px;
 }
+@media screen and (max-width: 920px) {
+  header .container .logo {
+    padding-left: 10px;
+  }
+}
 header .container .logo .adjust-content-greeting {
   width: 80px;
 }
