@@ -160,78 +160,136 @@ export const getCurrentUser = () => {
 };
 
 /*=============================================
-→ ### FETCH ALL PROPERTIES DATA FROM SERVER ### */
-export const findWorkspace = async () => {
-
-  return await fetch(baseUrl + "getWorkspaceByOwner")
-    .then((response) => response.json())
-    .then((data) => {
-      data.forEach((obj) => delete obj.user_id);
-      return data;
-    })
-    .catch((error) => console.error(error));
+→ ### GET - ALL PROPERTIES AND WORKSPACE DATA FROM SERVER (USER PAGE) ### */
+export const serverGetWorkspace = async () => {
+  try {
+    const response = await fetch(baseUrl + "getWorkspaceByOwner");
+    const data = await response.json();
+    data.forEach((obj) => delete obj.user_id);
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };
 
 /*=============================================
-→ ### FETCH PROPERTIES AND WORKSPACE DATA FROM SERVER ### */
-export const findWorkspaceByOwner = async () => {
-  const user_id = getCurrentUser();
-
-  return await fetch(
-    baseUrl + "getWorkspaceByOwner?user_id=" + user_id
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      data.forEach((obj) => delete obj.user_id);
-      return data;
-    })
-    .catch((error) => console.error(error));
+→ ### GET - PROPERTIES AND WORKSPACE DATA FROM SERVER (OWNER PAGE) ### */
+export const serverGetWorkspaceByOwner = async () => {
+  try {
+    const user_id = getCurrentUser();
+    const response = await fetch(
+      baseUrl + "getWorkspaceByOwner?user_id=" + user_id
+    );
+    const data = await response.json();
+    data.forEach((obj) => delete obj.user_id);
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };
 
 /*==============================================
   → ### GET - DATES TO CALENDAR ### */
 export const serverGetAvailableDates = async (workspaceId) => {
-  return await fetch(`${baseUrl}getReservedDate?workspace_id=${workspaceId}`)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Available dates", data);
-      return data;
-    })
-    .catch((error) => console.error(error));
+  try {
+    const response = await fetch(
+      `${baseUrl}getReservedDate?workspace_id=${workspaceId}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };
 
 /*==============================================
   → ### POST - SELECTED DATES ### */
 export const serverPostSelectedDates = async (selectedDates) => {
-  console.log("selectedDates Sent", selectedDates);
-  console.log("JSON.stringify(selectedDates)", JSON.stringify(selectedDates));
-  await fetch(baseUrl + "updateReservedDate", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(selectedDates),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("serverPostSelectedDates data", data);
-    })
-    .catch((error) => console.error(error));
+  try {
+    const response = await fetch(baseUrl + "updateReservedDate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(selectedDates),
+    });
+    const data = await response.json();
+    return data.statusCode;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };
 
 /*==============================================
   → ### POST - NEW PROPERTY ### */
 export const serverPostNewProperty = async (postNewProperty) => {
-  await fetch(baseUrl + "newProperty", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(postNewProperty),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => console.error(error));
+  try {
+    const response = await fetch(baseUrl + "newProperty", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postNewProperty),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };
+
+/*==============================================
+  → ### POST - NEW WORKSPACE ### */
+export const serverPostNewWorkspace = async (postNewProperty) => {
+  try {
+    const response = await fetch(baseUrl + "newWorkspace", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postNewProperty),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+/*==============================================
+  → ### POST - DELIST PROPERTY ### */
+export const delistProperty = async (property) => {
+  const property_id = property;
+  const user_id = getCurrentUser();
+  try {
+    const response = await fetch(
+      `${baseUrl}delistProperty?user_id=${user_id}&property_id=${property_id}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+/*==============================================
+  → ### POST - DELIST WORKSPACE ### */
+export const delistWorkspace = async (workspace) => {
+  const workspace_id = workspace;
+  const user_id = getCurrentUser();
+  try {
+    const response = await fetch(
+      `${baseUrl}delistWorkspace?user_id=${user_id}&workspace_id=${workspace_id}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}

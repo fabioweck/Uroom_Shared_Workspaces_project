@@ -9,7 +9,10 @@ import {
   baseUrl,
   getCurrentUser,
   serverPostNewProperty,
-  findWorkspaceByOwner,
+  serverPostNewWorkspace,
+  serverGetWorkspaceByOwner,
+  delistProperty,
+  delistWorkspace,
 } from "./general_conf.js";
 
 /*=============================================
@@ -40,6 +43,7 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
   switch (dropdownSearchBarValue) {
     case "":
       searchBar.setAttribute("type", "search");
+      searchBar.setAttribute("placeholder", "Search");
       displayPropertiesWorkspaceData(propertiesWorkspaceData);
       break;
 
@@ -114,6 +118,7 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
 
     case "address":
       searchBar.setAttribute("type", "search");
+      searchBar.setAttribute("placeholder", "Search");
       filteredData = propertiesWorkspaceData.filter(({ address }) =>
         address.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -122,6 +127,7 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
 
     case "neighborhood":
       searchBar.setAttribute("type", "search");
+      searchBar.setAttribute("placeholder", "Search");
       filteredData = propertiesWorkspaceData.filter(({ neighborhood }) =>
         neighborhood.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -334,6 +340,11 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       property_status,
       property_id,
     } = propertyData;
+
+    if (workspace_status == undefined || workspace_status == null) {
+      console.log("index-skip", index);
+      return;
+    }
 
     // Create the outer div element with class "property-card"
     const propertyCard = document.createElement("div");
@@ -647,9 +658,9 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
     workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv2);
     workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv3);
     workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv4);
-    // workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv5);
-    // workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv6);
-    // workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv7);
+    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv5);
+    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv6);
+    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv7);
 
     // Append workspace-info-container div to wrap-workspace div
     wrapWorkspaceDiv.appendChild(workspaceInfoContainerDiv);
@@ -700,6 +711,24 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
   });
   isFirstCallWorkspaces = false;
 };
+
+/*=============================================
+→ ### DELIST PROPERTY ### */
+document.addEventListener("click", (event) => {
+  if (event.target.matches(`#btn-active-inactive-property`)) {
+    buttonIdValue = event.target.value;
+    delistProperty(buttonIdValue);
+  }
+});
+
+/*=============================================
+→ ### DELIST WORKSPACE ### */
+document.addEventListener("click", (event) => {
+  if (event.target.matches(`#btn-active-inactive-workspace`)) {
+    buttonIdValue = event.target.value;
+    delistWorkspace(buttonIdValue);
+  }
+});
 
 /*=============================================
 → ### CREATE THE PROPERTY MODAL ### */
@@ -1378,27 +1407,16 @@ const sendNewProperty = (event) => {
     return;
   }
 
-  // const postNewProperty = {
-  //   property_id: "",
-  //   address: `${address}`,
-  //   neighborhood: `${neighbourhood}`,
-  //   ParkingLot: `${parkingLot.value}`,
-  //   PublicTransportation: `${publicTransportation.value}`,
-  //   status: "true",
-  //   user_id: getCurrentUser(),
-  // };
-
-  const myObj = {
-    property_id: 726507,
-    address: "auburn",
-    neighborhood: "auburnbay",
-    ParkingLot: "yes",
-    PublicTransportation: "yes",
-    status: "true",
-    user_id: "267b55a7-193a-47d2-bf0e-9dcc95706a90",
+  const postNewProperty = {
+    address: `${address}`,
+    neighborhood: `${neighbourhood}`,
+    ParkingLot: `${parkingLot.value}`,
+    PublicTransportation: `${publicTransportation.value}`,
+    property_status: true,
+    user_id: getCurrentUser(),
   };
 
-  serverPostNewProperty(myObj);
+  serverPostNewProperty(postNewProperty);
 
   hideModalProperty(event);
 };
@@ -1444,10 +1462,12 @@ const sendNewWorkspace = (event) => {
     price: `${price}`,
     sqft: `${sqft}`,
     lease_term: `${leasingTerm.value}`,
+    property_id: "180-939884",
+    user_id: getCurrentUser(),
+    workspace_status: true,
   };
 
-  console.log(`Post Simulation - New workspace`);
-  console.log("postNewWorkspace", postNewWorkspace);
+  serverPostNewWorkspace(postNewWorkspace);
 
   hideModalWorkspace(event);
 };
@@ -1457,7 +1477,7 @@ submitBtnWorkspace.addEventListener("click", sendNewWorkspace);
 /*=============================================
 → ### ON LOAD THE PAGE ### */
 window.onload = async () => {
-  propertiesWorkspaceData = await findWorkspaceByOwner();
+  propertiesWorkspaceData = await serverGetWorkspaceByOwner();
   displayPropertiesWorkspaceData(propertiesWorkspaceData);
   document.getElementById("btn-my-rooms").disabled = true;
   console.log("propertiesWorkspaceData", propertiesWorkspaceData);

@@ -123,32 +123,85 @@
     "status": "true",
     "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
   },
-    {
-        "property_id": 316899,
-        "address": "737 Carnarvon St",
-        "neighborhood": "New West",
-        "ParkingLot": "yes",
-        "PublicTransportation": "yes",
-        "property_status": true,
-        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-    },
-    {
-        "property_id": 316900,
-        "address": "737 Carnarvon St",
-        "neighborhood": "New West",
-        "ParkingLot": "yes",
-        "PublicTransportation": "yes",
-        "property_status": false,
-        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
-    },
-    {
-        "address": "260 Midland Pl",
-        "neighborhood": "Midnapore",
-        "ParkingLot": "no",
-        "PublicTransportation": "yes",
-        "property_status": false,
-        "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90",
-        "property_id": 726506
-    }
+  {
+    "property_id": 316899,
+    "address": "737 Carnarvon St",
+    "neighborhood": "New West",
+    "ParkingLot": "yes",
+    "PublicTransportation": "yes",
+    "property_status": true,
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
+  },
+  {
+    "property_id": 316900,
+    "address": "737 Carnarvon St",
+    "neighborhood": "New West",
+    "ParkingLot": "yes",
+    "PublicTransportation": "yes",
+    "property_status": false,
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
+  },
+  {
+    "address": "260 Midland Pl",
+    "neighborhood": "Midnapore",
+    "ParkingLot": "no",
+    "PublicTransportation": "yes",
+    "property_status": false,
+    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90",
+    "property_id": 726506
+  },
+  {
+    "address": "260 Midland Pl HUGO",
+    "neighborhood": "Midnapore",
+    "ParkingLot": "no",
+    "PublicTransportation": "yes",
+    "property_status": "true",
+    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90",
+    "property_id": "267-558080"
+  },
+  {
+    "property_id": "267-820204",
+    "address": "auburn",
+    "neighborhood": "auburnbay",
+    "ParkingLot": "yes",
+    "PublicTransportation": "yes",
+    "property_status": "true",
+    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90"
+  },
+  {
+    "address": "hugo",
+    "neighborhood": "hugo",
+    "ParkingLot": "yes",
+    "PublicTransportation": "yes",
+    "property_status": "true",
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "property_id": "180-476449"
+  },
+  {
+    "address": "hugo2",
+    "neighborhood": "hugo2",
+    "ParkingLot": "yes",
+    "PublicTransportation": "yes",
+    "property_status": true,
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "property_id": "180-853870"
+  },
+  {
+    "address": "260 Midland Pl HUGO",
+    "neighborhood": "Midnapore",
+    "ParkingLot": "no",
+    "PublicTransportation": "yes",
+    "property_status": true,
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "property_id": "267-477419"
+  },
+  {
+    "address": "hugo3",
+    "neighborhood": "hugo3",
+    "ParkingLot": "yes",
+    "PublicTransportation": "yes",
+    "property_status": true,
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "property_id": "180-939884"
+  }
 ]
-
