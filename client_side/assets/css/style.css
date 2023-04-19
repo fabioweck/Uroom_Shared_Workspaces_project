@@ -147,6 +147,7 @@ header .container .logo img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  cursor: pointer;
 }
 @media screen and (max-width: 768px) {
   header .container .logo img {
@@ -156,6 +157,7 @@ header .container .logo img {
 header .container .logo .menu-logo-mobile {
   display: none;
   color: aliceblue;
+  cursor: pointer;
 }
 @media screen and (max-width: 768px) {
   header .container .logo .menu-logo-mobile {
