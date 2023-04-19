@@ -1,16 +1,15 @@
 [
-
   {
-    "workspace_id": 552490,
-    "workspace_type": "desk",
-    "seats": 4,
-    "smoking": "no",
-    "price": 20,
-    "sqft": 100,
-    "lease_term": "dayly",
-    "property_id": 316899,
-    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
-    "workspace_status": false
+    "workspace_id": null,
+    "workspace_type": null,
+    "seats": null,
+    "smoking": null,
+    "price": null,
+    "sqft": null,
+    "lease_term": null,
+    "property_id": null,
+    "user_id": null,
+    "workspace_status": null
   },
   {
     "workspace_id": 863189,
@@ -96,89 +95,100 @@
     "workspace_status": true,
     "workspace_id": "180-728508"
   },
-
-    {
-        "workspace_id": null,
-        "workspace_type": null,
-        "seats": null,
-        "smoking": null,
-        "price": null,
-        "sqft": null,
-        "lease_term": null,
-        "property_id": null,
-        "user_id": null,
-        "workspace_status": null
-    },
-    {
-        "workspace_id": "180-731085",
-        "workspace_type": "desk",
-        "seats": "4",
-        "smoking": "yes",
-        "price": "50",
-        "sqft": "30",
-        "lease_term": "daily",
-        "property_id": "316899",
-        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
-        "workspace_status": false
-    },
-    {
-        "workspace_id": "180-731085",
-        "workspace_type": "desk",
-        "seats": "4",
-        "smoking": "yes",
-        "price": "50",
-        "sqft": "30",
-        "lease_term": "daily",
-        "property_id": "316899",
-        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
-        "workspace_status": false
-    },
-    {
-        "workspace_id": "180-731085",
-        "workspace_type": "desk",
-        "seats": "4",
-        "smoking": "yes",
-        "price": "50",
-        "sqft": "30",
-        "lease_term": "daily",
-        "property_id": "316899",
-        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
-        "workspace_status": false
-    },
-    {
-        "workspace_type": "desk",
-        "seats": "4",
-        "smoking": "yes",
-        "price": "50",
-        "sqft": "30",
-        "lease_term": "daily",
-        "property_id": "316899",
-        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
-        "workspace_status": false,
-        "workspace_id": "180-731085"
-    },
-    {
-        "workspace_type": "desk",
-        "seats": "4",
-        "smoking": "yes",
-        "price": "50",
-        "sqft": "30",
-        "lease_term": "daily",
-        "property_id": "316899",
-        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
-        "workspace_status": false,
-        "workspace_id": "180-731085"
-    },
-    {
-        "workspace_type": "desk",
-        "seats": "4",
-        "smoking": "yes",
-        "price": "50",
-        "sqft": "30",
-        "lease_term": "daily",
-        "property_id": "316899",
-        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
-        "workspace_id": "180-731085",
-        "workspace_status": false
-    }
+  {
+    "workspace_id": null,
+    "workspace_type": null,
+    "seats": null,
+    "smoking": null,
+    "price": null,
+    "sqft": null,
+    "lease_term": null,
+    "property_id": null,
+    "user_id": null,
+    "workspace_status": null
+  },
+  {
+    "workspace_id": "180-731085",
+    "workspace_type": "desk",
+    "seats": "4",
+    "smoking": "yes",
+    "price": "50",
+    "sqft": "30",
+    "lease_term": "daily",
+    "property_id": "316899",
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "workspace_status": false
+  },
+  {
+    "workspace_id": "180-731085",
+    "workspace_type": "desk",
+    "seats": "4",
+    "smoking": "yes",
+    "price": "50",
+    "sqft": "30",
+    "lease_term": "daily",
+    "property_id": "316899",
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "workspace_status": false
+  },
+  {
+    "workspace_id": "180-731085",
+    "workspace_type": "desk",
+    "seats": "4",
+    "smoking": "yes",
+    "price": "50",
+    "sqft": "30",
+    "lease_term": "daily",
+    "property_id": "316899",
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "workspace_status": false
+  },
+  {
+    "workspace_type": "desk",
+    "seats": "4",
+    "smoking": "yes",
+    "price": "50",
+    "sqft": "30",
+    "lease_term": "daily",
+    "property_id": "316899",
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "workspace_status": false,
+    "workspace_id": "180-731085"
+  },
+  {
+    "workspace_type": "desk",
+    "seats": "4",
+    "smoking": "yes",
+    "price": "50",
+    "sqft": "30",
+    "lease_term": "daily",
+    "property_id": "316899",
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "workspace_status": false,
+    "workspace_id": "180-731085"
+  },
+  {
+    "workspace_type": "desk",
+    "seats": "4",
+    "smoking": "yes",
+    "price": "50",
+    "sqft": "30",
+    "lease_term": "daily",
+    "property_id": "316899",
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "workspace_id": "180-731085",
+    "workspace_status": false
+  },
+  {
+    "workspace_type": "desk",
+    "seats": "987",
+    "smoking": "yes",
+    "price": "987",
+    "sqft": "987",
+    "lease_term": "dayly",
+    "property_id": "180-939884",
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "workspace_status": true,
+    "workspace_id": "180-712006"
+  }
 ]

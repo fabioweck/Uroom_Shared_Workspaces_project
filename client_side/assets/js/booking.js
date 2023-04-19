@@ -10,7 +10,7 @@ import {
   getLoggedUser,
   serverGetAvailableDates,
   serverPostSelectedDates,
-  findWorkspace,
+  serverGetWorkspace,
 } from "./general_conf.js";
 
 /*=============================================
@@ -136,6 +136,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
   switch (dropdownSearchBarValue) {
     case "":
       searchBar.setAttribute("type", "search");
+      searchBar.setAttribute("placeholder", "Search");
       displayPropertiesData(propertiesData);
       break;
 
@@ -210,6 +211,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
 
     case "address":
       searchBar.setAttribute("type", "search");
+      searchBar.setAttribute("placeholder", "Search");
       filteredData = propertiesData.filter(({ address }) =>
         address.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -218,6 +220,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
 
     case "neighborhood":
       searchBar.setAttribute("type", "search");
+      searchBar.setAttribute("placeholder", "Search");
       filteredData = propertiesData.filter(({ neighborhood }) =>
         neighborhood.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -286,7 +289,7 @@ const displayPropertiesData = (propertiesData) => {
     } = propertyData;
 
     if (!workspace_status || workspace_status == null) {
-      console.log("index-skip", index);
+      // console.log("index-skip", index);
       return;
     }
 
@@ -558,8 +561,8 @@ const displayPropertiesData = (propertiesData) => {
     workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv);
     workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv2);
     workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv3);
-    // workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv4);
-    // workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv5);
+    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv4);
+    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv5);
 
     // Append workspace-info-container div to wrap-workspace div
     wrapWorkspaceDiv.appendChild(workspaceInfoContainerDiv);
@@ -606,6 +609,7 @@ const displayPropertiesData = (propertiesData) => {
 → ### CREATE THE CALENDAR ### */
 const calendarModal = async () => {
   availableDates = await serverGetAvailableDates(buttonBookIdValue);
+  console.log("Available dates", availableDates);
   updateCalendar();
 };
 
@@ -827,12 +831,14 @@ nextButton.addEventListener("click", () => {
 
 /*=============================================
 → ### SEND THE CALENDAR SELECTED DATES ### */
-const sendSelectedDates = () => {
+const sendSelectedDates = async () => {
   // Filter out objects with empty 'days' array
   const filteredDatesResult = selectedDates.filter(
     (date) => date.days.length > 0
   );
-  serverPostSelectedDates(filteredDatesResult);
+  const serverPostSelectedDatesReturn = await serverPostSelectedDates(
+    filteredDatesResult
+  );
 };
 
 submitBtn.addEventListener("click", sendSelectedDates);
@@ -841,7 +847,7 @@ submitBtn.addEventListener("click", hideModal);
 /*=============================================
 → ### ON LOAD THE PAGE ### */
 window.onload = async () => {
-  propertiesData = await findWorkspace();
+  propertiesData = await serverGetWorkspace();
   displayPropertiesData(propertiesData);
   console.log("propertiesData", propertiesData);
 };
