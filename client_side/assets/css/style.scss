@@ -308,15 +308,22 @@ header {
     display: flex;
     justify-content: space-around;
 
-    img {
-      margin: 50px 0px;
-      width: 150px;
+    div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
     }
 
-    img:hover {
-      transition: 0.3s;
-      opacity: 0.6;
-      cursor: pointer;
+    img {
+      margin: 40px 0px;
+      width: 120px;
+
+      @media screen and (max-width: $max-width1) {
+        width: 90px;
+      }
+
     }
 
     @media screen and (max-width: $max-width1) {
@@ -326,13 +333,11 @@ header {
   }
 
   .intro-paragraph {
-    padding: 20px;
-
-    p {
+    
       font-size: 25px;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       text-align: center;
-    }
+    
   }
 }
 
