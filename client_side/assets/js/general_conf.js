@@ -36,10 +36,6 @@ try{
 }catch(err){};
 
 
-
-
-
-
 /*==============================================
 → ### VIEW ICON MOBILE MENU ### */
 const viewMobileMenu = () => {
