@@ -174,6 +174,7 @@ header {
         width: 80px;
         height: 80px;
         border-radius: 50%;
+        cursor: pointer;
 
         @media screen and (max-width: $max-width1) {
           display: none;
@@ -183,6 +184,7 @@ header {
       .menu-logo-mobile {
         display: none;
         color: $txtColor0;
+        cursor: pointer;
 
         @media screen and (max-width: $max-width1) {
           display: contents;
