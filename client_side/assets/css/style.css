@@ -119,6 +119,14 @@ header .container .logo {
   align-items: center;
   padding-left: 30px;
 }
+header .container .logo .adjust-content-greeting {
+  width: 80px;
+}
+header .container .logo #greeting {
+  color: white;
+  font-size: 25px;
+  width: 100%;
+}
 header .container .logo img {
   width: 80px;
   height: 80px;
@@ -140,7 +148,7 @@ header .container .logo .menu-logo-mobile {
 }
 header .container .navbar {
   background-color: black;
-  width: 100%;
+  width: 50%;
   display: flex;
   justify-content: end;
   color: aliceblue;
