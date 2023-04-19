@@ -76,8 +76,9 @@ async function userLogin() {
     })
     .then((data) => {
       displayError.style.display = "none";
+      localStorage.setItem("user_name", data.fullName);
       localStorage.setItem("user_id", data.user_id);
-      // storeUserId(data.user_id);                    //deletar?
+      localStorage.setItem("owner", data.owner);
       window.location.href = "booking.html";
     })
     .catch((error) => {
@@ -93,7 +94,8 @@ try {
 
 function userLogout() {
   localStorage.removeItem("user_id");
-  // loggedUser = "";
+  localStorage.removeItem("user_name");
+  localStorage.removeItem("owner");
   clearLoggerdUser();
   window.location.href = "login.html";
 }
