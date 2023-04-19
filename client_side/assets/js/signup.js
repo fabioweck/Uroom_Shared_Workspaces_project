@@ -56,8 +56,10 @@ async function sendNewUserClient() {
           }
         })
     .then((data) => {
-
+    
       localStorage.setItem("user_id", data.user_id);
+      localStorage.setItem("user_name", data.fullName);
+      localStorage.setItem("owner", data.owner);
       window.location.href = "booking.html";
       console.log(data);
 

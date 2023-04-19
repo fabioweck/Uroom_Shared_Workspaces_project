@@ -4,6 +4,7 @@
 ************************************************
 */
 export let loggedUser = localStorage.getItem("user_id"); //Assigns key to variable
+let userName = localStorage.getItem("user_name");
 
 export const getLoggedUser = () => {
   return loggedUser;
@@ -18,6 +19,27 @@ export const clearLoggerdUser = () => {
 ### GENERAL - NAV BAR AND FOOTER ###
 ************************************************
 */
+
+/*==============================================
+→ ### DISPLAY USER NAME ON NAVBAR ### */
+
+let greeting = document.querySelector('#greeting');
+try{
+  if(!userName){
+    greeting.style.display = "none";
+  }
+  else{
+    let index = userName.indexOf(" ");
+    let firstName = userName.slice(0, index);
+    greeting.innerHTML = `Hello ${firstName}!`; 
+  }
+}catch(err){};
+
+
+
+
+
+
 /*==============================================
 → ### VIEW ICON MOBILE MENU ### */
 const viewMobileMenu = () => {

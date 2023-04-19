@@ -30,7 +30,9 @@ async function addUser(user) {
         // Write the updated data back to the file
         await writeJsonFile(data, 'users.json')
 
-        return { user_id: user.user_id };
+        delete user.password;
+
+        return user;
 
     } catch (err) {
         const code = err.statusCode || 500;
