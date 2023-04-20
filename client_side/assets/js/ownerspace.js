@@ -356,11 +356,11 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       property_id,
     } = propertyData;
 
-    if (showQaTest) {
-      if (workspace_status == undefined || workspace_status == null) {
+    if (workspace_status == undefined || workspace_status == null) {
+      if (showQaTest) {
         console.log("index-skip", index);
-        return;
       }
+      return;
     }
 
     // Create the outer div element with class "property-card"
