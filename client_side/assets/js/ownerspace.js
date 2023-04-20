@@ -1152,23 +1152,23 @@ deskRadioworkspaceType.value = "desk";
 
 const deskRadioLabelworkspaceType = document.createElement("label");
 deskRadioLabelworkspaceType.htmlFor = "desk";
-deskRadioLabelworkspaceType.textContent = "Single Desk";
+deskRadioLabelworkspaceType.textContent = "Desk";
 
 const officeRadioworkspaceType = document.createElement("input");
 officeRadioworkspaceType.type = "radio";
 officeRadioworkspaceType.name = "Workspace Type";
-officeRadioworkspaceType.id = "office";
-officeRadioworkspaceType.value = "Private room";
+officeRadioworkspaceType.id = "room";
+officeRadioworkspaceType.value = "room";
 
 const officeRadioLabelworkspaceType = document.createElement("label");
-officeRadioLabelworkspaceType.htmlFor = "office";
-officeRadioLabelworkspaceType.textContent = "Private room";
+officeRadioLabelworkspaceType.htmlFor = "room";
+officeRadioLabelworkspaceType.textContent = "Room";
 
 const meetingRadioworkspaceType = document.createElement("input");
 meetingRadioworkspaceType.type = "radio";
 meetingRadioworkspaceType.name = "Workspace Type";
 meetingRadioworkspaceType.id = "meeting";
-meetingRadioworkspaceType.value = "Meeting room";
+meetingRadioworkspaceType.value = "meeting";
 
 const meetingRadioLabelworkspaceType = document.createElement("label");
 meetingRadioLabelworkspaceType.htmlFor = "meeting";

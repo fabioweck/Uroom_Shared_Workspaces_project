@@ -311,16 +311,27 @@ header {
   .intro-icons {
     display: flex;
     justify-content: space-around;
+    
+    div{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
 
     img {
-      margin: 50px 0px;
+      margin: 50px 0px 20px 0px;
       width: 150px;
+      @media screen and (max-width: $max-width1) {
+        width: 90px;
+        margin: 40px 0px 0px 0px;
+      }
     }
 
     img:hover {
       transition: 0.3s;
       opacity: 0.6;
-      cursor: pointer;
     }
 
     @media screen and (max-width: $max-width1) {
@@ -330,14 +341,11 @@ header {
   }
 
   .intro-paragraph {
-    padding: 20px;
-
-    p {
+      padding: 20px;
       font-size: 25px;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       text-align: center;
     }
-  }
 }
 
 .testimonials {
@@ -1427,8 +1435,8 @@ header {
             text-align: center;
             cursor: default;
             margin-top: 3px;
-            width: 300px;
-            
+            width: 305px;
+
             input {
               cursor: pointer;
               margin-right: 5px;
