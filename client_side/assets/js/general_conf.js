@@ -142,7 +142,7 @@ btnMobileMenu.addEventListener("click", viewMobileMenu);
   → ### FOOTER ### */
 (() => {
   document.getElementById("footer-name").innerHTML =
-    "&copy; Weck Martins Evaristo Camargo. 2023.";
+    "&copy; Group 3 - Fabio Hugo Leandro Uyara - 2023";
   document.getElementById("footer-copyright").innerHTML = "All Rights Reserved";
 })();
 

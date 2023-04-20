@@ -114,7 +114,7 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
 
     case "workspace_type":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: desk or room");
+      searchBar.setAttribute("placeholder", "Search: desk, office, meeting");
       filteredData = propertiesWorkspaceData.filter(({ workspace_type }) =>
         workspace_type.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -364,9 +364,25 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
     const wrapImg = document.createElement("div");
     wrapImg.className = "wrap-img";
 
+    let imagePath;
+    switch (workspace_type.toLowerCase()) {
+      case "desk":
+        imagePath = "../img/room-desk.jpg";
+        break;
+      case "office":
+        imagePath = "../img/room-office.jpg";
+        break;
+      case "meeting":
+        imagePath = "../img/room-meeting.jpg";
+        break;
+      default:
+        imagePath = "../img/room-desk.jpg";
+        break;
+    }
+
     // Create the img element with src, alt, and class attributes
     const propertyImage = document.createElement("img");
-    propertyImage.src = "../img/room01.jpg";
+    propertyImage.src = imagePath;
     propertyImage.alt = "Property Image";
     propertyImage.className = "property-image";
 
@@ -953,7 +969,9 @@ addPropertyForm.appendChild(buttonContainer);
 
 // Append all elements to modal-content-property
 modalContentProperty.appendChild(modalPropertyTitle);
-modalContentProperty.appendChild(modalPropertySubtitle);
+if (showQaTest) {
+  modalContentProperty.appendChild(modalPropertySubtitle);
+}
 modalContentProperty.appendChild(addPropertyForm);
 
 // Append modal-content-property to modal-add-property
@@ -1062,17 +1080,17 @@ const dailyRadio = document.createElement("input");
 dailyRadio.type = "radio";
 dailyRadio.name = "Leasing Term";
 dailyRadio.id = "daily";
-dailyRadio.value = "daily";
+dailyRadio.value = "Daily";
 
 const dailyRadioLabel = document.createElement("label");
 dailyRadioLabel.htmlFor = "daily";
-dailyRadioLabel.textContent = "daily";
+dailyRadioLabel.textContent = "Daily";
 
 const weeklyRadio = document.createElement("input");
 weeklyRadio.type = "radio";
 weeklyRadio.name = "Leasing Term";
 weeklyRadio.id = "weekly";
-weeklyRadio.value = "weekly";
+weeklyRadio.value = "Weekly";
 
 const weeklyRadioLabel = document.createElement("label");
 weeklyRadioLabel.htmlFor = "weekly";
@@ -1082,7 +1100,7 @@ const monthlyRadio = document.createElement("input");
 monthlyRadio.type = "radio";
 monthlyRadio.name = "Leasing Term";
 monthlyRadio.id = "monthly";
-monthlyRadio.value = "monthly";
+monthlyRadio.value = "Monthly";
 
 const monthlyRadioLabel = document.createElement("label");
 monthlyRadioLabel.htmlFor = "monthly";
@@ -1148,7 +1166,7 @@ const deskRadioworkspaceType = document.createElement("input");
 deskRadioworkspaceType.type = "radio";
 deskRadioworkspaceType.name = "Workspace Type";
 deskRadioworkspaceType.id = "desk";
-deskRadioworkspaceType.value = "desk";
+deskRadioworkspaceType.value = "Desk";
 
 const deskRadioLabelworkspaceType = document.createElement("label");
 deskRadioLabelworkspaceType.htmlFor = "desk";
@@ -1157,22 +1175,22 @@ deskRadioLabelworkspaceType.textContent = "Desk";
 const officeRadioworkspaceType = document.createElement("input");
 officeRadioworkspaceType.type = "radio";
 officeRadioworkspaceType.name = "Workspace Type";
-officeRadioworkspaceType.id = "room";
-officeRadioworkspaceType.value = "room";
+officeRadioworkspaceType.id = "office";
+officeRadioworkspaceType.value = "Office";
 
 const officeRadioLabelworkspaceType = document.createElement("label");
-officeRadioLabelworkspaceType.htmlFor = "room";
-officeRadioLabelworkspaceType.textContent = "Room";
+officeRadioLabelworkspaceType.htmlFor = "office";
+officeRadioLabelworkspaceType.textContent = "Office";
 
 const meetingRadioworkspaceType = document.createElement("input");
 meetingRadioworkspaceType.type = "radio";
 meetingRadioworkspaceType.name = "Workspace Type";
 meetingRadioworkspaceType.id = "meeting";
-meetingRadioworkspaceType.value = "meeting";
+meetingRadioworkspaceType.value = "Meeting";
 
 const meetingRadioLabelworkspaceType = document.createElement("label");
 meetingRadioLabelworkspaceType.htmlFor = "meeting";
-meetingRadioLabelworkspaceType.textContent = "Meeting room";
+meetingRadioLabelworkspaceType.textContent = "Meeting Room";
 
 workspaceTypeRadioContainer.appendChild(deskRadioworkspaceType);
 workspaceTypeRadioContainer.appendChild(deskRadioLabelworkspaceType);
