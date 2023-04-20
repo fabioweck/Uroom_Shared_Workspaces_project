@@ -151,16 +151,18 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
 
     case "lease_term":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: daily, weekly or monthly");
-      filteredData = propertiesData.filter(({ lease_term }) =>
-        lease_term.toLowerCase().includes(searchBarInputValue.toLowerCase())
+      searchBar.setAttribute("placeholder", "Search: Daily, Weekly or Monthly");
+      filteredData = propertiesData.filter(
+        ({ lease_term }) =>
+          lease_term &&
+          lease_term.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
       displayPropertiesData(filteredData);
       break;
 
     case "price":
       searchBar.setAttribute("type", "number");
-      searchBar.setAttribute("placeholder", "Search (just numbers)");
+      searchBar.setAttribute("placeholder", "Search (Only numbers)");
       const priceValue = parseInt(searchBarInputValue);
       if (priceValue !== "" && !isNaN(priceValue)) {
         filteredData = propertiesData.filter(({ price }) =>
@@ -174,7 +176,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
 
     case "seats":
       searchBar.setAttribute("type", "number");
-      searchBar.setAttribute("placeholder", "Search (just numbers)");
+      searchBar.setAttribute("placeholder", "Search (Only numbers)");
       const seatsValue = parseInt(searchBarInputValue);
       if (seatsValue !== "" && !isNaN(seatsValue)) {
         filteredData = propertiesData.filter(({ seats }) =>
@@ -188,16 +190,18 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
 
     case "smoking":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: yes or no");
-      filteredData = propertiesData.filter(({ smoking }) =>
-        smoking.toLowerCase().includes(searchBarInputValue.toLowerCase())
+      searchBar.setAttribute("placeholder", "Search: Yes or No");
+      filteredData = propertiesData.filter(
+        ({ smoking }) =>
+          smoking &&
+          smoking.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
       displayPropertiesData(filteredData);
       break;
 
     case "sqft":
       searchBar.setAttribute("type", "number");
-      searchBar.setAttribute("placeholder", "Search (just numbers)");
+      searchBar.setAttribute("placeholder", "Search (Only numbers)");
       const sqftValue = parseInt(searchBarInputValue);
       if (sqftValue !== "" && !isNaN(sqftValue)) {
         filteredData = propertiesData.filter(({ sqft }) =>
@@ -211,9 +215,13 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
 
     case "workspace_type":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: desk, office, meeting");
-      filteredData = propertiesData.filter(({ workspace_type }) =>
-        workspace_type.toLowerCase().includes(searchBarInputValue.toLowerCase())
+      searchBar.setAttribute("placeholder", "Search: Desk, Office, Meeting");
+      filteredData = propertiesData.filter(
+        ({ workspace_type }) =>
+          workspace_type &&
+          workspace_type
+            .toLowerCase()
+            .includes(searchBarInputValue.toLowerCase())
       );
       displayPropertiesData(filteredData);
       break;
@@ -238,7 +246,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
 
     case "ParkingLot":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: yes or no");
+      searchBar.setAttribute("placeholder", "Search: Yes or No");
       filteredData = propertiesData.filter(({ ParkingLot }) =>
         ParkingLot.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -247,7 +255,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
 
     case "PublicTransportation":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: yes or no");
+      searchBar.setAttribute("placeholder", "Search: Yes or No");
       filteredData = propertiesData.filter(({ PublicTransportation }) =>
         PublicTransportation.toLowerCase().includes(
           searchBarInputValue.toLowerCase()
