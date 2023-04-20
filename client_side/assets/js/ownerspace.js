@@ -373,19 +373,23 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
     wrapImg.className = "wrap-img";
 
     let imagePath;
-    switch (workspace_type.toLowerCase()) {
-      case "desk":
-        imagePath = "../img/room-desk.jpg";
-        break;
-      case "office":
-        imagePath = "../img/room-office.jpg";
-        break;
-      case "meeting":
-        imagePath = "../img/room-meeting.jpg";
-        break;
-      default:
-        imagePath = "../img/room-desk.jpg";
-        break;
+    if (workspace_type != null) {
+      switch (workspace_type.toLowerCase()) {
+        case "desk":
+          imagePath = "../img/room-desk.jpg";
+          break;
+        case "office":
+          imagePath = "../img/room-office.jpg";
+          break;
+        case "meeting":
+          imagePath = "../img/room-meeting.jpg";
+          break;
+        default:
+          imagePath = "../img/room-desk.jpg";
+          break;
+      }
+    } else {
+      imagePath = "../img/room-desk.jpg";
     }
 
     // Create the img element with src, alt, and class attributes
@@ -1333,7 +1337,9 @@ document.addEventListener("click", (event) => {
       "dropdown-add-workspace"
     );
     dropdownProperties.selectedIndex = 0;
-    const addPropertyRadioContainerPropertyStatus = document.getElementById("add-property-radio-container-property-status");
+    const addPropertyRadioContainerPropertyStatus = document.getElementById(
+      "add-property-radio-container-property-status"
+    );
     addPropertyRadioContainerPropertyStatus.style.display = "block";
     showModalWorkspace();
   }
