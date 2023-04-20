@@ -279,14 +279,25 @@ header .mobile-menu-icon {
   display: flex;
   justify-content: space-around;
 }
+.intro-description .intro-icons div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .intro-description .intro-icons img {
-  margin: 50px 0px;
+  margin: 50px 0px 20px 0px;
   width: 150px;
+}
+@media screen and (max-width: 768px) {
+  .intro-description .intro-icons img {
+    width: 90px;
+    margin: 40px 0px 0px 0px;
+  }
 }
 .intro-description .intro-icons img:hover {
   transition: 0.3s;
   opacity: 0.6;
-  cursor: pointer;
 }
 @media screen and (max-width: 768px) {
   .intro-description .intro-icons {
@@ -296,8 +307,6 @@ header .mobile-menu-icon {
 }
 .intro-description .intro-paragraph {
   padding: 20px;
-}
-.intro-description .intro-paragraph p {
   font-size: 25px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
@@ -1437,7 +1446,7 @@ header .mobile-menu-icon {
   text-align: center;
   cursor: default;
   margin-top: 3px;
-  width: 300px;
+  width: 305px;
 }
 .ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-property-form .radio-option-container input,
 .ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-workspace-form .radio-option-container input,
