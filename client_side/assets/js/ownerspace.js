@@ -6,19 +6,23 @@
 /*=============================================
 → ### IMPORTS ### */
 import {
-  baseUrl,
   getCurrentUser,
   serverPostNewProperty,
   serverPostNewWorkspace,
+  serverPostUpdateProperty,
+  serverPostUpdateWorkspace,
   serverGetWorkspaceByOwner,
   delistProperty,
   delistWorkspace,
+  showQaTest,
 } from "./general_conf.js";
 
 /*=============================================
 → ### GLOBAL VARIABLES ### */
 var buttonIdValue; // Store the id from the button
 var propertiesWorkspaceData = []; // Receive data from the server
+var isUpdateWorkspace = false; // Flag to modal add new or update the workspace
+var isUpdateProperty = false; // Flag to modal add new or update the property
 
 /*=============================================
 → ### SEARCH BAR WORKSPACE ### */
@@ -228,7 +232,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
         neighborhood,
         ParkingLot,
         PublicTransportation,
-        workspace_status,
+        property_status,
         property_id,
       } = propertyWorkspaceData;
 
@@ -259,7 +263,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       const publicTransportationParagraph = document.createElement("p");
       publicTransportationParagraph.innerHTML = `<strong>Public Transportation:</strong> ${iconContext2}`;
 
-      const iconStatusPropertyParagraph = workspace_status
+      const iconStatusPropertyParagraph = property_status
         ? `<i class="fa-solid fa-square-check fa-2xl" style="color: #1f5132;"></i>`
         : `<i class="fa-solid fa-rectangle-xmark fa-2xl" style="color: #511f1f;"></i>`;
       const statusPropertyParagraph = document.createElement("p");
@@ -272,7 +276,9 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       propertyDescriptionWrap.appendChild(parkingLotParagraph);
       propertyDescriptionWrap.appendChild(publicTransportationParagraph);
       propertyDescriptionWrap.appendChild(statusPropertyParagraph);
-      // propertyDescriptionWrap.appendChild(idPropertyParagraph);
+      if (showQaTest) {
+        propertyDescriptionWrap.appendChild(idPropertyParagraph);
+      }
 
       propertyDescriptionContainer.appendChild(propertyDescriptionWrap);
       propertyDescriptionContainer.appendChild(statusPropertyParagraph);
@@ -286,7 +292,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       updateButton.textContent = "Update";
       updateButton.value = `${property_id}`;
 
-      const statusActiveInactiveButton = !workspace_status
+      const statusActiveInactiveButton = !property_status
         ? "Activate"
         : "Deactivate";
       const activeInactiveButton = document.createElement("button");
@@ -342,7 +348,9 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
     } = propertyData;
 
     if (workspace_status == undefined || workspace_status == null) {
-      console.log("index-skip", index);
+      if (showQaTest) {
+        console.log("index-skip", index);
+      }
       return;
     }
 
@@ -658,9 +666,11 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
     workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv2);
     workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv3);
     workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv4);
-    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv5);
-    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv6);
-    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv7);
+    if (showQaTest) {
+      workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv5);
+      workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv6);
+      workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv7);
+    }
 
     // Append workspace-info-container div to wrap-workspace div
     wrapWorkspaceDiv.appendChild(workspaceInfoContainerDiv);
@@ -865,6 +875,52 @@ addPropertyRadioContainerTransportation.appendChild(
   radioOptionContainerTransportation
 );
 
+// Create add-property-radio-container element for public transportation
+const addPropertyRadioContainerStatus = document.createElement("div");
+addPropertyRadioContainerStatus.className = "add-property-radio-container";
+
+// Create paragraph element for public transportation
+const paragraphStatus = document.createElement("p");
+paragraphStatus.textContent = "Start the status property:";
+
+// Create radio-option-container element for public transportation
+const radioOptionContainerStatus = document.createElement("div");
+radioOptionContainerStatus.className = "radio-option-container";
+
+// Create input element for Yes option of public transportation
+const inputStatusYes = document.createElement("input");
+inputStatusYes.type = "radio";
+inputStatusYes.name = "property_status";
+inputStatusYes.id = "public-status-yes";
+inputStatusYes.value = true;
+
+// Create label element for Yes option of public Property
+const labelStatusYes = document.createElement("label");
+labelStatusYes.htmlFor = "public-status-yes";
+labelStatusYes.textContent = "Yes";
+
+// Create input element for No option of public Property
+const inputStatusNo = document.createElement("input");
+inputStatusNo.type = "radio";
+inputStatusNo.name = "property_status";
+inputStatusNo.id = "public-status-no";
+inputStatusNo.value = false;
+
+// Create label element for No option of public Property
+const labelStatusNo = document.createElement("label");
+labelStatusNo.htmlFor = "public-status-no";
+labelStatusNo.textContent = "No";
+
+// Append radio button elements to radio-option-container for Status
+radioOptionContainerStatus.appendChild(inputStatusYes);
+radioOptionContainerStatus.appendChild(labelStatusYes);
+radioOptionContainerStatus.appendChild(inputStatusNo);
+radioOptionContainerStatus.appendChild(labelStatusNo);
+
+// Append paragraph element and radio-option-container to add-property-radio-container for public Property
+addPropertyRadioContainerStatus.appendChild(paragraphStatus);
+addPropertyRadioContainerStatus.appendChild(radioOptionContainerStatus);
+
 // Create button-container element
 const buttonContainer = document.createElement("div");
 buttonContainer.className = "button-container";
@@ -890,6 +946,7 @@ addPropertyForm.appendChild(inputPropertyAddress);
 addPropertyForm.appendChild(inputPropertyNeighbourhood);
 addPropertyForm.appendChild(addPropertyRadioContainerParking);
 addPropertyForm.appendChild(addPropertyRadioContainerTransportation);
+addPropertyForm.appendChild(addPropertyRadioContainerStatus);
 addPropertyForm.appendChild(buttonContainer);
 
 // Append all elements to modal-content-property
@@ -931,6 +988,9 @@ const hideModalProperty = (event) => {
       .forEach((option) => (option.checked = false));
     document
       .querySelectorAll("[name='Public Transportation']")
+      .forEach((option) => (option.checked = false));
+    document
+      .querySelectorAll("[name='property_status']")
       .forEach((option) => (option.checked = false));
   }
 };
@@ -1110,6 +1170,43 @@ workspaceTypeRadioContainer.appendChild(noRadioLabelworkspaceType);
 addWorkspaceRadioContainer3.appendChild(workspaceTypeLabel);
 addWorkspaceRadioContainer3.appendChild(workspaceTypeRadioContainer);
 
+const addWorkspaceSelectContainer = document.createElement("div");
+addWorkspaceSelectContainer.className = "add-workspace-dropdown-container";
+
+const workspaceSelectLabel = document.createElement("p");
+workspaceSelectLabel.textContent =
+  "Which property will the workspace be added to?";
+
+// Create the select element
+const select = document.createElement("select");
+select.id = "dropdown-add-workspace";
+
+var filteredProperties
+const loadDropdownWorkspace = () => {
+  filteredProperties = propertiesWorkspaceData.reduce((acc, property) => {
+    // Check if the property_id already exists in the accumulator array
+    if (!acc.some((p) => p.property_id === property.property_id)) {
+      // If it doesn't, add the property to the accumulator array
+      acc.push(property);
+    }
+    return acc;
+  }, []);
+
+  filteredProperties.forEach((property) => {
+    // Create the option element
+    const option = document.createElement("option");
+    option.value = property.property_id;
+    option.text = `${property.address} ${property.neighborhood} ${property.property_id}`;
+
+    // Append the option elements to the select element
+    select.appendChild(option);
+  });
+};
+
+// Add the select element to the document
+addWorkspaceSelectContainer.appendChild(workspaceSelectLabel);
+addWorkspaceSelectContainer.appendChild(select);
+
 const buttonContainerWorkspace = document.createElement("div");
 buttonContainerWorkspace.className = "button-container";
 
@@ -1131,6 +1228,7 @@ addWorkspaceForm.appendChild(addSqftInput);
 addWorkspaceForm.appendChild(addWorkspaceRadioContainer1);
 addWorkspaceForm.appendChild(addWorkspaceRadioContainer2);
 addWorkspaceForm.appendChild(addWorkspaceRadioContainer3);
+addWorkspaceForm.appendChild(addWorkspaceSelectContainer);
 addWorkspaceForm.appendChild(buttonContainerWorkspace);
 
 modalContentWorkspace.appendChild(modalWorkspaceTitle);
@@ -1219,13 +1317,11 @@ const updatePropertyModal = () => {
 document.addEventListener("click", (event) => {
   if (event.target.matches(`#btn-update-property`)) {
     buttonIdValue = event.target.value;
+    isUpdateProperty = true;
     showModalProperty();
     updatePropertyModal();
   }
 });
-
-/*=============================================
-→ ### DELETE PROPERTY MODAL ### */
 
 /*=============================================
 → ### UPDATE WORKSPACE MODAL ### */
@@ -1235,7 +1331,9 @@ const updateWorkspaceModal = () => {
   const { lease_term, price, seats, smoking, sqft, workspace_type } =
     propertiesWorkspaceData[indexWorkspace];
 
-  modalWorkspaceSubtitle.innerHTML = `Workspace ID: ${buttonIdValue}`;
+  if (showQaTest) {
+    modalWorkspaceSubtitle.innerHTML = `Workspace ID: ${buttonIdValue}`;
+  }
   addPriceInput.value = price;
   addSeatsInput.value = seats;
   addSqftInput.value = sqft;
@@ -1260,18 +1358,33 @@ const updateWorkspaceModal = () => {
       radio.checked = true;
     }
   });
+
+  console.log(
+    "propertiesWorkspaceData[indexWorkspace]",
+    propertiesWorkspaceData
+  );
+  console.log('buttonIdValue',buttonIdValue);
+  console.log('filteredProperties',filteredProperties);
+
+  const dropdownProperties = document.getElementById("dropdown-add-workspace");
+  // dropdownProperties.selectedIndex = 2
+  dropdownProperties.selectedIndex = filteredProperties.findIndex(
+    (property) => {
+      property.workspace_id === buttonIdValue;
+    }
+  );
+  
+  console.log('dropdownProperties.selectedIndex',dropdownProperties.selectedIndex);
 };
 
 document.addEventListener("click", (event) => {
   if (event.target.matches(`#btn-update-workspace`)) {
     buttonIdValue = event.target.value;
+    isUpdateWorkspace = true;
     showModalWorkspace();
     updateWorkspaceModal();
   }
 });
-
-/*=============================================
-→ ### DELETE WORKSPACE MODAL ### */
 
 /*=============================================
 → ### FIND ID ### */
@@ -1282,7 +1395,7 @@ const findId = (caseId) => {
   switch (caseId) {
     case "property_id":
       propertiesWorkspaceData.forEach((obj, i) => {
-        if (obj.property_id === parseInt(buttonIdValue)) {
+        if (obj.property_id === buttonIdValue) {
           index = i;
         }
       });
@@ -1291,7 +1404,7 @@ const findId = (caseId) => {
 
     case "workspace_id":
       propertiesWorkspaceData.forEach((obj, i) => {
-        if (obj.workspace_id === parseInt(buttonIdValue)) {
+        if (obj.workspace_id === buttonIdValue) {
           index = i;
         }
       });
@@ -1299,11 +1412,13 @@ const findId = (caseId) => {
       break;
   }
 
-  // if (index !== -1) {
-  //   console.log(`Id ${buttonIdValue} found at index ${index}`);
-  // } else {
-  //   console.log(`Id ${buttonIdValue} not found in the array`);
-  // }
+  if (showQaTest) {
+    if (index !== -1) {
+      console.log(`Id ${buttonIdValue} found at index ${index}`);
+    } else {
+      console.log(`Id ${buttonIdValue} not found in the array`);
+    }
+  }
 };
 
 /*=============================================
@@ -1395,28 +1510,48 @@ const sendNewProperty = (event) => {
   const publicTransportation = document.querySelector(
     'input[name="Public Transportation"]:checked'
   );
+  const propertyStatus = document.querySelector(
+    'input[name="property_status"]:checked'
+  );
 
   // Validate form inputs
   if (
     address === "" ||
     neighbourhood === "" ||
     !parkingLot ||
-    !publicTransportation
+    !publicTransportation ||
+    !propertyStatus
   ) {
     alert("Please fill in all the fields.");
     return;
   }
 
-  const postNewProperty = {
-    address: `${address}`,
-    neighborhood: `${neighbourhood}`,
-    ParkingLot: `${parkingLot.value}`,
-    PublicTransportation: `${publicTransportation.value}`,
-    property_status: true,
-    user_id: getCurrentUser(),
-  };
+  if (isUpdateProperty) {
+    const postNewProperty = {
+      property_id: `${buttonIdValue}`,
+      address: `${address}`,
+      neighborhood: `${neighbourhood}`,
+      ParkingLot: `${parkingLot.value}`,
+      PublicTransportation: `${publicTransportation.value}`,
+      property_status: `${propertyStatus.value}`,
+      user_id: getCurrentUser(),
+    };
 
-  serverPostNewProperty(postNewProperty);
+    serverPostUpdateProperty(postNewProperty);
+
+    isUpdateProperty = false;
+  } else {
+    const postNewProperty = {
+      address: `${address}`,
+      neighborhood: `${neighbourhood}`,
+      ParkingLot: `${parkingLot.value}`,
+      PublicTransportation: `${publicTransportation.value}`,
+      property_status: `${propertyStatus.value}`,
+      user_id: getCurrentUser(),
+    };
+
+    serverPostNewProperty(postNewProperty);
+  }
 
   hideModalProperty(event);
 };
@@ -1440,6 +1575,9 @@ const sendNewWorkspace = (event) => {
   const workspaceType = document.querySelector(
     'input[name="Workspace Type"]:checked'
   );
+  const dropdownProperties = document.getElementById("dropdown-add-workspace");
+  const dropdownPropertiesValue =
+    dropdownProperties.options[dropdownProperties.selectedIndex].value;
 
   // Validate form inputs
   if (
@@ -1455,19 +1593,39 @@ const sendNewWorkspace = (event) => {
     return;
   }
 
-  const postNewWorkspace = {
-    workspace_type: `${workspaceType.value}`,
-    seats: `${seats}`,
-    smoking: `${smoking.value}`,
-    price: `${price}`,
-    sqft: `${sqft}`,
-    lease_term: `${leasingTerm.value}`,
-    property_id: "180-939884",
-    user_id: getCurrentUser(),
-    workspace_status: true,
-  };
+  console.log("isUpdateWorkspace", isUpdateWorkspace);
 
-  serverPostNewWorkspace(postNewWorkspace);
+  if (isUpdateWorkspace) {
+    const postWorkspace = {
+      workspace_id: `${buttonIdValue}`,
+      workspace_type: `${workspaceType.value}`,
+      seats: `${seats}`,
+      smoking: `${smoking.value}`,
+      price: `${price}`,
+      sqft: `${sqft}`,
+      lease_term: `${leasingTerm.value}`,
+      property_id: `${dropdownPropertiesValue}`,
+      user_id: getCurrentUser(),
+      workspace_status: true,
+    };
+    serverPostUpdateWorkspace(postWorkspace);
+
+    isUpdateWorkspace = false;
+  } else {
+    const postWorkspace = {
+      workspace_type: `${workspaceType.value}`,
+      seats: `${seats}`,
+      smoking: `${smoking.value}`,
+      price: `${price}`,
+      sqft: `${sqft}`,
+      lease_term: `${leasingTerm.value}`,
+      property_id: `${dropdownPropertiesValue}`,
+      user_id: getCurrentUser(),
+      workspace_status: true,
+    };
+
+    serverPostNewWorkspace(postWorkspace);
+  }
 
   hideModalWorkspace(event);
 };
@@ -1479,6 +1637,9 @@ submitBtnWorkspace.addEventListener("click", sendNewWorkspace);
 window.onload = async () => {
   propertiesWorkspaceData = await serverGetWorkspaceByOwner();
   displayPropertiesWorkspaceData(propertiesWorkspaceData);
+  loadDropdownWorkspace();
   document.getElementById("btn-my-rooms").disabled = true;
-  console.log("propertiesWorkspaceData", propertiesWorkspaceData);
+  if (showQaTest) {
+    console.log("propertiesWorkspaceData", propertiesWorkspaceData);
+  }
 };

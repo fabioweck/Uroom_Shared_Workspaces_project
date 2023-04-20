@@ -115,7 +115,6 @@ router.post('/newWorkspace', (req, res) => {
 
 // Update data for current Workspace
 router.post('/updateWorkspace', (req, res) => {
-
     userService.updateWorkspace(req.body)
         .then(data => {
             res.status(200).send(data);

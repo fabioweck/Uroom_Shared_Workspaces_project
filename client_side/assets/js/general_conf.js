@@ -23,22 +23,16 @@ export const clearLoggerdUser = () => {
 /*==============================================
 → ### DISPLAY USER NAME ON NAVBAR ### */
 
-let greeting = document.querySelector('#greeting');
-try{
-  if(!userName){
+let greeting = document.querySelector("#greeting");
+try {
+  if (!userName) {
     greeting.style.display = "none";
-  }
-  else{
+  } else {
     let index = userName.indexOf(" ");
     let firstName = userName.slice(0, index);
-    greeting.innerHTML = `Hello ${firstName}!`; 
+    greeting.innerHTML = `Hello ${firstName}!`;
   }
-}catch(err){};
-
-
-
-
-
+} catch (err) {}
 
 /*==============================================
 → ### VIEW ICON MOBILE MENU ### */
@@ -244,15 +238,34 @@ export const serverPostNewProperty = async (postNewProperty) => {
 };
 
 /*==============================================
+  → ### POST - UPDATE PROPERTY ### */
+  export const serverPostUpdateProperty = async (postProperty) => {
+    try {
+      const response = await fetch(baseUrl + "updateProperty", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postProperty),
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
+/*==============================================
   → ### POST - NEW WORKSPACE ### */
-export const serverPostNewWorkspace = async (postNewProperty) => {
+export const serverPostNewWorkspace = async (postNewWorkspace) => {
   try {
     const response = await fetch(baseUrl + "newWorkspace", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(postNewProperty),
+      body: JSON.stringify(postNewWorkspace),
     });
     const data = await response.json();
     return data;
@@ -263,20 +276,47 @@ export const serverPostNewWorkspace = async (postNewProperty) => {
 };
 
 /*==============================================
+  → ### POST - UPDATE WORKSPACE ### */
+  export const serverPostUpdateWorkspace = async (postWorkspace) => {
+    try {
+      const response = await fetch(baseUrl + "updateWorkspace", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postWorkspace),
+      });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
+
+/*==============================================
   → ### POST - DELIST PROPERTY ### */
 export const delistProperty = async (property) => {
   const property_id = property;
   const user_id = getCurrentUser();
   try {
     const response = await fetch(
-      `${baseUrl}delistProperty?user_id=${user_id}&property_id=${property_id}`
+      `${baseUrl}delistProperty?user_id=${user_id}&property_id=${property_id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
     const data = await response.json();
     return data;
   } catch (error) {
     console.error(error);
+    return null;
   }
-}
+};
 
 /*==============================================
   → ### POST - DELIST WORKSPACE ### */
@@ -285,11 +325,22 @@ export const delistWorkspace = async (workspace) => {
   const user_id = getCurrentUser();
   try {
     const response = await fetch(
-      `${baseUrl}delistWorkspace?user_id=${user_id}&workspace_id=${workspace_id}`
+      `${baseUrl}delistWorkspace?user_id=${user_id}&workspace_id=${workspace_id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
     const data = await response.json();
     return data;
   } catch (error) {
     console.error(error);
+    return null;
   }
-}
+};
+
+/*==============================================
+  → ### SHOW IN QA TEST ### */
+  export const showQaTest = 1;
