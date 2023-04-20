@@ -152,7 +152,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
 
     case "lease_term":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: dayly, weekly or monthly");
+      searchBar.setAttribute("placeholder", "Search: daily, weekly or monthly");
       filteredData = propertiesData.filter(({ lease_term }) =>
         lease_term.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );

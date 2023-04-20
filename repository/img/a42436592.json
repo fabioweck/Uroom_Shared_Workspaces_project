@@ -6,7 +6,7 @@
         "smoking": "no",
         "price": "20",
         "sqft": "100",
-        "lease_term": "dayly",
+        "lease_term": "daily",
         "property_id": 316899,
         "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
         "status": "true"
@@ -30,7 +30,7 @@
         "smoking": "no",
         "price": "20",
         "sqft": "100",
-        "lease_term": "dayly",
+        "lease_term": "daily",
         "property_id": 726506,
         "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
         "status": "true"
