@@ -6,11 +6,11 @@
 /*=============================================
 → ### IMPORTS ### */
 import {
-  baseUrl,
   getLoggedUser,
   serverGetAvailableDates,
   serverPostSelectedDates,
   serverGetWorkspace,
+  showQaTest,
 } from "./general_conf.js";
 
 /*=============================================
@@ -299,7 +299,9 @@ const displayPropertiesData = (propertiesData) => {
     } = propertyData;
 
     if (!workspace_status || workspace_status == null) {
-      // console.log("index-skip", index);
+      if (showQaTest) {
+        console.log("index-skip", index);
+      }
       return;
     }
 
@@ -571,8 +573,10 @@ const displayPropertiesData = (propertiesData) => {
     workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv);
     workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv2);
     workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv3);
-    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv4);
-    workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv5);
+    if (showQaTest) {
+      workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv4);
+      workspaceInfoContainerDiv.appendChild(workspaceDivisionDiv5);
+    }
 
     // Append workspace-info-container div to wrap-workspace div
     wrapWorkspaceDiv.appendChild(workspaceInfoContainerDiv);
@@ -619,7 +623,9 @@ const displayPropertiesData = (propertiesData) => {
 → ### CREATE THE CALENDAR ### */
 const calendarModal = async () => {
   availableDates = await serverGetAvailableDates(buttonBookIdValue);
-  console.log("Available dates", availableDates);
+  if (showQaTest) {
+    console.log("Available dates", availableDates);
+  }
   updateCalendar();
 };
 
@@ -859,5 +865,7 @@ submitBtn.addEventListener("click", hideModal);
 window.onload = async () => {
   propertiesData = await serverGetWorkspace();
   displayPropertiesData(propertiesData);
-  console.log("propertiesData", propertiesData);
+  if (showQaTest) {
+    console.log("propertiesData", propertiesData);
+  }
 };

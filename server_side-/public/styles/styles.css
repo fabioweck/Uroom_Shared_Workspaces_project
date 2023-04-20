@@ -1,0 +1,107 @@
+  body {
+      font-family: 'Roboto', sans-serif;
+  }
+
+  table {
+      border-collapse: collapse;
+      width: 100%;
+  }
+
+  th,
+  td {
+      text-align: left;
+      padding: 8px;
+      border: 1px solid #ddd;
+  }
+
+  th {
+      background-color: #4CAF50;
+      color: white;
+  }
+
+  tr:nth-child(even) {
+      background-color: #f2f2f2;
+  }
+
+  .success {
+      background-color: #4CAF50;
+      width: fit-content;
+      padding: 20px;
+      color: white;
+      border-radius: 4px;
+  }
+
+  .error {
+      background-color: #df0048;
+      width: fit-content;
+      padding: 20px;
+      color: white;
+      border-radius: 4px;
+  }
+
+  .searchBox {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      float: left;
+      padding: 20px;
+      width: 100%;
+  }
+
+  .addBox {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      float: left;
+      padding: 20px;
+  }
+
+  .contentBox {
+      float: left;
+      width: 100%;
+      margin-top: 20px;
+  }
+
+  input:focus,
+  textarea:focus {
+      border-color: #007bff;
+  }
+
+  button[type="submit"] {
+      max-width: 200px;
+      padding: 10px;
+      font-size: 13px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+      background-color: #0056b3;
+  }
+
+  .parent {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 20px;
+  }
+
+  .left {
+      width: 50%;
+      background-color: #f7f7f7;
+  }
+
+  .right {
+      width: 50%;
+      background-color: #ddd;
+  }
+
+  .dv-display {
+      float: left;
+      width: 70%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+  }

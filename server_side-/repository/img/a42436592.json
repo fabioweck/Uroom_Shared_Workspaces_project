@@ -1,0 +1,38 @@
+[
+    {
+        "workspace_id": 552490,
+        "workspace_type": "desk",
+        "seats": "4",
+        "smoking": "no",
+        "price": "20",
+        "sqft": "100",
+        "lease_term": "dayly",
+        "property_id": 316899,
+        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+        "status": "true"
+    },
+    {
+        "workspace_id": 863189,
+        "workspace_type": "office",
+        "seats": "10",
+        "smoking": "no",
+        "price": "100",
+        "sqft": "200",
+        "lease_term": "monthly",
+        "property_id": 316899,
+        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+        "status": "true"
+    },
+    {
+        "workspace_id": 552491,
+        "workspace_type": "desk",
+        "seats": "4",
+        "smoking": "no",
+        "price": "20",
+        "sqft": "100",
+        "lease_term": "dayly",
+        "property_id": 726506,
+        "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+        "status": "true"
+    }
+]
