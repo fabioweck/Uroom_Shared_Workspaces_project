@@ -19,7 +19,8 @@ import {
 
 /*=============================================
 → ### GLOBAL VARIABLES ### */
-var buttonIdValue; // Store the id from the button
+var buttonValue; // Store the value from the button
+var buttonNameValue; // Store the name from the button
 var propertiesWorkspaceData = []; // Receive data from the server
 var isUpdateWorkspace = false; // Flag to modal add new or update the workspace
 var isUpdateProperty = false; // Flag to modal add new or update the property
@@ -53,7 +54,7 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
 
     case "lease_term":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: dayly, weekly or monthly");
+      searchBar.setAttribute("placeholder", "Search: daily, weekly or monthly");
       filteredData = propertiesWorkspaceData.filter(({ lease_term }) =>
         lease_term.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -683,6 +684,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
     btnUpdateWorkspace.id = `btn-update-workspace`;
     btnUpdateWorkspace.textContent = "Update";
     btnUpdateWorkspace.value = `${workspace_id}`;
+    btnUpdateWorkspace.name = `${property_id}`;
 
     const statusBtnActiveInactiveWorkspace = !workspace_status
       ? "Activate"
@@ -726,8 +728,8 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
 → ### DELIST PROPERTY ### */
 document.addEventListener("click", (event) => {
   if (event.target.matches(`#btn-active-inactive-property`)) {
-    buttonIdValue = event.target.value;
-    delistProperty(buttonIdValue);
+    buttonValue = event.target.value;
+    delistProperty(buttonValue);
   }
 });
 
@@ -735,8 +737,8 @@ document.addEventListener("click", (event) => {
 → ### DELIST WORKSPACE ### */
 document.addEventListener("click", (event) => {
   if (event.target.matches(`#btn-active-inactive-workspace`)) {
-    buttonIdValue = event.target.value;
-    delistWorkspace(buttonIdValue);
+    buttonValue = event.target.value;
+    delistWorkspace(buttonValue);
   }
 });
 
@@ -1056,15 +1058,15 @@ leasingTermLabel.textContent = "Which is the leasing term?";
 const leasingTermRadioContainer = document.createElement("div");
 leasingTermRadioContainer.className = "radio-option-container";
 
-const daylyRadio = document.createElement("input");
-daylyRadio.type = "radio";
-daylyRadio.name = "Leasing Term";
-daylyRadio.id = "dayly";
-daylyRadio.value = "dayly";
+const dailyRadio = document.createElement("input");
+dailyRadio.type = "radio";
+dailyRadio.name = "Leasing Term";
+dailyRadio.id = "daily";
+dailyRadio.value = "daily";
 
-const daylyRadioLabel = document.createElement("label");
-daylyRadioLabel.htmlFor = "dayly";
-daylyRadioLabel.textContent = "Dayly";
+const dailyRadioLabel = document.createElement("label");
+dailyRadioLabel.htmlFor = "daily";
+dailyRadioLabel.textContent = "daily";
 
 const weeklyRadio = document.createElement("input");
 weeklyRadio.type = "radio";
@@ -1086,8 +1088,8 @@ const monthlyRadioLabel = document.createElement("label");
 monthlyRadioLabel.htmlFor = "monthly";
 monthlyRadioLabel.textContent = "Monthly";
 
-leasingTermRadioContainer.appendChild(daylyRadio);
-leasingTermRadioContainer.appendChild(daylyRadioLabel);
+leasingTermRadioContainer.appendChild(dailyRadio);
+leasingTermRadioContainer.appendChild(dailyRadioLabel);
 leasingTermRadioContainer.appendChild(weeklyRadio);
 leasingTermRadioContainer.appendChild(weeklyRadioLabel);
 leasingTermRadioContainer.appendChild(monthlyRadio);
@@ -1193,7 +1195,7 @@ workspaceSelectLabel.textContent =
 const select = document.createElement("select");
 select.id = "dropdown-add-workspace";
 
-var filteredProperties
+var filteredProperties;
 const loadDropdownWorkspace = () => {
   filteredProperties = propertiesWorkspaceData.reduce((acc, property) => {
     // Check if the property_id already exists in the accumulator array
@@ -1208,7 +1210,7 @@ const loadDropdownWorkspace = () => {
     // Create the option element
     const option = document.createElement("option");
     option.value = property.property_id;
-    option.text = `${property.address} ${property.neighborhood} ${property.property_id}`;
+    option.text = `${property.address} ${property.neighborhood}`;
 
     // Append the option elements to the select element
     select.appendChild(option);
@@ -1291,6 +1293,10 @@ const hideModalWorkspace = (event) => {
 // Attach event listeners to show and hide the modal
 document.addEventListener("click", (event) => {
   if (event.target.matches("#btn-add-workspace")) {
+    const dropdownProperties = document.getElementById(
+      "dropdown-add-workspace"
+    );
+    dropdownProperties.selectedIndex = 0;
     showModalWorkspace();
   }
 });
@@ -1302,10 +1308,15 @@ closeBtnWorkspace.addEventListener("click", hideModalWorkspace);
 const updatePropertyModal = () => {
   const indexProperty = findId("property_id");
 
-  const { address, neighborhood, ParkingLot, PublicTransportation } =
-    propertiesWorkspaceData[indexProperty];
+  const {
+    address,
+    neighborhood,
+    ParkingLot,
+    PublicTransportation,
+    property_status,
+  } = propertiesWorkspaceData[indexProperty];
 
-  modalPropertySubtitle.innerHTML = `Property ID: ${buttonIdValue}`;
+  modalPropertySubtitle.innerHTML = `Property ID: ${buttonValue}`;
   inputPropertyAddress.value = address;
   inputPropertyNeighbourhood.value = neighborhood;
 
@@ -1324,11 +1335,18 @@ const updatePropertyModal = () => {
       radio.checked = true;
     }
   });
+
+  const startStatusRadios = document.getElementsByName("property_status");
+  startStatusRadios.forEach((radio) => {
+    if (Boolean(radio.value) === property_status) {
+      radio.checked = true;
+    }
+  });
 };
 
 document.addEventListener("click", (event) => {
   if (event.target.matches(`#btn-update-property`)) {
-    buttonIdValue = event.target.value;
+    buttonValue = event.target.value;
     isUpdateProperty = true;
     showModalProperty();
     updatePropertyModal();
@@ -1344,7 +1362,7 @@ const updateWorkspaceModal = () => {
     propertiesWorkspaceData[indexWorkspace];
 
   if (showQaTest) {
-    modalWorkspaceSubtitle.innerHTML = `Workspace ID: ${buttonIdValue}`;
+    modalWorkspaceSubtitle.innerHTML = `Workspace ID: ${buttonValue}`;
   }
   addPriceInput.value = price;
   addSeatsInput.value = seats;
@@ -1370,28 +1388,27 @@ const updateWorkspaceModal = () => {
       radio.checked = true;
     }
   });
-
-  console.log(
-    "propertiesWorkspaceData[indexWorkspace]",
-    propertiesWorkspaceData
-  );
-  console.log('buttonIdValue',buttonIdValue);
-  console.log('filteredProperties',filteredProperties);
+  if (showQaTest) {
+    console.log(
+      "propertiesWorkspaceData[indexWorkspace]",
+      propertiesWorkspaceData
+    );
+    console.log("buttonValue", buttonValue);
+    console.log("filteredProperties", filteredProperties);
+  }
 
   const dropdownProperties = document.getElementById("dropdown-add-workspace");
-  // dropdownProperties.selectedIndex = 2
   dropdownProperties.selectedIndex = filteredProperties.findIndex(
     (property) => {
-      property.workspace_id === buttonIdValue;
+      return property.property_id == buttonNameValue;
     }
   );
-  
-  console.log('dropdownProperties.selectedIndex',dropdownProperties.selectedIndex);
 };
 
 document.addEventListener("click", (event) => {
   if (event.target.matches(`#btn-update-workspace`)) {
-    buttonIdValue = event.target.value;
+    buttonValue = event.target.value;
+    buttonNameValue = event.target.name;
     isUpdateWorkspace = true;
     showModalWorkspace();
     updateWorkspaceModal();
@@ -1407,7 +1424,7 @@ const findId = (caseId) => {
   switch (caseId) {
     case "property_id":
       propertiesWorkspaceData.forEach((obj, i) => {
-        if (obj.property_id === buttonIdValue) {
+        if (obj.property_id === buttonValue) {
           index = i;
         }
       });
@@ -1416,7 +1433,7 @@ const findId = (caseId) => {
 
     case "workspace_id":
       propertiesWorkspaceData.forEach((obj, i) => {
-        if (obj.workspace_id === buttonIdValue) {
+        if (obj.workspace_id === buttonValue) {
           index = i;
         }
       });
@@ -1426,9 +1443,9 @@ const findId = (caseId) => {
 
   if (showQaTest) {
     if (index !== -1) {
-      console.log(`Id ${buttonIdValue} found at index ${index}`);
+      console.log(`Id ${buttonValue} found at index ${index}`);
     } else {
-      console.log(`Id ${buttonIdValue} not found in the array`);
+      console.log(`Id ${buttonValue} not found in the array`);
     }
   }
 };
@@ -1540,7 +1557,7 @@ const sendNewProperty = (event) => {
 
   if (isUpdateProperty) {
     const postNewProperty = {
-      property_id: `${buttonIdValue}`,
+      property_id: `${buttonValue}`,
       address: `${address}`,
       neighborhood: `${neighbourhood}`,
       ParkingLot: `${parkingLot.value}`,
@@ -1604,12 +1621,13 @@ const sendNewWorkspace = (event) => {
     alert("Please fill in all the fields.");
     return;
   }
-
-  console.log("isUpdateWorkspace", isUpdateWorkspace);
+  if (showQaTest) {
+    console.log("isUpdateWorkspace", isUpdateWorkspace);
+  }
 
   if (isUpdateWorkspace) {
     const postWorkspace = {
-      workspace_id: `${buttonIdValue}`,
+      workspace_id: `${buttonValue}`,
       workspace_type: `${workspaceType.value}`,
       seats: `${seats}`,
       smoking: `${smoking.value}`,
