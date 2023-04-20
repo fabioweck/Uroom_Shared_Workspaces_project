@@ -356,11 +356,11 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       property_id,
     } = propertyData;
 
-    if (workspace_status == undefined || workspace_status == null) {
-      if (showQaTest) {
+    if (showQaTest) {
+      if (workspace_status == undefined || workspace_status == null) {
         console.log("index-skip", index);
+        return;
       }
-      return;
     }
 
     // Create the outer div element with class "property-card"
@@ -901,52 +901,6 @@ addPropertyRadioContainerTransportation.appendChild(
   radioOptionContainerTransportation
 );
 
-// Create add-property-radio-container element for public transportation
-const addPropertyRadioContainerStatus = document.createElement("div");
-addPropertyRadioContainerStatus.className = "add-property-radio-container";
-
-// Create paragraph element for public transportation
-const paragraphStatus = document.createElement("p");
-paragraphStatus.textContent = "Start the status property:";
-
-// Create radio-option-container element for public transportation
-const radioOptionContainerStatus = document.createElement("div");
-radioOptionContainerStatus.className = "radio-option-container";
-
-// Create input element for Yes option of public transportation
-const inputStatusYes = document.createElement("input");
-inputStatusYes.type = "radio";
-inputStatusYes.name = "property_status";
-inputStatusYes.id = "public-status-yes";
-inputStatusYes.value = true;
-
-// Create label element for Yes option of public Property
-const labelStatusYes = document.createElement("label");
-labelStatusYes.htmlFor = "public-status-yes";
-labelStatusYes.textContent = "Yes";
-
-// Create input element for No option of public Property
-const inputStatusNo = document.createElement("input");
-inputStatusNo.type = "radio";
-inputStatusNo.name = "property_status";
-inputStatusNo.id = "public-status-no";
-inputStatusNo.value = false;
-
-// Create label element for No option of public Property
-const labelStatusNo = document.createElement("label");
-labelStatusNo.htmlFor = "public-status-no";
-labelStatusNo.textContent = "No";
-
-// Append radio button elements to radio-option-container for Status
-radioOptionContainerStatus.appendChild(inputStatusYes);
-radioOptionContainerStatus.appendChild(labelStatusYes);
-radioOptionContainerStatus.appendChild(inputStatusNo);
-radioOptionContainerStatus.appendChild(labelStatusNo);
-
-// Append paragraph element and radio-option-container to add-property-radio-container for public Property
-addPropertyRadioContainerStatus.appendChild(paragraphStatus);
-addPropertyRadioContainerStatus.appendChild(radioOptionContainerStatus);
-
 // Create button-container element
 const buttonContainer = document.createElement("div");
 buttonContainer.className = "button-container";
@@ -972,7 +926,6 @@ addPropertyForm.appendChild(inputPropertyAddress);
 addPropertyForm.appendChild(inputPropertyNeighbourhood);
 addPropertyForm.appendChild(addPropertyRadioContainerParking);
 addPropertyForm.appendChild(addPropertyRadioContainerTransportation);
-addPropertyForm.appendChild(addPropertyRadioContainerStatus);
 addPropertyForm.appendChild(buttonContainer);
 
 // Append all elements to modal-content-property
@@ -1005,7 +958,11 @@ const showModalProperty = () => {
 
 // Hide the modal when the close button is clicked or outside the modal
 const hideModalProperty = (event) => {
-  if (event.target == closeBtnProperty || event.target == submitBtnProperty) {
+  if (
+    event.target == closeBtnProperty ||
+    event.target == submitBtnProperty ||
+    event.key === "Escape"
+  ) {
     modalAddProperty.style.display = "none";
 
     // Reset the input fields
@@ -1016,9 +973,6 @@ const hideModalProperty = (event) => {
       .forEach((option) => (option.checked = false));
     document
       .querySelectorAll("[name='Public Transportation']")
-      .forEach((option) => (option.checked = false));
-    document
-      .querySelectorAll("[name='property_status']")
       .forEach((option) => (option.checked = false));
   }
 };
@@ -1247,6 +1201,54 @@ const loadDropdownWorkspace = () => {
 addWorkspaceSelectContainer.appendChild(workspaceSelectLabel);
 addWorkspaceSelectContainer.appendChild(select);
 
+// Create add-property-radio-container element for public transportation
+const addPropertyRadioContainerStatus = document.createElement("div");
+addPropertyRadioContainerStatus.className = "add-property-radio-container";
+addPropertyRadioContainerStatus.id =
+  "add-property-radio-container-property-status";
+
+// Create paragraph element for public transportation
+const paragraphStatus = document.createElement("p");
+paragraphStatus.textContent = "Workspace status:";
+
+// Create radio-option-container element for public transportation
+const radioOptionContainerStatus = document.createElement("div");
+radioOptionContainerStatus.className = "radio-option-container";
+
+// Create input element for Yes option of public transportation
+const inputStatusYes = document.createElement("input");
+inputStatusYes.type = "radio";
+inputStatusYes.name = "workspace_status";
+inputStatusYes.id = "public-status-yes";
+inputStatusYes.value = true;
+
+// Create label element for Yes option of public Property
+const labelStatusYes = document.createElement("label");
+labelStatusYes.htmlFor = "public-status-yes";
+labelStatusYes.textContent = "Actived";
+
+// Create input element for No option of public Property
+const inputStatusNo = document.createElement("input");
+inputStatusNo.type = "radio";
+inputStatusNo.name = "workspace_status";
+inputStatusNo.id = "public-status-no";
+inputStatusNo.value = false;
+
+// Create label element for No option of public Property
+const labelStatusNo = document.createElement("label");
+labelStatusNo.htmlFor = "public-status-no";
+labelStatusNo.textContent = "Deactivated";
+
+// Append radio button elements to radio-option-container for Status
+radioOptionContainerStatus.appendChild(inputStatusYes);
+radioOptionContainerStatus.appendChild(labelStatusYes);
+radioOptionContainerStatus.appendChild(inputStatusNo);
+radioOptionContainerStatus.appendChild(labelStatusNo);
+
+// Append paragraph element and radio-option-container to add-property-radio-container for public Property
+addPropertyRadioContainerStatus.appendChild(paragraphStatus);
+addPropertyRadioContainerStatus.appendChild(radioOptionContainerStatus);
+
 const buttonContainerWorkspace = document.createElement("div");
 buttonContainerWorkspace.className = "button-container";
 
@@ -1269,6 +1271,7 @@ addWorkspaceForm.appendChild(addWorkspaceRadioContainer1);
 addWorkspaceForm.appendChild(addWorkspaceRadioContainer2);
 addWorkspaceForm.appendChild(addWorkspaceRadioContainer3);
 addWorkspaceForm.appendChild(addWorkspaceSelectContainer);
+addWorkspaceForm.appendChild(addPropertyRadioContainerStatus);
 addWorkspaceForm.appendChild(buttonContainerWorkspace);
 
 modalContentWorkspace.appendChild(modalWorkspaceTitle);
@@ -1297,7 +1300,11 @@ const showModalWorkspace = () => {
 
 // Hide the modal when the close button is clicked or outside the modal
 const hideModalWorkspace = (event) => {
-  if (event.target == closeBtnWorkspace || event.target == submitBtnWorkspace) {
+  if (
+    event.target == closeBtnWorkspace ||
+    event.target == submitBtnWorkspace ||
+    event.key === "Escape"
+  ) {
     modalAddWorkspace.style.display = "none";
 
     // Reset the input fields
@@ -1313,6 +1320,9 @@ const hideModalWorkspace = (event) => {
     document
       .querySelectorAll("[name='Workspace Type']")
       .forEach((option) => (option.checked = false));
+    document
+      .querySelectorAll("[name='workspace_status']")
+      .forEach((option) => (option.checked = false));
   }
 };
 
@@ -1323,24 +1333,31 @@ document.addEventListener("click", (event) => {
       "dropdown-add-workspace"
     );
     dropdownProperties.selectedIndex = 0;
+    const addPropertyRadioContainerPropertyStatus = document.getElementById("add-property-radio-container-property-status");
+    addPropertyRadioContainerPropertyStatus.style.display = "block";
     showModalWorkspace();
   }
 });
 
 closeBtnWorkspace.addEventListener("click", hideModalWorkspace);
 
+// Define a function to handle the keydown event
+const handleKeyDownEscape = (event) => {
+  // Check if the Escape key was pressed
+  hideModalWorkspace(event);
+  hideModalProperty(event);
+};
+
+// Add the event listener to the document object
+document.addEventListener("keydown", handleKeyDownEscape);
+
 /*=============================================
 → ### UPDATE PROPERTY MODAL ### */
 const updatePropertyModal = () => {
   const indexProperty = findId("property_id");
 
-  const {
-    address,
-    neighborhood,
-    ParkingLot,
-    PublicTransportation,
-    property_status,
-  } = propertiesWorkspaceData[indexProperty];
+  const { address, neighborhood, ParkingLot, PublicTransportation } =
+    propertiesWorkspaceData[indexProperty];
 
   modalPropertySubtitle.innerHTML = `Property ID: ${buttonValue}`;
   inputPropertyAddress.value = address;
@@ -1361,13 +1378,6 @@ const updatePropertyModal = () => {
       radio.checked = true;
     }
   });
-
-  const startStatusRadios = document.getElementsByName("property_status");
-  startStatusRadios.forEach((radio) => {
-    if (Boolean(radio.value) === property_status) {
-      radio.checked = true;
-    }
-  });
 };
 
 document.addEventListener("click", (event) => {
@@ -1384,8 +1394,15 @@ document.addEventListener("click", (event) => {
 const updateWorkspaceModal = () => {
   const indexWorkspace = findId("workspace_id");
 
-  const { lease_term, price, seats, smoking, sqft, workspace_type } =
-    propertiesWorkspaceData[indexWorkspace];
+  const {
+    lease_term,
+    price,
+    seats,
+    smoking,
+    sqft,
+    workspace_type,
+    workspace_status,
+  } = propertiesWorkspaceData[indexWorkspace];
 
   if (showQaTest) {
     modalWorkspaceSubtitle.innerHTML = `Workspace ID: ${buttonValue}`;
@@ -1414,6 +1431,7 @@ const updateWorkspaceModal = () => {
       radio.checked = true;
     }
   });
+
   if (showQaTest) {
     console.log(
       "propertiesWorkspaceData[indexWorkspace]",
@@ -1429,6 +1447,13 @@ const updateWorkspaceModal = () => {
       return property.property_id == buttonNameValue;
     }
   );
+
+  const startStatusRadios = document.getElementsByName("workspace_status");
+  startStatusRadios.forEach((radio) => {
+    if (Boolean(radio.value) === workspace_status) {
+      radio.checked = true;
+    }
+  });
 };
 
 document.addEventListener("click", (event) => {
@@ -1436,6 +1461,10 @@ document.addEventListener("click", (event) => {
     buttonValue = event.target.value;
     buttonNameValue = event.target.name;
     isUpdateWorkspace = true;
+    const addPropertyRadioContainerPropertyStatus = document.getElementById(
+      "add-property-radio-container-property-status"
+    );
+    addPropertyRadioContainerPropertyStatus.style.display = "none";
     showModalWorkspace();
     updateWorkspaceModal();
   }
@@ -1565,17 +1594,13 @@ const sendNewProperty = (event) => {
   const publicTransportation = document.querySelector(
     'input[name="Public Transportation"]:checked'
   );
-  const propertyStatus = document.querySelector(
-    'input[name="property_status"]:checked'
-  );
 
   // Validate form inputs
   if (
     address === "" ||
     neighbourhood === "" ||
     !parkingLot ||
-    !publicTransportation ||
-    !propertyStatus
+    !publicTransportation
   ) {
     alert("Please fill in all the fields.");
     return;
@@ -1588,7 +1613,6 @@ const sendNewProperty = (event) => {
       neighborhood: `${neighbourhood}`,
       ParkingLot: `${parkingLot.value}`,
       PublicTransportation: `${publicTransportation.value}`,
-      property_status: `${propertyStatus.value}`,
       user_id: getCurrentUser(),
     };
 
@@ -1601,7 +1625,6 @@ const sendNewProperty = (event) => {
       neighborhood: `${neighbourhood}`,
       ParkingLot: `${parkingLot.value}`,
       PublicTransportation: `${publicTransportation.value}`,
-      property_status: `${propertyStatus.value}`,
       user_id: getCurrentUser(),
     };
 
@@ -1634,6 +1657,10 @@ const sendNewWorkspace = (event) => {
   const dropdownPropertiesValue =
     dropdownProperties.options[dropdownProperties.selectedIndex].value;
 
+  const workspaceStatus = document.querySelector(
+    'input[name="workspace_status"]:checked'
+  );
+
   // Validate form inputs
   if (
     leasingTerm === "" ||
@@ -1642,7 +1669,8 @@ const sendNewWorkspace = (event) => {
     sqft === "" ||
     !leasingTerm ||
     !smoking ||
-    !workspaceType
+    !workspaceType ||
+    !workspaceStatus
   ) {
     alert("Please fill in all the fields.");
     return;
@@ -1662,7 +1690,7 @@ const sendNewWorkspace = (event) => {
       lease_term: `${leasingTerm.value}`,
       property_id: `${dropdownPropertiesValue}`,
       user_id: getCurrentUser(),
-      workspace_status: true,
+      workspace_status: Boolean(workspaceStatus),
     };
     serverPostUpdateWorkspace(postWorkspace);
 

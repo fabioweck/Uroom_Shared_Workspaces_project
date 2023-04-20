@@ -7,7 +7,7 @@
 → ### IMPORTS ### */
 import {
   getLoggedUser,
-  serverGetAvailableDates,
+  serverGetUnavailableDates,
   serverPostSelectedDates,
   serverGetWorkspace,
   showQaTest,
@@ -16,7 +16,7 @@ import {
 /*=============================================
 → ### GLOBAL VARIABLES ### */
 var buttonBookIdValue; // Store the id from the book button
-var availableDates; // Store the availableDates from the server
+var UnavailableDates; // Store the UnavailableDates from the server
 var selectedDays = []; // Array to store selected days on calendar
 var selectedDates = []; // Array to store selected dates on calendar
 var propertiesData = []; // Receive data from the server
@@ -100,7 +100,11 @@ const showModal = () => {
 
 // Hide the modal when the close button is clicked or outside the modal
 const hideModal = (event) => {
-  if (event.target == cancelBtn || event.target == submitBtn) {
+  if (
+    event.target == cancelBtn ||
+    event.target == submitBtn ||
+    event.key === "Escape"
+  ) {
     modalCalendar.style.display = "none";
 
     clearSelectDates();
@@ -122,6 +126,15 @@ document.addEventListener("click", (event) => {
 });
 
 cancelBtn.addEventListener("click", hideModal);
+
+// Define a function to handle the keydown event
+const handleKeyDownEscape = (event) => {
+  // Check if the Escape key was pressed
+  hideModal(event);
+};
+
+// Add the event listener to the document object
+document.addEventListener("keydown", handleKeyDownEscape);
 
 /*=============================================
 → ### SEND TO OWNER SPACE ### */
@@ -645,9 +658,9 @@ const displayPropertiesData = (propertiesData) => {
 /*=============================================
 → ### CREATE THE CALENDAR ### */
 const calendarModal = async () => {
-  availableDates = await serverGetAvailableDates(buttonBookIdValue);
+  UnavailableDates = await serverGetUnavailableDates(buttonBookIdValue);
   if (showQaTest) {
-    console.log("Available dates", availableDates);
+    console.log("Unavailable dates", UnavailableDates);
   }
   updateCalendar();
 };
@@ -758,7 +771,7 @@ const updateCalendar = () => {
         j >= new Date(currentYear, currentMonth, i).getDay()
       ) {
         td.textContent = i;
-        const foundDate = availableDates.find(
+        const foundDate = UnavailableDates.find(
           (date) =>
             date.year === currentYear &&
             date.month === currentMonth + 1 &&
