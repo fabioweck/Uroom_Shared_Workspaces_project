@@ -210,7 +210,7 @@ export const serverGetWorkspaceByOwner = async () => {
 
 /*==============================================
   → ### GET - DATES TO CALENDAR ### */
-export const serverGetAvailableDates = async (workspaceId) => {
+export const serverGetUnavailableDates = async (workspaceId) => {
   try {
     const response = await fetch(
       `${baseUrl}getReservedDate?workspace_id=${workspaceId}`
@@ -367,4 +367,4 @@ export const delistWorkspace = async (workspace) => {
 
 /*==============================================
   → ### SHOW IN QA TEST ### */
-  export const showQaTest = 0;
+  export const showQaTest = 1;
