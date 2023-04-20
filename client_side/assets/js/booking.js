@@ -26,9 +26,8 @@ var propertiesData = []; // Receive data from the server
 
 const owner = localStorage.getItem("owner");
 
-if(owner === "false")
-{
-  document.querySelector('.owner-workspace-container').style.display = "none";
+if (owner === "false") {
+  document.querySelector(".owner-workspace-container").style.display = "none";
 }
 
 /*=============================================
@@ -212,7 +211,7 @@ const filterWorkspaceProperty = (searchBarInputValue) => {
 
     case "workspace_type":
       searchBar.setAttribute("type", "search");
-      searchBar.setAttribute("placeholder", "Search: desk or room");
+      searchBar.setAttribute("placeholder", "Search: desk, office, meeting");
       filteredData = propertiesData.filter(({ workspace_type }) =>
         workspace_type.toLowerCase().includes(searchBarInputValue.toLowerCase())
       );
@@ -314,9 +313,25 @@ const displayPropertiesData = (propertiesData) => {
     const wrapImg = document.createElement("div");
     wrapImg.className = "wrap-img";
 
+    let imagePath;
+    switch (workspace_type.toLowerCase()) {
+      case "desk":
+        imagePath = "../img/room-desk.jpg";
+        break;
+      case "office":
+        imagePath = "../img/room-office.jpg";
+        break;
+      case "meeting":
+        imagePath = "../img/room-meeting.jpg";
+        break;
+      default:
+        imagePath = "../img/room-desk.jpg";
+        break;
+    }
+
     // Create the img element with src, alt, and class attributes
     const propertyImage = document.createElement("img");
-    propertyImage.src = "../img/room01.jpg";
+    propertyImage.src = imagePath;
     propertyImage.alt = "Property Image";
     propertyImage.className = "property-image";
 
@@ -662,7 +677,9 @@ calendarSubTitle.id = "calendar-subtitle";
 
 // Append calendar title the DOM
 calendarContainer.appendChild(calendarTitle);
-calendarContainer.appendChild(calendarSubTitle);
+if (showQaTest) {
+  calendarContainer.appendChild(calendarSubTitle);
+}
 
 // Create calendar dates buttons container
 const calendarDatesButtonsContainer = document.createElement("div");

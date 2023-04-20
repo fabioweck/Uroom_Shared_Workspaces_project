@@ -39,9 +39,9 @@
     "property_id": "267-558074",
     "address": "9101 Oak St",
     "neighborhood": "Oakridge",
-    "ParkingLot": "yes",
-    "PublicTransportation": "yes",
-    "property_status": true,
+    "ParkingLot": "no",
+    "PublicTransportation": "no",
+    "property_status": false,
     "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5"
   },
   {

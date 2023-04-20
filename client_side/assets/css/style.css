@@ -700,6 +700,7 @@ header .mobile-menu-icon {
 }
 .booking .workspaces-container .rooms-container .wrap-img .property-image {
   width: 100%;
+  height: 250px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 5px;
@@ -1113,6 +1114,7 @@ header .mobile-menu-icon {
 }
 .ownerspace .workspaces-container .rooms-container .wrap-img .property-image {
   width: 100%;
+  height: 250px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 5px;
