@@ -54,8 +54,10 @@ try {
   if (!userName) {
     greeting.style.display = "none";
   } else {
-    let index = userName.indexOf(" ");
-    let firstName = userName.slice(0, index);
+    
+    let nameCapitalized = userName.charAt(0).toUpperCase() + userName.slice(1);
+    let index = nameCapitalized.indexOf(" ");
+    let firstName = nameCapitalized.slice(0, index);
     greeting.innerHTML = `Hello ${firstName}!`;
   }
 }catch(err){};

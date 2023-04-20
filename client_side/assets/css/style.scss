@@ -153,27 +153,6 @@ header {
       @media screen and (max-width: 920px) {
         padding-left: 10px;}
 
-      .adjust-content-greeting{
-
-        width: 80px;
-
-        @media screen and (max-width: 920px) {
-          width: 10%;}
-      }
-
-      
-      #greeting{
-          color: white;
-          font-size: 25px; 
-          width: 100%;
-
-          @media screen and (max-width: $max-width1) {
-            font-size: 20px;
-            margin-left: 10px;
-          }
-
-      }
-
       img {
         width: 80px;
         height: 80px;
@@ -191,10 +170,26 @@ header {
         cursor: pointer;
 
         @media screen and (max-width: $max-width1) {
+          font-size: 15px;
           display: contents;
         }
       }
     }
+
+    #greeting{
+      text-align: center;
+      color: white;
+      font-size: 25px;
+
+      @media screen and (max-width: $max-width1) {
+        font-size: 20px;
+      }
+
+  }
+
+  .adjust-content-greeting{
+    width: 68px;
+  }
 
     .navbar {
       background-color: $bgColor4;
@@ -323,6 +318,8 @@ header {
     img {
       margin: 50px 0px 20px 0px;
       width: 150px;
+      transition: transform 500ms;
+      
       @media screen and (max-width: $max-width1) {
         width: 90px;
         margin: 40px 0px 0px 0px;
@@ -330,8 +327,7 @@ header {
     }
 
     img:hover {
-      transition: 0.3s;
-      opacity: 0.6;
+      transform: translateY(-10px);
     }
 
     @media screen and (max-width: $max-width1) {
@@ -1437,7 +1433,7 @@ header {
             text-align: center;
             cursor: default;
             margin-top: 3px;
-            width: 305px;
+            width: 320px;
 
             input {
               cursor: pointer;
@@ -1621,10 +1617,12 @@ header {
       h1 {
         padding: 10px 30px;
         font-size: 40px;
+        margin: 5px;
       }
 
       img {
         width: 40%;
+        margin: 5px;
 
         @media screen and (max-width: $max-width1) {
           width: 60%;
