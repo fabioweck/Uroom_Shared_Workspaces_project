@@ -124,25 +124,6 @@ header .container .logo {
     padding-left: 10px;
   }
 }
-header .container .logo .adjust-content-greeting {
-  width: 80px;
-}
-@media screen and (max-width: 920px) {
-  header .container .logo .adjust-content-greeting {
-    width: 10%;
-  }
-}
-header .container .logo #greeting {
-  color: white;
-  font-size: 25px;
-  width: 100%;
-}
-@media screen and (max-width: 768px) {
-  header .container .logo #greeting {
-    font-size: 20px;
-    margin-left: 10px;
-  }
-}
 header .container .logo img {
   width: 80px;
   height: 80px;
@@ -161,8 +142,22 @@ header .container .logo .menu-logo-mobile {
 }
 @media screen and (max-width: 768px) {
   header .container .logo .menu-logo-mobile {
+    font-size: 15px;
     display: contents;
   }
+}
+header .container #greeting {
+  text-align: center;
+  color: white;
+  font-size: 25px;
+}
+@media screen and (max-width: 768px) {
+  header .container #greeting {
+    font-size: 20px;
+  }
+}
+header .container .adjust-content-greeting {
+  width: 68px;
 }
 header .container .navbar {
   background-color: black;
@@ -288,6 +283,7 @@ header .mobile-menu-icon {
 .intro-description .intro-icons img {
   margin: 50px 0px 20px 0px;
   width: 150px;
+  transition: transform 500ms;
 }
 @media screen and (max-width: 768px) {
   .intro-description .intro-icons img {
@@ -296,8 +292,7 @@ header .mobile-menu-icon {
   }
 }
 .intro-description .intro-icons img:hover {
-  transition: 0.3s;
-  opacity: 0.6;
+  transform: translateY(-10px);
 }
 @media screen and (max-width: 768px) {
   .intro-description .intro-icons {
@@ -1448,7 +1443,7 @@ header .mobile-menu-icon {
   text-align: center;
   cursor: default;
   margin-top: 3px;
-  width: 305px;
+  width: 320px;
 }
 .ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-property-form .radio-option-container input,
 .ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-workspace-form .radio-option-container input,
@@ -1754,9 +1749,11 @@ header .mobile-menu-icon {
 .container #contact-us .half-card-left h1 {
   padding: 10px 30px;
   font-size: 40px;
+  margin: 5px;
 }
 .container #contact-us .half-card-left img {
   width: 40%;
+  margin: 5px;
 }
 @media screen and (max-width: 768px) {
   .container #contact-us .half-card-left img {
