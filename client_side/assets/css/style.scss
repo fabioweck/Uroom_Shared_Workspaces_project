@@ -149,20 +149,36 @@ header {
       align-items: center;
       padding-left: 30px;
 
-      .adjust-content-greeting {
+
+      @media screen and (max-width: 920px) {
+        padding-left: 10px;}
+
+      .adjust-content-greeting{
+
         width: 80px;
+
+        @media screen and (max-width: 920px) {
+          width: 10%;}
       }
 
-      #greeting {
-        color: white;
-        font-size: 25px;
-        width: 100%;
+      
+      #greeting{
+          color: white;
+          font-size: 25px; 
+          width: 100%;
+
+          @media screen and (max-width: $max-width1) {
+            font-size: 20px;
+            margin-left: 10px;
+          }
+
       }
 
       img {
         width: 80px;
         height: 80px;
         border-radius: 50%;
+        cursor: pointer;
 
         @media screen and (max-width: $max-width1) {
           display: none;
@@ -172,6 +188,7 @@ header {
       .menu-logo-mobile {
         display: none;
         color: $txtColor0;
+        cursor: pointer;
 
         @media screen and (max-width: $max-width1) {
           display: contents;
@@ -185,14 +202,25 @@ header {
       display: flex;
       justify-content: end;
       color: $txtColor0;
-      font-size: 30px;
+      font-size: 25px;
+
+      @media screen and (max-width: $max-width1) {
+        width: 100%;}
 
       a {
         color: $txtColor0;
         text-decoration: none;
-        padding: 5px 18px;
+        padding: 5px;
+        margin: 5px;
         border-radius: 5px;
         cursor: pointer;
+      }
+
+      a:last-child{
+        margin-right: 25px;
+
+        @media screen and (max-width: 920px) {
+          margin-right: 5px;}
       }
 
       a:hover {

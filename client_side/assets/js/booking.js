@@ -22,6 +22,16 @@ var selectedDates = []; // Array to store selected dates on calendar
 var propertiesData = []; // Receive data from the server
 
 /*=============================================
+→ ### DISPLAY OWNER SPACE ### */
+
+const owner = localStorage.getItem("owner");
+
+if(owner === "false")
+{
+  document.querySelector('.owner-workspace-container').style.display = "none";
+}
+
+/*=============================================
 → ### CALENDAR MODAL ### */
 // Get the modal element
 const modalCalendar = document.getElementById("modal-calendar");

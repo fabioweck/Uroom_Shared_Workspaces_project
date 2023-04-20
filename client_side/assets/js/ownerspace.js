@@ -1142,30 +1142,42 @@ workspaceTypeLabel.textContent = "What is the workspace type?";
 const workspaceTypeRadioContainer = document.createElement("div");
 workspaceTypeRadioContainer.className = "radio-option-container";
 
-const yesRadioworkspaceType = document.createElement("input");
-yesRadioworkspaceType.type = "radio";
-yesRadioworkspaceType.name = "Workspace Type";
-yesRadioworkspaceType.id = "desk";
-yesRadioworkspaceType.value = "desk";
+const deskRadioworkspaceType = document.createElement("input");
+deskRadioworkspaceType.type = "radio";
+deskRadioworkspaceType.name = "Workspace Type";
+deskRadioworkspaceType.id = "desk";
+deskRadioworkspaceType.value = "desk";
 
-const yesRadioLabelworkspaceType = document.createElement("label");
-yesRadioLabelworkspaceType.htmlFor = "desk";
-yesRadioLabelworkspaceType.textContent = "Desk";
+const deskRadioLabelworkspaceType = document.createElement("label");
+deskRadioLabelworkspaceType.htmlFor = "desk";
+deskRadioLabelworkspaceType.textContent = "Single Desk";
 
-const noRadioworkspaceType = document.createElement("input");
-noRadioworkspaceType.type = "radio";
-noRadioworkspaceType.name = "Workspace Type";
-noRadioworkspaceType.id = "office";
-noRadioworkspaceType.value = "office";
+const officeRadioworkspaceType = document.createElement("input");
+officeRadioworkspaceType.type = "radio";
+officeRadioworkspaceType.name = "Workspace Type";
+officeRadioworkspaceType.id = "office";
+officeRadioworkspaceType.value = "Private room";
 
-const noRadioLabelworkspaceType = document.createElement("label");
-noRadioLabelworkspaceType.htmlFor = "office";
-noRadioLabelworkspaceType.textContent = "Office";
+const officeRadioLabelworkspaceType = document.createElement("label");
+officeRadioLabelworkspaceType.htmlFor = "office";
+officeRadioLabelworkspaceType.textContent = "Private room";
 
-workspaceTypeRadioContainer.appendChild(yesRadioworkspaceType);
-workspaceTypeRadioContainer.appendChild(yesRadioLabelworkspaceType);
-workspaceTypeRadioContainer.appendChild(noRadioworkspaceType);
-workspaceTypeRadioContainer.appendChild(noRadioLabelworkspaceType);
+const meetingRadioworkspaceType = document.createElement("input");
+meetingRadioworkspaceType.type = "radio";
+meetingRadioworkspaceType.name = "Workspace Type";
+meetingRadioworkspaceType.id = "meeting";
+meetingRadioworkspaceType.value = "Meeting room";
+
+const meetingRadioLabelworkspaceType = document.createElement("label");
+meetingRadioLabelworkspaceType.htmlFor = "meeting";
+meetingRadioLabelworkspaceType.textContent = "Meeting room";
+
+workspaceTypeRadioContainer.appendChild(deskRadioworkspaceType);
+workspaceTypeRadioContainer.appendChild(deskRadioLabelworkspaceType);
+workspaceTypeRadioContainer.appendChild(officeRadioworkspaceType);
+workspaceTypeRadioContainer.appendChild(officeRadioLabelworkspaceType);
+workspaceTypeRadioContainer.appendChild(meetingRadioworkspaceType);
+workspaceTypeRadioContainer.appendChild(meetingRadioLabelworkspaceType);
 
 addWorkspaceRadioContainer3.appendChild(workspaceTypeLabel);
 addWorkspaceRadioContainer3.appendChild(workspaceTypeRadioContainer);

@@ -21,6 +21,32 @@ export const clearLoggerdUser = () => {
 */
 
 /*==============================================
+→ ### CLICKABLE ICON TO HOME PAGE ### */
+
+const iconClick = document.querySelector('#img-logo').addEventListener('click', (error)=>{
+
+  if(location.pathname == "/client_side/index.html")
+  {
+    window.location.href = "./index.html";
+  }
+  else{
+    window.location.href = "../../index.html";
+  }
+})
+
+const iconMobileClick = document.querySelector('.menu-logo-mobile').addEventListener('click', (error)=>{
+
+  if(location.pathname == "/client_side/index.html")
+  {
+    window.location.href = "./index.html";
+  }
+  else{
+    window.location.href = "../../index.html";
+  }
+})
+
+
+/*==============================================
 → ### DISPLAY USER NAME ON NAVBAR ### */
 
 let greeting = document.querySelector("#greeting");
@@ -32,7 +58,8 @@ try {
     let firstName = userName.slice(0, index);
     greeting.innerHTML = `Hello ${firstName}!`;
   }
-} catch (err) {}
+}catch(err){};
+
 
 /*==============================================
 → ### VIEW ICON MOBILE MENU ### */
@@ -60,7 +87,7 @@ btnMobileMenu.addEventListener("click", viewMobileMenu);
 /*==============================================
 → ### NAV LINKS ### */
 (() => {
-  let linkIndex;
+
   let linkLogin;
   let linkBooking;
   let linkAbout;
@@ -69,7 +96,7 @@ btnMobileMenu.addEventListener("click", viewMobileMenu);
 
   try {
     if (document.getElementById("index").id == "index") {
-      linkIndex = "./index.html";
+
       linkLogin = "./assets/pages/login.html";
       linkBooking = "./assets/pages/booking.html";
       linkAbout = "./assets/pages/about.html";
@@ -80,7 +107,7 @@ btnMobileMenu.addEventListener("click", viewMobileMenu);
 
   try {
     if (document.getElementById("pages").id == "pages") {
-      linkIndex = "../../index.html";
+
       linkLogin = "../pages/login.html";
       linkBooking = "../pages/booking.html";
       linkAbout = "../pages/about.html";
@@ -89,9 +116,6 @@ btnMobileMenu.addEventListener("click", viewMobileMenu);
       linkHome = "../../index.html";
     }
   } catch (err) {}
-
-  document.getElementById("link-home").innerHTML = "Home";
-  document.getElementById("link-home").href = linkIndex;
 
   try {
     if (loggedUser) {

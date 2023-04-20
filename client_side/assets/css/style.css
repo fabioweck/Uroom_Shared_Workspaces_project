@@ -119,18 +119,35 @@ header .container .logo {
   align-items: center;
   padding-left: 30px;
 }
+@media screen and (max-width: 920px) {
+  header .container .logo {
+    padding-left: 10px;
+  }
+}
 header .container .logo .adjust-content-greeting {
   width: 80px;
+}
+@media screen and (max-width: 920px) {
+  header .container .logo .adjust-content-greeting {
+    width: 10%;
+  }
 }
 header .container .logo #greeting {
   color: white;
   font-size: 25px;
   width: 100%;
 }
+@media screen and (max-width: 768px) {
+  header .container .logo #greeting {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+}
 header .container .logo img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  cursor: pointer;
 }
 @media screen and (max-width: 768px) {
   header .container .logo img {
@@ -140,6 +157,7 @@ header .container .logo img {
 header .container .logo .menu-logo-mobile {
   display: none;
   color: aliceblue;
+  cursor: pointer;
 }
 @media screen and (max-width: 768px) {
   header .container .logo .menu-logo-mobile {
@@ -152,14 +170,28 @@ header .container .navbar {
   display: flex;
   justify-content: end;
   color: aliceblue;
-  font-size: 30px;
+  font-size: 25px;
+}
+@media screen and (max-width: 768px) {
+  header .container .navbar {
+    width: 100%;
+  }
 }
 header .container .navbar a {
   color: aliceblue;
   text-decoration: none;
-  padding: 5px 18px;
+  padding: 5px;
+  margin: 5px;
   border-radius: 5px;
   cursor: pointer;
+}
+header .container .navbar a:last-child {
+  margin-right: 25px;
+}
+@media screen and (max-width: 920px) {
+  header .container .navbar a:last-child {
+    margin-right: 5px;
+  }
 }
 header .container .navbar a:hover {
   background-color: aliceblue;
