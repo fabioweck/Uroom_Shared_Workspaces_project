@@ -149,9 +149,9 @@ header {
       align-items: center;
       padding-left: 30px;
 
-
       @media screen and (max-width: 920px) {
-        padding-left: 10px;}
+        padding-left: 10px;
+      }
 
       img {
         width: 80px;
@@ -176,7 +176,7 @@ header {
       }
     }
 
-    #greeting{
+    #greeting {
       text-align: center;
       color: white;
       font-size: 25px;
@@ -184,12 +184,11 @@ header {
       @media screen and (max-width: $max-width1) {
         font-size: 20px;
       }
+    }
 
-  }
-
-  .adjust-content-greeting{
-    width: 68px;
-  }
+    .adjust-content-greeting {
+      width: 68px;
+    }
 
     .navbar {
       background-color: $bgColor4;
@@ -200,7 +199,8 @@ header {
       font-size: 25px;
 
       @media screen and (max-width: $max-width1) {
-        width: 100%;}
+        width: 100%;
+      }
 
       a {
         color: $txtColor0;
@@ -211,11 +211,12 @@ header {
         cursor: pointer;
       }
 
-      a:last-child{
+      a:last-child {
         margin-right: 25px;
 
         @media screen and (max-width: 920px) {
-          margin-right: 5px;}
+          margin-right: 5px;
+        }
       }
 
       a:hover {
@@ -306,20 +307,19 @@ header {
   .intro-icons {
     display: flex;
     justify-content: space-around;
-    
-    div{
+
+    div {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
     }
 
-
     img {
       margin: 50px 0px 20px 0px;
       width: 150px;
       transition: transform 500ms;
-      
+
       @media screen and (max-width: $max-width1) {
         width: 90px;
         margin: 40px 0px 0px 0px;
@@ -337,11 +337,11 @@ header {
   }
 
   .intro-paragraph {
-      padding: 20px;
-      font-size: 25px;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      text-align: center;
-    }
+    padding: 20px;
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+  }
 }
 
 .testimonials {
@@ -352,7 +352,7 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    padding-top: 30px;
+    padding-top: 10px;
 
     &:last-child {
       padding-bottom: 30px;
@@ -373,6 +373,7 @@ header {
       width: 75%;
       font-size: 20px;
       text-align: justify;
+      margin: 20px;
     }
 
     @media screen and (max-width: $max-width1) {
@@ -733,6 +734,10 @@ header {
         margin-bottom: 20px;
         width: 320px;
         margin: 10px;
+        
+        &:hover {
+          background-color: lighten(#f0f0f0, 5%);
+        }
 
         @keyframes fadeRight {
           0% {
@@ -772,7 +777,7 @@ header {
 
         .property-image {
           width: 100%;
-          height: 250px;
+          height: 220px;
           object-fit: cover;
           border-radius: 5px;
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
@@ -789,6 +794,12 @@ header {
         font-size: 24px;
         font-weight: bold;
         color: #333;
+      }
+
+      .name-workspace-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       .property-info-container {
@@ -1093,6 +1104,10 @@ header {
       opacity: 0;
       transform: translateX(100%);
 
+      &:hover {
+        background-color: lighten(#f0f0f0, 5%);
+      }
+
       @keyframes fadeRight {
         0% {
           opacity: 0;
@@ -1196,6 +1211,10 @@ header {
         width: 320px;
         margin: 10px;
 
+        &:hover {
+          background-color: lighten(#f0f0f0, 5%);
+        }
+
         @keyframes fadeRight {
           0% {
             opacity: 0;
@@ -1234,7 +1253,7 @@ header {
 
         .property-image {
           width: 100%;
-          height: 250px;
+          height: 220px;
           object-fit: cover;
           border-radius: 5px;
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
@@ -1251,6 +1270,12 @@ header {
         font-size: 24px;
         font-weight: bold;
         color: #333;
+      }
+
+      .name-workspace-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       .property-info-container {
@@ -1389,15 +1414,15 @@ header {
           flex-direction: column;
           align-items: center;
           border: solid 1px;
-          padding: 15px;
+          padding: 5px 15px;
           font-size: 16px;
           color: $txtColor4;
-          // margin-top: 10px;
           margin-bottom: 20px;
           width: 90%;
 
           input {
             width: 280px;
+            margin: 5px;
           }
 
           @media screen and (max-width: $max-width2) {
@@ -1407,7 +1432,9 @@ header {
           .button-container {
             @media screen and (max-width: $max-width1) {
               display: flex;
-              flex-direction: column;
+              justify-content: center;
+              margin-top: 20px;
+              width: 100%;
             }
           }
 
@@ -1422,7 +1449,6 @@ header {
           .add-workspace-radio-container,
           .add-workspace-dropdown-container {
             text-align: center;
-
           }
 
           .radio-option-container:last-child {

@@ -144,7 +144,7 @@ btnMobileMenu.addEventListener("click", viewMobileMenu);
   → ### FOOTER ### */
 (() => {
   document.getElementById("footer-name").innerHTML =
-    "&copy; Group 3 - Fabio Hugo Leandro Uyara - 2023";
+    "&copy; Group 5 - Fabio, Hugo, Leandro, Uyara - 2023";
   document.getElementById("footer-copyright").innerHTML = "All Rights Reserved";
 })();
 

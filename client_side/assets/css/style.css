@@ -315,7 +315,7 @@ header .mobile-menu-icon {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  padding-top: 30px;
+  padding-top: 10px;
 }
 .testimonials .testimonial-container:last-child {
   padding-bottom: 30px;
@@ -335,6 +335,7 @@ header .mobile-menu-icon {
   width: 75%;
   font-size: 20px;
   text-align: justify;
+  margin: 20px;
 }
 @media screen and (max-width: 768px) {
   .testimonials .testimonial-container {
@@ -658,6 +659,9 @@ header .mobile-menu-icon {
   width: 320px;
   margin: 10px;
 }
+.booking .workspaces-container .rooms-container .property-card:hover {
+  background-color: #fdfdfd;
+}
 @keyframes fadeRight {
   0% {
     opacity: 0;
@@ -695,7 +699,7 @@ header .mobile-menu-icon {
 }
 .booking .workspaces-container .rooms-container .wrap-img .property-image {
   width: 100%;
-  height: 250px;
+  height: 220px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 5px;
@@ -710,6 +714,11 @@ header .mobile-menu-icon {
   font-size: 24px;
   font-weight: bold;
   color: #333;
+}
+.booking .workspaces-container .rooms-container .name-workspace-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .booking .workspaces-container .rooms-container .property-info-container {
   margin-top: 10px;
@@ -981,6 +990,9 @@ header .mobile-menu-icon {
   opacity: 0;
   transform: translateX(100%);
 }
+.ownerspace .workspaces-container .property-division:hover {
+  background-color: #fdfdfd;
+}
 @keyframes fadeRight {
   0% {
     opacity: 0;
@@ -1072,6 +1084,9 @@ header .mobile-menu-icon {
   width: 320px;
   margin: 10px;
 }
+.ownerspace .workspaces-container .rooms-container .property-card:hover {
+  background-color: #fdfdfd;
+}
 @keyframes fadeRight {
   0% {
     opacity: 0;
@@ -1109,7 +1124,7 @@ header .mobile-menu-icon {
 }
 .ownerspace .workspaces-container .rooms-container .wrap-img .property-image {
   width: 100%;
-  height: 250px;
+  height: 220px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 5px;
@@ -1124,6 +1139,11 @@ header .mobile-menu-icon {
   font-size: 24px;
   font-weight: bold;
   color: #333;
+}
+.ownerspace .workspaces-container .rooms-container .name-workspace-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .ownerspace .workspaces-container .rooms-container .property-info-container {
   margin-top: 10px;
@@ -1270,7 +1290,7 @@ header .mobile-menu-icon {
   flex-direction: column;
   align-items: center;
   border: solid 1px;
-  padding: 15px;
+  padding: 5px 15px;
   font-size: 16px;
   color: #333;
   margin-bottom: 20px;
@@ -1293,6 +1313,7 @@ header .mobile-menu-icon {
 .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .add-property-form input,
 .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .add-workspace-form input {
   width: 280px;
+  margin: 5px;
 }
 @media screen and (max-width: 480px) {
   .ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-property-form,
@@ -1332,7 +1353,9 @@ header .mobile-menu-icon {
   .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .add-property-form .button-container,
   .ownerspace .modal-add-workspace-container .modal-add-workspace .modal-content-workspace .add-workspace-form .button-container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
   }
 }
 .ownerspace .modal-add-property-container #modal-add-property .modal-content-property .add-property-form p,

@@ -52,6 +52,17 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
       displayPropertiesWorkspaceData(propertiesWorkspaceData);
       break;
 
+    case "workspace_name":
+      searchBar.setAttribute("type", "search");
+      searchBar.setAttribute("placeholder", "Search");
+      filteredData = propertiesWorkspaceData.filter(
+        ({ workspace_name }) =>
+        workspace_name &&
+        workspace_name.toLowerCase().includes(searchBarInputValue.toLowerCase())
+      );
+      displayPropertiesWorkspaceData(filteredData);
+      break;
+
     case "lease_term":
       searchBar.setAttribute("type", "search");
       searchBar.setAttribute("placeholder", "Search: Daily, Weekly or Monthly");
@@ -352,6 +363,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       neighborhood,
       ParkingLot,
       PublicTransportation,
+      workspace_name,
       property_status,
       property_id,
     } = propertyData;
@@ -407,6 +419,22 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
 
     // Set the text content for the address neighborhood element
     addressNeighborhood.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${address}, ${neighborhood}`;
+
+    // Create the div element with class "name-workspace-container"
+    const nameWorkspace = document.createElement("div");
+    nameWorkspace.className = "name-workspace-container";
+    // Create a span element for the subtitle
+    const subtitleElement0 = document.createElement("span");
+    subtitleElement0.classList.add("subtitle-highlight");
+    subtitleElement0.textContent = "Name:";
+
+    // Create a span element for the highlight
+    const highlightElement0 = document.createElement("span");
+    highlightElement0.classList.add("highlight");
+    highlightElement0.textContent = `${workspace_name}`;
+
+    nameWorkspace.append(subtitleElement0);
+    nameWorkspace.append(highlightElement0);
 
     // Create the outer div element with class "property-info-container"
     const propertyInfoContainer = document.createElement("div");
@@ -731,6 +759,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
     // Append the elements
     propertyCard.appendChild(wrapImg);
     propertyCard.appendChild(addressNeighborhood);
+    propertyCard.appendChild(nameWorkspace);
     propertyCard.appendChild(propertyInfoContainer);
     propertyCard.appendChild(wrapWorkspaceDiv);
     propertyCard.appendChild(buttonContainerProperty);
@@ -1009,6 +1038,12 @@ const addWorkspaceForm = document.createElement("div");
 addWorkspaceForm.id = "add-workspace-form";
 addWorkspaceForm.className = "add-workspace-form";
 
+const addNameInput = document.createElement("input");
+addNameInput.placeholder = "Workspace Name";
+addNameInput.className = "input";
+addNameInput.type = "text";
+addNameInput.id = "add-workspace-name";
+
 const addPriceInput = document.createElement("input");
 addPriceInput.placeholder = "Price";
 addPriceInput.className = "input";
@@ -1268,6 +1303,7 @@ addWorkspaceButtonClose.className = "btn";
 addWorkspaceButtonClose.id = "button-workspace-close";
 buttonContainerWorkspace.appendChild(addWorkspaceButtonClose);
 
+addWorkspaceForm.appendChild(addNameInput);
 addWorkspaceForm.appendChild(addPriceInput);
 addWorkspaceForm.appendChild(addSeatsInput);
 addWorkspaceForm.appendChild(addSqftInput);
@@ -1312,6 +1348,7 @@ const hideModalWorkspace = (event) => {
     modalAddWorkspace.style.display = "none";
 
     // Reset the input fields
+    document.getElementById("add-workspace-name").value = "";
     document.getElementById("add-price").value = "";
     document.getElementById("add-seats").value = "";
     document.getElementById("add-sqft").value = "";
@@ -1402,6 +1439,7 @@ const updateWorkspaceModal = () => {
 
   const {
     lease_term,
+    workspace_name,
     price,
     seats,
     smoking,
@@ -1413,6 +1451,7 @@ const updateWorkspaceModal = () => {
   if (showQaTest) {
     modalWorkspaceSubtitle.innerHTML = `Workspace ID: ${buttonValue}`;
   }
+  addNameInput.value = workspace_name;
   addPriceInput.value = price;
   addSeatsInput.value = seats;
   addSqftInput.value = sqft;
@@ -1649,6 +1688,7 @@ const sendNewWorkspace = (event) => {
   event.preventDefault();
 
   // Get form input values
+  const workspaceName = document.getElementById("add-workspace-name").value;
   const price = document.getElementById("add-price").value;
   const seats = document.getElementById("add-seats").value;
   const sqft = document.getElementById("add-sqft").value;
@@ -1670,6 +1710,7 @@ const sendNewWorkspace = (event) => {
   // Validate form inputs
   if (
     leasingTerm === "" ||
+    workspaceName === "" ||
     price === "" ||
     seats === "" ||
     sqft === "" ||
@@ -1688,6 +1729,7 @@ const sendNewWorkspace = (event) => {
   if (isUpdateWorkspace) {
     const postWorkspace = {
       workspace_id: `${buttonValue}`,
+      workspace_name: `${workspaceName}`,
       workspace_type: `${workspaceType.value}`,
       seats: `${seats}`,
       smoking: `${smoking.value}`,
@@ -1704,6 +1746,7 @@ const sendNewWorkspace = (event) => {
   } else {
     const postWorkspace = {
       workspace_type: `${workspaceType.value}`,
+      workspace_name: `${workspaceName}`,
       seats: `${seats}`,
       smoking: `${smoking.value}`,
       price: `${price}`,

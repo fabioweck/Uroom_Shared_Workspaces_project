@@ -9,7 +9,6 @@ function generateID() {
 }
 
 
-
 async function addUser(user) {
     const filePath = path.join(__dirname, '../repository/users.json');
 
@@ -63,8 +62,6 @@ async function updateUser(updateUser) {
         throw { code, message };
     });
 };
-
-
 
 
 async function login(user) {
@@ -185,9 +182,14 @@ async function addWorkspace(newWorkspace) {
     }
 
     const firstThreeLetters = newWorkspace.user_id.substring(0, 3);
-    newWorkspace.workspace_id = firstThreeLetters + "-" + newWorkspace.workspace_id;
-    //-------------------------------------
 
+    newWorkspace.workspace_id = firstThreeLetters + "-" + newWorkspace.workspace_id;
+    const newWorkspace_id = newWorkspace.workspace_id
+    console.log(newWorkspace_id)
+
+    await addNewWorkspaceBooking(newWorkspace_id);
+
+    //-------------------------------------
 
     try {
         return await new Promise((resolve, reject) => {
@@ -212,6 +214,7 @@ async function addWorkspace(newWorkspace) {
                     });
                 };
             });
+
         });
     } catch (err_2) {
         const code = err_2.statusCode || 500;
@@ -240,40 +243,6 @@ async function updateWorkspace(updateWorkspace) {
     }).catch(err => {
         const code = err.statusCode || 500;
         const message = err.message || 'Error occurred while delisting workspace';
-        throw { code, message };
-    });
-};
-
-// We can inactive this function !!! Replace by getWorlspaceByOwner();
-async function findPropertyByOwner(user_id) {
-
-    const property = await loadJsonFile('properties.json');
-
-    return new Promise((resolve, reject) => {
-
-        const filterPropertyByOwner = property.filter(propertyOnly => propertyOnly.user_id === user_id);
-        resolve(filterPropertyByOwner);
-
-    }).catch(err => {
-        const code = err.statusCode || 500;
-        const message = err.message || 'Error occurred while filter properties';
-        throw { code, message };
-    });
-};
-
-// We can inactive this function !!! Replace by getWorlspaceByOwner();
-async function findWorkspaceByOwner(user_id) {
-
-    const workspace = await loadJsonFile('workspaces.json');
-
-    return new Promise((resolve, reject) => {
-
-        const filterWorkspaceByOwner = workspace.filter(workspaceOnly => workspaceOnly.user_id === user_id);
-        resolve(filterWorkspaceByOwner);
-
-    }).catch(err => {
-        const code = err.statusCode || 500;
-        const message = err.message || 'Error occurred while filter properties';
         throw { code, message };
     });
 };
@@ -347,8 +316,18 @@ async function getReservedDate(workspace) {
     });
 };
 
+async function addNewWorkspaceBooking(workspace_id) {
+    const bookings = await loadJsonFile('bookings.json');
+    const newWorkspace = workspace_id;
+
+    bookings[0].workspace_bookings[newWorkspace] = {};
+console.log('mynewworkspacebooking', bookings[0])
+    await writeJsonFile(bookings, 'bookings.json');
+
+}
 
 async function updateReservedDate(dates) {
+    console.log('newbooking', dates)
     const allNewBookings = dates;
     const bookings = await loadJsonFile('bookings.json');
     const workspaceBookings = bookings[0].workspace_bookings;
@@ -422,6 +401,9 @@ function sortBookings(bookings) {
 async function delistWorkspace(user_id, workspace_id) {
 
     const workspaces = await loadJsonFile('workspaces.json');
+
+
+
     return new Promise(async (resolve, reject) => {
 
         for (const workspace of workspaces) {
@@ -433,6 +415,7 @@ async function delistWorkspace(user_id, workspace_id) {
                         console.log('The workspace', workspace_id, 'was delist');
                     } else {
                         workspace.workspace_status = true;
+                        await relistProperty(workspace.user_id, workspace.property_id);
                         console.log('The workspace', workspace_id, 'was relist');
                     }
                     resolve(workspace);
@@ -450,6 +433,29 @@ async function delistWorkspace(user_id, workspace_id) {
     });
 }
 
+async function relistProperty(user_id, property_id) {
+
+    const properties = await loadJsonFile('properties.json');
+
+    return new Promise(async (resolve, reject) => {
+        for (const property of properties) {
+            if (property.property_id == property_id) {
+                console.log('relistProperty was called');
+                if (property.property_status == false) {
+                    await delistProperty(user_id, property_id);
+                    resolve(property);
+                }
+            }
+        }
+        resolve({ message: 'relist process completed!' });
+
+    }).catch(err => {
+        const code = err.statusCode || 500;
+        const message = err.message || 'Error occurred while delisting workspace';
+        throw { code, message };
+    });
+}
+
 async function delistProperty(user_id, property_id) {
 
     const workspaces = await loadJsonFile('workspaces.json');
@@ -457,16 +463,6 @@ async function delistProperty(user_id, property_id) {
     const workspaceDelisted = [];
 
     return new Promise(async (resolve, reject) => {
-
-        // to delist all workspaces associate with property and user required
-
-        for (const workspace of workspaces) {
-            if (workspace.property_id == property_id && workspace.workspace_status == true) {
-
-                await delistWorkspace(user_id, workspace.workspace_id)
-                workspaceDelisted.push(workspace.workspace_id);
-            };
-        }
 
         // to delist property associate with user required
         for (const property of properties) {
@@ -476,6 +472,18 @@ async function delistProperty(user_id, property_id) {
                     if (property.property_status == true) {
                         property.property_status = false;
                         console.log('The property', property_id, 'was delist');
+
+                        // to delist all workspaces associate with property and user required
+
+                        for (const workspace of workspaces) {
+                            if (workspace.property_id == property_id && workspace.workspace_status == true) {
+                                if (workspace.user_id == user_id) {
+                                    await delistWorkspace(user_id, workspace.workspace_id)
+                                    workspaceDelisted.push(workspace.workspace_id);
+                                }
+                            };
+                        }
+
                     } else {
                         property.property_status = true;
                         console.log('The property', property_id, 'was relist');
@@ -485,8 +493,9 @@ async function delistProperty(user_id, property_id) {
                 };
             };
         };
-
         await writeJsonFile(properties, 'properties.json');
+
+
         resolve(`The property ${property_id} and workspace(s): ${workspaceDelisted} was delisted successful`);
 
     }).catch(err => {
@@ -529,4 +538,4 @@ async function writeJsonFile(data, fileName) {
 }
 
 
-module.exports = { addUser, login, addProperty, addWorkspace, findPropertyByOwner, findWorkspaceByOwner, getWorkspaceByOwner, delistWorkspace, delistProperty, getReservedDate, updateReservedDate, updateUser, updateProperty, updateWorkspace }
+module.exports = { addUser, login, addProperty, addWorkspace, getWorkspaceByOwner, delistWorkspace, delistProperty, getReservedDate, updateReservedDate, updateUser, updateProperty, updateWorkspace }

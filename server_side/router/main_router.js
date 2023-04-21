@@ -125,34 +125,6 @@ router.post('/updateWorkspace', (req, res) => {
 });
 
 
-
-
-router.get('/findPropertyByOwner', async (req, res) => {
-
-    const user_id = req.query.user_id;
-
-    userService.findPropertyByOwner(user_id)
-        .then(filteredProperties => {
-            res.status(200).send(filteredProperties);
-        })
-        .catch(err => {
-            res.status(err.code).send(err);
-        });
-});
-
-router.get('/findWorkspaceByOwner', async (req, res) => {
-
-    const user_id = req.query.user_id;
-
-    userService.findWorkspaceByOwner(user_id)
-        .then(filteredWorkspaces => {
-            res.status(200).send(filteredWorkspaces);
-        })
-        .catch(err => {
-            res.status(err.code).send(err);
-        });
-});
-
 router.get('/getWorkspaceByOwner', async (req, res) => {
 
     const user_id = req.query.user_id;

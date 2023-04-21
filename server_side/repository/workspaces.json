@@ -1,6 +1,7 @@
 [
   {
     "workspace_id": null,
+    "workspace_name": null,
     "workspace_type": null,
     "seats": null,
     "smoking": null,
@@ -13,6 +14,7 @@
   },
   {
     "workspace_id": "180-728506",
+    "workspace_name": "The Secret Garden",
     "workspace_type": "Meeting",
     "seats": 4,
     "smoking": "no",
@@ -25,6 +27,7 @@
   },
   {
     "workspace_id": "180-728507",
+    "workspace_name": "The Cozy Nook",
     "workspace_type": "Office",
     "seats": 4,
     "smoking": "no",
@@ -37,6 +40,7 @@
   },
   {
     "workspace_id": "180-728509",
+    "workspace_name": "The Spark Station",
     "workspace_type": "Meeting",
     "seats": "4",
     "smoking": "no",
@@ -49,6 +53,7 @@
   },
   {
     "workspace_id": "180-728508",
+    "workspace_name": "The Energy Emporium",
     "workspace_type": "Office",
     "seats": "4",
     "smoking": "no",
@@ -61,6 +66,7 @@
   },
   {
     "workspace_id": "180-731085",
+    "workspace_name": "The Vision Vault",
     "workspace_type": "Desk",
     "seats": "4",
     "smoking": "yes",
@@ -73,6 +79,7 @@
   },
   {
     "workspace_id": "180-712006",
+    "workspace_name": "The Imagination Chamber",
     "workspace_type": "Office",
     "seats": "987",
     "smoking": "yes",
@@ -85,6 +92,7 @@
   },
   {
     "workspace_id": "180-227321",
+    "workspace_name": "The Idea Lab",
     "workspace_type": "Desk",
     "seats": "4",
     "smoking": "no",
@@ -97,6 +105,7 @@
   },
   {
     "workspace_id": "180-239841",
+    "workspace_name": "The Power Pod",
     "workspace_type": "Desk",
     "seats": "4",
     "smoking": "no",
@@ -109,6 +118,7 @@
   },
   {
     "workspace_id": "180-472420",
+    "workspace_name": "The Inspiration Room",
     "workspace_type": "Office",
     "seats": "10",
     "smoking": "no",
@@ -121,6 +131,7 @@
   },
   {
     "workspace_id": "180-726294",
+    "workspace_name": "The Collaboration Cave",
     "workspace_type": "Desk",
     "seats": "4",
     "smoking": "no",
@@ -133,6 +144,7 @@
   },
   {
     "workspace_id": "180-486764",
+    "workspace_name": "The Innovation Station",
     "workspace_type": "Office",
     "seats": "10",
     "smoking": "no",
@@ -145,6 +157,7 @@
   },
   {
     "workspace_id": "180-666157",
+    "workspace_name": "The Creativity Corner",
     "workspace_type": "Office",
     "seats": "10",
     "smoking": "no",
@@ -157,6 +170,7 @@
   },
   {
     "workspace_id": "180-921910",
+    "workspace_name": "NThe Brainstorm Bunkerame",
     "workspace_type": "Office",
     "seats": "10",
     "smoking": "no",
@@ -169,6 +183,7 @@
   },
   {
     "workspace_id": "180-572496",
+    "workspace_name": "The Green Room",
     "workspace_type": "Office",
     "seats": "10",
     "smoking": "yes",
@@ -181,6 +196,7 @@
   },
   {
     "workspace_id": "180-673183",
+    "workspace_name": "The Chill Zone",
     "workspace_type": "Desk",
     "seats": "4",
     "smoking": "no",
@@ -193,6 +209,7 @@
   },
   {
     "workspace_id": "180-261712",
+    "workspace_name": "The Think Tank",
     "workspace_type": "Desk",
     "seats": "4",
     "smoking": "no",
@@ -203,20 +220,10 @@
     "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
     "workspace_status": false
   },
-  {
-    "workspace_id": "180-483612",
-    "workspace_type": "Desk",
-    "seats": "5",
-    "smoking": "yes",
-    "price": "55",
-    "sqft": "555",
-    "lease_term": "Monthly",
-    "property_id": "267-558074",
-    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
-    "workspace_status": false
-  },
+
   {
     "workspace_type": "Desk",
+    "workspace_name": "Zen Den",
     "seats": "654",
     "smoking": "yes",
     "price": "654",
