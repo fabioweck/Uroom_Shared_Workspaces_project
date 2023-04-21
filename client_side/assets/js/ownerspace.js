@@ -57,8 +57,10 @@ const filterWorkspaceProperty = (searchBarInputValue, isJustProperties) => {
       searchBar.setAttribute("placeholder", "Search");
       filteredData = propertiesWorkspaceData.filter(
         ({ workspace_name }) =>
-        workspace_name &&
-        workspace_name.toLowerCase().includes(searchBarInputValue.toLowerCase())
+          workspace_name &&
+          workspace_name
+            .toLowerCase()
+            .includes(searchBarInputValue.toLowerCase())
       );
       displayPropertiesWorkspaceData(filteredData);
       break;
@@ -332,7 +334,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
 
       if (isFirstCallProperties) {
         setTimeout(() => {
-          propertyDivision.style.animationDelay = `${index * 0.01}s`;
+          propertyDivision.style.animationDelay = `${index * 0.25}s`;
           propertyDivision.style.opacity = "1";
           propertyDivision.style.transform = "translateX(1000%)";
           propertyDivision.style.display = "block";
@@ -772,7 +774,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
         propertyCard.style.opacity = "1";
         propertyCard.style.transform = "translateX(1000%)";
         propertyCard.style.display = "block";
-      }, index * 1);
+      }, index * 0.01);
     } else {
       propertyCard.style.display = "block";
       propertyCard.style.animationDuration = "0s";
@@ -1703,7 +1705,7 @@ const sendNewWorkspace = (event) => {
   const dropdownPropertiesValue =
     dropdownProperties.options[dropdownProperties.selectedIndex].value;
 
-  const workspaceStatus = document.querySelector(
+  let workspaceStatus = document.querySelector(
     'input[name="workspace_status"]:checked'
   );
 
@@ -1726,6 +1728,12 @@ const sendNewWorkspace = (event) => {
     console.log("isUpdateWorkspace", isUpdateWorkspace);
   }
 
+  if (workspaceStatus.value == "true") {
+    workspaceStatus = true;
+  } else {
+    workspaceStatus = false;
+  }
+
   if (isUpdateWorkspace) {
     const postWorkspace = {
       workspace_id: `${buttonValue}`,
@@ -1738,7 +1746,7 @@ const sendNewWorkspace = (event) => {
       lease_term: `${leasingTerm.value}`,
       property_id: `${dropdownPropertiesValue}`,
       user_id: getCurrentUser(),
-      workspace_status: Boolean(workspaceStatus),
+      workspace_status: workspaceStatus,
     };
     serverPostUpdateWorkspace(postWorkspace);
 
@@ -1754,9 +1762,12 @@ const sendNewWorkspace = (event) => {
       lease_term: `${leasingTerm.value}`,
       property_id: `${dropdownPropertiesValue}`,
       user_id: getCurrentUser(),
-      workspace_status: true,
+      workspace_status: workspaceStatus,
     };
 
+    console.log("workspaceStatus", workspaceStatus.value);
+    console.log("Boolean(workspaceStatus)", Boolean(workspaceStatus.value));
+    console.log("postWorkspace", postWorkspace);
     serverPostNewWorkspace(postWorkspace);
   }
 

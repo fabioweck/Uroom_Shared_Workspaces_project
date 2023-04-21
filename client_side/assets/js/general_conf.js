@@ -23,28 +23,25 @@ export const clearLoggerdUser = () => {
 /*==============================================
 → ### CLICKABLE ICON TO HOME PAGE ### */
 
-const iconClick = document.querySelector('#img-logo').addEventListener('click', (error)=>{
+const iconClick = document
+  .querySelector("#img-logo")
+  .addEventListener("click", (error) => {
+    if (location.pathname == "/client_side/index.html") {
+      window.location.href = "./index.html";
+    } else {
+      window.location.href = "../../index.html";
+    }
+  });
 
-  if(location.pathname == "/client_side/index.html")
-  {
-    window.location.href = "./index.html";
-  }
-  else{
-    window.location.href = "../../index.html";
-  }
-})
-
-const iconMobileClick = document.querySelector('.menu-logo-mobile').addEventListener('click', (error)=>{
-
-  if(location.pathname == "/client_side/index.html")
-  {
-    window.location.href = "./index.html";
-  }
-  else{
-    window.location.href = "../../index.html";
-  }
-})
-
+const iconMobileClick = document
+  .querySelector(".menu-logo-mobile")
+  .addEventListener("click", (error) => {
+    if (location.pathname == "/client_side/index.html") {
+      window.location.href = "./index.html";
+    } else {
+      window.location.href = "../../index.html";
+    }
+  });
 
 /*==============================================
 → ### DISPLAY USER NAME ON NAVBAR ### */
@@ -54,14 +51,18 @@ try {
   if (!userName) {
     greeting.style.display = "none";
   } else {
-    
     let nameCapitalized = userName.charAt(0).toUpperCase() + userName.slice(1);
     let index = nameCapitalized.indexOf(" ");
-    let firstName = nameCapitalized.slice(0, index);
+    let firstName;
+    if (index == -1) {
+      firstName = nameCapitalized;
+    } else {
+      firstName = nameCapitalized.slice(0, index);
+    }
+
     greeting.innerHTML = `Hello ${firstName}!`;
   }
-}catch(err){};
-
+} catch (err) {}
 
 /*==============================================
 → ### VIEW ICON MOBILE MENU ### */
@@ -89,7 +90,6 @@ btnMobileMenu.addEventListener("click", viewMobileMenu);
 /*==============================================
 → ### NAV LINKS ### */
 (() => {
-
   let linkLogin;
   let linkBooking;
   let linkAbout;
@@ -98,7 +98,6 @@ btnMobileMenu.addEventListener("click", viewMobileMenu);
 
   try {
     if (document.getElementById("index").id == "index") {
-
       linkLogin = "./assets/pages/login.html";
       linkBooking = "./assets/pages/booking.html";
       linkAbout = "./assets/pages/about.html";
@@ -109,7 +108,6 @@ btnMobileMenu.addEventListener("click", viewMobileMenu);
 
   try {
     if (document.getElementById("pages").id == "pages") {
-
       linkLogin = "../pages/login.html";
       linkBooking = "../pages/booking.html";
       linkAbout = "../pages/about.html";
@@ -265,22 +263,22 @@ export const serverPostNewProperty = async (postNewProperty) => {
 
 /*==============================================
   → ### POST - UPDATE PROPERTY ### */
-  export const serverPostUpdateProperty = async (postProperty) => {
-    try {
-      const response = await fetch(baseUrl + "updateProperty", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(postProperty),
-      });
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
+export const serverPostUpdateProperty = async (postProperty) => {
+  try {
+    const response = await fetch(baseUrl + "updateProperty", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postProperty),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
 
 /*==============================================
   → ### POST - NEW WORKSPACE ### */
@@ -303,23 +301,22 @@ export const serverPostNewWorkspace = async (postNewWorkspace) => {
 
 /*==============================================
   → ### POST - UPDATE WORKSPACE ### */
-  export const serverPostUpdateWorkspace = async (postWorkspace) => {
-    try {
-      const response = await fetch(baseUrl + "updateWorkspace", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(postWorkspace),
-      });
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
-
+export const serverPostUpdateWorkspace = async (postWorkspace) => {
+  try {
+    const response = await fetch(baseUrl + "updateWorkspace", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postWorkspace),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
 
 /*==============================================
   → ### POST - DELIST PROPERTY ### */
@@ -372,4 +369,4 @@ export const delistWorkspace = async (workspace) => {
 
 /*==============================================
   → ### SHOW IN QA TEST ### */
-  export const showQaTest = 0;
+export const showQaTest = 0;

@@ -1119,10 +1119,6 @@ header {
         }
       }
 
-      &:hover {
-        transform: scale(1.05);
-      }
-
       @media screen and (max-width: $max-width2) {
         width: 100%;
         min-width: min-content;

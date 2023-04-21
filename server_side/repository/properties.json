@@ -1,1 +1,47 @@
-[{"property_id":"267-558059","address":"1234 Main St","neighborhood":"Downtown","ParkingLot":"no","PublicTransportation":"no","property_status":false,"user_id":"18059eac-c6b1-4bda-b462-521d0323c5c5"},{"property_id":"267-558071","address":"5678 Elm St","neighborhood":"West End","ParkingLot":"yes","PublicTransportation":"yes","property_status":true,"user_id":"18059eac-c6b1-4bda-b462-521d0323c5c5"},{"property_id":"267-558076","address":"1234 Maple St","neighborhood":"Kitsilano","ParkingLot":"yes","PublicTransportation":"yes","property_status":true,"user_id":"18059eac-c6b1-4bda-b462-521d0323c5c5"},{"property_id":"267-558077","address":"737 Carnarvon St","neighborhood":"New Westminster","ParkingLot":"yes","PublicTransportation":"yes","property_status":true,"user_id":"18059eac-c6b1-4bda-b462-521d0323c5c5"},{"property_id":"267-558078","address":"737 Carnarvon St","neighborhood":"New West","ParkingLot":"yes","PublicTransportation":"yes","property_status":false,"user_id":"18059eac-c6b1-4bda-b462-521d0323c5c5"},{"address":"260 Midland Pl","neighborhood":"Midnapore","ParkingLot":"no","PublicTransportation":"yes","property_status":false,"user_id":"18059eac-c6b1-4bda-b462-521d0323c5c5","property_id":"267-558079"},{"address":"263 Lowland Pl","neighborhood":"Lownapore","ParkingLot":"no","PublicTransportation":"yes","property_status":true,"user_id":"267b55a7-193a-47d2-bf0e-9dcc95706a90","property_id":"267-558080"},{"property_id":"267-558073","address":"1234 Main St","neighborhood":"Downtown","ParkingLot":"yes","PublicTransportation":"yes","property_status":false,"user_id":"267b55a7-193a-47d2-bf0e-9dcc95706a90"},{"property_id":"180-452231","address":"4567 Elm St","neighborhood":"Suburbia","ParkingLot":"yes","PublicTransportation":"yes","property_status":true,"user_id":"18059eac-c6b1-4bda-b462-521d0323c5c5"},{"address":"7891 Maple Ave","neighborhood":"The Heights","ParkingLot":"yes","PublicTransportation":"yes","property_status":true,"user_id":"18059eac-c6b1-4bda-b462-521d0323c5c5","property_id":"180-457120"}]
+[
+  {
+    "address": "263 Lowland Pl",
+    "neighborhood": "Downtown",
+    "ParkingLot": "yes",
+    "PublicTransportation": "yes",
+    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90",
+    "property_id": "267-558073",
+    "property_status": true
+  },
+  {
+    "address": "7891 Maple Ave",
+    "neighborhood": "Lownapore",
+    "ParkingLot": "no",
+    "PublicTransportation": "yes",
+    "user_id": "267b55a7-193a-47d2-bf0e-9dcc95706a90",
+    "property_id": "267-558080",
+    "property_status": true
+  },
+  {
+    "address": "5678 Elm St",
+    "neighborhood": "West End",
+    "ParkingLot": "yes",
+    "PublicTransportation": "yes",
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "property_id": "267-558074",
+    "property_status": true
+  },
+  {
+    "address": "1234 Maple St",
+    "neighborhood": "Kitsilano",
+    "ParkingLot": "yes",
+    "PublicTransportation": "yes",
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "property_id": "267-558076",
+    "property_status": true
+  },
+  {
+    "address": "737 Carnarvon St",
+    "neighborhood": "New Westminster",
+    "ParkingLot": "yes",
+    "PublicTransportation": "yes",
+    "user_id": "18059eac-c6b1-4bda-b462-521d0323c5c5",
+    "property_id": "267-558077",
+    "property_status": true
+  }
+]

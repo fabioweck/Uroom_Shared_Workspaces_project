@@ -25,8 +25,9 @@ var propertiesData = []; // Receive data from the server
 → ### DISPLAY OWNER SPACE ### */
 
 const owner = localStorage.getItem("owner");
+const isLoggedUser = getLoggedUser();
 
-if (owner === "false") {
+if ((isLoggedUser == null || owner === "false")) {
   document.querySelector(".owner-workspace-container").style.display = "none";
 }
 
@@ -657,6 +658,9 @@ const displayPropertiesData = (propertiesData) => {
     button.id = `btn-book`;
     button.textContent = "Book";
     button.value = `${workspace_id}`;
+    if(isLoggedUser == null){
+      button.disabled = true;
+    }
 
     // Append button to btn-container
     btnContainer.appendChild(button);
@@ -673,7 +677,7 @@ const displayPropertiesData = (propertiesData) => {
 
     if (isFirstCall) {
       setTimeout(() => {
-        propertyCard.style.animationDelay = `${index * 0.01}s`;
+        propertyCard.style.animationDelay = `${index * 0.25}s`;
         propertyCard.style.opacity = "1";
         propertyCard.style.transform = "translateX(1000%)";
         propertyCard.style.display = "block";
