@@ -332,11 +332,11 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
 
       if (isFirstCallProperties) {
         setTimeout(() => {
-          propertyDivision.style.animationDelay = `${index * 0.25}s`;
+          propertyDivision.style.animationDelay = `${index * 0.01}s`;
           propertyDivision.style.opacity = "1";
           propertyDivision.style.transform = "translateX(1000%)";
           propertyDivision.style.display = "block";
-        }, index * 1);
+        }, index * 0.01);
       } else {
         propertyDivision.style.display = "block";
         propertyDivision.style.animationDuration = "0s";

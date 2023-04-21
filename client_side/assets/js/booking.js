@@ -673,11 +673,11 @@ const displayPropertiesData = (propertiesData) => {
 
     if (isFirstCall) {
       setTimeout(() => {
-        propertyCard.style.animationDelay = `${index * 0.25}s`;
+        propertyCard.style.animationDelay = `${index * 0.01}s`;
         propertyCard.style.opacity = "1";
         propertyCard.style.transform = "translateX(1000%)";
         propertyCard.style.display = "block";
-      }, index * 1);
+      }, index * 0.01);
     } else {
       propertyCard.style.display = "block";
       propertyCard.style.animationDuration = "0s";
