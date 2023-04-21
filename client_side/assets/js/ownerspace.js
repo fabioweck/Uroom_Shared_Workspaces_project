@@ -1264,7 +1264,7 @@ inputStatusYes.value = true;
 // Create label element for Yes option of public Property
 const labelStatusYes = document.createElement("label");
 labelStatusYes.htmlFor = "public-status-yes";
-labelStatusYes.textContent = "Actived";
+labelStatusYes.textContent = "Active";
 
 // Create input element for No option of public Property
 const inputStatusNo = document.createElement("input");
