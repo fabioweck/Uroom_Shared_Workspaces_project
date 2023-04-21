@@ -287,7 +287,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
         ? `<i class="fa-solid fa-square-check fa-2xl" style="color: #1f5132;"></i>`
         : `<i class="fa-solid fa-rectangle-xmark fa-2xl" style="color: #511f1f;"></i>`;
       const statusPropertyParagraph = document.createElement("p");
-      statusPropertyParagraph.innerHTML = `<strong>Status Property:</strong> ${iconStatusPropertyParagraph}`;
+      statusPropertyParagraph.innerHTML = `<strong>Property Status:</strong> ${iconStatusPropertyParagraph}`;
 
       const idPropertyParagraph = document.createElement("p");
       idPropertyParagraph.innerHTML = `<strong>ID Property:</strong> ${property_id}`;
