@@ -337,9 +337,11 @@ export const delistProperty = async (property) => {
       }
     );
     const data = await response.json();
+    location.reload();
     return data;
   } catch (error) {
     console.error(error);
+    location.reload();
     return null;
   }
 };
@@ -360,6 +362,7 @@ export const delistWorkspace = async (workspace) => {
       }
     );
     const data = await response.json();
+    location.reload();
     return data;
   } catch (error) {
     console.error(error);

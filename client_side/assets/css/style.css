@@ -1163,6 +1163,7 @@ header .mobile-menu-icon {
 .ownerspace .workspaces-container .rooms-container .subtitle-highlight {
   font-size: 16px;
   color: #555;
+  margin-bottom: 10px;
 }
 .ownerspace .workspaces-container .rooms-container .highlight,
 .ownerspace .workspaces-container .rooms-container .icon-highlight {
