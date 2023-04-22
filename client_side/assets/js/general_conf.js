@@ -209,6 +209,22 @@ export const serverGetWorkspaceByOwner = async () => {
   }
 };
 
+/*=============================================
+→ ### GET - PROPERTIES AND WORKSPACE DATA FROM SERVER (OWNER PAGE) ### */
+export const getOwnerContact = async () => {
+  try {
+    const workspace_id = localStorage.getItem("workspace_id");
+    const response = await fetch(
+      baseUrl + "getOwnerContact?workspace_id=" + workspace_id
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 /*==============================================
   → ### GET - DATES TO CALENDAR ### */
 export const serverGetUnavailableDates = async (workspaceId) => {

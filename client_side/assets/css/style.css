@@ -581,15 +581,25 @@ header .mobile-menu-icon {
 }
 .booking #booked-notification {
   display: none;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin: 0px 20px;
-  height: 150px;
+  height: 200px;
   background-color: lightgray;
   font-size: 20px;
   color: #333;
   border-radius: 0px 0px 5px 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.booking #booked-notification p {
+  margin: 10px;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .booking #booked-notification {
+    height: 300px;
+  }
 }
 .booking .owner-workspace-container {
   border: solid;
