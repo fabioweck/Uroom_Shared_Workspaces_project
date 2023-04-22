@@ -8,6 +8,7 @@
 import {
   firstName,
   getLoggedUser,
+  getOwnerContact,
   serverGetUnavailableDates,
   serverPostSelectedDates,
   serverGetWorkspace,
@@ -792,7 +793,8 @@ const updateCalendar = () => {
     }
   });
   calendarSubTitle.innerHTML = `${propertiesData[propertyIndex].workspace_name}`;
-  localStorage.setItem("workspace", `${propertiesData[propertyIndex].workspace_name}`);
+  localStorage.setItem("workspace_id", `${propertiesData[propertyIndex].workspace_id}`);
+  localStorage.setItem("workspace_name", `${propertiesData[propertyIndex].workspace_name}`);
   console.log(displayBooked);
   calendarTable.innerHTML = ""; // Clear existing table
 
@@ -958,11 +960,15 @@ window.onload = async () => {
 
   if(Number(localStorage.clickcount) == 1)
   {
+    let ownerContact = await getOwnerContact();
     $("#booked-notification")
     .slideDown("slow")
     .css({display: "flex"});
-    $("#dismiss-notification").before(`<p>${firstName}, you have booked ${localStorage.getItem("workspace")}.<br/>Get in contact with landlord.</p>`);
-    localStorage.removeItem("workspace");
+    $("#dismiss-notification").before(`<p>${firstName}, you have booked ${localStorage.getItem("workspace_name")}!</p>
+    <p>Get in contact with landlord:</p>
+    <p>${ownerContact.fullName}: ${ownerContact.phoneNumber} - ${ownerContact.emailAddress}</p>`);
+    localStorage.removeItem("workspace_name");
+    localStorage.removeItem("workspace_id");
     localStorage.clickcount = 0;
   }
 

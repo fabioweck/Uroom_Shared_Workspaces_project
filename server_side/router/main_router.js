@@ -138,6 +138,23 @@ router.get('/getWorkspaceByOwner', async (req, res) => {
         });
 });
 
+
+router.get('/getOwnerContact', async (req, res) => {
+
+    const workspace_id = req.query.workspace_id;
+
+    userService.getOwnerContact(workspace_id)
+        .then(data => {
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(err.code).send(err);
+        });
+});
+
+
+
+
 router.get('/getReservedDate', async (req, res) => {
 
     const workspace_id = req.query.workspace_id;
