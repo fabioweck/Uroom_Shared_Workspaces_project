@@ -579,6 +579,18 @@ header .mobile-menu-icon {
 .booking {
   width: 100%;
 }
+.booking #booked-notification {
+  display: none;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0px 20px;
+  height: 150px;
+  background-color: lightgray;
+  font-size: 20px;
+  color: #333;
+  border-radius: 0px 0px 5px 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .booking .owner-workspace-container {
   border: solid;
   display: flex;
@@ -1002,9 +1014,6 @@ header .mobile-menu-icon {
     opacity: 1;
     transform: translateX(0%);
   }
-}
-.ownerspace .workspaces-container .property-division:hover {
-  transform: scale(1.05);
 }
 @media screen and (max-width: 480px) {
   .ownerspace .workspaces-container .property-division {

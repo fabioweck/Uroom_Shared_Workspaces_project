@@ -5,6 +5,7 @@
 */
 export let loggedUser = localStorage.getItem("user_id"); //Assigns key to variable
 let userName = localStorage.getItem("user_name");
+export let firstName;
 
 export const getLoggedUser = () => {
   return loggedUser;
@@ -53,7 +54,7 @@ try {
   } else {
     let nameCapitalized = userName.charAt(0).toUpperCase() + userName.slice(1);
     let index = nameCapitalized.indexOf(" ");
-    let firstName;
+    
     if (index == -1) {
       firstName = nameCapitalized;
     } else {
@@ -369,4 +370,4 @@ export const delistWorkspace = async (workspace) => {
 
 /*==============================================
   → ### SHOW IN QA TEST ### */
-export const showQaTest = 0;
+export const showQaTest = 1;

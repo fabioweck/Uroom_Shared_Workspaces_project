@@ -6,6 +6,7 @@
 /*=============================================
 → ### IMPORTS ### */
 import {
+  firstName,
   getLoggedUser,
   serverGetUnavailableDates,
   serverPostSelectedDates,
@@ -20,7 +21,8 @@ var UnavailableDates; // Store the UnavailableDates from the server
 var selectedDays = []; // Array to store selected days on calendar
 var selectedDates = []; // Array to store selected dates on calendar
 var propertiesData = []; // Receive data from the server
-
+var displayBooked; //Stores booked workspaces to be displayed
+  
 /*=============================================
 → ### DISPLAY OWNER SPACE ### */
 
@@ -64,6 +66,7 @@ const createNewSelectedDateObject = () => {
   };
 
   selectedDates.push(newSelectedDate); // Add the new object to selectedDates array
+
 };
 
 //Clear Selected dates object
@@ -789,6 +792,8 @@ const updateCalendar = () => {
     }
   });
   calendarSubTitle.innerHTML = `${propertiesData[propertyIndex].workspace_name}`;
+  localStorage.setItem("workspace", `${propertiesData[propertyIndex].workspace_name}`);
+  console.log(displayBooked);
   calendarTable.innerHTML = ""; // Clear existing table
 
   // Create the header row with the days of the week
@@ -930,6 +935,7 @@ const sendSelectedDates = async () => {
   const filteredDatesResult = selectedDates.filter(
     (date) => date.days.length > 0
   );
+
   const serverPostSelectedDatesReturn = await serverPostSelectedDates(
     filteredDatesResult
   );
@@ -937,6 +943,9 @@ const sendSelectedDates = async () => {
 
 submitBtn.addEventListener("click", sendSelectedDates);
 submitBtn.addEventListener("click", hideModal);
+submitBtn.addEventListener('click', ()=>{
+  localStorage.clickcount = 1;
+})
 
 /*=============================================
 → ### ON LOAD THE PAGE ### */
@@ -946,4 +955,22 @@ window.onload = async () => {
   if (showQaTest) {
     console.log("propertiesData", propertiesData);
   }
+
+  if(Number(localStorage.clickcount) == 1)
+  {
+    $("#booked-notification")
+    .slideDown("slow")
+    .css({display: "flex"});
+    $("#dismiss-notification").before(`<p>${firstName}, you have booked ${localStorage.getItem("workspace")}.<br/>Get in contact with landlord.</p>`);
+    localStorage.removeItem("workspace");
+    localStorage.clickcount = 0;
+  }
+
 };
+
+try{
+const closeNotification = document.querySelector("#dismiss-notification")
+  .addEventListener('click', ()=>{
+    $("#booked-notification")
+    .slideUp("slow");
+})}catch(err){};
