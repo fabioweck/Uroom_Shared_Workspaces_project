@@ -995,7 +995,7 @@ header .mobile-menu-icon {
 .ownerspace .workspaces-container .property-division {
   min-width: 300px;
   width: 33%;
-  height: 240px;
+  height: 260px;
   padding: 20px;
   margin-left: 20px;
   margin-right: 20px;
@@ -1182,7 +1182,6 @@ header .mobile-menu-icon {
 .ownerspace .workspaces-container .rooms-container .subtitle-highlight {
   font-size: 16px;
   color: #555;
-  margin-bottom: 10px;
 }
 .ownerspace .workspaces-container .rooms-container .highlight,
 .ownerspace .workspaces-container .rooms-container .icon-highlight {

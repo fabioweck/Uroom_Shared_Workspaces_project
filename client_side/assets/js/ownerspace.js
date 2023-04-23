@@ -256,6 +256,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
         PublicTransportation,
         property_status,
         property_id,
+        workspace_id,
       } = propertyWorkspaceData;
 
       const propertyDivision = document.createElement("div");
@@ -291,6 +292,21 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       const statusPropertyParagraph = document.createElement("p");
       statusPropertyParagraph.innerHTML = `<strong>Property Status:</strong> ${iconStatusPropertyParagraph}`;
 
+      let countsPropertyId = {};
+      let numberOfWorkspace = []
+      propertiesWorkspaceData.forEach((property) => {
+        if (countsPropertyId[property.property_id]) {
+          countsPropertyId[property.property_id]++;
+        } else {
+          countsPropertyId[property.property_id] = 1;
+        }
+      });
+
+      numberOfWorkspace = Object.values(countsPropertyId);
+
+      const countWorkspace = document.createElement("p");
+      countWorkspace.innerHTML = `<strong>Workspace registered: </strong>${numberOfWorkspace[index]}`;
+
       const idPropertyParagraph = document.createElement("p");
       idPropertyParagraph.innerHTML = `<strong>ID Property:</strong> ${property_id}`;
 
@@ -298,6 +314,7 @@ const displayPropertiesWorkspaceData = (propertiesWorkspaceData) => {
       propertyDescriptionWrap.appendChild(parkingLotParagraph);
       propertyDescriptionWrap.appendChild(publicTransportationParagraph);
       propertyDescriptionWrap.appendChild(statusPropertyParagraph);
+      propertyDescriptionWrap.appendChild(countWorkspace);
       if (showQaTest) {
         propertyDescriptionWrap.appendChild(idPropertyParagraph);
       }
