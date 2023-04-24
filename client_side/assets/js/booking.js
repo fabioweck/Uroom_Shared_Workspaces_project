@@ -951,6 +951,10 @@ submitBtn.addEventListener('click', ()=>{
 
 /*=============================================
 → ### ON LOAD THE PAGE ### */
+
+//This function runs when the page is loaded
+//It shows the workspaces and displays a message to the user everytime a workspace is booked
+//giving the owner name and contact information
 window.onload = async () => {
   propertiesData = await serverGetWorkspace();
   displayPropertiesData(propertiesData);
@@ -958,15 +962,17 @@ window.onload = async () => {
     console.log("propertiesData", propertiesData);
   }
 
-  if(Number(localStorage.clickcount) == 1)
+  if(Number(localStorage.clickcount) == 1) //if the user has clicked in the submit button on booking page, it displays info message
   {
     let ownerContact = await getOwnerContact();
     $("#booked-notification")
     .slideDown("slow")
     .css({display: "flex"});
+    //appends paragraphs inside a ghotst div with message
     $("#dismiss-notification").before(`<p>${firstName}, you have booked ${localStorage.getItem("workspace_name")}!</p>
     <p>Get in contact with landlord:</p>
     <p>${ownerContact.fullName}: ${ownerContact.phoneNumber} - ${ownerContact.emailAddress}</p>`);
+    //clears local storage and resets clickcount
     localStorage.removeItem("workspace_name");
     localStorage.removeItem("workspace_id");
     localStorage.clickcount = 0;
@@ -974,6 +980,7 @@ window.onload = async () => {
 
 };
 
+//Calls the "dismiss" button function to slide up the div
 try{
 const closeNotification = document.querySelector("#dismiss-notification")
   .addEventListener('click', ()=>{

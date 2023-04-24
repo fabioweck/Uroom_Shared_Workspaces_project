@@ -13,6 +13,7 @@ async function sendNewUserClient() {
   const checkOwner = document.querySelector('input[name="owner"]');
   let owner;
 
+  //evaluates if the checkbox was selected or not
   if (!checkOwner.checked) {
     owner = "false";
   } else {
@@ -45,7 +46,7 @@ async function sendNewUserClient() {
     .then((response) => {
       if (response.status == 400) {
         response.json().then((data) => {
-          $("#dv-display").slideDown("slow").css({
+          $("#dv-display").slideDown("slow").css({ //if receives a error status, displays the message to the user
             display: "flex",
           });
           displayError.innerHTML = data.message;
@@ -56,10 +57,10 @@ async function sendNewUserClient() {
       }
     })
     .then((data) => {
-      localStorage.setItem("user_id", data.user_id);
+      localStorage.setItem("user_id", data.user_id); //stores data from user to be used
       localStorage.setItem("user_name", data.fullName);
       localStorage.setItem("owner", data.owner);
-      window.location.href = "booking.html";
+      window.location.href = "booking.html"; //here the user goes to an automatic login and proceeds straight to booking page with workspaces available
       if (showQaTest) {
         console.log(data);
       }

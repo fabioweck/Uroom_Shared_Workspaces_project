@@ -64,7 +64,7 @@ async function userLogin() {
     .then((response) => {
       if (response.status == 401) {
         response.json().then((data) => {
-          $("#dv-display").slideDown("slow").css({
+          $("#dv-display").slideDown("slow").css({ //Displays hidden div with a message when gets 401 status
             display: "flex"
           });
           displayError.innerHTML = data.message;
@@ -76,7 +76,7 @@ async function userLogin() {
     })
     .then((data) => {
       displayError.style.display = "none";
-      localStorage.setItem("user_name", data.fullName);
+      localStorage.setItem("user_name", data.fullName); //collects user data to be used after login
       localStorage.setItem("user_id", data.user_id);
       localStorage.setItem("owner", data.owner);
       window.location.href = "booking.html";
@@ -86,12 +86,14 @@ async function userLogin() {
     });
 }
 
+//Calls user logout function
 try {
   const logout = document
     .querySelector("#logout")
-    .addEventListener("click", userLogout);
+    .addEventListener("click", userLogout); 
 } catch (err) {}
 
+//Logout the user and clears user data from local storage
 function userLogout() {
   localStorage.removeItem("user_id");
   localStorage.removeItem("user_name");
@@ -99,15 +101,6 @@ function userLogout() {
   clearLoggerdUser();
   window.location.href = "login.html";
 }
-
-//==============================Standard functions========================//
-
-// Keep current userId on browser's memory
-// function storeUserId(req, res) {                                    //deletar?
-//     localStorage.setItem('user_id', req.user_id);
-//     loggedUser = localStorage.getItem('user_id');
-//     //res.status(200).send('Storage sucessful on the browser')
-// }
 
 // Keep current owner on browser's memory
 function storeOwner(req, res) {
@@ -125,7 +118,6 @@ function getCurrentOwner() {
   return localStorage.getItem("owner");
 }
 
-// Delete current userId from browser's memory
 
 // clean up all user input data after a action
 function clearAllInputs() {

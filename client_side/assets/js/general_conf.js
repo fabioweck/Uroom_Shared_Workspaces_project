@@ -4,14 +4,14 @@
 ************************************************
 */
 export let loggedUser = localStorage.getItem("user_id"); //Assigns key to variable
-let userName = localStorage.getItem("user_name");
-export let firstName;
+let userName = localStorage.getItem("user_name"); //Collects user name to be displayed in navbar
+export let firstName; //exports the first name of the user
 
-export const getLoggedUser = () => {
+export const getLoggedUser = () => { //returns user ID
   return loggedUser;
 };
 
-export const clearLoggerdUser = () => {
+export const clearLoggerdUser = () => { //clears variable with user ID
   loggedUser = "";
 };
 
@@ -47,6 +47,7 @@ const iconMobileClick = document
 /*==============================================
 → ### DISPLAY USER NAME ON NAVBAR ### */
 
+//If there's a user logged, the page will change "login" button to "logout"
 let greeting = document.querySelector("#greeting");
 try {
   if (!userName) {
@@ -62,6 +63,7 @@ try {
     }
 
     greeting.innerHTML = `Hello ${firstName}!`;
+    
   }
 } catch (err) {}
 
