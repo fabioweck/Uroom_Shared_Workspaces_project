@@ -49,28 +49,3 @@ Bonus Features
 4.	As a coworker, I can sort the workspaces’ search-results by the average ratings, availability date, or price.
 5.	As a coworker, I can write a review about a workspace. The workspace’s listing should include these reviews.
 
-Submission Requirements
-
-Zip your project files and upload the compressed file on D2L. There will be a presentation in class at the end of the semester. 
-
-This project worth 30% of your total mark.
-
-The following rubric will be used to mark your submissions.
-
-
-
-
-
-
-
-
-Rubrics summary
-
-1.	Your project will be assessed for both frontend and backend functionality
-2.	Well formatted web application on browser, descriptive and appropriate message during user interaction, input validation check, page responsiveness to different device size, dynamic content display features etc ( this needs to be done without using any backend feature). 
-
-You will do live presentation or may prepare short video of your project demo and upload it on D2l dropbox (please get direction from you instructor), communicate with your instructor if you have question or concern 
-
-3.	Web server configuration file, working API’s. APIs include GET, PUT, POST, DELETE to operate and provide access to the dataset you will store in file system or database server about users, admin, and workspaces, security measures, default API’s that handle different situations and display appropriate message for users, error handling methods etc.
-4.	Active participation in the team
-
