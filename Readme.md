@@ -16,8 +16,6 @@ Add a web page with controls to search and display the properties and their work
 
 All pages should make requests to your locally defined array object or JS Object application. On phase two it should interact with a backend file system or a database system
 
-
-
 2.	Phase 2: 
 At this phase of your project you need to start using Node server
 •	Design and implement an API(backend application) to fetch data from a the shared workspace file system.
@@ -48,4 +46,9 @@ Bonus Features
 3.	As an owner, I can rate a coworker on a one-to-five-scale. The coworker’s profile should include the average rating.
 4.	As a coworker, I can sort the workspaces’ search-results by the average ratings, availability date, or price.
 5.	As a coworker, I can write a review about a workspace. The workspace’s listing should include these reviews.
+
+https://github.com/fabioweck/Uroom_Shared_Workspaces_project/assets/115494238/201ac94e-67b0-4ddf-bdb5-713077fcbcd0
+
+
+
 
